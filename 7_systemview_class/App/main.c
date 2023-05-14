@@ -63,5 +63,6 @@ int main(void)
 	OSTaskCreate(first_task, (void *)0, &MainTaskStk[TASK_STK_LEN-1], 2);
 	OSTaskNameSet(2, (INT8U *)"FIRST_TASK", (INT8U *)"FIRST_TASK_ERR");
 	OSStart();
+	
 	return 0;
 }
