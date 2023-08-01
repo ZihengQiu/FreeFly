@@ -3,14 +3,17 @@
         {
             "name": "Target 1",
             "includePath": [
-                "d:\\study\\projects\\ucos\\porting\\6_to_stm32_CtxSw\\ucos2\\Cfg\\Template",
-                "d:\\study\\projects\\ucos\\porting\\6_to_stm32_CtxSw\\ucos2\\Ports",
-                "d:\\study\\projects\\ucos\\porting\\6_to_stm32_CtxSw\\ucos2\\Source",
-                "d:\\study\\projects\\ucos\\porting\\6_to_stm32_CtxSw\\App",
-                "d:\\study\\projects\\ucos\\porting\\5_to_stm32",
-                "d:\\study\\projects\\ucos\\porting\\6_to_stm32_CtxSw\\ucos2\\Cfg",
-                "d:\\study\\projects\\ucos\\porting\\6_to_stm32_CtxSw\\App\\hardware",
-                "d:\\study\\projects\\ucos\\porting\\6_to_stm32_CtxSw\\Start"
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/.\\ucos2\\Cfg\\Template",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/.\\ucos2\\Ports",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/.\\ucos2\\Source",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/.\\App",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/..\\5_to_stm32",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/.\\ucos2\\Cfg",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/.\\App\\hardware",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/.\\SystemView\\GenericConfig",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/.\\SystemView\\GenericFiles",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class/.\\SystemView\\OSSpecific",
+                "/home/zeen/projects/drone/FreeFly/7_systemview_class"
             ],
             "defines": [
                 "__CC_ARM",
