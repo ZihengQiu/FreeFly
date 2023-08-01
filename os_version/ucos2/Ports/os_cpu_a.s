@@ -111,10 +111,9 @@ PendSV_Handler
 	str r0, [r1]
 	
 	; SYSVIEW 
-	push {r0, r1}
-	mov r0, r1
+	push {r0, r1,r14}
 	bl SYSVIEW_TaskSwitchedIn
-	pop {r0, r1}
+	pop {r0, r1,r14}
 	
 	; psp = OSTCBCur->OSTCBStkPtr
 	ldr r1, [r0]	; r1 = sp

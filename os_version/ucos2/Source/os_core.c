@@ -1506,7 +1506,7 @@ static  void  OS_InitTaskIdle (void)
 #endif
 
 #if OS_TASK_NAME_EN > 0u
-    OSTaskNameSet(OS_TASK_IDLE_PRIO, (INT8U *)(void *)"uC/OS-II Idle", &err);
+    OSTaskNameSet(OS_TASK_IDLE_PRIO, (INT8U *)"uC/OS-II Idle", &err);
 #endif
 }
 

@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zeen/projects/drone/FreeFly/os_version/System/CMSIS/Device/startup_stm32f401xe.s
+
+/home/zeen/projects/drone/FreeFly/os_version/ucos2/Ports/os_cpu_a.s
+
