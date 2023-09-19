@@ -10,7 +10,7 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENfSIONS OFF)
 
-set(EXECUTABLE ${PROJECT_NAME}.out)
+set(EXECUTABLE ${PROJECT_NAME})
 
 #add definitions
 add_definitions(-DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER)
@@ -76,13 +76,9 @@ target_link_options(${EXECUTABLE} PRIVATE
         -Wl,--gc-sections
         )
 
-# Print executable size
-# add_custom_command(TARGET ${EXECUTABLE}
-#         POST_BUILD
-#         COMMAND arm-none-eabi-size ${EXECUTABLE})
-
 # Create hex file
 add_custom_command(TARGET ${EXECUTABLE}
         POST_BUILD
         COMMAND arm-none-eabi-objcopy -O ihex ${EXECUTABLE} ${PROJECT_NAME}.hex
-        COMMAND arm-none-eabi-objcopy -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin)
+        COMMAND arm-none-eabi-objcopy -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin
+	)

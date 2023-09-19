@@ -11,7 +11,6 @@ void Bluetooth_SendByte(uint8_t data);
 void Bluetooth_SendString(char data[]);
 uint16_t Bluetooth_ReceiveByte(void);
 void BluetoothInit(void);
-
-
+void Bluetooth_SendSignedNum(int16_t num);
 
 #endif

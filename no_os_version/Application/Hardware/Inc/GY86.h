@@ -11,12 +11,23 @@
 #define INT_PIN_CFG					(uint8_t)0x37
 #define USER_CTRL					(uint8_t)0x6A
 #define PWR_MGMT_1              	(uint8_t)0x6B
+
 #define ACCEL_XOUT_H            	(uint8_t)0x3B
 #define ACCEL_XOUT_L            	(uint8_t)0x3C
 #define ACCEL_YOUT_H            	(uint8_t)0x3D
 #define ACCEL_YOUT_L            	(uint8_t)0x3E
 #define ACCEL_ZOUT_H            	(uint8_t)0x3F
 #define ACCEL_ZOUT_L            	(uint8_t)0x40
+
+#define TEMP_OUT_H					(uint8_t)0x41
+#define TEMP_OUT_L					(uint8_t)0x42
+
+#define GYRO_XOUT_H					(uint8_t)0x43
+#define GYRO_XOUT_L					(uint8_t)0x44
+#define GYRO_YOUT_H					(uint8_t)0x45
+#define GYRO_YOUT_L					(uint8_t)0x46
+#define GYRO_ZOUT_H					(uint8_t)0x47
+#define GYRO_ZOUT_L					(uint8_t)0x48
 
 /* HMC5883 */ 
 #define AddressHMC5883				(uint8_t)0x3C
@@ -39,17 +50,31 @@
 /* MS5611 */ 
 #define AddressMS5611				(uint8_t)0x111011C0 //0x111011
 
+#define WHO_AM_I					(uint8_t)0x75
+
 
 void MPU6050Init(void);
 uint16_t GetACCXMPU6050(void);
 uint16_t GetACCYMPU6050(void);
 uint16_t GetACCZMPU6050(void);
+uint16_t GetGYROXMPU6050(void);
+uint16_t GetGYROYMPU6050(void);
+uint16_t GetGYROZMPU6050(void);
 
 void HMC5883Init(void);
 uint16_t GetXHMC5883(void);
 uint16_t GetYHMC5883(void);
 uint16_t GetZHMC5883(void);
 
+typedef struct
+{
+  double acc_x, acc_y, acc_z;
+  double gyro_x, gyro_y, gyro_z;
+  double temp;
+  double hmc5883_x, hmc5883_y, hmc5883_z;
+}MpuDataStruct;
+
+void GetMpuData(MpuDataStruct *mpuData);
 
 void MS5611Init(void);
 

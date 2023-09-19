@@ -105,6 +105,17 @@ void Bluetooth_SendString(char data[])
 	}
 }
 
+void Bluetooth_SendSignedNum(int16_t num)
+{
+	if(num < 0)
+	{
+		Bluetooth_SendByte('-');
+		num = -num;
+	}
+	sprintf(TransmitData, "%d", num);
+	Bluetooth_SendString(TransmitData);
+}
+
 void BluetoothInit()
 {
 	Bluetooth_GPIOInit();

@@ -28,5 +28,6 @@ uint8_t MyI2C_CheckRXNE(void);
 
 uint8_t MyI2C_ReadRegister_1Bytes(uint8_t, uint8_t);
 uint16_t MyI2C_ReadRegister_2Bytes(uint8_t, uint8_t);
+void MyI2C_BurstReadRegister(uint8_t SlaveAddress, uint8_t RegisterAddress, uint8_t *Buffer, uint8_t Length);
 
 #endif

@@ -1,6 +1,6 @@
 #include "stm32f4xx.h"                  // Device header
 #include "MyI2C.h"
-
+#include "MyDelay.h"
 void MyI2C_GPIOInit(void)
 {
 	//GPIO_Init
@@ -125,11 +125,17 @@ void MyI2C_MasterRead(uint8_t Address)
 
 uint8_t MyI2C_CheckBusy()
 {
-	if(((I2C1->SR2>>1) & 1) == 1)// BUSY
+	// if(((I2C1->SR2>>1) & 1) == 1)// BUSY
+	// {
+	// 	return 0x0;
+	// }
+	// return 0x1; 
+	uint16_t temp = I2C1->SR2;
+	if(((temp>>1) & 1) == 1)// BUSY
 	{
 		return 0x0;
 	}
-	return 0x1; 
+	return 0x1;
 }
 
 uint8_t MyI2C_CheckMasterModeSelected()
@@ -145,11 +151,19 @@ uint8_t MyI2C_CheckMasterModeSelected()
 uint8_t MyI2C_CheckMasterTransmitterModeSelected()
 {
 	//BUSY, MSL, ADDR, TXE and TRA 0x00070082
-	if(((I2C1->SR1>>1 & 1) == 1) && ((I2C1->SR1>>7 & 1) == 1) && ((I2C1->SR2)&1) == 1 && ((I2C1->SR2>>1)&1) == 1 && ((I2C1->SR2>>2)&1) == 1 )
+	// if(((I2C1->SR1>>1 & 1) == 1) && ((I2C1->SR1>>7 & 1) == 1) && ((I2C1->SR2)&1) == 1 && ((I2C1->SR2>>1)&1) == 1 && ((I2C1->SR2>>2)&1) == 1 )
+	// {
+	// 	return 0x1;
+	// }
+	// return 0x0;  
+	
+	uint16_t temp1 = I2C1->SR1, temp2 = I2C1->SR2;
+	if(((temp1>>1 & 1) == 1) && ((temp1>>7 & 1) == 1) && ((temp2)&1) == 1 && ((temp2>>1)&1) == 1 && ((temp2>>2)&1) == 1 )
 	{
+		if(temp1>>9&1 == 1) I2C1->SR1 |= 0x400;
 		return 0x1;
 	}
-	return 0x0;  
+	return 0x0;	//BUG:ÖÙ²Ã¶ªÊ§
 }
 
 uint8_t MyI2C_CheckMasterByteTransmitted()
@@ -198,21 +212,16 @@ uint8_t MyI2C_ReadRegister_1Bytes(uint8_t SlaveAddress, uint8_t RegisterAddress)
 	
 	while(!MyI2C_CheckBusy());
 	MyI2C_SetStart(ENABLE);
-	
 	while(!MyI2C_CheckMasterModeSelected());
 	MyI2C_Send7bitAddress(SlaveAddress,Direction_Transmitter);
-	
 	while(!MyI2C_CheckMasterTransmitterModeSelected());
 	MyI2C_SendData(RegisterAddress);
-	
 	while(!MyI2C_CheckMasterByteTransmitted());
+
 	MyI2C_SetStart(ENABLE);
-	
 	while(!MyI2C_CheckMasterModeSelected());
 	MyI2C_Send7bitAddress(SlaveAddress, Direction_Receiver); 
-	
 	while(!MyI2C_CheckMasterReceiverModeSelected());
-	
 	MyI2C_SetStop(DISABLE);
 	MyI2C_SetAck(DISABLE);
 	while(!MyI2C_CheckRXNE());
@@ -225,39 +234,66 @@ uint8_t MyI2C_ReadRegister_1Bytes(uint8_t SlaveAddress, uint8_t RegisterAddress)
 uint16_t MyI2C_ReadRegister_2Bytes(uint8_t SlaveAddress, uint8_t RegisterAddress)
 {
 	uint8_t dataH = 0, dataL = 0;
-  uint16_t data = 0;
+  	uint16_t data = 0;
 	
 	MyI2C_SetAck(ENABLE);
 	MyI2C_SetStop(DISABLE);
 	
-  while(!MyI2C_CheckBusy());  
-  MyI2C_SetStart(ENABLE);
-  while(!MyI2C_CheckMasterModeSelected());          
-  MyI2C_Send7bitAddress(SlaveAddress,Direction_Transmitter);
-  while(!MyI2C_CheckMasterTransmitterModeSelected()); 
-  MyI2C_SendData(RegisterAddress);
-  while(!MyI2C_CheckMasterByteTransmitted());         
- 
-  MyI2C_SetStart(ENABLE);                                    
-  while(!MyI2C_CheckMasterModeSelected());
-  MyI2C_Send7bitAddress(SlaveAddress, Direction_Receiver);
-  while(!MyI2C_CheckMasterReceiverModeSelected());
-  MyI2C_SetStop(DISABLE);
- 
-  while(!MyI2C_CheckRXNE());
-  dataH = MyI2C_ReceiveData();
- 
-  MyI2C_SetAck(DISABLE);
-  MyI2C_SetStop(ENABLE);
+  	while(!MyI2C_CheckBusy());  
+  	MyI2C_SetStart(ENABLE);
+  	while(!MyI2C_CheckMasterModeSelected());          
+  	MyI2C_Send7bitAddress(SlaveAddress,Direction_Transmitter);
+  	while(!MyI2C_CheckMasterTransmitterModeSelected()); 
+  	MyI2C_SendData(RegisterAddress);
+  	while(!MyI2C_CheckMasterByteTransmitted());         
 	
-  while(!MyI2C_CheckRXNE());
-  dataL = MyI2C_ReceiveData();
+  	MyI2C_SetStart(ENABLE);                                    
+  	while(!MyI2C_CheckMasterModeSelected());
+  	MyI2C_Send7bitAddress(SlaveAddress, Direction_Receiver);
+  	while(!MyI2C_CheckMasterReceiverModeSelected());
+  	MyI2C_SetStop(DISABLE);
+	
+  	while(!MyI2C_CheckRXNE());
+  	dataH = MyI2C_ReceiveData();
+	
+  	MyI2C_SetAck(DISABLE);
+  	MyI2C_SetStop(ENABLE);
+
+  	while(!MyI2C_CheckRXNE());
+  	dataL = MyI2C_ReceiveData();
 	MyI2C_SetAck(DISABLE); 
-  MyI2C_SetStop(ENABLE);
-  MyI2C_SetAck(ENABLE);
- 
-  data = (uint16_t)(dataH<<8) + dataL;
-  return data;
+  	MyI2C_SetStop(ENABLE);
+  	MyI2C_SetAck(ENABLE);
+	
+  	data = (uint16_t)(dataH<<8) + dataL;
+  	return data;
+}
+
+void MyI2C_BurstReadRegister(uint8_t SlaveAddress, uint8_t RegisterAddress, uint8_t *Buffer, uint8_t Length)
+{
+	while(!MyI2C_CheckBusy());
+	MyI2C_SetStart(ENABLE);
+	while(!MyI2C_CheckMasterModeSelected());
+	MyI2C_Send7bitAddress(SlaveAddress,Direction_Transmitter);
+	while(!MyI2C_CheckMasterTransmitterModeSelected());
+	MyI2C_SendData(RegisterAddress);
+	while(!MyI2C_CheckMasterByteTransmitted());
+	
+	MyI2C_SetStart(ENABLE);
+	while(!MyI2C_CheckMasterModeSelected());
+	MyI2C_Send7bitAddress(SlaveAddress, Direction_Receiver); 
+	while(!MyI2C_CheckMasterReceiverModeSelected());
+	MyI2C_SetStop(DISABLE);
+	MyI2C_SetAck(ENABLE);
+	
+	for(uint8_t i = 0; i < Length; i++)
+	{
+		while(!MyI2C_CheckRXNE());
+		Buffer[i] = MyI2C_ReceiveData();
+	}
+	
+	MyI2C_SetAck(DISABLE);
+	MyI2C_SetStop(ENABLE);
 }
 
 void MyI2C_WriteRegister(uint8_t SlaveAddress, uint8_t RegisterAddress, uint8_t Value)
@@ -272,7 +308,7 @@ void MyI2C_WriteRegister(uint8_t SlaveAddress, uint8_t RegisterAddress, uint8_t 
 	while(!MyI2C_CheckMasterTransmitterModeSelected());
 	
 	MyI2C_SendData(RegisterAddress);
-	while(!MyI2C_CheckTXE());
+	while(!MyI2C_CheckMasterByteTransmitted());
 	
 	MyI2C_SendData(Value);
 	while(!MyI2C_CheckMasterByteTransmitted());
@@ -308,5 +344,4 @@ void MyI2C_Init(void)
 	
 	MyI2C_GPIOInit();
 	MyI2C_SetMasterMode();
-	
 }
