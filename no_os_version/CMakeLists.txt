@@ -9,8 +9,8 @@ enable_language(C ASM)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENfSIONS OFF)
-
-set(EXECUTABLE ${PROJECT_NAME})
+set(CONFIG DEBUG)
+set(EXECUTABLE ${PROJECT_NAME}.elf)
 
 #add definitions
 add_definitions(-DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER)
@@ -59,7 +59,8 @@ target_compile_options(${EXECUTABLE} PRIVATE
         -fdata-sections
         -ffunction-sections
         -Wall
-        $<$<CONFIG:Debug>:-Og>
+	#$<$<CONFIG:Debug>:-Og
+		-g
         )
 
 target_link_options(${EXECUTABLE} PRIVATE

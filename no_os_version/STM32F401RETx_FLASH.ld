@@ -93,6 +93,8 @@ SECTIONS
     _etext = .;        /* define a global symbols at end of code */
   } >FLASH
 
+  . = ALIGN (CONSTANT (COMMONPAGESIZE));
+
   /* Constant data goes into FLASH */
   .rodata :
   {

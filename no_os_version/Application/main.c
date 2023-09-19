@@ -1,42 +1,108 @@
-#include <stm32f4xx.h>
+#include "Hardware/Inc/math.h"
+#include "stm32f4xx.h"                  // Device header
 #include "MyDelay.h"
+#include "MyI2C.h"
+#include "GY86.h"
+#include "Bluetooth.h"
+#include "Motor.h"
+#include "Receiver.h"
+#include "math.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-#define RCC_AHB1 ((unsigned int)0x40023800)
-#define RCC_AHB1ENR *(unsigned int *)(RCC_AHB1 + 0x30)
+MpuDataStruct MpuData;
+extern uint32_t PulseWidth, Period, DutyCycle;
+extern char TransmitData[1005];
+uint16_t times;
+uint8_t RxData;
 
-#define GPIOA_ADDRESS ((unsigned int)0x40020000)
-#define GPIOA_MODER *(unsigned int *)(GPIOA_ADDRESS + 0x00)
-#define GPIOA_OTYPER *(unsigned int *)(GPIOA_ADDRESS + 0x04)
-#define GPIOA_OSPEEDER *(unsigned int *)(GPIOA_ADDRESS + 0x08)
-#define GPIOA_PUPDR *(unsigned int *)(GPIOA_ADDRESS + 0x0C)
-#define GPIOA_ODR *(unsigned int *)(GPIOA_ADDRESS + 0x14)
+RCC_ClocksTypeDef clockwatch;
 
-void LED_ON(void);
-void LED_OFF(void);
-void Delay(unsigned int count);
+int main(void)
+{
+//	RCC_GetClocksFreq(&clockwatch);
+	
+	MyI2C_Init();
+	times++;
+	MPU6050Init();
+	times++;
+	// HMC5883Init();
+	times++;
+	
+	BluetoothInit();
+	
+	TIM1_init();
+	Motor_Init();
 
-int main() {
+//	Delay_ms(4000);
+//	TIM_SetCompare1(TIM3, 2000);
+//	Delay_ms(4000);
+//	TIM_SetCompare1(TIM3, 1000);
+//	Delay_ms(4000);                                                
+	
+	Bluetooth_SendString("Initilization finished!\n");
 
-  RCC_AHB1ENR |= (1ul << 0);
+	Vec3d_t input[6] = {{0, 0, 1}, {0, 1, 0}, {1, 0, 0},
+						{0, 0, -1}, {0, -1, 0}, {-1, 0, 0}};
+	Vec3d_t offset, scale;
 
-  GPIOA_MODER &= ~(3ul << 2 * 5);
-  GPIOA_MODER |= (1ul << 2 * 5);
+	GaussNewton(&input, offset, scale);
 
-  GPIOA_OTYPER |= ~(1ul << 5);
+	while(1)
+	{
+		// motor and receiver
+		Delay_ms(50);
+		Motor_SetDutyCycle(DutyCycle);
+		
+		// Bluetooth
+		
+		
+		//MPU6050
+		// uint8_t ID = MyI2C_ReadRegister_1Bytes(AddressMPU6050, WHO_AM_I);
+		// sprintf(TransmitData, "ID : %d\n", ID);
+		// Bluetooth_SendString(TransmitData);
+		// Delay_ms(10);
 
-  GPIOA_OSPEEDER &= ~(3ul << 2 * 5);
-  GPIOA_OSPEEDER |= (1ul << 2 * 5);
+		GetMpuData(&MpuData);
+		
+		Bluetooth_SendString("ACC Data:\n");
+		Bluetooth_SendString("mpu_acc_x : ");
+		Bluetooth_SendSignedNum(MpuData.acc_x);
+		Bluetooth_SendByte('\n');
+		// Delay_ms(10);
+		Bluetooth_SendString("mpu_acc_y : ");
+		Bluetooth_SendSignedNum(MpuData.acc_y);
+		Bluetooth_SendByte('\n');
+		// Delay_ms(10);
+		Bluetooth_SendString("mpu_acc_z : ");
+		Bluetooth_SendSignedNum(MpuData.acc_z);
+		Bluetooth_SendByte('\n');
+		// Delay_ms(10);
 
-  GPIOA_PUPDR &= ~(3ul << 2 * 5);
+//		Bluetooth_SendString("Temp Data:\n");
+//		Bluetooth_SendSignedNum(MpuData.temp);
+//		Bluetooth_SendByte('\n');
+//		// Delay_ms(10);
 
-  while (1) {
-    LED_ON();
-    Delay_ms(1000);
-    LED_OFF();
-    Delay_ms(500);
-  }
+//		Bluetooth_SendString("Gyro Data:\n");
+//		Bluetooth_SendString("mpu_gyro_x : ");
+//		Bluetooth_SendSignedNum(MpuData.gyro_x);
+//		Bluetooth_SendByte('\n');
+//		// Delay_ms(10);
+//		Bluetooth_SendString("mpu_gyro_y : ");
+//		Bluetooth_SendSignedNum(MpuData.gyro_y);
+//		Bluetooth_SendByte('\n');
+//		// Delay_ms(10);
+//		Bluetooth_SendString("mpu_gyro_z : ");
+//		Bluetooth_SendSignedNum(MpuData.gyro_z);
+//		Bluetooth_SendByte('\n');
+//		// Delay_ms(10);
+
+		
+//		Bluetooth_SendString("DutyCycle : ");
+//		sprintf(TransmitData, "%d", DutyCycle);
+//		Bluetooth_SendString(TransmitData);
+//		Bluetooth_SendByte('\n');
+//		Delay_ms(10);
+	} 
 }
-
-void LED_ON(void) { GPIOA_ODR |= (1ul << 5); }
-
-void LED_OFF(void) { GPIOA_ODR &= (0ul << 5); }
