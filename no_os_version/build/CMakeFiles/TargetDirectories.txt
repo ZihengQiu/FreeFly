@@ -1,3 +1,0 @@
-/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/freefly.dir
-/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/edit_cache.dir
-/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/rebuild_cache.dir
