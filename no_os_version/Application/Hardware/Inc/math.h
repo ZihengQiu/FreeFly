@@ -6,6 +6,6 @@ typedef struct
 	double x, y, z;
 }Vec3d_t;
 
-void GaussNewton(Vec3d_t *input[6], Vec3d_t offset, Vec3d_t scale);
+void GaussNewton(Vec3d_t input[6], Vec3d_t* offset, Vec3d_t* scale);
 
 #endif

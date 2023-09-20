@@ -1,4 +1,3 @@
-#include "Hardware/Inc/math.h"
 #include "stm32f4xx.h"                  // Device header
 #include "MyDelay.h"
 #include "MyI2C.h"
@@ -42,11 +41,22 @@ int main(void)
 	
 	Bluetooth_SendString("Initilization finished!\n");
 
-	Vec3d_t input[6] = {{0, 0, 1}, {0, 1, 0}, {1, 0, 0},
-						{0, 0, -1}, {0, -1, 0}, {-1, 0, 0}};
+	Vec3d_t input[6] = {{0.2, 0.3, 0.8}, {0.1, 0.9, 0.1}, {1.2, -0.2, 0},
+						{0.1, 0.2, -1.1}, {0.1, -1.2, 0.3}, {-1, -0.1, 0.2}};
+	Vec3d_t input2[6] = {{0.2, 0.3, 1.2}, {0.1, 1.1, 0.1}, {1.2, 0, 0},
+						{0.1, 0.2, -1.1}, {0.1, -1.2, 0.3}, {-1, -0.1, 0.2}};
 	Vec3d_t offset, scale;
 
-	GaussNewton(&input, offset, scale);
+	GaussNewton(input, &offset, &scale);
+
+	// update input
+	for(uint8_t i=0; i<6; i++) 
+	{
+		input[i].x = (input[i].x - offset.x) * scale.x;
+		input[i].y = (input[i].y - offset.y) * scale.y;
+		input[i].z = (input[i].z - offset.z) * scale.z;
+	}
+	
 
 	while(1)
 	{
