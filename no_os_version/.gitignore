@@ -1,6 +1,6 @@
 # ignore files
-
-!build/
-
+build/*
 
 # not ignore files
+!/build/Makefile
+!/build/compile_commands.json
