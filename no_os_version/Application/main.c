@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 MpuDataStruct MpuData;
+extern Vec3d_t acc_offset, acc_scale;
 extern uint32_t PulseWidth, Period, DutyCycle;
 extern char TransmitData[1005];
 uint16_t times;
@@ -20,6 +21,7 @@ RCC_ClocksTypeDef clockwatch;
 int main(void)
 {
 //	RCC_GetClocksFreq(&clockwatch);
+	Delay_ms(1000);
 	
 	MyI2C_Init();
 	times++;
@@ -33,7 +35,7 @@ int main(void)
 	TIM1_init();
 	Motor_Init();
 
-//	Delay_ms(4000);
+	Delay_ms(4000);
 //	TIM_SetCompare1(TIM3, 2000);
 //	Delay_ms(4000);
 //	TIM_SetCompare1(TIM3, 1000);
@@ -56,7 +58,9 @@ int main(void)
 		input[i].y = (input[i].y - offset.y) * scale.y;
 		input[i].z = (input[i].z - offset.z) * scale.z;
 	}
-	
+
+	AccCalibration(&acc_offset, &acc_scale);
+
 
 	while(1)
 	{

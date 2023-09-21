@@ -23,8 +23,16 @@ void GaussNewton(Vec3d_t input[6], Vec3d_t* offset, Vec3d_t* scale)
 		// initialization
 		cnt++;
 		step = 0;
+
 		for(uint8_t i=0; i<6; i++)
 		{
+			JT_R[i] = 0;
+
+			for(uint8_t j=0; j<6; j++)
+			{
+				JT_J[i][j] = 0;
+			}
+
 			// calculate difference between xi and xi_offset
 			diff[i][0] = input[i].x - beta[0];
 			diff[i][1] = input[i].y - beta[1];
@@ -66,7 +74,7 @@ void GaussNewton(Vec3d_t input[6], Vec3d_t* offset, Vec3d_t* scale)
 			}
 		}
 
-		// Gauss Elimination : J^T*J * delta = J^T*R
+		// solve J^T*J * delta = J^T*R by GaussElimination
 
 		// 1. make J^T*J to upper triangular matrix
 		for(uint8_t i=0; i<6; i++) // i : row 

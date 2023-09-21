@@ -1,6 +1,12 @@
 #ifndef __GY86_H
 #define __GY86_H
 
+#include "stm32f4xx.h"                   // Device header
+#include "MyDelay.h"
+#include "math.h"
+#include "Bluetooth.h"
+#include "MyI2C.h"
+
 /* MPU6050 */
 #define AddressMPU6050				(uint8_t)0xD0
 // 1101 0000
@@ -52,11 +58,23 @@
 
 #define WHO_AM_I					(uint8_t)0x75
 
+typedef struct
+{
+  double acc_x, acc_y, acc_z;
+  double gyro_x, gyro_y, gyro_z;
+  double temp;
+  double hmc5883_x, hmc5883_y, hmc5883_z;
+}MpuDataStruct;
+
+extern Vec3d_t acc_offset, acc_scale;
 
 void MPU6050Init(void);
+
 uint16_t GetACCXMPU6050(void);
 uint16_t GetACCYMPU6050(void);
 uint16_t GetACCZMPU6050(void);
+uint8_t AccCalibration(Vec3d_t *offset, Vec3d_t *scale);
+
 uint16_t GetGYROXMPU6050(void);
 uint16_t GetGYROYMPU6050(void);
 uint16_t GetGYROZMPU6050(void);
@@ -66,17 +84,11 @@ uint16_t GetXHMC5883(void);
 uint16_t GetYHMC5883(void);
 uint16_t GetZHMC5883(void);
 
-typedef struct
-{
-  double acc_x, acc_y, acc_z;
-  double gyro_x, gyro_y, gyro_z;
-  double temp;
-  double hmc5883_x, hmc5883_y, hmc5883_z;
-}MpuDataStruct;
+void MS5611Init(void);
 
 void GetMpuData(MpuDataStruct *mpuData);
+void GetAccMPU6050(Vec3d_t *acc);
 
-void MS5611Init(void);
 
 
 #endif

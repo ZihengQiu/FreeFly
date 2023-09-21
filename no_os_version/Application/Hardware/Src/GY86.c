@@ -1,7 +1,6 @@
-#include "stm32f4xx.h"                  // Device header
-#include "MyI2C.h"
 #include "GY86.h"
-#include "MyDelay.h"
+
+Vec3d_t acc_offset, acc_scale;
 
 void MPU6050Init(void)
 {
@@ -37,20 +36,54 @@ void GetMpuData(MpuDataStruct *data)
 	
 }
 
-uint16_t GetACCXMPU6050(void)
+void GetAccMPU6050(Vec3d_t *acc)
 {
-	return MyI2C_ReadRegister_2Bytes(AddressMPU6050, ACCEL_XOUT_H); 
+	uint8_t Buffer[6];
+	float acc_full = 16.0;
+	MyI2C_BurstReadRegister(AddressMPU6050, ACCEL_XOUT_H, Buffer, 6);
+	acc->x = (double)(int16_t)((Buffer[0]<<8) + Buffer[1])*acc_full/32768.0;
+	acc->y = (double)(int16_t)((Buffer[2]<<8) + Buffer[3])*acc_full/32768.0;
+	acc->z = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*acc_full/32768.0;
 }
 
-uint16_t GetACCYMPU6050(void)
+uint8_t AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
 {
-	return MyI2C_ReadRegister_2Bytes(AddressMPU6050, ACCEL_YOUT_H); 
+	Bluetooth_SendString("Acc Calibration start.\n");
+	Bluetooth_SendString("Please put the sensor on a flat surface.\n");
+	Delay_ms(3000);
+
+	Vec3d_t acc_data[6];
+	for(uint8_t i=0; i<6; i++)
+	{
+		acc_data[i].x = 0;
+		acc_data[i].y = 0;
+		acc_data[i].z = 0;
+	}
+	char direction[6][10] = {"front", "back", "left", "right", "up", "down"};
+	
+	for(uint8_t i=0; i<6; i++)
+	{
+		Bluetooth_SendString(direction[i]);
+		Delay_ms(2000);
+		Bluetooth_SendString("measuring...");
+		for(uint8_t j=0; j<100; j++)
+		{
+			GetAccMPU6050(&acc_data[i]);
+			acc_data[i].x += acc_data[i].x;
+			acc_data[i].y += acc_data[i].y;
+			acc_data[i].z += acc_data[i].z;
+			Delay_ms(10);
+		}
+		acc_data[i].x /= 100.0;
+		acc_data[i].y /= 100.0;
+		acc_data[i].z /= 100.0;
+		Bluetooth_SendString("done.\n");
+	}
+
+	GaussNewton(acc_data, offset, scale);
 }
 
-uint16_t GetACCZMPU6050(void)
-{
-	return MyI2C_ReadRegister_2Bytes(AddressMPU6050, ACCEL_ZOUT_H); 
-}
+
 
 uint16_t GetGYROXMPU6050(void)
 {
