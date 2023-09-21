@@ -122,8 +122,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-EgPZGr"
-      binary: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-EgPZGr"
+      source: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-oQjhzE"
+      binary: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-oQjhzE"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -132,13 +132,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-EgPZGr'
+        Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-oQjhzE'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_9cf36/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_9cf36.dir/build.make CMakeFiles/cmTC_9cf36.dir/build
-        make[1]: Entering directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-EgPZGr'
-        Building C object CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj
-        /usr/bin/arm-none-eabi-gcc   -v -o CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c6da2/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_c6da2.dir/build.make CMakeFiles/cmTC_c6da2.dir/build
+        make[1]: Entering directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-oQjhzE'
+        Building C object CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj
+        /usr/bin/arm-none-eabi-gcc   -v -o CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/usr/bin/arm-none-eabi-gcc
         Target: arm-none-eabi
@@ -146,8 +146,8 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib zstd
         gcc version 13.2.0 (Arch Repository) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_9cf36.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_9cf36.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccbU077y.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c6da2.dir/'
+         /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c6da2.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccuqejez.s
         GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
         	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
         
@@ -162,18 +162,18 @@ events:
          /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
         End of search list.
         Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_9cf36.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj /tmp/ccbU077y.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c6da2.dir/'
+         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj /tmp/ccuqejez.s
         GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
         COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
         LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.'
-        Linking C static library libcmTC_9cf36.a
-        /usr/bin/cmake -P CMakeFiles/cmTC_9cf36.dir/cmake_clean_target.cmake
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9cf36.dir/link.txt --verbose=1
-        /usr/bin/arm-none-eabi-ar qc libcmTC_9cf36.a CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj
-        /usr/bin/arm-none-eabi-ranlib libcmTC_9cf36.a
-        make[1]: Leaving directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-EgPZGr'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.'
+        Linking C static library libcmTC_c6da2.a
+        /usr/bin/cmake -P CMakeFiles/cmTC_c6da2.dir/cmake_clean_target.cmake
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c6da2.dir/link.txt --verbose=1
+        /usr/bin/arm-none-eabi-ar qc libcmTC_c6da2.a CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj
+        /usr/bin/arm-none-eabi-ranlib libcmTC_c6da2.a
+        make[1]: Leaving directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-oQjhzE'
         
       exitCode: 0
   -
@@ -205,13 +205,13 @@ events:
     message: |
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(arm-none-eabi-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-EgPZGr']
+        ignore line: [Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-oQjhzE']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_9cf36/fast]
-        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_9cf36.dir/build.make CMakeFiles/cmTC_9cf36.dir/build]
-        ignore line: [make[1]: Entering directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-EgPZGr']
-        ignore line: [Building C object CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj]
-        ignore line: [/usr/bin/arm-none-eabi-gcc   -v -o CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c6da2/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_c6da2.dir/build.make CMakeFiles/cmTC_c6da2.dir/build]
+        ignore line: [make[1]: Entering directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-oQjhzE']
+        ignore line: [Building C object CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [/usr/bin/arm-none-eabi-gcc   -v -o CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/arm-none-eabi-gcc]
         ignore line: [Target: arm-none-eabi]
@@ -219,8 +219,8 @@ events:
         ignore line: [Thread model: single]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 13.2.0 (Arch Repository) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_9cf36.dir/']
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_9cf36.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccbU077y.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c6da2.dir/']
+        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c6da2.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccuqejez.s]
         ignore line: [GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)]
         ignore line: [	compiled by GNU C version 13.2.1 20230801  GMP version 6.3.0  MPFR version 4.2.0-p12  MPC version 1.3.1  isl version isl-0.26-GMP]
         ignore line: []
@@ -235,18 +235,18 @@ events:
         ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 79245fef1615d99de14663d0c51987cd]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_9cf36.dir/']
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj /tmp/ccbU077y.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c6da2.dir/']
+        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj /tmp/ccuqejez.s]
         ignore line: [GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.']
-        ignore line: [Linking C static library libcmTC_9cf36.a]
-        ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_9cf36.dir/cmake_clean_target.cmake]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9cf36.dir/link.txt --verbose=1]
-        ignore line: [/usr/bin/arm-none-eabi-ar qc libcmTC_9cf36.a CMakeFiles/cmTC_9cf36.dir/CMakeCCompilerABI.c.obj]
-        ignore line: [/usr/bin/arm-none-eabi-ranlib libcmTC_9cf36.a]
-        ignore line: [make[1]: Leaving directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-EgPZGr']
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C static library libcmTC_c6da2.a]
+        ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_c6da2.dir/cmake_clean_target.cmake]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c6da2.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/arm-none-eabi-ar qc libcmTC_c6da2.a CMakeFiles/cmTC_c6da2.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [/usr/bin/arm-none-eabi-ranlib libcmTC_c6da2.a]
+        ignore line: [make[1]: Leaving directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-oQjhzE']
         ignore line: []
         ignore line: []
         implicit libs: []
@@ -264,8 +264,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-sRtzFl"
-      binary: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-sRtzFl"
+      source: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-KEDsbU"
+      binary: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-KEDsbU"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -274,13 +274,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-sRtzFl'
+        Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-KEDsbU'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_5e178/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_5e178.dir/build.make CMakeFiles/cmTC_5e178.dir/build
-        make[1]: Entering directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-sRtzFl'
-        Building CXX object CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj
-        /usr/bin/arm-none-eabi-g++   -v -o CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_f546d/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_f546d.dir/build.make CMakeFiles/cmTC_f546d.dir/build
+        make[1]: Entering directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-KEDsbU'
+        Building CXX object CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj
+        /usr/bin/arm-none-eabi-g++   -v -o CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/arm-none-eabi-g++
         Target: arm-none-eabi
@@ -288,8 +288,8 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib zstd
         gcc version 13.2.0 (Arch Repository) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5e178.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.0/cc1plus -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5e178.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccy1MvTF.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_f546d.dir/'
+         /usr/lib/gcc/arm-none-eabi/13.2.0/cc1plus -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_f546d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccFDwvOX.s
         GNU C++17 (Arch Repository) version 13.2.0 (arm-none-eabi)
         	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
         
@@ -307,18 +307,18 @@ events:
          /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
         End of search list.
         Compiler executable checksum: db7a343b5467b6902f6df0c181b00461
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5e178.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccy1MvTF.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_f546d.dir/'
+         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccFDwvOX.s
         GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
         COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
         LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX static library libcmTC_5e178.a
-        /usr/bin/cmake -P CMakeFiles/cmTC_5e178.dir/cmake_clean_target.cmake
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e178.dir/link.txt --verbose=1
-        /usr/bin/arm-none-eabi-ar qc libcmTC_5e178.a CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj
-        /usr/bin/arm-none-eabi-ranlib libcmTC_5e178.a
-        make[1]: Leaving directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-sRtzFl'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX static library libcmTC_f546d.a
+        /usr/bin/cmake -P CMakeFiles/cmTC_f546d.dir/cmake_clean_target.cmake
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f546d.dir/link.txt --verbose=1
+        /usr/bin/arm-none-eabi-ar qc libcmTC_f546d.a CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj
+        /usr/bin/arm-none-eabi-ranlib libcmTC_f546d.a
+        make[1]: Leaving directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-KEDsbU'
         
       exitCode: 0
   -
@@ -356,13 +356,13 @@ events:
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(arm-none-eabi-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-sRtzFl']
+        ignore line: [Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-KEDsbU']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_5e178/fast]
-        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_5e178.dir/build.make CMakeFiles/cmTC_5e178.dir/build]
-        ignore line: [make[1]: Entering directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-sRtzFl']
-        ignore line: [Building CXX object CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj]
-        ignore line: [/usr/bin/arm-none-eabi-g++   -v -o CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_f546d/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_f546d.dir/build.make CMakeFiles/cmTC_f546d.dir/build]
+        ignore line: [make[1]: Entering directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-KEDsbU']
+        ignore line: [Building CXX object CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [/usr/bin/arm-none-eabi-g++   -v -o CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/arm-none-eabi-g++]
         ignore line: [Target: arm-none-eabi]
@@ -370,8 +370,8 @@ events:
         ignore line: [Thread model: single]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 13.2.0 (Arch Repository) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5e178.dir/']
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1plus -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5e178.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccy1MvTF.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_f546d.dir/']
+        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1plus -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_f546d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccFDwvOX.s]
         ignore line: [GNU C++17 (Arch Repository) version 13.2.0 (arm-none-eabi)]
         ignore line: [	compiled by GNU C version 13.2.1 20230801  GMP version 6.3.0  MPFR version 4.2.0-p12  MPC version 1.3.1  isl version isl-0.26-GMP]
         ignore line: []
@@ -389,411 +389,18 @@ events:
         ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: db7a343b5467b6902f6df0c181b00461]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5e178.dir/']
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccy1MvTF.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_f546d.dir/']
+        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccFDwvOX.s]
         ignore line: [GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX static library libcmTC_5e178.a]
-        ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_5e178.dir/cmake_clean_target.cmake]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5e178.dir/link.txt --verbose=1]
-        ignore line: [/usr/bin/arm-none-eabi-ar qc libcmTC_5e178.a CMakeFiles/cmTC_5e178.dir/CMakeCXXCompilerABI.cpp.obj]
-        ignore line: [/usr/bin/arm-none-eabi-ranlib libcmTC_5e178.a]
-        ignore line: [make[1]: Leaving directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-sRtzFl']
-        ignore line: []
-        ignore line: []
-        implicit libs: []
-        implicit objs: []
-        implicit dirs: []
-        implicit fwks: []
-      
-      
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:1104 (message)"
-      - "/usr/share/cmake/Modules/CMakeDetermineASMCompiler.cmake:127 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
-      - "CMakeLists.txt:7 (enable_language)"
-    message: |
-      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
-      arm-none-eabi-gcc (Arch Repository) 13.2.0
-      Copyright (C) 2023 Free Software Foundation, Inc.
-      This is free software; see the source for copying conditions.  There is NO
-      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-      
-...
-
----
-events:
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:206 (message)"
-      - "CMakeLists.txt:5 (project)"
-    message: |
-      The target system is: Generic -  - ARM
-      The host system is: Linux - 6.5.3-arch1-1 - x86_64
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
-    message: |
-      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
-      Compiler: /usr/bin/arm-none-eabi-gcc 
-      Build flags: 
-      Id flags:  
-      
-      The output was:
-      1
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-exit.o): in function `exit':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/stdlib/exit.c:65:(.text.exit+0x28): undefined reference to `_exit'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-closer.o): in function `_close_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/closer.c:47:(.text._close_r+0x18): undefined reference to `_close'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-lseekr.o): in function `_lseek_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/lseekr.c:49:(.text._lseek_r+0x24): undefined reference to `_lseek'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-readr.o): in function `_read_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/readr.c:49:(.text._read_r+0x24): undefined reference to `_read'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-writer.o): in function `_write_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/writer.c:49:(.text._write_r+0x24): undefined reference to `_write'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-sbrkr.o): in function `_sbrk_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/sbrkr.c:51:(.text._sbrk_r+0x18): undefined reference to `_sbrk'
-      collect2: error: ld returned 1 exit status
-      
-      
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
-    message: |
-      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-      Compiler: /usr/bin/arm-none-eabi-gcc 
-      Build flags: 
-      Id flags: -c 
-      
-      The output was:
-      0
-      
-      
-      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
-      
-      The C compiler identification is GNU, found in:
-        /home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/3.27.5/CompilerIdC/CMakeCCompilerId.o
-      
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
-    message: |
-      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
-      Compiler: /usr/bin/arm-none-eabi-g++ 
-      Build flags: 
-      Id flags:  
-      
-      The output was:
-      1
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-exit.o): in function `exit':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/stdlib/exit.c:65:(.text.exit+0x28): undefined reference to `_exit'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-closer.o): in function `_close_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/closer.c:47:(.text._close_r+0x18): undefined reference to `_close'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-lseekr.o): in function `_lseek_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/lseekr.c:49:(.text._lseek_r+0x24): undefined reference to `_lseek'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-readr.o): in function `_read_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/readr.c:49:(.text._read_r+0x24): undefined reference to `_read'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-writer.o): in function `_write_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/writer.c:49:(.text._write_r+0x24): undefined reference to `_write'
-      /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/libc.a(libc_a-sbrkr.o): in function `_sbrk_r':
-      /build/arm-none-eabi-newlib/src/build-newlib/arm-none-eabi/newlib/../../../newlib-4.3.0.20230120/newlib/libc/reent/sbrkr.c:51:(.text._sbrk_r+0x18): undefined reference to `_sbrk'
-      collect2: error: ld returned 1 exit status
-      
-      
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
-    message: |
-      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-      Compiler: /usr/bin/arm-none-eabi-g++ 
-      Build flags: 
-      Id flags: -c 
-      
-      The output was:
-      0
-      
-      
-      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
-      
-      The CXX compiler identification is GNU, found in:
-        /home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/3.27.5/CompilerIdCXX/CMakeCXXCompilerId.o
-      
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
-      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
-    checks:
-      - "Detecting C compiler ABI info"
-    directories:
-      source: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-dzLiBH"
-      binary: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-dzLiBH"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-    buildResult:
-      variable: "CMAKE_C_ABI_COMPILED"
-      cached: true
-      stdout: |
-        Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-dzLiBH'
-        
-        Run Build Command(s): /usr/bin/ninja -v cmTC_c317f
-        [1/2] /usr/bin/arm-none-eabi-gcc   -v -o CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
-        Using built-in specs.
-        COLLECT_GCC=/usr/bin/arm-none-eabi-gcc
-        Target: arm-none-eabi
-        Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
-        Thread model: single
-        Supported LTO compression algorithms: zlib zstd
-        gcc version 13.2.0 (Arch Repository) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c317f.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c317f.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccKBy5ZD.s
-        GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
-        	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
-        
-        warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
-        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-        ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
-        ignoring duplicate directory "/usr/arm-none-eabi/include"
-        #include "..." search starts here:
-        #include <...> search starts here:
-         /usr/lib/gcc/arm-none-eabi/13.2.0/include
-         /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
-         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
-        End of search list.
-        Compiler executable checksum: 79245fef1615d99de14663d0c51987cd
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c317f.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj /tmp/ccKBy5ZD.s
-        GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
-        COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
-        LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.'
-        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_c317f.a && /usr/bin/arm-none-eabi-ar qc libcmTC_c317f.a  CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj && /usr/bin/arm-none-eabi-ranlib libcmTC_c317f.a && :
-        
-      exitCode: 0
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
-      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
-    message: |
-      Parsed C implicit include dir info: rv=done
-        found start of include info
-        found start of implicit include info
-          add: [/usr/lib/gcc/arm-none-eabi/13.2.0/include]
-          add: [/usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed]
-          add: [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include]
-        end of search list found
-        collapse include dir [/usr/lib/gcc/arm-none-eabi/13.2.0/include] ==> [/usr/lib/gcc/arm-none-eabi/13.2.0/include]
-        collapse include dir [/usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed] ==> [/usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed]
-        collapse include dir [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include] ==> [/usr/arm-none-eabi/include]
-        implicit include dirs: [/usr/lib/gcc/arm-none-eabi/13.2.0/include;/usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed;/usr/arm-none-eabi/include]
-      
-      
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
-      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
-    message: |
-      Parsed C implicit link information:
-        link line regex: [^( *|.*[/\\])(arm-none-eabi-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-dzLiBH']
-        ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_c317f]
-        ignore line: [[1/2] /usr/bin/arm-none-eabi-gcc   -v -o CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
-        ignore line: [Using built-in specs.]
-        ignore line: [COLLECT_GCC=/usr/bin/arm-none-eabi-gcc]
-        ignore line: [Target: arm-none-eabi]
-        ignore line: [Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile]
-        ignore line: [Thread model: single]
-        ignore line: [Supported LTO compression algorithms: zlib zstd]
-        ignore line: [gcc version 13.2.0 (Arch Repository) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c317f.dir/']
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1 -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_c317f.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccKBy5ZD.s]
-        ignore line: [GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)]
-        ignore line: [	compiled by GNU C version 13.2.1 20230801  GMP version 6.3.0  MPFR version 4.2.0-p12  MPC version 1.3.1  isl version isl-0.26-GMP]
-        ignore line: []
-        ignore line: [warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.]
-        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
-        ignore line: [ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"]
-        ignore line: [ignoring duplicate directory "/usr/arm-none-eabi/include"]
-        ignore line: [#include "..." search starts here:]
-        ignore line: [#include <...> search starts here:]
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/include]
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed]
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include]
-        ignore line: [End of search list.]
-        ignore line: [Compiler executable checksum: 79245fef1615d99de14663d0c51987cd]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c317f.dir/']
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj /tmp/ccKBy5ZD.s]
-        ignore line: [GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41]
-        ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/]
-        ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.']
-        ignore line: [[2/2] : && /usr/bin/cmake -E rm -f libcmTC_c317f.a && /usr/bin/arm-none-eabi-ar qc libcmTC_c317f.a  CMakeFiles/cmTC_c317f.dir/CMakeCCompilerABI.c.obj && /usr/bin/arm-none-eabi-ranlib libcmTC_c317f.a && :]
-        ignore line: []
-        ignore line: []
-        implicit libs: []
-        implicit objs: []
-        implicit dirs: []
-        implicit fwks: []
-      
-      
-  -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
-      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
-    checks:
-      - "Detecting CXX compiler ABI info"
-    directories:
-      source: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-yb9OSi"
-      binary: "/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-yb9OSi"
-    cmakeVariables:
-      CMAKE_CXX_FLAGS: ""
-      CMAKE_CXX_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-    buildResult:
-      variable: "CMAKE_CXX_ABI_COMPILED"
-      cached: true
-      stdout: |
-        Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-yb9OSi'
-        
-        Run Build Command(s): /usr/bin/ninja -v cmTC_5ce2d
-        [1/2] /usr/bin/arm-none-eabi-g++   -v -o CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
-        Using built-in specs.
-        COLLECT_GCC=/usr/bin/arm-none-eabi-g++
-        Target: arm-none-eabi
-        Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile
-        Thread model: single
-        Supported LTO compression algorithms: zlib zstd
-        gcc version 13.2.0 (Arch Repository) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5ce2d.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.0/cc1plus -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5ce2d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccgij10n.s
-        GNU C++17 (Arch Repository) version 13.2.0 (arm-none-eabi)
-        	compiled by GNU C version 13.2.1 20230801, GMP version 6.3.0, MPFR version 4.2.0-p12, MPC version 1.3.1, isl version isl-0.26-GMP
-        
-        warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.
-        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-        ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"
-        ignoring duplicate directory "/usr/arm-none-eabi/include"
-        #include "..." search starts here:
-        #include <...> search starts here:
-         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0
-         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0/arm-none-eabi
-         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0/backward
-         /usr/lib/gcc/arm-none-eabi/13.2.0/include
-         /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed
-         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include
-        End of search list.
-        Compiler executable checksum: db7a343b5467b6902f6df0c181b00461
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5ce2d.dir/'
-         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccgij10n.s
-        GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41
-        COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/
-        LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.'
-        [2/2] : && /usr/bin/cmake -E rm -f libcmTC_5ce2d.a && /usr/bin/arm-none-eabi-ar qc libcmTC_5ce2d.a  CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj && /usr/bin/arm-none-eabi-ranlib libcmTC_5ce2d.a && :
-        
-      exitCode: 0
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
-      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
-    message: |
-      Parsed CXX implicit include dir info: rv=done
-        found start of include info
-        found start of implicit include info
-          add: [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0]
-          add: [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0/arm-none-eabi]
-          add: [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0/backward]
-          add: [/usr/lib/gcc/arm-none-eabi/13.2.0/include]
-          add: [/usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed]
-          add: [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include]
-        end of search list found
-        collapse include dir [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0] ==> [/usr/arm-none-eabi/include/c++/13.2.0]
-        collapse include dir [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0/arm-none-eabi] ==> [/usr/arm-none-eabi/include/c++/13.2.0/arm-none-eabi]
-        collapse include dir [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0/backward] ==> [/usr/arm-none-eabi/include/c++/13.2.0/backward]
-        collapse include dir [/usr/lib/gcc/arm-none-eabi/13.2.0/include] ==> [/usr/lib/gcc/arm-none-eabi/13.2.0/include]
-        collapse include dir [/usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed] ==> [/usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed]
-        collapse include dir [/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include] ==> [/usr/arm-none-eabi/include]
-        implicit include dirs: [/usr/arm-none-eabi/include/c++/13.2.0;/usr/arm-none-eabi/include/c++/13.2.0/arm-none-eabi;/usr/arm-none-eabi/include/c++/13.2.0/backward;/usr/lib/gcc/arm-none-eabi/13.2.0/include;/usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed;/usr/arm-none-eabi/include]
-      
-      
-  -
-    kind: "message-v1"
-    backtrace:
-      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
-      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
-    message: |
-      Parsed CXX implicit link information:
-        link line regex: [^( *|.*[/\\])(arm-none-eabi-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-yb9OSi']
-        ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_5ce2d]
-        ignore line: [[1/2] /usr/bin/arm-none-eabi-g++   -v -o CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
-        ignore line: [Using built-in specs.]
-        ignore line: [COLLECT_GCC=/usr/bin/arm-none-eabi-g++]
-        ignore line: [Target: arm-none-eabi]
-        ignore line: [Configured with: /build/arm-none-eabi-gcc/src/gcc-13.2.0/configure --target=arm-none-eabi --prefix=/usr --with-sysroot=/usr/arm-none-eabi --with-native-system-header-dir=/include --libexecdir=/usr/lib --enable-languages=c,c++ --enable-plugins --disable-decimal-float --disable-libffi --disable-libgomp --disable-libmudflap --disable-libquadmath --disable-libssp --disable-libstdcxx-pch --disable-nls --disable-shared --disable-threads --disable-tls --with-gnu-as --with-gnu-ld --with-system-zlib --with-newlib --with-headers=/usr/arm-none-eabi/include --with-python-dir=share/gcc-arm-none-eabi --with-gmp --with-mpfr --with-mpc --with-isl --with-libelf --enable-gnu-indirect-function --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --with-pkgversion='Arch Repository' --with-bugurl=https://bugs.archlinux.org/ --with-multilib-list=rmprofile]
-        ignore line: [Thread model: single]
-        ignore line: [Supported LTO compression algorithms: zlib zstd]
-        ignore line: [gcc version 13.2.0 (Arch Repository) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5ce2d.dir/']
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/cc1plus -quiet -v -D__USES_INITFINI__ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5ce2d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=arm7tdmi -mfloat-abi=soft -marm -mlibarch=armv4t -march=armv4t -version -o /tmp/ccgij10n.s]
-        ignore line: [GNU C++17 (Arch Repository) version 13.2.0 (arm-none-eabi)]
-        ignore line: [	compiled by GNU C version 13.2.1 20230801  GMP version 6.3.0  MPFR version 4.2.0-p12  MPC version 1.3.1  isl version isl-0.26-GMP]
-        ignore line: []
-        ignore line: [warning: MPFR header version 4.2.0-p12 differs from library version 4.2.1.]
-        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
-        ignore line: [ignoring nonexistent directory "/usr/arm-none-eabi/usr/local/include"]
-        ignore line: [ignoring duplicate directory "/usr/arm-none-eabi/include"]
-        ignore line: [#include "..." search starts here:]
-        ignore line: [#include <...> search starts here:]
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0]
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0/arm-none-eabi]
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include/c++/13.2.0/backward]
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/include]
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/include-fixed]
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/include]
-        ignore line: [End of search list.]
-        ignore line: [Compiler executable checksum: db7a343b5467b6902f6df0c181b00461]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5ce2d.dir/']
-        ignore line: [ /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/as -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccgij10n.s]
-        ignore line: [GNU assembler version 2.41 (arm-none-eabi) using BFD version (GNU Binutils) 2.41]
-        ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/bin/]
-        ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-none-eabi/13.2.0/:/usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/:/usr/arm-none-eabi/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [[2/2] : && /usr/bin/cmake -E rm -f libcmTC_5ce2d.a && /usr/bin/arm-none-eabi-ar qc libcmTC_5ce2d.a  CMakeFiles/cmTC_5ce2d.dir/CMakeCXXCompilerABI.cpp.obj && /usr/bin/arm-none-eabi-ranlib libcmTC_5ce2d.a && :]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-mlibarch=armv4t' '-march=armv4t' '-dumpdir' 'CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX static library libcmTC_f546d.a]
+        ignore line: [/usr/bin/cmake -P CMakeFiles/cmTC_f546d.dir/cmake_clean_target.cmake]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f546d.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/arm-none-eabi-ar qc libcmTC_f546d.a CMakeFiles/cmTC_f546d.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [/usr/bin/arm-none-eabi-ranlib libcmTC_f546d.a]
+        ignore line: [make[1]: Leaving directory '/home/zeen/projects/drone/FreeFly/no_os_version/build/CMakeFiles/CMakeScratch/TryCompile-KEDsbU']
         ignore line: []
         ignore line: []
         implicit libs: []
