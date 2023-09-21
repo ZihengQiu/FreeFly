@@ -2,5 +2,5 @@
 build/*
 
 # not ignore files
-!/build/Makefile
-!/build/compile_commands.json
+!build/Makefile
+!build/compile_commands.json
