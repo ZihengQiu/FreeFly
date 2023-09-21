@@ -1,6 +1,4 @@
 # ignore files
-build/*
+build/CMakeFiles/
 
 # not ignore files
-!build/Makefile
-!build/compile_commands.json
