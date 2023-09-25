@@ -34,8 +34,9 @@ int main(void)
 	
 	TIM1_init();
 	Motor_Init();
+	
+	Delay_ms(1000);
 
-	Delay_ms(4000);
 //	TIM_SetCompare1(TIM3, 2000);
 //	Delay_ms(4000);
 //	TIM_SetCompare1(TIM3, 1000);
@@ -43,13 +44,15 @@ int main(void)
 	
 	Bluetooth_SendString("Initilization finished!\n");
 
-	Vec3d_t input[6] = {{0.2, 0.3, 0.8}, {0.1, 0.9, 0.1}, {1.2, -0.2, 0},
-						{0.1, 0.2, -1.1}, {0.1, -1.2, 0.3}, {-1, -0.1, 0.2}};
-	Vec3d_t input2[6] = {{0.2, 0.3, 1.2}, {0.1, 1.1, 0.1}, {1.2, 0, 0},
-						{0.1, 0.2, -1.1}, {0.1, -1.2, 0.3}, {-1, -0.1, 0.2}};
+	volatile Vec3d_t test;
+	GetAccMPU6050(&test);
+
+	Vec3d_t input[6] = { {-0.019556, 0.012036, 1.685950}, {1.018469, 0.069458, 0.720422},
+							{-0.981909, 0.001819, 0.450183}, {0.063464, -0.957397, 0.515881},
+							{-0.021716, 1.004285, 0.713989}, {0.032495, -0.022266, -0.387183}};
 	Vec3d_t offset, scale;
 
-	GaussNewton(input, &offset, &scale);
+	GaussNewton_LM(input, &offset, &scale);
 
 	// update input
 	for(uint8_t i=0; i<6; i++) 

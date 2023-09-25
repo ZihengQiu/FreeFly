@@ -64,7 +64,7 @@ uint8_t AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
 	for(uint8_t i=0; i<6; i++)
 	{
 		Bluetooth_SendString(direction[i]);
-		Delay_ms(2000);
+		Delay_ms(3000);
 		Bluetooth_SendString("measuring...");
 		for(uint8_t j=0; j<100; j++)
 		{
@@ -80,7 +80,7 @@ uint8_t AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
 		Bluetooth_SendString("done.\n");
 	}
 
-	GaussNewton(acc_data, offset, scale);
+	GaussNewton_LM(acc_data, offset, scale);
 }
 
 

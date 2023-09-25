@@ -30,13 +30,13 @@
 
 
                                        /* ---------------------- MISCELLANEOUS ----------------------- */
-#define OS_APP_HOOKS_EN           1u   /* Application-defined hooks are called from the uC/OS-II hooks */
-#define OS_ARG_CHK_EN             1u   /* Enable (1) or Disable (0) argument checking                  */
+#define OS_APP_HOOKS_EN           0u   /* Application-defined hooks are called from the uC/OS-II hooks */
+#define OS_ARG_CHK_EN             0u   /* Enable (1) or Disable (0) argument checking                  */
 #define OS_CPU_HOOKS_EN           1u   /* uC/OS-II hooks are found in the processor port files         */
 
 #define OS_DEBUG_EN               1u   /* Enable(1) debug variables                                    */
 
-#define OS_EVENT_MULTI_EN         1u   /* Include code for OSEventPendMulti()                          */
+#define OS_EVENT_MULTI_EN         0u   /* Include code for OSEventPendMulti()                          */
 #define OS_EVENT_NAME_EN          1u   /* Enable names for Sem, Mutex, Mbox and Q                      */
 
 #define OS_LOWEST_PRIO           63u   /* Defines the lowest priority that can be assigned ...         */
@@ -74,7 +74,7 @@
 #define OS_TASK_STAT_EN           0u   /*     Enable (1) or Disable(0) the statistics task             */
 #define OS_TASK_STAT_STK_CHK_EN   1u   /*     Check task stacks from statistic task                    */
 #define OS_TASK_SUSPEND_EN        1u   /*     Include code for OSTaskSuspend() and OSTaskResume()      */
-#define OS_TASK_SW_HOOK_EN        1u   /*     Include code for OSTaskSwHook()                          */
+#define OS_TASK_SW_HOOK_EN        0u   /*     Include code for OSTaskSwHook()                          */
 
 
                                        /* ----------------------- EVENT FLAGS ------------------------ */
@@ -135,7 +135,7 @@
 #define OS_TIME_DLY_HMSM_EN       1u   /*     Include code for OSTimeDlyHMSM()                         */
 #define OS_TIME_DLY_RESUME_EN     1u   /*     Include code for OSTimeDlyResume()                       */
 #define OS_TIME_GET_SET_EN        1u   /*     Include code for OSTimeGet() and OSTimeSet()             */
-#define OS_TIME_TICK_HOOK_EN      1u   /*     Include code for OSTimeTickHook()                        */
+#define OS_TIME_TICK_HOOK_EN      0u   /*     Include code for OSTimeTickHook()                        */
 
 
                                        /* --------------------- TIMER MANAGEMENT --------------------- */
@@ -147,7 +147,7 @@
 
 
                                        /* ---------------------- TRACE RECORDER ---------------------- */
-#define OS_TRACE_EN               1u   /* Enable (1) or Disable (0) uC/OS-II Trace instrumentation     */
+#define OS_TRACE_EN               0u   /* Enable (1) or Disable (0) uC/OS-II Trace instrumentation     */
 #define OS_TRACE_API_ENTER_EN     1u   /* Enable (1) or Disable (0) uC/OS-II Trace API enter instrum.  */
 #define OS_TRACE_API_EXIT_EN      1u   /* Enable (1) or Disable (0) uC/OS-II Trace API exit  instrum.  */
 

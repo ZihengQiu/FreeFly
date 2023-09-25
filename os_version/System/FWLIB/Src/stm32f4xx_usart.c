@@ -41,7 +41,7 @@
         (++) Call GPIO_Init() function
           
       (#) Program the Baud Rate, Word Length , Stop Bit, Parity, Hardware 
-          flow control and Mode(Receiver/Transmitter) using the USART_Init()
+          flow control and Mode(receiver/Transmitter) using the USART_Init()
           function.
   
       (#) For synchronous mode, enable the clock and program the polarity,
@@ -158,7 +158,7 @@
    |    1    |    1      |    | SB | 8 bit data | PB | STB |     |
    +-------------------------------------------------------------+            
         (++) Hardware flow control
-        (++) Receiver/transmitter modes
+        (++) receiver/transmitter modes
 
     [..]
     The USART_Init() function follows the USART  asynchronous configuration 
@@ -994,13 +994,13 @@ void USART_SmartCardNACKCmd(USART_TypeDef* USARTx, FunctionalState NewState)
     IrDA communication.
     [..]
     IrDA is a half duplex communication protocol. If the Transmitter is busy, any data
-    on the IrDA receive line will be ignored by the IrDA decoder and if the Receiver 
+    on the IrDA receive line will be ignored by the IrDA decoder and if the receiver 
     is busy, data on the TX from the USART to IrDA will not be encoded by IrDA.
     While receiving data, transmission should be avoided as the data to be transmitted
     could be corrupted.
     [..]
     IrDA communication is possible through the following procedure:
-      (#) Program the Baud rate, Word length = 8 bits, Stop bits, Parity, Transmitter/Receiver 
+      (#) Program the Baud rate, Word length = 8 bits, Stop bits, Parity, Transmitter/receiver 
           modes and hardware flow control values using the USART_Init() function.
       (#) Enable the USART using the USART_Cmd() function.
       (#) Configures the IrDA pulse width by configuring the prescaler using  

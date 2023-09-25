@@ -45,7 +45,7 @@
         (++) Enable the clock stretching using I2C_StretchClockCmd() function
         (++) Enable the fast mode duty cycle using the I2C_FastModeDutyCycleConfig()
              function.
-        (++) Configure the NACK position for Master Receiver mode in case of 
+        (++) Configure the NACK position for Master receiver mode in case of 
              2 bytes reception using the function I2C_NACKPositionConfig().  
         (++) Enable the PEC Calculation using I2C_CalculatePEC() function
         (++) For SMBus Mode: 
@@ -442,10 +442,10 @@ void I2C_GenerateSTOP(I2C_TypeDef* I2Cx, FunctionalState NewState)
   * @param  I2Cx: where x can be 1, 2 or 3 to select the I2C peripheral.
   * @param  Address: specifies the slave address which will be transmitted
   * @param  I2C_Direction: specifies whether the I2C device will be a Transmitter
-  *         or a Receiver. 
+  *         or a receiver. 
   *          This parameter can be one of the following values
   *            @arg I2C_Direction_Transmitter: Transmitter mode
-  *            @arg I2C_Direction_Receiver: Receiver mode
+  *            @arg I2C_Direction_Receiver: receiver mode
   * @retval None.
   */
 void I2C_Send7bitAddress(I2C_TypeDef* I2Cx, uint8_t Address, uint8_t I2C_Direction)
@@ -644,7 +644,7 @@ void I2C_FastModeDutyCycleConfig(I2C_TypeDef* I2Cx, uint16_t I2C_DutyCycle)
 
 /**
   * @brief  Selects the specified I2C NACK position in master receiver mode.
-  * @note   This function is useful in I2C Master Receiver mode when the number
+  * @note   This function is useful in I2C Master receiver mode when the number
   *         of data to be received is equal to 2. In this case, this function 
   *         should be called (with parameter I2C_NACKPosition_Next) before data 
   *         reception starts,as described in the 2-byte reception procedure 
@@ -1238,7 +1238,7 @@ uint32_t I2C_GetLastEvent(I2C_TypeDef* I2Cx)
   *            @arg I2C_FLAG_SMBHOST: SMBus host header (Slave mode)
   *            @arg I2C_FLAG_SMBDEFAULT: SMBus default header (Slave mode)
   *            @arg I2C_FLAG_GENCALL: General call header flag (Slave mode)
-  *            @arg I2C_FLAG_TRA: Transmitter/Receiver flag
+  *            @arg I2C_FLAG_TRA: Transmitter/receiver flag
   *            @arg I2C_FLAG_BUSY: Bus busy flag
   *            @arg I2C_FLAG_MSL: Master/Slave flag
   *            @arg I2C_FLAG_SMBALERT: SMBus Alert flag
@@ -1249,7 +1249,7 @@ uint32_t I2C_GetLastEvent(I2C_TypeDef* I2Cx)
   *            @arg I2C_FLAG_ARLO: Arbitration lost flag (Master mode)
   *            @arg I2C_FLAG_BERR: Bus error flag
   *            @arg I2C_FLAG_TXE: Data register empty flag (Transmitter)
-  *            @arg I2C_FLAG_RXNE: Data register not empty (Receiver) flag
+  *            @arg I2C_FLAG_RXNE: Data register not empty (receiver) flag
   *            @arg I2C_FLAG_STOPF: Stop detection flag (Slave mode)
   *            @arg I2C_FLAG_ADD10: 10-bit header sent flag (Master mode)
   *            @arg I2C_FLAG_BTF: Byte transfer finished flag
@@ -1360,7 +1360,7 @@ void I2C_ClearFlag(I2C_TypeDef* I2Cx, uint32_t I2C_FLAG)
   *            @arg I2C_IT_ARLO: Arbitration lost flag (Master mode)
   *            @arg I2C_IT_BERR: Bus error flag
   *            @arg I2C_IT_TXE: Data register empty flag (Transmitter)
-  *            @arg I2C_IT_RXNE: Data register not empty (Receiver) flag
+  *            @arg I2C_IT_RXNE: Data register not empty (receiver) flag
   *            @arg I2C_IT_STOPF: Stop detection flag (Slave mode)
   *            @arg I2C_IT_ADD10: 10-bit header sent flag (Master mode)
   *            @arg I2C_IT_BTF: Byte transfer finished flag

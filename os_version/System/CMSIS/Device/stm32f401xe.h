@@ -492,7 +492,7 @@ typedef struct
 } TIM_TypeDef;
 
 /** 
-  * @brief Universal Synchronous Asynchronous Receiver Transmitter
+  * @brief Universal Synchronous Asynchronous receiver Transmitter
   */
  
 typedef struct
@@ -3700,7 +3700,7 @@ typedef struct
 #define I2C_SR2_BUSY              I2C_SR2_BUSY_Msk                             /*!<Bus Busy                                        */
 #define I2C_SR2_TRA_Pos           (2U)                                         
 #define I2C_SR2_TRA_Msk           (0x1UL << I2C_SR2_TRA_Pos)                    /*!< 0x00000004 */
-#define I2C_SR2_TRA               I2C_SR2_TRA_Msk                              /*!<Transmitter/Receiver                            */
+#define I2C_SR2_TRA               I2C_SR2_TRA_Msk                              /*!<Transmitter/receiver                            */
 #define I2C_SR2_GENCALL_Pos       (4U)                                         
 #define I2C_SR2_GENCALL_Msk       (0x1UL << I2C_SR2_GENCALL_Pos)                /*!< 0x00000010 */
 #define I2C_SR2_GENCALL           I2C_SR2_GENCALL_Msk                          /*!<General Call Address (Slave mode)               */
@@ -6595,7 +6595,7 @@ typedef struct
 
 /******************************************************************************/
 /*                                                                            */
-/*         Universal Synchronous Asynchronous Receiver Transmitter            */
+/*         Universal Synchronous Asynchronous receiver Transmitter            */
 /*                                                                            */
 /******************************************************************************/
 /*******************  Bit definition for USART_SR register  *******************/
@@ -6649,10 +6649,10 @@ typedef struct
 #define USART_CR1_SBK                 USART_CR1_SBK_Msk                        /*!<Send Break                             */
 #define USART_CR1_RWU_Pos             (1U)                                     
 #define USART_CR1_RWU_Msk             (0x1UL << USART_CR1_RWU_Pos)              /*!< 0x00000002 */
-#define USART_CR1_RWU                 USART_CR1_RWU_Msk                        /*!<Receiver wakeup                        */
+#define USART_CR1_RWU                 USART_CR1_RWU_Msk                        /*!<receiver wakeup                        */
 #define USART_CR1_RE_Pos              (2U)                                     
 #define USART_CR1_RE_Msk              (0x1UL << USART_CR1_RE_Pos)               /*!< 0x00000004 */
-#define USART_CR1_RE                  USART_CR1_RE_Msk                         /*!<Receiver Enable                        */
+#define USART_CR1_RE                  USART_CR1_RE_Msk                         /*!<receiver Enable                        */
 #define USART_CR1_TE_Pos              (3U)                                     
 #define USART_CR1_TE_Msk              (0x1UL << USART_CR1_TE_Pos)               /*!< 0x00000008 */
 #define USART_CR1_TE                  USART_CR1_TE_Msk                         /*!<Transmitter Enable                     */
@@ -6744,7 +6744,7 @@ typedef struct
 #define USART_CR3_SCEN                USART_CR3_SCEN_Msk                       /*!<Smartcard mode enable       */
 #define USART_CR3_DMAR_Pos            (6U)                                     
 #define USART_CR3_DMAR_Msk            (0x1UL << USART_CR3_DMAR_Pos)             /*!< 0x00000040 */
-#define USART_CR3_DMAR                USART_CR3_DMAR_Msk                       /*!<DMA Enable Receiver         */
+#define USART_CR3_DMAR                USART_CR3_DMAR_Msk                       /*!<DMA Enable receiver         */
 #define USART_CR3_DMAT_Pos            (7U)                                     
 #define USART_CR3_DMAT_Msk            (0x1UL << USART_CR3_DMAT_Pos)             /*!< 0x00000080 */
 #define USART_CR3_DMAT                USART_CR3_DMAT_Msk                       /*!<DMA Enable Transmitter      */

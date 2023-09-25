@@ -579,7 +579,7 @@ void SAI_MuteValueConfig(SAI_Block_TypeDef* SAI_Block_x, uint32_t SAI_MuteValue)
 /**
   * @brief  Enables or disables the Mute mode for the selected SAI block. 
   *
-  * @note   This function has a meaning only when the audio block is Receiver
+  * @note   This function has a meaning only when the audio block is receiver
   * @param  SAI_Block_x: where x can be A or B to select the SAI Block peripheral.
   * @param  SAI_MuteCounter: specifies the SAI block mute value.
   *         This parameter can be a number between 0 and 63.  

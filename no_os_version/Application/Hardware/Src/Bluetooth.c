@@ -1,11 +1,13 @@
 #include "stm32f4xx.h"                  // Device header
 #include "Bluetooth.h"
+#include <stdarg.h>
+#include <stdio.h>
 
 char TransmitData[1005];
 
 void Bluetooth_GPIOInit(void)
 {
-	RCC->AHB1ENR |= (uint16_t)0x01<<1; //GPIOB: PB6-TX PB7-RX
+	RCC->AHB1ENR |= (uint16_t)0x01<<1; // GPIOB: PB6-TX PB7-RX
 	RCC->APB2ENR |= (uint16_t)0x01<<4; // USART1
 	
 	//Alternate function mode : 10
@@ -42,11 +44,11 @@ void Bluetooth_ConfigInit(void)
 	// USART enable : 1
 	USART1->CR1 |= 0x01<<13;
 	
-	// Baund rate : 38400 	USARTDIV £º 45.5625 2d9 		FCK £º27993600 REAL:26880000
-	// Baund rate : 9600 	USARTDIV £º 182.25 b6.4 		FCK £º27993600 
-	// Baund rate : 9600 	USARTDIV £º 273.4375 0x111.7		FCK £º42000000
+	// Baund rate : 38400 	USARTDIV é”Ÿæ–¤æ‹· 45.5625 2d9 		FCK é”Ÿæ–¤æ‹·27993600 REAL:26880000
+	// Baund rate : 9600 	USARTDIV é”Ÿæ–¤æ‹· 182.25 b6.4 		FCK é”Ÿæ–¤æ‹·27993600 
+	// Baund rate : 9600 	USARTDIV é”Ÿæ–¤æ‹· 273.4375 0x111.7		FCK é”Ÿæ–¤æ‹·42000000
 	//			Fraction : .4375 * 16 = 7			Mantissa = 111
-	// Baund rate : 9600 	USARTDIV £º 546.875		FCK: 84000000
+	// Baund rate : 9600 	USARTDIV é”Ÿæ–¤æ‹· 546.875		FCK: 84000000
 	//			Fraction : E			Mantissa = 222
 	
 	
@@ -87,14 +89,6 @@ uint16_t Bluetooth_ReceiveByte(void)
 	return 0;
 }
 
-/*void Bluetooth_SendString(uint8_t data[], uint8_t len)
-{
-	for(uint8_t i=0; i<len; i++)
-	{
-		Bluetooth_SendByte(data[i]);data[3]
-	}
-}*/
-
 void Bluetooth_SendString(char data[])
 {
 	uint8_t i = 0;
@@ -120,4 +114,20 @@ void BluetoothInit()
 {
 	Bluetooth_GPIOInit();
 	Bluetooth_ConfigInit();
+}
+
+int fputc(int ch, FILE *f)
+{
+	Bluetooth_SendByte(ch);
+	return ch;
+}
+
+void BT_Printf(char *format, ...)
+{
+	char string[100];
+	va_list args;
+	va_start(args, format); // receive arguments from "..."
+	vsprintf(string, format, args);
+	va_end(args); // clean memory
+	Bluetooth_SendString(string);
 }

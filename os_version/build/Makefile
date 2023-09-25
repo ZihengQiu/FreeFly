@@ -117,144 +117,192 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named freefly.out
+# Target rules for targets named freefly.elf
 
 # Build rule for target.
-freefly.out: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 freefly.out
-.PHONY : freefly.out
+freefly.elf: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 freefly.elf
+.PHONY : freefly.elf
 
 # fast build rule for target.
-freefly.out/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/build
-.PHONY : freefly.out/fast
+freefly.elf/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/build
+.PHONY : freefly.elf/fast
 
-Application/Hardware/Src/Bluetooth.obj: Application/Hardware/Src/Bluetooth.c.obj
-.PHONY : Application/Hardware/Src/Bluetooth.obj
-
-# target to build an object file
-Application/Hardware/Src/Bluetooth.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/Bluetooth.c.obj
-.PHONY : Application/Hardware/Src/Bluetooth.c.obj
-
-Application/Hardware/Src/Bluetooth.i: Application/Hardware/Src/Bluetooth.c.i
-.PHONY : Application/Hardware/Src/Bluetooth.i
-
-# target to preprocess a source file
-Application/Hardware/Src/Bluetooth.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/Bluetooth.c.i
-.PHONY : Application/Hardware/Src/Bluetooth.c.i
-
-Application/Hardware/Src/Bluetooth.s: Application/Hardware/Src/Bluetooth.c.s
-.PHONY : Application/Hardware/Src/Bluetooth.s
-
-# target to generate assembly for a file
-Application/Hardware/Src/Bluetooth.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/Bluetooth.c.s
-.PHONY : Application/Hardware/Src/Bluetooth.c.s
-
-Application/Hardware/Src/GY86.obj: Application/Hardware/Src/GY86.c.obj
-.PHONY : Application/Hardware/Src/GY86.obj
+Application/Hardware/Src/bluetooth.obj: Application/Hardware/Src/bluetooth.c.obj
+.PHONY : Application/Hardware/Src/bluetooth.obj
 
 # target to build an object file
-Application/Hardware/Src/GY86.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/GY86.c.obj
-.PHONY : Application/Hardware/Src/GY86.c.obj
+Application/Hardware/Src/bluetooth.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+.PHONY : Application/Hardware/Src/bluetooth.c.obj
 
-Application/Hardware/Src/GY86.i: Application/Hardware/Src/GY86.c.i
-.PHONY : Application/Hardware/Src/GY86.i
+Application/Hardware/Src/bluetooth.i: Application/Hardware/Src/bluetooth.c.i
+.PHONY : Application/Hardware/Src/bluetooth.i
 
 # target to preprocess a source file
-Application/Hardware/Src/GY86.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/GY86.c.i
-.PHONY : Application/Hardware/Src/GY86.c.i
+Application/Hardware/Src/bluetooth.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.i
+.PHONY : Application/Hardware/Src/bluetooth.c.i
 
-Application/Hardware/Src/GY86.s: Application/Hardware/Src/GY86.c.s
-.PHONY : Application/Hardware/Src/GY86.s
+Application/Hardware/Src/bluetooth.s: Application/Hardware/Src/bluetooth.c.s
+.PHONY : Application/Hardware/Src/bluetooth.s
 
 # target to generate assembly for a file
-Application/Hardware/Src/GY86.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/GY86.c.s
-.PHONY : Application/Hardware/Src/GY86.c.s
+Application/Hardware/Src/bluetooth.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.s
+.PHONY : Application/Hardware/Src/bluetooth.c.s
 
-Application/Hardware/Src/Motor.obj: Application/Hardware/Src/Motor.c.obj
-.PHONY : Application/Hardware/Src/Motor.obj
+Application/Hardware/Src/gy86.obj: Application/Hardware/Src/gy86.c.obj
+.PHONY : Application/Hardware/Src/gy86.obj
 
 # target to build an object file
-Application/Hardware/Src/Motor.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/Motor.c.obj
-.PHONY : Application/Hardware/Src/Motor.c.obj
+Application/Hardware/Src/gy86.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+.PHONY : Application/Hardware/Src/gy86.c.obj
 
-Application/Hardware/Src/Motor.i: Application/Hardware/Src/Motor.c.i
-.PHONY : Application/Hardware/Src/Motor.i
+Application/Hardware/Src/gy86.i: Application/Hardware/Src/gy86.c.i
+.PHONY : Application/Hardware/Src/gy86.i
 
 # target to preprocess a source file
-Application/Hardware/Src/Motor.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/Motor.c.i
-.PHONY : Application/Hardware/Src/Motor.c.i
+Application/Hardware/Src/gy86.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.i
+.PHONY : Application/Hardware/Src/gy86.c.i
 
-Application/Hardware/Src/Motor.s: Application/Hardware/Src/Motor.c.s
-.PHONY : Application/Hardware/Src/Motor.s
+Application/Hardware/Src/gy86.s: Application/Hardware/Src/gy86.c.s
+.PHONY : Application/Hardware/Src/gy86.s
 
 # target to generate assembly for a file
-Application/Hardware/Src/Motor.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/Motor.c.s
-.PHONY : Application/Hardware/Src/Motor.c.s
+Application/Hardware/Src/gy86.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.s
+.PHONY : Application/Hardware/Src/gy86.c.s
 
-Application/Hardware/Src/MyI2C.obj: Application/Hardware/Src/MyI2C.c.obj
-.PHONY : Application/Hardware/Src/MyI2C.obj
+Application/Hardware/Src/led.obj: Application/Hardware/Src/led.c.obj
+.PHONY : Application/Hardware/Src/led.obj
 
 # target to build an object file
-Application/Hardware/Src/MyI2C.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/MyI2C.c.obj
-.PHONY : Application/Hardware/Src/MyI2C.c.obj
+Application/Hardware/Src/led.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+.PHONY : Application/Hardware/Src/led.c.obj
 
-Application/Hardware/Src/MyI2C.i: Application/Hardware/Src/MyI2C.c.i
-.PHONY : Application/Hardware/Src/MyI2C.i
+Application/Hardware/Src/led.i: Application/Hardware/Src/led.c.i
+.PHONY : Application/Hardware/Src/led.i
 
 # target to preprocess a source file
-Application/Hardware/Src/MyI2C.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/MyI2C.c.i
-.PHONY : Application/Hardware/Src/MyI2C.c.i
+Application/Hardware/Src/led.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.i
+.PHONY : Application/Hardware/Src/led.c.i
 
-Application/Hardware/Src/MyI2C.s: Application/Hardware/Src/MyI2C.c.s
-.PHONY : Application/Hardware/Src/MyI2C.s
+Application/Hardware/Src/led.s: Application/Hardware/Src/led.c.s
+.PHONY : Application/Hardware/Src/led.s
 
 # target to generate assembly for a file
-Application/Hardware/Src/MyI2C.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/MyI2C.c.s
-.PHONY : Application/Hardware/Src/MyI2C.c.s
+Application/Hardware/Src/led.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.s
+.PHONY : Application/Hardware/Src/led.c.s
 
-Application/Hardware/Src/Receiver.obj: Application/Hardware/Src/Receiver.c.obj
-.PHONY : Application/Hardware/Src/Receiver.obj
+Application/Hardware/Src/math.obj: Application/Hardware/Src/math.c.obj
+.PHONY : Application/Hardware/Src/math.obj
 
 # target to build an object file
-Application/Hardware/Src/Receiver.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/Receiver.c.obj
-.PHONY : Application/Hardware/Src/Receiver.c.obj
+Application/Hardware/Src/math.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/math.c.obj
+.PHONY : Application/Hardware/Src/math.c.obj
 
-Application/Hardware/Src/Receiver.i: Application/Hardware/Src/Receiver.c.i
-.PHONY : Application/Hardware/Src/Receiver.i
+Application/Hardware/Src/math.i: Application/Hardware/Src/math.c.i
+.PHONY : Application/Hardware/Src/math.i
 
 # target to preprocess a source file
-Application/Hardware/Src/Receiver.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/Receiver.c.i
-.PHONY : Application/Hardware/Src/Receiver.c.i
+Application/Hardware/Src/math.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/math.c.i
+.PHONY : Application/Hardware/Src/math.c.i
 
-Application/Hardware/Src/Receiver.s: Application/Hardware/Src/Receiver.c.s
-.PHONY : Application/Hardware/Src/Receiver.s
+Application/Hardware/Src/math.s: Application/Hardware/Src/math.c.s
+.PHONY : Application/Hardware/Src/math.s
 
 # target to generate assembly for a file
-Application/Hardware/Src/Receiver.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/Hardware/Src/Receiver.c.s
-.PHONY : Application/Hardware/Src/Receiver.c.s
+Application/Hardware/Src/math.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/math.c.s
+.PHONY : Application/Hardware/Src/math.c.s
+
+Application/Hardware/Src/motor.obj: Application/Hardware/Src/motor.c.obj
+.PHONY : Application/Hardware/Src/motor.obj
+
+# target to build an object file
+Application/Hardware/Src/motor.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+.PHONY : Application/Hardware/Src/motor.c.obj
+
+Application/Hardware/Src/motor.i: Application/Hardware/Src/motor.c.i
+.PHONY : Application/Hardware/Src/motor.i
+
+# target to preprocess a source file
+Application/Hardware/Src/motor.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.i
+.PHONY : Application/Hardware/Src/motor.c.i
+
+Application/Hardware/Src/motor.s: Application/Hardware/Src/motor.c.s
+.PHONY : Application/Hardware/Src/motor.s
+
+# target to generate assembly for a file
+Application/Hardware/Src/motor.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.s
+.PHONY : Application/Hardware/Src/motor.c.s
+
+Application/Hardware/Src/myI2C.obj: Application/Hardware/Src/myI2C.c.obj
+.PHONY : Application/Hardware/Src/myI2C.obj
+
+# target to build an object file
+Application/Hardware/Src/myI2C.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+.PHONY : Application/Hardware/Src/myI2C.c.obj
+
+Application/Hardware/Src/myI2C.i: Application/Hardware/Src/myI2C.c.i
+.PHONY : Application/Hardware/Src/myI2C.i
+
+# target to preprocess a source file
+Application/Hardware/Src/myI2C.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.i
+.PHONY : Application/Hardware/Src/myI2C.c.i
+
+Application/Hardware/Src/myI2C.s: Application/Hardware/Src/myI2C.c.s
+.PHONY : Application/Hardware/Src/myI2C.s
+
+# target to generate assembly for a file
+Application/Hardware/Src/myI2C.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.s
+.PHONY : Application/Hardware/Src/myI2C.c.s
+
+Application/Hardware/Src/receiver.obj: Application/Hardware/Src/receiver.c.obj
+.PHONY : Application/Hardware/Src/receiver.obj
+
+# target to build an object file
+Application/Hardware/Src/receiver.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+.PHONY : Application/Hardware/Src/receiver.c.obj
+
+Application/Hardware/Src/receiver.i: Application/Hardware/Src/receiver.c.i
+.PHONY : Application/Hardware/Src/receiver.i
+
+# target to preprocess a source file
+Application/Hardware/Src/receiver.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.i
+.PHONY : Application/Hardware/Src/receiver.c.i
+
+Application/Hardware/Src/receiver.s: Application/Hardware/Src/receiver.c.s
+.PHONY : Application/Hardware/Src/receiver.s
+
+# target to generate assembly for a file
+Application/Hardware/Src/receiver.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.s
+.PHONY : Application/Hardware/Src/receiver.c.s
 
 Application/SystemConfig/MyDelay.obj: Application/SystemConfig/MyDelay.c.obj
 .PHONY : Application/SystemConfig/MyDelay.obj
 
 # target to build an object file
 Application/SystemConfig/MyDelay.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemConfig/MyDelay.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemConfig/MyDelay.c.obj
 .PHONY : Application/SystemConfig/MyDelay.c.obj
 
 Application/SystemConfig/MyDelay.i: Application/SystemConfig/MyDelay.c.i
@@ -262,7 +310,7 @@ Application/SystemConfig/MyDelay.i: Application/SystemConfig/MyDelay.c.i
 
 # target to preprocess a source file
 Application/SystemConfig/MyDelay.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemConfig/MyDelay.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemConfig/MyDelay.c.i
 .PHONY : Application/SystemConfig/MyDelay.c.i
 
 Application/SystemConfig/MyDelay.s: Application/SystemConfig/MyDelay.c.s
@@ -270,7 +318,7 @@ Application/SystemConfig/MyDelay.s: Application/SystemConfig/MyDelay.c.s
 
 # target to generate assembly for a file
 Application/SystemConfig/MyDelay.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemConfig/MyDelay.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemConfig/MyDelay.c.s
 .PHONY : Application/SystemConfig/MyDelay.c.s
 
 Application/SystemConfig/systick.obj: Application/SystemConfig/systick.c.obj
@@ -278,7 +326,7 @@ Application/SystemConfig/systick.obj: Application/SystemConfig/systick.c.obj
 
 # target to build an object file
 Application/SystemConfig/systick.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemConfig/systick.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
 .PHONY : Application/SystemConfig/systick.c.obj
 
 Application/SystemConfig/systick.i: Application/SystemConfig/systick.c.i
@@ -286,7 +334,7 @@ Application/SystemConfig/systick.i: Application/SystemConfig/systick.c.i
 
 # target to preprocess a source file
 Application/SystemConfig/systick.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemConfig/systick.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.i
 .PHONY : Application/SystemConfig/systick.c.i
 
 Application/SystemConfig/systick.s: Application/SystemConfig/systick.c.s
@@ -294,7 +342,7 @@ Application/SystemConfig/systick.s: Application/SystemConfig/systick.c.s
 
 # target to generate assembly for a file
 Application/SystemConfig/systick.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemConfig/systick.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.s
 .PHONY : Application/SystemConfig/systick.c.s
 
 Application/SystemView/GenericFiles/SEGGER_RTT.obj: Application/SystemView/GenericFiles/SEGGER_RTT.c.obj
@@ -302,7 +350,7 @@ Application/SystemView/GenericFiles/SEGGER_RTT.obj: Application/SystemView/Gener
 
 # target to build an object file
 Application/SystemView/GenericFiles/SEGGER_RTT.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/GenericFiles/SEGGER_RTT.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/GenericFiles/SEGGER_RTT.c.obj
 .PHONY : Application/SystemView/GenericFiles/SEGGER_RTT.c.obj
 
 Application/SystemView/GenericFiles/SEGGER_RTT.i: Application/SystemView/GenericFiles/SEGGER_RTT.c.i
@@ -310,7 +358,7 @@ Application/SystemView/GenericFiles/SEGGER_RTT.i: Application/SystemView/Generic
 
 # target to preprocess a source file
 Application/SystemView/GenericFiles/SEGGER_RTT.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/GenericFiles/SEGGER_RTT.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/GenericFiles/SEGGER_RTT.c.i
 .PHONY : Application/SystemView/GenericFiles/SEGGER_RTT.c.i
 
 Application/SystemView/GenericFiles/SEGGER_RTT.s: Application/SystemView/GenericFiles/SEGGER_RTT.c.s
@@ -318,7 +366,7 @@ Application/SystemView/GenericFiles/SEGGER_RTT.s: Application/SystemView/Generic
 
 # target to generate assembly for a file
 Application/SystemView/GenericFiles/SEGGER_RTT.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/GenericFiles/SEGGER_RTT.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/GenericFiles/SEGGER_RTT.c.s
 .PHONY : Application/SystemView/GenericFiles/SEGGER_RTT.c.s
 
 Application/SystemView/GenericFiles/SEGGER_SYSVIEW.obj: Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.obj
@@ -326,7 +374,7 @@ Application/SystemView/GenericFiles/SEGGER_SYSVIEW.obj: Application/SystemView/G
 
 # target to build an object file
 Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.obj
 .PHONY : Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.obj
 
 Application/SystemView/GenericFiles/SEGGER_SYSVIEW.i: Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.i
@@ -334,7 +382,7 @@ Application/SystemView/GenericFiles/SEGGER_SYSVIEW.i: Application/SystemView/Gen
 
 # target to preprocess a source file
 Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.i
 .PHONY : Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.i
 
 Application/SystemView/GenericFiles/SEGGER_SYSVIEW.s: Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.s
@@ -342,7 +390,7 @@ Application/SystemView/GenericFiles/SEGGER_SYSVIEW.s: Application/SystemView/Gen
 
 # target to generate assembly for a file
 Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.s
 .PHONY : Application/SystemView/GenericFiles/SEGGER_SYSVIEW.c.s
 
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.obj: Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.obj
@@ -350,7 +398,7 @@ Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.obj: Application/
 
 # target to build an object file
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.obj
 .PHONY : Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.obj
 
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.i: Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.i
@@ -358,7 +406,7 @@ Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.i: Application/Sy
 
 # target to preprocess a source file
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.i
 .PHONY : Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.i
 
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.s: Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.s
@@ -366,7 +414,7 @@ Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.s: Application/Sy
 
 # target to generate assembly for a file
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.s
 .PHONY : Application/SystemView/OSSpecific/SEGGER_SYSVIEW_Config_uCOSII.c.s
 
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.obj: Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.obj
@@ -374,7 +422,7 @@ Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.obj: Application/SystemV
 
 # target to build an object file
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.obj
 .PHONY : Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.obj
 
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.i: Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.i
@@ -382,7 +430,7 @@ Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.i: Application/SystemVie
 
 # target to preprocess a source file
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.i
 .PHONY : Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.i
 
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.s: Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.s
@@ -390,7 +438,7 @@ Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.s: Application/SystemVie
 
 # target to generate assembly for a file
 Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.s
 .PHONY : Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.s
 
 Application/main.obj: Application/main.c.obj
@@ -398,7 +446,7 @@ Application/main.obj: Application/main.c.obj
 
 # target to build an object file
 Application/main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/main.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/main.c.obj
 .PHONY : Application/main.c.obj
 
 Application/main.i: Application/main.c.i
@@ -406,7 +454,7 @@ Application/main.i: Application/main.c.i
 
 # target to preprocess a source file
 Application/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/main.c.i
 .PHONY : Application/main.c.i
 
 Application/main.s: Application/main.c.s
@@ -414,15 +462,39 @@ Application/main.s: Application/main.c.s
 
 # target to generate assembly for a file
 Application/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/Application/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/main.c.s
 .PHONY : Application/main.c.s
+
+System/BSP/syscalls.obj: System/BSP/syscalls.c.obj
+.PHONY : System/BSP/syscalls.obj
+
+# target to build an object file
+System/BSP/syscalls.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+.PHONY : System/BSP/syscalls.c.obj
+
+System/BSP/syscalls.i: System/BSP/syscalls.c.i
+.PHONY : System/BSP/syscalls.i
+
+# target to preprocess a source file
+System/BSP/syscalls.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.i
+.PHONY : System/BSP/syscalls.c.i
+
+System/BSP/syscalls.s: System/BSP/syscalls.c.s
+.PHONY : System/BSP/syscalls.s
+
+# target to generate assembly for a file
+System/BSP/syscalls.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.s
+.PHONY : System/BSP/syscalls.c.s
 
 System/CMSIS/Device/startup_stm32f401xe.obj: System/CMSIS/Device/startup_stm32f401xe.s.obj
 .PHONY : System/CMSIS/Device/startup_stm32f401xe.obj
 
 # target to build an object file
 System/CMSIS/Device/startup_stm32f401xe.s.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
 .PHONY : System/CMSIS/Device/startup_stm32f401xe.s.obj
 
 System/CMSIS/Device/system_stm32f4xx.obj: System/CMSIS/Device/system_stm32f4xx.c.obj
@@ -430,7 +502,7 @@ System/CMSIS/Device/system_stm32f4xx.obj: System/CMSIS/Device/system_stm32f4xx.c
 
 # target to build an object file
 System/CMSIS/Device/system_stm32f4xx.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
 .PHONY : System/CMSIS/Device/system_stm32f4xx.c.obj
 
 System/CMSIS/Device/system_stm32f4xx.i: System/CMSIS/Device/system_stm32f4xx.c.i
@@ -438,7 +510,7 @@ System/CMSIS/Device/system_stm32f4xx.i: System/CMSIS/Device/system_stm32f4xx.c.i
 
 # target to preprocess a source file
 System/CMSIS/Device/system_stm32f4xx.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/CMSIS/Device/system_stm32f4xx.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.i
 .PHONY : System/CMSIS/Device/system_stm32f4xx.c.i
 
 System/CMSIS/Device/system_stm32f4xx.s: System/CMSIS/Device/system_stm32f4xx.c.s
@@ -446,7 +518,7 @@ System/CMSIS/Device/system_stm32f4xx.s: System/CMSIS/Device/system_stm32f4xx.c.s
 
 # target to generate assembly for a file
 System/CMSIS/Device/system_stm32f4xx.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/CMSIS/Device/system_stm32f4xx.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.s
 .PHONY : System/CMSIS/Device/system_stm32f4xx.c.s
 
 System/FWLIB/Src/misc.obj: System/FWLIB/Src/misc.c.obj
@@ -454,7 +526,7 @@ System/FWLIB/Src/misc.obj: System/FWLIB/Src/misc.c.obj
 
 # target to build an object file
 System/FWLIB/Src/misc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/misc.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/misc.c.obj
 .PHONY : System/FWLIB/Src/misc.c.obj
 
 System/FWLIB/Src/misc.i: System/FWLIB/Src/misc.c.i
@@ -462,7 +534,7 @@ System/FWLIB/Src/misc.i: System/FWLIB/Src/misc.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/misc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/misc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/misc.c.i
 .PHONY : System/FWLIB/Src/misc.c.i
 
 System/FWLIB/Src/misc.s: System/FWLIB/Src/misc.c.s
@@ -470,7 +542,7 @@ System/FWLIB/Src/misc.s: System/FWLIB/Src/misc.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/misc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/misc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/misc.c.s
 .PHONY : System/FWLIB/Src/misc.c.s
 
 System/FWLIB/Src/stm32f4xx_adc.obj: System/FWLIB/Src/stm32f4xx_adc.c.obj
@@ -478,7 +550,7 @@ System/FWLIB/Src/stm32f4xx_adc.obj: System/FWLIB/Src/stm32f4xx_adc.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_adc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_adc.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_adc.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_adc.c.obj
 
 System/FWLIB/Src/stm32f4xx_adc.i: System/FWLIB/Src/stm32f4xx_adc.c.i
@@ -486,7 +558,7 @@ System/FWLIB/Src/stm32f4xx_adc.i: System/FWLIB/Src/stm32f4xx_adc.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_adc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_adc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_adc.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_adc.c.i
 
 System/FWLIB/Src/stm32f4xx_adc.s: System/FWLIB/Src/stm32f4xx_adc.c.s
@@ -494,7 +566,7 @@ System/FWLIB/Src/stm32f4xx_adc.s: System/FWLIB/Src/stm32f4xx_adc.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_adc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_adc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_adc.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_adc.c.s
 
 System/FWLIB/Src/stm32f4xx_can.obj: System/FWLIB/Src/stm32f4xx_can.c.obj
@@ -502,7 +574,7 @@ System/FWLIB/Src/stm32f4xx_can.obj: System/FWLIB/Src/stm32f4xx_can.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_can.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_can.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_can.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_can.c.obj
 
 System/FWLIB/Src/stm32f4xx_can.i: System/FWLIB/Src/stm32f4xx_can.c.i
@@ -510,7 +582,7 @@ System/FWLIB/Src/stm32f4xx_can.i: System/FWLIB/Src/stm32f4xx_can.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_can.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_can.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_can.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_can.c.i
 
 System/FWLIB/Src/stm32f4xx_can.s: System/FWLIB/Src/stm32f4xx_can.c.s
@@ -518,7 +590,7 @@ System/FWLIB/Src/stm32f4xx_can.s: System/FWLIB/Src/stm32f4xx_can.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_can.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_can.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_can.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_can.c.s
 
 System/FWLIB/Src/stm32f4xx_crc.obj: System/FWLIB/Src/stm32f4xx_crc.c.obj
@@ -526,7 +598,7 @@ System/FWLIB/Src/stm32f4xx_crc.obj: System/FWLIB/Src/stm32f4xx_crc.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_crc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_crc.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_crc.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_crc.c.obj
 
 System/FWLIB/Src/stm32f4xx_crc.i: System/FWLIB/Src/stm32f4xx_crc.c.i
@@ -534,7 +606,7 @@ System/FWLIB/Src/stm32f4xx_crc.i: System/FWLIB/Src/stm32f4xx_crc.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_crc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_crc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_crc.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_crc.c.i
 
 System/FWLIB/Src/stm32f4xx_crc.s: System/FWLIB/Src/stm32f4xx_crc.c.s
@@ -542,7 +614,7 @@ System/FWLIB/Src/stm32f4xx_crc.s: System/FWLIB/Src/stm32f4xx_crc.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_crc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_crc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_crc.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_crc.c.s
 
 System/FWLIB/Src/stm32f4xx_cryp.obj: System/FWLIB/Src/stm32f4xx_cryp.c.obj
@@ -550,7 +622,7 @@ System/FWLIB/Src/stm32f4xx_cryp.obj: System/FWLIB/Src/stm32f4xx_cryp.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_cryp.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp.c.obj
 
 System/FWLIB/Src/stm32f4xx_cryp.i: System/FWLIB/Src/stm32f4xx_cryp.c.i
@@ -558,7 +630,7 @@ System/FWLIB/Src/stm32f4xx_cryp.i: System/FWLIB/Src/stm32f4xx_cryp.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_cryp.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp.c.i
 
 System/FWLIB/Src/stm32f4xx_cryp.s: System/FWLIB/Src/stm32f4xx_cryp.c.s
@@ -566,7 +638,7 @@ System/FWLIB/Src/stm32f4xx_cryp.s: System/FWLIB/Src/stm32f4xx_cryp.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_cryp.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp.c.s
 
 System/FWLIB/Src/stm32f4xx_cryp_aes.obj: System/FWLIB/Src/stm32f4xx_cryp_aes.c.obj
@@ -574,7 +646,7 @@ System/FWLIB/Src/stm32f4xx_cryp_aes.obj: System/FWLIB/Src/stm32f4xx_cryp_aes.c.o
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_cryp_aes.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp_aes.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp_aes.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp_aes.c.obj
 
 System/FWLIB/Src/stm32f4xx_cryp_aes.i: System/FWLIB/Src/stm32f4xx_cryp_aes.c.i
@@ -582,7 +654,7 @@ System/FWLIB/Src/stm32f4xx_cryp_aes.i: System/FWLIB/Src/stm32f4xx_cryp_aes.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_cryp_aes.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp_aes.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp_aes.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp_aes.c.i
 
 System/FWLIB/Src/stm32f4xx_cryp_aes.s: System/FWLIB/Src/stm32f4xx_cryp_aes.c.s
@@ -590,7 +662,7 @@ System/FWLIB/Src/stm32f4xx_cryp_aes.s: System/FWLIB/Src/stm32f4xx_cryp_aes.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_cryp_aes.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp_aes.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp_aes.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp_aes.c.s
 
 System/FWLIB/Src/stm32f4xx_cryp_des.obj: System/FWLIB/Src/stm32f4xx_cryp_des.c.obj
@@ -598,7 +670,7 @@ System/FWLIB/Src/stm32f4xx_cryp_des.obj: System/FWLIB/Src/stm32f4xx_cryp_des.c.o
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_cryp_des.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp_des.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp_des.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp_des.c.obj
 
 System/FWLIB/Src/stm32f4xx_cryp_des.i: System/FWLIB/Src/stm32f4xx_cryp_des.c.i
@@ -606,7 +678,7 @@ System/FWLIB/Src/stm32f4xx_cryp_des.i: System/FWLIB/Src/stm32f4xx_cryp_des.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_cryp_des.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp_des.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp_des.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp_des.c.i
 
 System/FWLIB/Src/stm32f4xx_cryp_des.s: System/FWLIB/Src/stm32f4xx_cryp_des.c.s
@@ -614,7 +686,7 @@ System/FWLIB/Src/stm32f4xx_cryp_des.s: System/FWLIB/Src/stm32f4xx_cryp_des.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_cryp_des.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp_des.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp_des.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp_des.c.s
 
 System/FWLIB/Src/stm32f4xx_cryp_tdes.obj: System/FWLIB/Src/stm32f4xx_cryp_tdes.c.obj
@@ -622,7 +694,7 @@ System/FWLIB/Src/stm32f4xx_cryp_tdes.obj: System/FWLIB/Src/stm32f4xx_cryp_tdes.c
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_cryp_tdes.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp_tdes.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp_tdes.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp_tdes.c.obj
 
 System/FWLIB/Src/stm32f4xx_cryp_tdes.i: System/FWLIB/Src/stm32f4xx_cryp_tdes.c.i
@@ -630,7 +702,7 @@ System/FWLIB/Src/stm32f4xx_cryp_tdes.i: System/FWLIB/Src/stm32f4xx_cryp_tdes.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_cryp_tdes.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp_tdes.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp_tdes.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp_tdes.c.i
 
 System/FWLIB/Src/stm32f4xx_cryp_tdes.s: System/FWLIB/Src/stm32f4xx_cryp_tdes.c.s
@@ -638,7 +710,7 @@ System/FWLIB/Src/stm32f4xx_cryp_tdes.s: System/FWLIB/Src/stm32f4xx_cryp_tdes.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_cryp_tdes.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_cryp_tdes.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_cryp_tdes.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_cryp_tdes.c.s
 
 System/FWLIB/Src/stm32f4xx_dac.obj: System/FWLIB/Src/stm32f4xx_dac.c.obj
@@ -646,7 +718,7 @@ System/FWLIB/Src/stm32f4xx_dac.obj: System/FWLIB/Src/stm32f4xx_dac.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_dac.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dac.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dac.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_dac.c.obj
 
 System/FWLIB/Src/stm32f4xx_dac.i: System/FWLIB/Src/stm32f4xx_dac.c.i
@@ -654,7 +726,7 @@ System/FWLIB/Src/stm32f4xx_dac.i: System/FWLIB/Src/stm32f4xx_dac.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_dac.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dac.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dac.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_dac.c.i
 
 System/FWLIB/Src/stm32f4xx_dac.s: System/FWLIB/Src/stm32f4xx_dac.c.s
@@ -662,7 +734,7 @@ System/FWLIB/Src/stm32f4xx_dac.s: System/FWLIB/Src/stm32f4xx_dac.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_dac.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dac.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dac.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_dac.c.s
 
 System/FWLIB/Src/stm32f4xx_dbgmcu.obj: System/FWLIB/Src/stm32f4xx_dbgmcu.c.obj
@@ -670,7 +742,7 @@ System/FWLIB/Src/stm32f4xx_dbgmcu.obj: System/FWLIB/Src/stm32f4xx_dbgmcu.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_dbgmcu.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dbgmcu.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dbgmcu.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_dbgmcu.c.obj
 
 System/FWLIB/Src/stm32f4xx_dbgmcu.i: System/FWLIB/Src/stm32f4xx_dbgmcu.c.i
@@ -678,7 +750,7 @@ System/FWLIB/Src/stm32f4xx_dbgmcu.i: System/FWLIB/Src/stm32f4xx_dbgmcu.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_dbgmcu.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dbgmcu.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dbgmcu.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_dbgmcu.c.i
 
 System/FWLIB/Src/stm32f4xx_dbgmcu.s: System/FWLIB/Src/stm32f4xx_dbgmcu.c.s
@@ -686,7 +758,7 @@ System/FWLIB/Src/stm32f4xx_dbgmcu.s: System/FWLIB/Src/stm32f4xx_dbgmcu.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_dbgmcu.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dbgmcu.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dbgmcu.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_dbgmcu.c.s
 
 System/FWLIB/Src/stm32f4xx_dcmi.obj: System/FWLIB/Src/stm32f4xx_dcmi.c.obj
@@ -694,7 +766,7 @@ System/FWLIB/Src/stm32f4xx_dcmi.obj: System/FWLIB/Src/stm32f4xx_dcmi.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_dcmi.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dcmi.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dcmi.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_dcmi.c.obj
 
 System/FWLIB/Src/stm32f4xx_dcmi.i: System/FWLIB/Src/stm32f4xx_dcmi.c.i
@@ -702,7 +774,7 @@ System/FWLIB/Src/stm32f4xx_dcmi.i: System/FWLIB/Src/stm32f4xx_dcmi.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_dcmi.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dcmi.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dcmi.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_dcmi.c.i
 
 System/FWLIB/Src/stm32f4xx_dcmi.s: System/FWLIB/Src/stm32f4xx_dcmi.c.s
@@ -710,7 +782,7 @@ System/FWLIB/Src/stm32f4xx_dcmi.s: System/FWLIB/Src/stm32f4xx_dcmi.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_dcmi.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dcmi.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dcmi.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_dcmi.c.s
 
 System/FWLIB/Src/stm32f4xx_dma.obj: System/FWLIB/Src/stm32f4xx_dma.c.obj
@@ -718,7 +790,7 @@ System/FWLIB/Src/stm32f4xx_dma.obj: System/FWLIB/Src/stm32f4xx_dma.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_dma.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dma.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dma.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_dma.c.obj
 
 System/FWLIB/Src/stm32f4xx_dma.i: System/FWLIB/Src/stm32f4xx_dma.c.i
@@ -726,7 +798,7 @@ System/FWLIB/Src/stm32f4xx_dma.i: System/FWLIB/Src/stm32f4xx_dma.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_dma.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dma.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dma.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_dma.c.i
 
 System/FWLIB/Src/stm32f4xx_dma.s: System/FWLIB/Src/stm32f4xx_dma.c.s
@@ -734,7 +806,7 @@ System/FWLIB/Src/stm32f4xx_dma.s: System/FWLIB/Src/stm32f4xx_dma.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_dma.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dma.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dma.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_dma.c.s
 
 System/FWLIB/Src/stm32f4xx_dma2d.obj: System/FWLIB/Src/stm32f4xx_dma2d.c.obj
@@ -742,7 +814,7 @@ System/FWLIB/Src/stm32f4xx_dma2d.obj: System/FWLIB/Src/stm32f4xx_dma2d.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_dma2d.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dma2d.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dma2d.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_dma2d.c.obj
 
 System/FWLIB/Src/stm32f4xx_dma2d.i: System/FWLIB/Src/stm32f4xx_dma2d.c.i
@@ -750,7 +822,7 @@ System/FWLIB/Src/stm32f4xx_dma2d.i: System/FWLIB/Src/stm32f4xx_dma2d.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_dma2d.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dma2d.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dma2d.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_dma2d.c.i
 
 System/FWLIB/Src/stm32f4xx_dma2d.s: System/FWLIB/Src/stm32f4xx_dma2d.c.s
@@ -758,7 +830,7 @@ System/FWLIB/Src/stm32f4xx_dma2d.s: System/FWLIB/Src/stm32f4xx_dma2d.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_dma2d.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_dma2d.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_dma2d.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_dma2d.c.s
 
 System/FWLIB/Src/stm32f4xx_exti.obj: System/FWLIB/Src/stm32f4xx_exti.c.obj
@@ -766,7 +838,7 @@ System/FWLIB/Src/stm32f4xx_exti.obj: System/FWLIB/Src/stm32f4xx_exti.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_exti.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_exti.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_exti.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_exti.c.obj
 
 System/FWLIB/Src/stm32f4xx_exti.i: System/FWLIB/Src/stm32f4xx_exti.c.i
@@ -774,7 +846,7 @@ System/FWLIB/Src/stm32f4xx_exti.i: System/FWLIB/Src/stm32f4xx_exti.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_exti.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_exti.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_exti.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_exti.c.i
 
 System/FWLIB/Src/stm32f4xx_exti.s: System/FWLIB/Src/stm32f4xx_exti.c.s
@@ -782,7 +854,7 @@ System/FWLIB/Src/stm32f4xx_exti.s: System/FWLIB/Src/stm32f4xx_exti.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_exti.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_exti.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_exti.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_exti.c.s
 
 System/FWLIB/Src/stm32f4xx_flash.obj: System/FWLIB/Src/stm32f4xx_flash.c.obj
@@ -790,7 +862,7 @@ System/FWLIB/Src/stm32f4xx_flash.obj: System/FWLIB/Src/stm32f4xx_flash.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_flash.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_flash.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_flash.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_flash.c.obj
 
 System/FWLIB/Src/stm32f4xx_flash.i: System/FWLIB/Src/stm32f4xx_flash.c.i
@@ -798,7 +870,7 @@ System/FWLIB/Src/stm32f4xx_flash.i: System/FWLIB/Src/stm32f4xx_flash.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_flash.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_flash.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_flash.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_flash.c.i
 
 System/FWLIB/Src/stm32f4xx_flash.s: System/FWLIB/Src/stm32f4xx_flash.c.s
@@ -806,7 +878,7 @@ System/FWLIB/Src/stm32f4xx_flash.s: System/FWLIB/Src/stm32f4xx_flash.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_flash.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_flash.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_flash.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_flash.c.s
 
 System/FWLIB/Src/stm32f4xx_flash_ramfunc.obj: System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.obj
@@ -814,7 +886,7 @@ System/FWLIB/Src/stm32f4xx_flash_ramfunc.obj: System/FWLIB/Src/stm32f4xx_flash_r
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.obj
 
 System/FWLIB/Src/stm32f4xx_flash_ramfunc.i: System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.i
@@ -822,7 +894,7 @@ System/FWLIB/Src/stm32f4xx_flash_ramfunc.i: System/FWLIB/Src/stm32f4xx_flash_ram
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.i
 
 System/FWLIB/Src/stm32f4xx_flash_ramfunc.s: System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.s
@@ -830,7 +902,7 @@ System/FWLIB/Src/stm32f4xx_flash_ramfunc.s: System/FWLIB/Src/stm32f4xx_flash_ram
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_flash_ramfunc.c.s
 
 System/FWLIB/Src/stm32f4xx_fsmc.obj: System/FWLIB/Src/stm32f4xx_fsmc.c.obj
@@ -838,7 +910,7 @@ System/FWLIB/Src/stm32f4xx_fsmc.obj: System/FWLIB/Src/stm32f4xx_fsmc.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_fsmc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_fsmc.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_fsmc.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_fsmc.c.obj
 
 System/FWLIB/Src/stm32f4xx_fsmc.i: System/FWLIB/Src/stm32f4xx_fsmc.c.i
@@ -846,7 +918,7 @@ System/FWLIB/Src/stm32f4xx_fsmc.i: System/FWLIB/Src/stm32f4xx_fsmc.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_fsmc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_fsmc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_fsmc.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_fsmc.c.i
 
 System/FWLIB/Src/stm32f4xx_fsmc.s: System/FWLIB/Src/stm32f4xx_fsmc.c.s
@@ -854,7 +926,7 @@ System/FWLIB/Src/stm32f4xx_fsmc.s: System/FWLIB/Src/stm32f4xx_fsmc.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_fsmc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_fsmc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_fsmc.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_fsmc.c.s
 
 System/FWLIB/Src/stm32f4xx_gpio.obj: System/FWLIB/Src/stm32f4xx_gpio.c.obj
@@ -862,7 +934,7 @@ System/FWLIB/Src/stm32f4xx_gpio.obj: System/FWLIB/Src/stm32f4xx_gpio.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_gpio.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_gpio.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_gpio.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_gpio.c.obj
 
 System/FWLIB/Src/stm32f4xx_gpio.i: System/FWLIB/Src/stm32f4xx_gpio.c.i
@@ -870,7 +942,7 @@ System/FWLIB/Src/stm32f4xx_gpio.i: System/FWLIB/Src/stm32f4xx_gpio.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_gpio.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_gpio.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_gpio.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_gpio.c.i
 
 System/FWLIB/Src/stm32f4xx_gpio.s: System/FWLIB/Src/stm32f4xx_gpio.c.s
@@ -878,7 +950,7 @@ System/FWLIB/Src/stm32f4xx_gpio.s: System/FWLIB/Src/stm32f4xx_gpio.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_gpio.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_gpio.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_gpio.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_gpio.c.s
 
 System/FWLIB/Src/stm32f4xx_hash.obj: System/FWLIB/Src/stm32f4xx_hash.c.obj
@@ -886,7 +958,7 @@ System/FWLIB/Src/stm32f4xx_hash.obj: System/FWLIB/Src/stm32f4xx_hash.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_hash.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_hash.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_hash.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_hash.c.obj
 
 System/FWLIB/Src/stm32f4xx_hash.i: System/FWLIB/Src/stm32f4xx_hash.c.i
@@ -894,7 +966,7 @@ System/FWLIB/Src/stm32f4xx_hash.i: System/FWLIB/Src/stm32f4xx_hash.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_hash.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_hash.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_hash.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_hash.c.i
 
 System/FWLIB/Src/stm32f4xx_hash.s: System/FWLIB/Src/stm32f4xx_hash.c.s
@@ -902,7 +974,7 @@ System/FWLIB/Src/stm32f4xx_hash.s: System/FWLIB/Src/stm32f4xx_hash.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_hash.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_hash.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_hash.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_hash.c.s
 
 System/FWLIB/Src/stm32f4xx_hash_md5.obj: System/FWLIB/Src/stm32f4xx_hash_md5.c.obj
@@ -910,7 +982,7 @@ System/FWLIB/Src/stm32f4xx_hash_md5.obj: System/FWLIB/Src/stm32f4xx_hash_md5.c.o
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_hash_md5.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_hash_md5.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_hash_md5.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_hash_md5.c.obj
 
 System/FWLIB/Src/stm32f4xx_hash_md5.i: System/FWLIB/Src/stm32f4xx_hash_md5.c.i
@@ -918,7 +990,7 @@ System/FWLIB/Src/stm32f4xx_hash_md5.i: System/FWLIB/Src/stm32f4xx_hash_md5.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_hash_md5.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_hash_md5.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_hash_md5.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_hash_md5.c.i
 
 System/FWLIB/Src/stm32f4xx_hash_md5.s: System/FWLIB/Src/stm32f4xx_hash_md5.c.s
@@ -926,7 +998,7 @@ System/FWLIB/Src/stm32f4xx_hash_md5.s: System/FWLIB/Src/stm32f4xx_hash_md5.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_hash_md5.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_hash_md5.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_hash_md5.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_hash_md5.c.s
 
 System/FWLIB/Src/stm32f4xx_hash_sha1.obj: System/FWLIB/Src/stm32f4xx_hash_sha1.c.obj
@@ -934,7 +1006,7 @@ System/FWLIB/Src/stm32f4xx_hash_sha1.obj: System/FWLIB/Src/stm32f4xx_hash_sha1.c
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_hash_sha1.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_hash_sha1.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_hash_sha1.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_hash_sha1.c.obj
 
 System/FWLIB/Src/stm32f4xx_hash_sha1.i: System/FWLIB/Src/stm32f4xx_hash_sha1.c.i
@@ -942,7 +1014,7 @@ System/FWLIB/Src/stm32f4xx_hash_sha1.i: System/FWLIB/Src/stm32f4xx_hash_sha1.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_hash_sha1.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_hash_sha1.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_hash_sha1.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_hash_sha1.c.i
 
 System/FWLIB/Src/stm32f4xx_hash_sha1.s: System/FWLIB/Src/stm32f4xx_hash_sha1.c.s
@@ -950,7 +1022,7 @@ System/FWLIB/Src/stm32f4xx_hash_sha1.s: System/FWLIB/Src/stm32f4xx_hash_sha1.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_hash_sha1.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_hash_sha1.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_hash_sha1.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_hash_sha1.c.s
 
 System/FWLIB/Src/stm32f4xx_i2c.obj: System/FWLIB/Src/stm32f4xx_i2c.c.obj
@@ -958,7 +1030,7 @@ System/FWLIB/Src/stm32f4xx_i2c.obj: System/FWLIB/Src/stm32f4xx_i2c.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_i2c.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_i2c.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_i2c.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_i2c.c.obj
 
 System/FWLIB/Src/stm32f4xx_i2c.i: System/FWLIB/Src/stm32f4xx_i2c.c.i
@@ -966,7 +1038,7 @@ System/FWLIB/Src/stm32f4xx_i2c.i: System/FWLIB/Src/stm32f4xx_i2c.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_i2c.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_i2c.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_i2c.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_i2c.c.i
 
 System/FWLIB/Src/stm32f4xx_i2c.s: System/FWLIB/Src/stm32f4xx_i2c.c.s
@@ -974,7 +1046,7 @@ System/FWLIB/Src/stm32f4xx_i2c.s: System/FWLIB/Src/stm32f4xx_i2c.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_i2c.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_i2c.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_i2c.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_i2c.c.s
 
 System/FWLIB/Src/stm32f4xx_iwdg.obj: System/FWLIB/Src/stm32f4xx_iwdg.c.obj
@@ -982,7 +1054,7 @@ System/FWLIB/Src/stm32f4xx_iwdg.obj: System/FWLIB/Src/stm32f4xx_iwdg.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_iwdg.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_iwdg.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_iwdg.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_iwdg.c.obj
 
 System/FWLIB/Src/stm32f4xx_iwdg.i: System/FWLIB/Src/stm32f4xx_iwdg.c.i
@@ -990,7 +1062,7 @@ System/FWLIB/Src/stm32f4xx_iwdg.i: System/FWLIB/Src/stm32f4xx_iwdg.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_iwdg.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_iwdg.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_iwdg.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_iwdg.c.i
 
 System/FWLIB/Src/stm32f4xx_iwdg.s: System/FWLIB/Src/stm32f4xx_iwdg.c.s
@@ -998,7 +1070,7 @@ System/FWLIB/Src/stm32f4xx_iwdg.s: System/FWLIB/Src/stm32f4xx_iwdg.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_iwdg.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_iwdg.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_iwdg.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_iwdg.c.s
 
 System/FWLIB/Src/stm32f4xx_ltdc.obj: System/FWLIB/Src/stm32f4xx_ltdc.c.obj
@@ -1006,7 +1078,7 @@ System/FWLIB/Src/stm32f4xx_ltdc.obj: System/FWLIB/Src/stm32f4xx_ltdc.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_ltdc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_ltdc.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_ltdc.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_ltdc.c.obj
 
 System/FWLIB/Src/stm32f4xx_ltdc.i: System/FWLIB/Src/stm32f4xx_ltdc.c.i
@@ -1014,7 +1086,7 @@ System/FWLIB/Src/stm32f4xx_ltdc.i: System/FWLIB/Src/stm32f4xx_ltdc.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_ltdc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_ltdc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_ltdc.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_ltdc.c.i
 
 System/FWLIB/Src/stm32f4xx_ltdc.s: System/FWLIB/Src/stm32f4xx_ltdc.c.s
@@ -1022,7 +1094,7 @@ System/FWLIB/Src/stm32f4xx_ltdc.s: System/FWLIB/Src/stm32f4xx_ltdc.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_ltdc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_ltdc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_ltdc.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_ltdc.c.s
 
 System/FWLIB/Src/stm32f4xx_pwr.obj: System/FWLIB/Src/stm32f4xx_pwr.c.obj
@@ -1030,7 +1102,7 @@ System/FWLIB/Src/stm32f4xx_pwr.obj: System/FWLIB/Src/stm32f4xx_pwr.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_pwr.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_pwr.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_pwr.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_pwr.c.obj
 
 System/FWLIB/Src/stm32f4xx_pwr.i: System/FWLIB/Src/stm32f4xx_pwr.c.i
@@ -1038,7 +1110,7 @@ System/FWLIB/Src/stm32f4xx_pwr.i: System/FWLIB/Src/stm32f4xx_pwr.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_pwr.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_pwr.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_pwr.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_pwr.c.i
 
 System/FWLIB/Src/stm32f4xx_pwr.s: System/FWLIB/Src/stm32f4xx_pwr.c.s
@@ -1046,7 +1118,7 @@ System/FWLIB/Src/stm32f4xx_pwr.s: System/FWLIB/Src/stm32f4xx_pwr.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_pwr.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_pwr.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_pwr.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_pwr.c.s
 
 System/FWLIB/Src/stm32f4xx_rcc.obj: System/FWLIB/Src/stm32f4xx_rcc.c.obj
@@ -1054,7 +1126,7 @@ System/FWLIB/Src/stm32f4xx_rcc.obj: System/FWLIB/Src/stm32f4xx_rcc.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_rcc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_rcc.c.obj
 
 System/FWLIB/Src/stm32f4xx_rcc.i: System/FWLIB/Src/stm32f4xx_rcc.c.i
@@ -1062,7 +1134,7 @@ System/FWLIB/Src/stm32f4xx_rcc.i: System/FWLIB/Src/stm32f4xx_rcc.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_rcc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_rcc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_rcc.c.i
 
 System/FWLIB/Src/stm32f4xx_rcc.s: System/FWLIB/Src/stm32f4xx_rcc.c.s
@@ -1070,7 +1142,7 @@ System/FWLIB/Src/stm32f4xx_rcc.s: System/FWLIB/Src/stm32f4xx_rcc.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_rcc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_rcc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_rcc.c.s
 
 System/FWLIB/Src/stm32f4xx_rng.obj: System/FWLIB/Src/stm32f4xx_rng.c.obj
@@ -1078,7 +1150,7 @@ System/FWLIB/Src/stm32f4xx_rng.obj: System/FWLIB/Src/stm32f4xx_rng.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_rng.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_rng.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rng.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_rng.c.obj
 
 System/FWLIB/Src/stm32f4xx_rng.i: System/FWLIB/Src/stm32f4xx_rng.c.i
@@ -1086,7 +1158,7 @@ System/FWLIB/Src/stm32f4xx_rng.i: System/FWLIB/Src/stm32f4xx_rng.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_rng.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_rng.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rng.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_rng.c.i
 
 System/FWLIB/Src/stm32f4xx_rng.s: System/FWLIB/Src/stm32f4xx_rng.c.s
@@ -1094,7 +1166,7 @@ System/FWLIB/Src/stm32f4xx_rng.s: System/FWLIB/Src/stm32f4xx_rng.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_rng.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_rng.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rng.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_rng.c.s
 
 System/FWLIB/Src/stm32f4xx_rtc.obj: System/FWLIB/Src/stm32f4xx_rtc.c.obj
@@ -1102,7 +1174,7 @@ System/FWLIB/Src/stm32f4xx_rtc.obj: System/FWLIB/Src/stm32f4xx_rtc.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_rtc.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_rtc.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rtc.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_rtc.c.obj
 
 System/FWLIB/Src/stm32f4xx_rtc.i: System/FWLIB/Src/stm32f4xx_rtc.c.i
@@ -1110,7 +1182,7 @@ System/FWLIB/Src/stm32f4xx_rtc.i: System/FWLIB/Src/stm32f4xx_rtc.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_rtc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_rtc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rtc.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_rtc.c.i
 
 System/FWLIB/Src/stm32f4xx_rtc.s: System/FWLIB/Src/stm32f4xx_rtc.c.s
@@ -1118,7 +1190,7 @@ System/FWLIB/Src/stm32f4xx_rtc.s: System/FWLIB/Src/stm32f4xx_rtc.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_rtc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_rtc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rtc.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_rtc.c.s
 
 System/FWLIB/Src/stm32f4xx_sai.obj: System/FWLIB/Src/stm32f4xx_sai.c.obj
@@ -1126,7 +1198,7 @@ System/FWLIB/Src/stm32f4xx_sai.obj: System/FWLIB/Src/stm32f4xx_sai.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_sai.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_sai.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_sai.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_sai.c.obj
 
 System/FWLIB/Src/stm32f4xx_sai.i: System/FWLIB/Src/stm32f4xx_sai.c.i
@@ -1134,7 +1206,7 @@ System/FWLIB/Src/stm32f4xx_sai.i: System/FWLIB/Src/stm32f4xx_sai.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_sai.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_sai.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_sai.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_sai.c.i
 
 System/FWLIB/Src/stm32f4xx_sai.s: System/FWLIB/Src/stm32f4xx_sai.c.s
@@ -1142,7 +1214,7 @@ System/FWLIB/Src/stm32f4xx_sai.s: System/FWLIB/Src/stm32f4xx_sai.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_sai.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_sai.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_sai.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_sai.c.s
 
 System/FWLIB/Src/stm32f4xx_sdio.obj: System/FWLIB/Src/stm32f4xx_sdio.c.obj
@@ -1150,7 +1222,7 @@ System/FWLIB/Src/stm32f4xx_sdio.obj: System/FWLIB/Src/stm32f4xx_sdio.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_sdio.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_sdio.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_sdio.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_sdio.c.obj
 
 System/FWLIB/Src/stm32f4xx_sdio.i: System/FWLIB/Src/stm32f4xx_sdio.c.i
@@ -1158,7 +1230,7 @@ System/FWLIB/Src/stm32f4xx_sdio.i: System/FWLIB/Src/stm32f4xx_sdio.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_sdio.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_sdio.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_sdio.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_sdio.c.i
 
 System/FWLIB/Src/stm32f4xx_sdio.s: System/FWLIB/Src/stm32f4xx_sdio.c.s
@@ -1166,7 +1238,7 @@ System/FWLIB/Src/stm32f4xx_sdio.s: System/FWLIB/Src/stm32f4xx_sdio.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_sdio.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_sdio.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_sdio.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_sdio.c.s
 
 System/FWLIB/Src/stm32f4xx_spi.obj: System/FWLIB/Src/stm32f4xx_spi.c.obj
@@ -1174,7 +1246,7 @@ System/FWLIB/Src/stm32f4xx_spi.obj: System/FWLIB/Src/stm32f4xx_spi.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_spi.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_spi.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_spi.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_spi.c.obj
 
 System/FWLIB/Src/stm32f4xx_spi.i: System/FWLIB/Src/stm32f4xx_spi.c.i
@@ -1182,7 +1254,7 @@ System/FWLIB/Src/stm32f4xx_spi.i: System/FWLIB/Src/stm32f4xx_spi.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_spi.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_spi.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_spi.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_spi.c.i
 
 System/FWLIB/Src/stm32f4xx_spi.s: System/FWLIB/Src/stm32f4xx_spi.c.s
@@ -1190,7 +1262,7 @@ System/FWLIB/Src/stm32f4xx_spi.s: System/FWLIB/Src/stm32f4xx_spi.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_spi.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_spi.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_spi.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_spi.c.s
 
 System/FWLIB/Src/stm32f4xx_syscfg.obj: System/FWLIB/Src/stm32f4xx_syscfg.c.obj
@@ -1198,7 +1270,7 @@ System/FWLIB/Src/stm32f4xx_syscfg.obj: System/FWLIB/Src/stm32f4xx_syscfg.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_syscfg.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_syscfg.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_syscfg.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_syscfg.c.obj
 
 System/FWLIB/Src/stm32f4xx_syscfg.i: System/FWLIB/Src/stm32f4xx_syscfg.c.i
@@ -1206,7 +1278,7 @@ System/FWLIB/Src/stm32f4xx_syscfg.i: System/FWLIB/Src/stm32f4xx_syscfg.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_syscfg.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_syscfg.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_syscfg.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_syscfg.c.i
 
 System/FWLIB/Src/stm32f4xx_syscfg.s: System/FWLIB/Src/stm32f4xx_syscfg.c.s
@@ -1214,7 +1286,7 @@ System/FWLIB/Src/stm32f4xx_syscfg.s: System/FWLIB/Src/stm32f4xx_syscfg.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_syscfg.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_syscfg.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_syscfg.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_syscfg.c.s
 
 System/FWLIB/Src/stm32f4xx_tim.obj: System/FWLIB/Src/stm32f4xx_tim.c.obj
@@ -1222,7 +1294,7 @@ System/FWLIB/Src/stm32f4xx_tim.obj: System/FWLIB/Src/stm32f4xx_tim.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_tim.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_tim.c.obj
 
 System/FWLIB/Src/stm32f4xx_tim.i: System/FWLIB/Src/stm32f4xx_tim.c.i
@@ -1230,7 +1302,7 @@ System/FWLIB/Src/stm32f4xx_tim.i: System/FWLIB/Src/stm32f4xx_tim.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_tim.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_tim.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_tim.c.i
 
 System/FWLIB/Src/stm32f4xx_tim.s: System/FWLIB/Src/stm32f4xx_tim.c.s
@@ -1238,7 +1310,7 @@ System/FWLIB/Src/stm32f4xx_tim.s: System/FWLIB/Src/stm32f4xx_tim.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_tim.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_tim.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_tim.c.s
 
 System/FWLIB/Src/stm32f4xx_usart.obj: System/FWLIB/Src/stm32f4xx_usart.c.obj
@@ -1246,7 +1318,7 @@ System/FWLIB/Src/stm32f4xx_usart.obj: System/FWLIB/Src/stm32f4xx_usart.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_usart.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_usart.c.obj
 
 System/FWLIB/Src/stm32f4xx_usart.i: System/FWLIB/Src/stm32f4xx_usart.c.i
@@ -1254,7 +1326,7 @@ System/FWLIB/Src/stm32f4xx_usart.i: System/FWLIB/Src/stm32f4xx_usart.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_usart.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_usart.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_usart.c.i
 
 System/FWLIB/Src/stm32f4xx_usart.s: System/FWLIB/Src/stm32f4xx_usart.c.s
@@ -1262,7 +1334,7 @@ System/FWLIB/Src/stm32f4xx_usart.s: System/FWLIB/Src/stm32f4xx_usart.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_usart.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_usart.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_usart.c.s
 
 System/FWLIB/Src/stm32f4xx_wwdg.obj: System/FWLIB/Src/stm32f4xx_wwdg.c.obj
@@ -1270,7 +1342,7 @@ System/FWLIB/Src/stm32f4xx_wwdg.obj: System/FWLIB/Src/stm32f4xx_wwdg.c.obj
 
 # target to build an object file
 System/FWLIB/Src/stm32f4xx_wwdg.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_wwdg.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_wwdg.c.obj
 .PHONY : System/FWLIB/Src/stm32f4xx_wwdg.c.obj
 
 System/FWLIB/Src/stm32f4xx_wwdg.i: System/FWLIB/Src/stm32f4xx_wwdg.c.i
@@ -1278,7 +1350,7 @@ System/FWLIB/Src/stm32f4xx_wwdg.i: System/FWLIB/Src/stm32f4xx_wwdg.c.i
 
 # target to preprocess a source file
 System/FWLIB/Src/stm32f4xx_wwdg.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_wwdg.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_wwdg.c.i
 .PHONY : System/FWLIB/Src/stm32f4xx_wwdg.c.i
 
 System/FWLIB/Src/stm32f4xx_wwdg.s: System/FWLIB/Src/stm32f4xx_wwdg.c.s
@@ -1286,39 +1358,15 @@ System/FWLIB/Src/stm32f4xx_wwdg.s: System/FWLIB/Src/stm32f4xx_wwdg.c.s
 
 # target to generate assembly for a file
 System/FWLIB/Src/stm32f4xx_wwdg.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/System/FWLIB/Src/stm32f4xx_wwdg.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_wwdg.c.s
 .PHONY : System/FWLIB/Src/stm32f4xx_wwdg.c.s
-
-ucos2/Cfg/Template/app_hooks.obj: ucos2/Cfg/Template/app_hooks.c.obj
-.PHONY : ucos2/Cfg/Template/app_hooks.obj
-
-# target to build an object file
-ucos2/Cfg/Template/app_hooks.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Cfg/Template/app_hooks.c.obj
-.PHONY : ucos2/Cfg/Template/app_hooks.c.obj
-
-ucos2/Cfg/Template/app_hooks.i: ucos2/Cfg/Template/app_hooks.c.i
-.PHONY : ucos2/Cfg/Template/app_hooks.i
-
-# target to preprocess a source file
-ucos2/Cfg/Template/app_hooks.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Cfg/Template/app_hooks.c.i
-.PHONY : ucos2/Cfg/Template/app_hooks.c.i
-
-ucos2/Cfg/Template/app_hooks.s: ucos2/Cfg/Template/app_hooks.c.s
-.PHONY : ucos2/Cfg/Template/app_hooks.s
-
-# target to generate assembly for a file
-ucos2/Cfg/Template/app_hooks.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Cfg/Template/app_hooks.c.s
-.PHONY : ucos2/Cfg/Template/app_hooks.c.s
 
 ucos2/Ports/os_cpu_a.obj: ucos2/Ports/os_cpu_a.s.obj
 .PHONY : ucos2/Ports/os_cpu_a.obj
 
 # target to build an object file
 ucos2/Ports/os_cpu_a.s.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Ports/os_cpu_a.s.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
 .PHONY : ucos2/Ports/os_cpu_a.s.obj
 
 ucos2/Ports/os_cpu_c.obj: ucos2/Ports/os_cpu_c.c.obj
@@ -1326,7 +1374,7 @@ ucos2/Ports/os_cpu_c.obj: ucos2/Ports/os_cpu_c.c.obj
 
 # target to build an object file
 ucos2/Ports/os_cpu_c.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Ports/os_cpu_c.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
 .PHONY : ucos2/Ports/os_cpu_c.c.obj
 
 ucos2/Ports/os_cpu_c.i: ucos2/Ports/os_cpu_c.c.i
@@ -1334,7 +1382,7 @@ ucos2/Ports/os_cpu_c.i: ucos2/Ports/os_cpu_c.c.i
 
 # target to preprocess a source file
 ucos2/Ports/os_cpu_c.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Ports/os_cpu_c.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.i
 .PHONY : ucos2/Ports/os_cpu_c.c.i
 
 ucos2/Ports/os_cpu_c.s: ucos2/Ports/os_cpu_c.c.s
@@ -1342,7 +1390,7 @@ ucos2/Ports/os_cpu_c.s: ucos2/Ports/os_cpu_c.c.s
 
 # target to generate assembly for a file
 ucos2/Ports/os_cpu_c.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Ports/os_cpu_c.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.s
 .PHONY : ucos2/Ports/os_cpu_c.c.s
 
 ucos2/Source/os_core.obj: ucos2/Source/os_core.c.obj
@@ -1350,7 +1398,7 @@ ucos2/Source/os_core.obj: ucos2/Source/os_core.c.obj
 
 # target to build an object file
 ucos2/Source/os_core.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_core.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
 .PHONY : ucos2/Source/os_core.c.obj
 
 ucos2/Source/os_core.i: ucos2/Source/os_core.c.i
@@ -1358,7 +1406,7 @@ ucos2/Source/os_core.i: ucos2/Source/os_core.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_core.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_core.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.i
 .PHONY : ucos2/Source/os_core.c.i
 
 ucos2/Source/os_core.s: ucos2/Source/os_core.c.s
@@ -1366,7 +1414,7 @@ ucos2/Source/os_core.s: ucos2/Source/os_core.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_core.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_core.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.s
 .PHONY : ucos2/Source/os_core.c.s
 
 ucos2/Source/os_dbg_r.obj: ucos2/Source/os_dbg_r.c.obj
@@ -1374,7 +1422,7 @@ ucos2/Source/os_dbg_r.obj: ucos2/Source/os_dbg_r.c.obj
 
 # target to build an object file
 ucos2/Source/os_dbg_r.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_dbg_r.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
 .PHONY : ucos2/Source/os_dbg_r.c.obj
 
 ucos2/Source/os_dbg_r.i: ucos2/Source/os_dbg_r.c.i
@@ -1382,7 +1430,7 @@ ucos2/Source/os_dbg_r.i: ucos2/Source/os_dbg_r.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_dbg_r.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_dbg_r.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.i
 .PHONY : ucos2/Source/os_dbg_r.c.i
 
 ucos2/Source/os_dbg_r.s: ucos2/Source/os_dbg_r.c.s
@@ -1390,7 +1438,7 @@ ucos2/Source/os_dbg_r.s: ucos2/Source/os_dbg_r.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_dbg_r.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_dbg_r.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.s
 .PHONY : ucos2/Source/os_dbg_r.c.s
 
 ucos2/Source/os_flag.obj: ucos2/Source/os_flag.c.obj
@@ -1398,7 +1446,7 @@ ucos2/Source/os_flag.obj: ucos2/Source/os_flag.c.obj
 
 # target to build an object file
 ucos2/Source/os_flag.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_flag.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
 .PHONY : ucos2/Source/os_flag.c.obj
 
 ucos2/Source/os_flag.i: ucos2/Source/os_flag.c.i
@@ -1406,7 +1454,7 @@ ucos2/Source/os_flag.i: ucos2/Source/os_flag.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_flag.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_flag.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.i
 .PHONY : ucos2/Source/os_flag.c.i
 
 ucos2/Source/os_flag.s: ucos2/Source/os_flag.c.s
@@ -1414,7 +1462,7 @@ ucos2/Source/os_flag.s: ucos2/Source/os_flag.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_flag.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_flag.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.s
 .PHONY : ucos2/Source/os_flag.c.s
 
 ucos2/Source/os_mbox.obj: ucos2/Source/os_mbox.c.obj
@@ -1422,7 +1470,7 @@ ucos2/Source/os_mbox.obj: ucos2/Source/os_mbox.c.obj
 
 # target to build an object file
 ucos2/Source/os_mbox.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_mbox.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_mbox.c.obj
 .PHONY : ucos2/Source/os_mbox.c.obj
 
 ucos2/Source/os_mbox.i: ucos2/Source/os_mbox.c.i
@@ -1430,7 +1478,7 @@ ucos2/Source/os_mbox.i: ucos2/Source/os_mbox.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_mbox.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_mbox.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_mbox.c.i
 .PHONY : ucos2/Source/os_mbox.c.i
 
 ucos2/Source/os_mbox.s: ucos2/Source/os_mbox.c.s
@@ -1438,7 +1486,7 @@ ucos2/Source/os_mbox.s: ucos2/Source/os_mbox.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_mbox.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_mbox.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_mbox.c.s
 .PHONY : ucos2/Source/os_mbox.c.s
 
 ucos2/Source/os_mem.obj: ucos2/Source/os_mem.c.obj
@@ -1446,7 +1494,7 @@ ucos2/Source/os_mem.obj: ucos2/Source/os_mem.c.obj
 
 # target to build an object file
 ucos2/Source/os_mem.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_mem.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
 .PHONY : ucos2/Source/os_mem.c.obj
 
 ucos2/Source/os_mem.i: ucos2/Source/os_mem.c.i
@@ -1454,7 +1502,7 @@ ucos2/Source/os_mem.i: ucos2/Source/os_mem.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_mem.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_mem.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.i
 .PHONY : ucos2/Source/os_mem.c.i
 
 ucos2/Source/os_mem.s: ucos2/Source/os_mem.c.s
@@ -1462,7 +1510,7 @@ ucos2/Source/os_mem.s: ucos2/Source/os_mem.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_mem.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_mem.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.s
 .PHONY : ucos2/Source/os_mem.c.s
 
 ucos2/Source/os_mutex.obj: ucos2/Source/os_mutex.c.obj
@@ -1470,7 +1518,7 @@ ucos2/Source/os_mutex.obj: ucos2/Source/os_mutex.c.obj
 
 # target to build an object file
 ucos2/Source/os_mutex.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_mutex.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_mutex.c.obj
 .PHONY : ucos2/Source/os_mutex.c.obj
 
 ucos2/Source/os_mutex.i: ucos2/Source/os_mutex.c.i
@@ -1478,7 +1526,7 @@ ucos2/Source/os_mutex.i: ucos2/Source/os_mutex.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_mutex.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_mutex.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_mutex.c.i
 .PHONY : ucos2/Source/os_mutex.c.i
 
 ucos2/Source/os_mutex.s: ucos2/Source/os_mutex.c.s
@@ -1486,7 +1534,7 @@ ucos2/Source/os_mutex.s: ucos2/Source/os_mutex.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_mutex.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_mutex.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_mutex.c.s
 .PHONY : ucos2/Source/os_mutex.c.s
 
 ucos2/Source/os_q.obj: ucos2/Source/os_q.c.obj
@@ -1494,7 +1542,7 @@ ucos2/Source/os_q.obj: ucos2/Source/os_q.c.obj
 
 # target to build an object file
 ucos2/Source/os_q.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_q.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
 .PHONY : ucos2/Source/os_q.c.obj
 
 ucos2/Source/os_q.i: ucos2/Source/os_q.c.i
@@ -1502,7 +1550,7 @@ ucos2/Source/os_q.i: ucos2/Source/os_q.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_q.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_q.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.i
 .PHONY : ucos2/Source/os_q.c.i
 
 ucos2/Source/os_q.s: ucos2/Source/os_q.c.s
@@ -1510,7 +1558,7 @@ ucos2/Source/os_q.s: ucos2/Source/os_q.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_q.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_q.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.s
 .PHONY : ucos2/Source/os_q.c.s
 
 ucos2/Source/os_sem.obj: ucos2/Source/os_sem.c.obj
@@ -1518,7 +1566,7 @@ ucos2/Source/os_sem.obj: ucos2/Source/os_sem.c.obj
 
 # target to build an object file
 ucos2/Source/os_sem.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_sem.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_sem.c.obj
 .PHONY : ucos2/Source/os_sem.c.obj
 
 ucos2/Source/os_sem.i: ucos2/Source/os_sem.c.i
@@ -1526,7 +1574,7 @@ ucos2/Source/os_sem.i: ucos2/Source/os_sem.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_sem.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_sem.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_sem.c.i
 .PHONY : ucos2/Source/os_sem.c.i
 
 ucos2/Source/os_sem.s: ucos2/Source/os_sem.c.s
@@ -1534,7 +1582,7 @@ ucos2/Source/os_sem.s: ucos2/Source/os_sem.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_sem.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_sem.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_sem.c.s
 .PHONY : ucos2/Source/os_sem.c.s
 
 ucos2/Source/os_task.obj: ucos2/Source/os_task.c.obj
@@ -1542,7 +1590,7 @@ ucos2/Source/os_task.obj: ucos2/Source/os_task.c.obj
 
 # target to build an object file
 ucos2/Source/os_task.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_task.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
 .PHONY : ucos2/Source/os_task.c.obj
 
 ucos2/Source/os_task.i: ucos2/Source/os_task.c.i
@@ -1550,7 +1598,7 @@ ucos2/Source/os_task.i: ucos2/Source/os_task.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_task.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_task.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.i
 .PHONY : ucos2/Source/os_task.c.i
 
 ucos2/Source/os_task.s: ucos2/Source/os_task.c.s
@@ -1558,7 +1606,7 @@ ucos2/Source/os_task.s: ucos2/Source/os_task.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_task.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_task.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.s
 .PHONY : ucos2/Source/os_task.c.s
 
 ucos2/Source/os_time.obj: ucos2/Source/os_time.c.obj
@@ -1566,7 +1614,7 @@ ucos2/Source/os_time.obj: ucos2/Source/os_time.c.obj
 
 # target to build an object file
 ucos2/Source/os_time.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_time.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
 .PHONY : ucos2/Source/os_time.c.obj
 
 ucos2/Source/os_time.i: ucos2/Source/os_time.c.i
@@ -1574,7 +1622,7 @@ ucos2/Source/os_time.i: ucos2/Source/os_time.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_time.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_time.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.i
 .PHONY : ucos2/Source/os_time.c.i
 
 ucos2/Source/os_time.s: ucos2/Source/os_time.c.s
@@ -1582,7 +1630,7 @@ ucos2/Source/os_time.s: ucos2/Source/os_time.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_time.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_time.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.s
 .PHONY : ucos2/Source/os_time.c.s
 
 ucos2/Source/os_tmr.obj: ucos2/Source/os_tmr.c.obj
@@ -1590,7 +1638,7 @@ ucos2/Source/os_tmr.obj: ucos2/Source/os_tmr.c.obj
 
 # target to build an object file
 ucos2/Source/os_tmr.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_tmr.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_tmr.c.obj
 .PHONY : ucos2/Source/os_tmr.c.obj
 
 ucos2/Source/os_tmr.i: ucos2/Source/os_tmr.c.i
@@ -1598,7 +1646,7 @@ ucos2/Source/os_tmr.i: ucos2/Source/os_tmr.c.i
 
 # target to preprocess a source file
 ucos2/Source/os_tmr.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_tmr.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_tmr.c.i
 .PHONY : ucos2/Source/os_tmr.c.i
 
 ucos2/Source/os_tmr.s: ucos2/Source/os_tmr.c.s
@@ -1606,32 +1654,8 @@ ucos2/Source/os_tmr.s: ucos2/Source/os_tmr.c.s
 
 # target to generate assembly for a file
 ucos2/Source/os_tmr.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/os_tmr.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/ucos2/Source/os_tmr.c.s
 .PHONY : ucos2/Source/os_tmr.c.s
-
-ucos2/Source/ucos_ii.obj: ucos2/Source/ucos_ii.c.obj
-.PHONY : ucos2/Source/ucos_ii.obj
-
-# target to build an object file
-ucos2/Source/ucos_ii.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/ucos_ii.c.obj
-.PHONY : ucos2/Source/ucos_ii.c.obj
-
-ucos2/Source/ucos_ii.i: ucos2/Source/ucos_ii.c.i
-.PHONY : ucos2/Source/ucos_ii.i
-
-# target to preprocess a source file
-ucos2/Source/ucos_ii.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/ucos_ii.c.i
-.PHONY : ucos2/Source/ucos_ii.c.i
-
-ucos2/Source/ucos_ii.s: ucos2/Source/ucos_ii.c.s
-.PHONY : ucos2/Source/ucos_ii.s
-
-# target to generate assembly for a file
-ucos2/Source/ucos_ii.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.out.dir/build.make CMakeFiles/freefly.out.dir/ucos2/Source/ucos_ii.c.s
-.PHONY : ucos2/Source/ucos_ii.c.s
 
 # Help Target
 help:
@@ -1641,22 +1665,28 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... freefly.out"
-	@echo "... Application/Hardware/Src/Bluetooth.obj"
-	@echo "... Application/Hardware/Src/Bluetooth.i"
-	@echo "... Application/Hardware/Src/Bluetooth.s"
-	@echo "... Application/Hardware/Src/GY86.obj"
-	@echo "... Application/Hardware/Src/GY86.i"
-	@echo "... Application/Hardware/Src/GY86.s"
-	@echo "... Application/Hardware/Src/Motor.obj"
-	@echo "... Application/Hardware/Src/Motor.i"
-	@echo "... Application/Hardware/Src/Motor.s"
-	@echo "... Application/Hardware/Src/MyI2C.obj"
-	@echo "... Application/Hardware/Src/MyI2C.i"
-	@echo "... Application/Hardware/Src/MyI2C.s"
-	@echo "... Application/Hardware/Src/Receiver.obj"
-	@echo "... Application/Hardware/Src/Receiver.i"
-	@echo "... Application/Hardware/Src/Receiver.s"
+	@echo "... freefly.elf"
+	@echo "... Application/Hardware/Src/bluetooth.obj"
+	@echo "... Application/Hardware/Src/bluetooth.i"
+	@echo "... Application/Hardware/Src/bluetooth.s"
+	@echo "... Application/Hardware/Src/gy86.obj"
+	@echo "... Application/Hardware/Src/gy86.i"
+	@echo "... Application/Hardware/Src/gy86.s"
+	@echo "... Application/Hardware/Src/led.obj"
+	@echo "... Application/Hardware/Src/led.i"
+	@echo "... Application/Hardware/Src/led.s"
+	@echo "... Application/Hardware/Src/math.obj"
+	@echo "... Application/Hardware/Src/math.i"
+	@echo "... Application/Hardware/Src/math.s"
+	@echo "... Application/Hardware/Src/motor.obj"
+	@echo "... Application/Hardware/Src/motor.i"
+	@echo "... Application/Hardware/Src/motor.s"
+	@echo "... Application/Hardware/Src/myI2C.obj"
+	@echo "... Application/Hardware/Src/myI2C.i"
+	@echo "... Application/Hardware/Src/myI2C.s"
+	@echo "... Application/Hardware/Src/receiver.obj"
+	@echo "... Application/Hardware/Src/receiver.i"
+	@echo "... Application/Hardware/Src/receiver.s"
 	@echo "... Application/SystemConfig/MyDelay.obj"
 	@echo "... Application/SystemConfig/MyDelay.i"
 	@echo "... Application/SystemConfig/MyDelay.s"
@@ -1678,6 +1708,9 @@ help:
 	@echo "... Application/main.obj"
 	@echo "... Application/main.i"
 	@echo "... Application/main.s"
+	@echo "... System/BSP/syscalls.obj"
+	@echo "... System/BSP/syscalls.i"
+	@echo "... System/BSP/syscalls.s"
 	@echo "... System/CMSIS/Device/startup_stm32f401xe.obj"
 	@echo "... System/CMSIS/Device/system_stm32f4xx.obj"
 	@echo "... System/CMSIS/Device/system_stm32f4xx.i"
@@ -1787,9 +1820,6 @@ help:
 	@echo "... System/FWLIB/Src/stm32f4xx_wwdg.obj"
 	@echo "... System/FWLIB/Src/stm32f4xx_wwdg.i"
 	@echo "... System/FWLIB/Src/stm32f4xx_wwdg.s"
-	@echo "... ucos2/Cfg/Template/app_hooks.obj"
-	@echo "... ucos2/Cfg/Template/app_hooks.i"
-	@echo "... ucos2/Cfg/Template/app_hooks.s"
 	@echo "... ucos2/Ports/os_cpu_a.obj"
 	@echo "... ucos2/Ports/os_cpu_c.obj"
 	@echo "... ucos2/Ports/os_cpu_c.i"
@@ -1827,9 +1857,6 @@ help:
 	@echo "... ucos2/Source/os_tmr.obj"
 	@echo "... ucos2/Source/os_tmr.i"
 	@echo "... ucos2/Source/os_tmr.s"
-	@echo "... ucos2/Source/ucos_ii.obj"
-	@echo "... ucos2/Source/ucos_ii.i"
-	@echo "... ucos2/Source/ucos_ii.s"
 .PHONY : help
 
 

@@ -12,13 +12,21 @@ set(CMAKE_C_EXTENfSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(EXECUTABLE ${PROJECT_NAME}.elf)
+
+set(DEBUG 1)
+
 #add definitions
-add_definitions(-DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER)
+add_definitions(-DSTM32F40_41xxx)
+add_definitions(-DUSE_STDPERIPH_DRIVER)
+
+set(USE_SELF_SYSCALL 1)
+# if USE_SELF_SYSCALL = 1, then define USE_SELF_SYSCALL
+if(USE_SELF_SYSCALL)
+	add_definitions(-DUSE_SELF_SYSCALL)
+endif()
+	
 #use c11
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11")
-# add_subdirectory(FWLIB)
-
-# target_link_libraries(freefly ${PROJECT_SOURCE_DIR}/FWLIB)
 
 # set project dirs
 set(PROJECT_SYSTEM_PATH ${PROJECT_SOURCE_DIR}/System)
@@ -36,6 +44,7 @@ add_executable(${EXECUTABLE}
 		${APP_SYSTEM_SRC}
 		${PROJECT_SYSTEM_PATH}/CMSIS/Device/startup_stm32f401xe.s
 		${PROJECT_SYSTEM_PATH}/CMSIS/Device/system_stm32f4xx.c
+		${PROJECT_SYSTEM_PATH}/BSP/syscalls.c
 		)
 
 # add include files
@@ -59,8 +68,8 @@ target_compile_options(${EXECUTABLE} PRIVATE
         -fdata-sections
         -ffunction-sections
         -Wall
-	#$<$<CONFIG:Debug>:-Og
-		-g
+		-Og
+		$<$<BOOL:${DEBUG}>:-g>
         )
 
 target_link_options(${EXECUTABLE} PRIVATE
@@ -72,14 +81,17 @@ target_link_options(${EXECUTABLE} PRIVATE
         -specs=nano.specs
         -lc
         -lm
-        -lnosys
+		# -u_printf_float
+		# if USE_SELF_SYSCALL = 0, then add -lnosys
+		$<$<NOT:$<BOOL:${USE_SELF_SYSCALL}>>:-lnosys>
         -Wl,-Map=${PROJECT_NAME}.map,--cref
         -Wl,--gc-sections
         )
 
-# Create hex file
+# post build commands	
 add_custom_command(TARGET ${EXECUTABLE}
         POST_BUILD
+        COMMAND arm-none-eabi-size ${EXECUTABLE}
         COMMAND arm-none-eabi-objcopy -O ihex ${EXECUTABLE} ${PROJECT_NAME}.hex
         COMMAND arm-none-eabi-objcopy -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin
 	)

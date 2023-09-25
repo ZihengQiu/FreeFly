@@ -135,7 +135,7 @@ Revision: $Rev: 25842 $
     //
     // GCC / Clang
     //
-    #define _CC_HAS_RTT_ASM_SUPPORT 1
+    #define _CC_HAS_RTT_ASM_SUPPORT 0
     // ARM 7/9: __ARM_ARCH_5__ / __ARM_ARCH_5E__ / __ARM_ARCH_5T__ / __ARM_ARCH_5T__ / __ARM_ARCH_5TE__
     #if (defined __ARM_ARCH_7M__)                 // Cortex-M3
       #define _CORE_HAS_RTT_ASM_SUPPORT 1

@@ -321,6 +321,30 @@ Application/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/main.c.s
 .PHONY : Application/main.c.s
 
+System/BSP/syscalls.obj: System/BSP/syscalls.c.obj
+.PHONY : System/BSP/syscalls.obj
+
+# target to build an object file
+System/BSP/syscalls.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+.PHONY : System/BSP/syscalls.c.obj
+
+System/BSP/syscalls.i: System/BSP/syscalls.c.i
+.PHONY : System/BSP/syscalls.i
+
+# target to preprocess a source file
+System/BSP/syscalls.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.i
+.PHONY : System/BSP/syscalls.c.i
+
+System/BSP/syscalls.s: System/BSP/syscalls.c.s
+.PHONY : System/BSP/syscalls.s
+
+# target to generate assembly for a file
+System/BSP/syscalls.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.s
+.PHONY : System/BSP/syscalls.c.s
+
 System/CMSIS/Device/startup_stm32f401xe.obj: System/CMSIS/Device/startup_stm32f401xe.s.obj
 .PHONY : System/CMSIS/Device/startup_stm32f401xe.obj
 
@@ -1226,6 +1250,9 @@ help:
 	@echo "... Application/main.obj"
 	@echo "... Application/main.i"
 	@echo "... Application/main.s"
+	@echo "... System/BSP/syscalls.obj"
+	@echo "... System/BSP/syscalls.i"
+	@echo "... System/BSP/syscalls.s"
 	@echo "... System/CMSIS/Device/startup_stm32f401xe.obj"
 	@echo "... System/CMSIS/Device/system_stm32f4xx.obj"
 	@echo "... System/CMSIS/Device/system_stm32f4xx.i"

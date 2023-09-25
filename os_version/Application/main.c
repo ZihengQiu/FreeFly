@@ -1,99 +1,103 @@
 #include "stm32f4xx.h"                  // Device header
-#include "MyDelay.h"
-#include "MyI2C.h"
-#include "GY86.h"
-#include "Bluetooth.h"
-#include "Motor.h"
-#include "Receiver.h"
+#include "includes.h"
+
 #include <stdio.h>
 #include <stdlib.h>
+
+#if (defined(OS_TRACE_EN) && (OS_TRACE_EN > 0u))
+#include "SEGGER_SYSVIEW.h"                                   
+#endif
+
+#include "led.h"
+#include "myI2C.h"
+#include "gy86.h"
+#include "motor.h"
+#include "bluetooth.h"
+#include "receiver.h"
+
+#define TASK_STK_LEN 0x0800
+
+OS_STK MainTaskStk[TASK_STK_LEN];
+OS_STK Task1Stk[TASK_STK_LEN];
+OS_STK Task2Stk[TASK_STK_LEN];
+OS_STK Task3Stk[TASK_STK_LEN];
+OS_STK Task4Stk[TASK_STK_LEN];
+OS_STK Task5Stk[TASK_STK_LEN];
+
+uint32_t states, task1_cnt, task2_cnt;
+
 extern void My_Systick_Config(uint32_t reload_value);
-extern uint16_t mpu_acc_x, mpu_acc_y, mpu_acc_z;
-extern uint16_t hmc5883_x, hmc5883_y, hmc5883_z;
-extern uint32_t PulseWidth, Period, DutyCycle;
-extern char TransmitData[1005];
-extern uint8_t mpu_acc_x_h, mpu_acc_x_l, mpu_acc_y_h, mpu_acc_y_l, mpu_acc_z_h, mpu_acc_z_l;
+
 uint16_t times;
 uint8_t RxData;
 
-RCC_ClocksTypeDef clockwatch;
-
-int main(void)
+void task_led_on(void *pdata)
 {
-//	RCC_GetClocksFreq(&clockwatch);
-	// ahb : 84000000Hz
-    // needed tick: 1 tick = 10ms = 100Hz -> reload val = 840000
-    My_Systick_Config(840000);
+	while(1)
+	{
+		led_on();
+		task1_cnt++;
+		OSTimeDly(1000);
+	}
+}
+
+void task_led_off(void *pdata)
+{
+	while(1)
+	{
+		led_off();
+		task2_cnt++;
+		OSTimeDly(2000);
+	}
+}
+
+void first_task(void *pdata) {
+    // Initialization
+
+    My_Systick_Config(840000); // AHB = 84MHz
+	
+    led_init();
 
 	MyI2C_Init();
 	times++;
 	MPU6050Init();
 	times++;
-	HMC5883Init();
+	// HMC5883Init();
 	times++;
 	
 	BluetoothInit();
 	
 	TIM1_init();
 	Motor_Init();
+	
+	OSTimeDly(1000);
 
-	Delay_ms(4000);
-	TIM_SetCompare1(TIM3, 2000);
-	Delay_ms(4000);
-	TIM_SetCompare1(TIM3, 1000);
-	Delay_ms(4000);                                                
+//	TIM_SetCompare1(TIM3, 2000);
+//	OSTimeDly(4000);
+//	TIM_SetCompare1(TIM3, 1000);
+//	OSTimeDly(4000);                                                
 	
 	Bluetooth_SendString("Initilization finished!\n");
-	while(1)
-	{
-		Bluetooth_SendString("MPU6050 is working...\n");
-		Delay_ms(10);
 
-		//MPU6050
-		Delay_ms(50);
-//		mpu_acc_x = GetACCXMPU6050();
-//		mpu_acc_x_h = (mpu_acc_x >>8)&0xFF;
-//		mpu_acc_x_l = (mpu_acc_x&0xFF); 
-//		Delay_ms(50);
-//		mpu_acc_y = GetACCXMPU6050();
-//		mpu_acc_y_h = (mpu_acc_y >>8)&0xFF;
-//		mpu_acc_y_l = (mpu_acc_y&0xFF); 
-//		Delay_ms(50);
-//		mpu_acc_z = GetACCXMPU6050();
-//		mpu_acc_z_h = (mpu_acc_z >>8)&0xFF;
-//		mpu_acc_z_l = (mpu_acc_z&0xFF); 
-		
-		
-		
-		// motor and receiver
-		Delay_ms(50);
-		Motor_SetDutyCycle(DutyCycle);
-		
-		// Bluetooth
-		
-		
-//		Bluetooth_SendString("mpu_acc_x : ");
-//		sprintf(TransmitData, "%d", mpu_acc_x);
-//		Bluetooth_SendString(TransmitData);
-//		Bluetooth_SendByte('\n');
-//		Delay_ms(10);
-//		
-//		Bluetooth_SendString("mpu_acc_y : ");
-//		sprintf(TransmitData, "%d", mpu_acc_y);
-//		Bluetooth_SendString(TransmitData);
-//		Bluetooth_SendByte('\n');
-//		Delay_ms(10);
-//		
-//		Bluetooth_SendString("mpu_acc_z : ");
-//		sprintf(TransmitData, "%d", mpu_acc_z);
-//		Bluetooth_SendString(TransmitData);
-//		Bluetooth_SendByte('\n');
-//		Delay_ms(10);
-//		
-//		Bluetooth_SendString("DutyCycle : ");
-//		sprintf(TransmitData, "%d", DutyCycle);
-//		Bluetooth_SendString(TransmitData);
-//		Bluetooth_SendByte('\n');
-//		Delay_ms(10);
-	} 
+    // create LED_ON task
+    OSTaskCreate(task_led_on, (void *)0, &Task2Stk[TASK_STK_LEN - 1], 6);
+    OSTaskNameSet(6, (INT8U *)"LED_ON", (INT8U *)"LED_ON_ERR");
+
+    // create LED_OFF task
+    OSTaskCreate(task_led_off, (void *)0, &Task3Stk[TASK_STK_LEN - 1], 7);
+    OSTaskNameSet(7, (INT8U *)"LED_OFF", (INT8U *)"LED_OFF_ERR");
+
+    OSTaskDel(OS_PRIO_SELF);
+}
+
+int main(void)
+{
+	
+	OSInit();
+	OS_TRACE_INIT(); //	SEGGER_SYSVIEW_Conf();
+	OS_TRACE_START(); // SEGGER_SYSVIEW_Start();
+	OSTaskCreate(first_task, (void *)0, &MainTaskStk[TASK_STK_LEN-1], 2);
+	OSTaskNameSet(2, (INT8U *)"FIRST_TASK", (INT8U *)"FIRST_TASK_ERR");
+	OSStart();
+	return 0;
 }

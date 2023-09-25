@@ -340,11 +340,11 @@ typedef struct
   * After checking on EV5 (start condition correctly released on the bus), the 
   * master sends the address of the slave(s) with which it will communicate 
   * (I2C_Send7bitAddress() function, it also determines the direction of the communication: 
-  * Master transmitter or Receiver). Then the master has to wait that a slave acknowledges 
+  * Master transmitter or receiver). Then the master has to wait that a slave acknowledges 
   * his address. If an acknowledge is sent on the bus, one of the following events will 
   * be set:
   * 
-  *  1) In case of Master Receiver (7-bit addressing): the I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED 
+  *  1) In case of Master receiver (7-bit addressing): the I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED 
   *     event is set.
   *  
   *  2) In case of Master Transmitter (7-bit addressing): the I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED 
@@ -372,7 +372,7 @@ typedef struct
   * acknowledged) then the master has to check on one of the following events for 
   * communication procedures:
   *  
-  * 1) Master Receiver mode: The master has to wait on the event EV7 then to read 
+  * 1) Master receiver mode: The master has to wait on the event EV7 then to read 
   *    the data received from the slave (I2C_ReceiveData() function).
   * 
   * 2) Master Transmitter mode: The master has to send data (I2C_SendData() 
@@ -394,7 +394,7 @@ typedef struct
   * 
   */
 
-/* Master RECEIVER mode -----------------------------*/ 
+/* Master receiver mode -----------------------------*/ 
 /* --EV7 */
 #define  I2C_EVENT_MASTER_BYTE_RECEIVED                    ((uint32_t)0x00030040)  /* BUSY, MSL and RXNE flags */
 
@@ -424,12 +424,12 @@ typedef struct
   * 1) In normal case (only one address managed by the slave), when the address 
   *   sent by the master matches the own address of the peripheral (configured by 
   *   I2C_OwnAddress1 field) the I2C_EVENT_SLAVE_XXX_ADDRESS_MATCHED event is set 
-  *   (where XXX could be TRANSMITTER or RECEIVER).
+  *   (where XXX could be TRANSMITTER or receiver).
   *    
   * 2) In case the address sent by the master matches the second address of the 
   *   peripheral (configured by the function I2C_OwnAddress2Config() and enabled 
   *   by the function I2C_DualAddressCmd()) the events I2C_EVENT_SLAVE_XXX_SECONDADDRESS_MATCHED 
-  *   (where XXX could be TRANSMITTER or RECEIVER) are set.
+  *   (where XXX could be TRANSMITTER or receiver) are set.
   *   
   * 3) In case the address sent by the master is General Call (address 0x00) and 
   *   if the General Call is enabled for the peripheral (using function I2C_GeneralCallCmd()) 
@@ -454,7 +454,7 @@ typedef struct
   * 
   * Wait on one of these events when EV1 has already been checked and: 
   * 
-  * - Slave RECEIVER mode:
+  * - Slave receiver mode:
   *     - EV2: When the application is expecting a data byte to be received. 
   *     - EV4: When the application is expecting the end of the communication: master 
   *       sends a stop condition and data transmission is stopped.
@@ -476,7 +476,7 @@ typedef struct
   *
   */
 
-/* Slave RECEIVER mode --------------------------*/ 
+/* Slave receiver mode --------------------------*/ 
 /* --EV2 */
 #define  I2C_EVENT_SLAVE_BYTE_RECEIVED                     ((uint32_t)0x00020040)  /* BUSY and RXNE flags */
 /* --EV4  */

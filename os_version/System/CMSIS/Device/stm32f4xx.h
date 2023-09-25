@@ -1586,7 +1586,7 @@ typedef struct {
 } TIM_TypeDef;
 
 /**
- * @brief Universal Synchronous Asynchronous Receiver Transmitter
+ * @brief Universal Synchronous Asynchronous receiver Transmitter
  */
 
 typedef struct {
@@ -7506,7 +7506,7 @@ typedef struct {
 #define I2C_SR2_BUSY                                                           \
   ((uint16_t)0x0002) /*!<Bus Busy                                  */
 #define I2C_SR2_TRA                                                            \
-  ((uint16_t)0x0004) /*!<Transmitter/Receiver                      */
+  ((uint16_t)0x0004) /*!<Transmitter/receiver                      */
 #define I2C_SR2_GENCALL                                                        \
   ((uint16_t)0x0010) /*!<General Call Address (Slave mode)         */
 #define I2C_SR2_SMBDEFAULT                                                     \
@@ -9995,7 +9995,7 @@ typedef struct {
 
 /******************************************************************************/
 /*                                                                            */
-/*         Universal Synchronous Asynchronous Receiver Transmitter            */
+/*         Universal Synchronous Asynchronous receiver Transmitter            */
 /*                                                                            */
 /******************************************************************************/
 /*******************  Bit definition for USART_SR register  *******************/
@@ -10021,9 +10021,9 @@ typedef struct {
 #define USART_CR1_SBK                                                          \
   ((uint16_t)0x0001) /*!<Send Break                             */
 #define USART_CR1_RWU                                                          \
-  ((uint16_t)0x0002) /*!<Receiver wakeup                        */
+  ((uint16_t)0x0002) /*!<receiver wakeup                        */
 #define USART_CR1_RE                                                           \
-  ((uint16_t)0x0004) /*!<Receiver Enable                        */
+  ((uint16_t)0x0004) /*!<receiver Enable                        */
 #define USART_CR1_TE                                                           \
   ((uint16_t)0x0008) /*!<Transmitter Enable                     */
 #define USART_CR1_IDLEIE                                                       \
@@ -10078,7 +10078,7 @@ typedef struct {
 #define USART_CR3_HDSEL ((uint16_t)0x0008)  /*!<Half-Duplex Selection       */
 #define USART_CR3_NACK ((uint16_t)0x0010)   /*!<Smartcard NACK enable       */
 #define USART_CR3_SCEN ((uint16_t)0x0020)   /*!<Smartcard mode enable       */
-#define USART_CR3_DMAR ((uint16_t)0x0040)   /*!<DMA Enable Receiver         */
+#define USART_CR3_DMAR ((uint16_t)0x0040)   /*!<DMA Enable receiver         */
 #define USART_CR3_DMAT ((uint16_t)0x0080)   /*!<DMA Enable Transmitter      */
 #define USART_CR3_RTSE ((uint16_t)0x0100)   /*!<RTS Enable                  */
 #define USART_CR3_CTSE ((uint16_t)0x0200)   /*!<CTS Enable                  */
@@ -10237,7 +10237,7 @@ typedef struct {
 #define ETH_MACCR_BL_1 ((uint32_t)0x00000060)  /* k = min (n, 1) */
 #define ETH_MACCR_DC ((uint32_t)0x00000010)    /* Defferal check */
 #define ETH_MACCR_TE ((uint32_t)0x00000008)    /* Transmitter enable */
-#define ETH_MACCR_RE ((uint32_t)0x00000004)    /* Receiver enable */
+#define ETH_MACCR_RE ((uint32_t)0x00000004)    /* receiver enable */
 
 /* Bit definition for Ethernet MAC Frame Filter Register */
 #define ETH_MACFFR_RA ((uint32_t)0x80000000)   /* Receive all */
