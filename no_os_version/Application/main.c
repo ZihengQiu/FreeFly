@@ -46,6 +46,10 @@ int main(void)
 	Bluetooth_SendString("Initilization finished!\n");
 
 	
+	float a = 0.12345;
+	printf("%f\n", a);
+
+	
 
 	Vec3d_t input[6] = { {-0.019556, 0.012036, 1.685950}, {1.018469, 0.069458, 0.720422},
 							{-0.981909, 0.001819, 0.450183}, {0.063464, -0.957397, 0.515881},

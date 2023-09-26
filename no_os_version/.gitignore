@@ -1,4 +1,6 @@
 # ignore files
-build/CMakeFiles/
+build/*
 
 # not ignore files
+!build/freefly.*
+!build/Makefile
