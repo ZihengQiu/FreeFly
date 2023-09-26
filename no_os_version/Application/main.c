@@ -6,6 +6,7 @@
 #include "Motor.h"
 #include "Receiver.h"
 #include "math.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -44,8 +45,7 @@ int main(void)
 	
 	Bluetooth_SendString("Initilization finished!\n");
 
-	volatile Vec3d_t test;
-	GetAccMPU6050(&test);
+	
 
 	Vec3d_t input[6] = { {-0.019556, 0.012036, 1.685950}, {1.018469, 0.069458, 0.720422},
 							{-0.981909, 0.001819, 0.450183}, {0.063464, -0.957397, 0.515881},
@@ -65,11 +65,12 @@ int main(void)
 	AccCalibration(&acc_offset, &acc_scale);
 
 
+	Vec3d_t test;
 	while(1)
 	{
 		// motor and receiver
-		Delay_ms(50);
-		Motor_SetDutyCycle(DutyCycle);
+		// Delay_ms(50);
+		// Motor_SetDutyCycle(DutyCycle);
 		
 		// Bluetooth
 		
@@ -80,21 +81,28 @@ int main(void)
 		// Bluetooth_SendString(TransmitData);
 		// Delay_ms(10);
 
-		GetMpuData(&MpuData);
-		
-		Bluetooth_SendString("ACC Data:\n");
-		Bluetooth_SendString("mpu_acc_x : ");
-		Bluetooth_SendSignedNum(MpuData.acc_x);
-		Bluetooth_SendByte('\n');
-		// Delay_ms(10);
-		Bluetooth_SendString("mpu_acc_y : ");
-		Bluetooth_SendSignedNum(MpuData.acc_y);
-		Bluetooth_SendByte('\n');
-		// Delay_ms(10);
-		Bluetooth_SendString("mpu_acc_z : ");
-		Bluetooth_SendSignedNum(MpuData.acc_z);
-		Bluetooth_SendByte('\n');
-		// Delay_ms(10);
+
+		GetAccMPU6050(&test);
+
+		test.x = (test.x - acc_offset.x) * acc_scale.x;
+		test.y = (test.y - acc_offset.y) * acc_scale.y;
+		test.z = (test.z - acc_offset.z) * acc_scale.z;
+
+		uint8_t a = 1;
+
+		// Bluetooth_SendString("ACC Data:\n");
+		// Bluetooth_SendString("mpu_acc_x : ");
+		// Bluetooth_SendSignedNum(MpuData.acc_x);
+		// Bluetooth_SendByte('\n');
+		// // Delay_ms(10);
+		// Bluetooth_SendString("mpu_acc_y : ");
+		// Bluetooth_SendSignedNum(MpuData.acc_y);
+		// Bluetooth_SendByte('\n');
+		// // Delay_ms(10);
+		// Bluetooth_SendString("mpu_acc_z : ");
+		// Bluetooth_SendSignedNum(MpuData.acc_z);
+		// Bluetooth_SendByte('\n');
+		// // Delay_ms(10);
 
 //		Bluetooth_SendString("Temp Data:\n");
 //		Bluetooth_SendSignedNum(MpuData.temp);

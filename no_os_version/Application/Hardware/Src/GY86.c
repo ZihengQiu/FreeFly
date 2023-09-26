@@ -1,4 +1,5 @@
 #include "GY86.h"
+#include "math.h"
 
 Vec3d_t acc_offset, acc_scale;
 
@@ -66,12 +67,13 @@ uint8_t AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
 		Bluetooth_SendString(direction[i]);
 		Delay_ms(3000);
 		Bluetooth_SendString("measuring...");
+		Vec3d_t temp= {0, 0, 0};
 		for(uint8_t j=0; j<100; j++)
 		{
-			GetAccMPU6050(&acc_data[i]);
-			acc_data[i].x += acc_data[i].x;
-			acc_data[i].y += acc_data[i].y;
-			acc_data[i].z += acc_data[i].z;
+			GetAccMPU6050(&temp);
+			acc_data[i].x += temp.x;
+			acc_data[i].y += temp.y;
+			acc_data[i].z += temp.z;
 			Delay_ms(10);
 		}
 		acc_data[i].x /= 100.0;

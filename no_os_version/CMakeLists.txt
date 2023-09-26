@@ -68,7 +68,7 @@ target_compile_options(${EXECUTABLE} PRIVATE
         -fdata-sections
         -ffunction-sections
         -Wall
-		-Og
+		-O0
 		$<$<BOOL:${DEBUG}>:-g>
         )
 

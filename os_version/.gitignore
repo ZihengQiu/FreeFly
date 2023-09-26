@@ -1,0 +1,4 @@
+# ignore files
+build/CMakeFiles/
+
+# not ignore files
