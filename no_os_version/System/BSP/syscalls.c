@@ -1,7 +1,10 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <reent.h>
-#include "Bluetooth.h"
+#include "bluetooth.h"
+
+#undef errno
+extern int errno;
 
 // Status of an open file. For consistency with other minimal implementations in these examples, all files are regarded as character special devices. The sys/stat.h header file required is distributed in the include subdirectory for this C library.
 int _fstat(int file, struct stat *st)
@@ -68,8 +71,6 @@ caddr_t _sbrk(int incr) {
   return (caddr_t) prev_heap_end;
 }
 
-#undef errno
-extern int errno;
 int _kill(int pid, int sig) {
   errno = EINVAL;
   return -1;
@@ -77,12 +78,12 @@ int _kill(int pid, int sig) {
 
 int _getpid(struct _reent *ptr)
 {
-
+	return 1;
 }
 
-void _exit()
+void _exit(int code)
 {
-
+	while(1);
 }
 
 #endif

@@ -1,4 +1,5 @@
 #include "gy86.h"
+#include "ucos_ii.h"
 
 Vec3d_t acc_offset, acc_scale;
 
@@ -50,7 +51,7 @@ uint8_t AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
 {
 	Bluetooth_SendString("Acc Calibration start.\n");
 	Bluetooth_SendString("Please put the sensor on a flat surface.\n");
-	Delay_ms(3000);
+	OSTimeDly(3000);
 
 	Vec3d_t acc_data[6];
 	for(uint8_t i=0; i<6; i++)
@@ -64,15 +65,16 @@ uint8_t AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
 	for(uint8_t i=0; i<6; i++)
 	{
 		Bluetooth_SendString(direction[i]);
-		Delay_ms(3000);
-		Bluetooth_SendString("measuring...");
+		OSTimeDly(3000);
+		Bluetooth_SendString(" measuring...");
+		Vec3d_t temp= {0, 0, 0};
 		for(uint8_t j=0; j<100; j++)
 		{
-			GetAccMPU6050(&acc_data[i]);
-			acc_data[i].x += acc_data[i].x;
-			acc_data[i].y += acc_data[i].y;
-			acc_data[i].z += acc_data[i].z;
-			Delay_ms(10);
+			GetAccMPU6050(&temp);
+			acc_data[i].x += temp.x;
+			acc_data[i].y += temp.y;
+			acc_data[i].z += temp.z;
+			OSTimeDly(10);
 		}
 		acc_data[i].x /= 100.0;
 		acc_data[i].y /= 100.0;

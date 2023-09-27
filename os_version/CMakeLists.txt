@@ -99,6 +99,8 @@ target_link_options(${EXECUTABLE} PRIVATE
         -specs=nano.specs
         -lc
         -lm
+		-u_printf_float
+		# if USE_SELF_SYSCALL = 0, then add -lnosys
 		$<$<NOT:$<BOOL:${USE_SELF_SYSCALL}>>:-lnosys>
         -Wl,-Map=${PROJECT_NAME}.map,--cref
         -Wl,--gc-sections

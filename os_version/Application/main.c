@@ -1,5 +1,6 @@
 #include "stm32f4xx.h"                  // Device header
 #include "includes.h"
+#include "ucos_ii.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,19 +25,19 @@ OS_STK Task3Stk[TASK_STK_LEN];
 OS_STK Task4Stk[TASK_STK_LEN];
 OS_STK Task5Stk[TASK_STK_LEN];
 
-uint32_t states, task1_cnt, task2_cnt;
+uint16_t times;
+
+extern Vec3d_t acc_offset, acc_scale;
 
 extern void My_Systick_Config(uint32_t reload_value);
 
-uint16_t times;
-uint8_t RxData;
+
 
 void task_led_on(void *pdata)
 {
 	while(1)
 	{
 		led_on();
-		task1_cnt++;
 		OSTimeDly(1000);
 	}
 }
@@ -46,18 +47,12 @@ void task_led_off(void *pdata)
 	while(1)
 	{
 		led_off();
-		task2_cnt++;
 		OSTimeDly(2000);
 	}
 }
 
-void first_task(void *pdata) {
-    // Initialization
-
-    My_Systick_Config(840000); // AHB = 84MHz
-	
-    led_init();
-
+void task_peripheral_init(void *pdata)
+{
 	MyI2C_Init();
 	times++;
 	MPU6050Init();
@@ -77,7 +72,30 @@ void first_task(void *pdata) {
 //	TIM_SetCompare1(TIM3, 1000);
 //	OSTimeDly(4000);                                                
 	
-	Bluetooth_SendString("Initilization finished!\n");
+	printf("Initilization finished!\n");
+	OSTaskDel(OS_PRIO_SELF);
+}
+
+void task_MPU6050(void *pdata)
+{
+	AccCalibration(&acc_offset, &acc_scale);
+	while(1)
+	{
+		Vec3d_t acc;
+		GetAccMPU6050(&acc);
+		acc.x = (acc.x - acc_offset.x) * acc_scale.x;
+		acc.y = (acc.y - acc_offset.y) * acc_scale.y;
+		acc.z = (acc.z - acc_offset.z) * acc_scale.z;
+		printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
+		OSTimeDly(100);
+	}
+}
+
+void first_task(void *pdata) {
+    // Initialization
+    My_Systick_Config(840000); // AHB = 84MHz
+	
+    led_init();
 
     // create LED_ON task
     OSTaskCreate(task_led_on, (void *)0, &Task2Stk[TASK_STK_LEN - 1], 6);
@@ -86,6 +104,14 @@ void first_task(void *pdata) {
     // create LED_OFF task
     OSTaskCreate(task_led_off, (void *)0, &Task3Stk[TASK_STK_LEN - 1], 7);
     OSTaskNameSet(7, (INT8U *)"LED_OFF", (INT8U *)"LED_OFF_ERR");
+
+	// create peripheral init task
+	OSTaskCreate(task_peripheral_init, (void *)0, &Task4Stk[TASK_STK_LEN - 1], 8);
+	OSTaskNameSet(8, (INT8U *)"PERIPHERAL_INIT", (INT8U *)"PERIPHERAL_INIT_ERR");
+
+	// create MPU6050 task
+	OSTaskCreate(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN - 1], 9);
+	OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
 
     OSTaskDel(OS_PRIO_SELF);
 }
