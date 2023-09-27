@@ -5,7 +5,9 @@
 ### os-version
 - ucOS-II OS ported to STM32F401RE.
 - OSTimeDly() replace customized Delay_ms().
-#### TODOs
+
+
+### TODOs
 - [x] change os_cpu_a.s from armcc to gcc version.
 - [ ] sensor calibration
 - [ ] sensor fusion
