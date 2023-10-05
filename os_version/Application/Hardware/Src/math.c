@@ -1,6 +1,44 @@
 #include "stm32f4xx.h"                  // Device header
 #include "math.h"
 
+void MatrixesMultiply(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t rowA, uint8_t colA, uint8_t colB)
+{
+	for(uint8_t i=0; i<rowA; i++)
+	{
+		for(uint8_t j=0; j<colB; j++)
+		{
+			MatrixC[i*colB+j] = 0;
+			for(uint8_t k=0; k<colA; k++)
+			{
+				// MatrixC[i][j] += MatrixA[i][k] * MatrixB[k][j];
+				MatrixC[i*colB+j] += MatrixA[i*colA+k] * MatrixB[k*colB+j];
+			}
+		}
+	}
+}
+
+void MatrixAdd(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t row, uint8_t col)
+{
+	for(uint8_t i=0; i<row; i++)
+	{
+		for(uint8_t j=0; j<col; j++)
+		{
+			MatrixC[i*col+j] = MatrixA[i*col+j] + MatrixB[i*col+j];
+		}
+	}
+}
+
+void MatrixScale(double *MatrixB, double *MatrixA, double scale, uint8_t row, uint8_t col)
+{
+	for(uint8_t i=0; i<row; i++)
+	{
+		for(uint8_t j=0; j<col; j++)
+		{
+			MatrixB[i*col+j] = MatrixA[i*col+j] * scale;
+		}
+	}
+}
+
 void GaussNewton_LM(Vec3d_t input[6], Vec3d_t* offset, Vec3d_t* scale)
 {
 	uint8_t	cnt = 0;

@@ -9,11 +9,13 @@
 #include "SEGGER_SYSVIEW.h"                                   
 #endif
 
+#include "attitude.h"
+#include "bluetooth.h"
+#include "gy86.h"
 #include "led.h"
 #include "myI2C.h"
-#include "gy86.h"
+#include "math.h"
 #include "motor.h"
-#include "bluetooth.h"
 #include "receiver.h"
 
 #define TASK_STK_LEN 0x0800
@@ -24,10 +26,12 @@ OS_STK Task2Stk[TASK_STK_LEN];
 OS_STK Task3Stk[TASK_STK_LEN];
 OS_STK Task4Stk[TASK_STK_LEN];
 OS_STK Task5Stk[TASK_STK_LEN];
+OS_STK Task6Stk[TASK_STK_LEN];
+OS_STK Task7Stk[TASK_STK_LEN];
 
 uint16_t times;
 
-extern Vec3d_t acc_offset, acc_scale;
+extern Vec3d_t acc_offset, acc_scale, gyro_offset;
 
 extern void My_Systick_Config(uint32_t reload_value);
 
@@ -53,19 +57,23 @@ void task_led_off(void *pdata)
 
 void task_peripheral_init(void *pdata)
 {
+	BluetoothInit();
+	printf("Bluetooth init finished!\n");
+	times++;
+
 	MyI2C_Init();
-	times++;
-	MPU6050Init();
-	times++;
-	// HMC5883Init();
+	printf("I2C init finished!\n");
 	times++;
 	
-	BluetoothInit();
+	GY86Init();
+	printf("GY86 init finished!\n");
+	times++;
+	
 	
 	TIM1_init();
 	Motor_Init();
 	
-	OSTimeDly(1000);
+	// OSTimeDly(1000);
 
 //	TIM_SetCompare1(TIM3, 2000);
 //	OSTimeDly(4000);
@@ -78,16 +86,44 @@ void task_peripheral_init(void *pdata)
 
 void task_MPU6050(void *pdata)
 {
-	AccCalibration(&acc_offset, &acc_scale);
+	// AccCalibration(&acc_offset, &acc_scale);
+	GyroCalibration(&gyro_offset);
 	while(1)
 	{
 		Vec3d_t acc;
-		GetAccMPU6050(&acc);
+		GetAccData(&acc);
 		acc.x = (acc.x - acc_offset.x) * acc_scale.x;
 		acc.y = (acc.y - acc_offset.y) * acc_scale.y;
 		acc.z = (acc.z - acc_offset.z) * acc_scale.z;
-		printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
+		// printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
+
+		Vec3d_t gyro;
+		GetGyroData(&gyro);
+		gyro.x -= gyro_offset.x;
+		gyro.y -= gyro_offset.y;
+		gyro.z -= gyro_offset.z;
+		// printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
+
+		Vec3d_t mag;
+		GetMagData(&mag);
+		// printf("mag: %f, %f, %f\n", mag.x, mag.y, mag.z);
+		
 		OSTimeDly(100);
+	}
+}
+
+void task_attitude(void *pdata)
+{
+	Vec4d_t q0 = {1, 0, 0, 0}, q1;
+	Vec3d_t gyro0 = {0, 0, 0}, gyro1;
+	while(1)
+	{
+		GetGyroData(&gyro1);
+		GyroUpdateQuat(&q0, &q1, &gyro0, &gyro1, 0.1);
+		q0 = q1;
+		gyro0 = gyro1;
+		OSTimeDly(100);
+		printf("q: %f, %f, %f, %f\n", q0.w, q0.x, q0.y, q0.z);
 	}
 }
 
@@ -108,10 +144,15 @@ void first_task(void *pdata) {
 	// create peripheral init task
 	OSTaskCreate(task_peripheral_init, (void *)0, &Task4Stk[TASK_STK_LEN - 1], 8);
 	OSTaskNameSet(8, (INT8U *)"PERIPHERAL_INIT", (INT8U *)"PERIPHERAL_INIT_ERR");
+	OSTimeDly(3000);
 
 	// create MPU6050 task
-	OSTaskCreate(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN - 1], 9);
-	OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
+	// OSTaskCreate(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN - 1], 9);
+	// OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
+
+	// create attitude control task
+	OSTaskCreate(task_attitude, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10);
+	OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 
     OSTaskDel(OS_PRIO_SELF);
 }
@@ -120,8 +161,8 @@ int main(void)
 {
 	
 	OSInit();
-	OS_TRACE_INIT(); //	SEGGER_SYSVIEW_Conf();
-	OS_TRACE_START(); // SEGGER_SYSVIEW_Start();
+	// OS_TRACE_INIT(); //	SEGGER_SYSVIEW_Conf();
+	// OS_TRACE_START(); // SEGGER_SYSVIEW_Start();
 	OSTaskCreate(first_task, (void *)0, &MainTaskStk[TASK_STK_LEN-1], 2);
 	OSTaskNameSet(2, (INT8U *)"FIRST_TASK", (INT8U *)"FIRST_TASK_ERR");
 	OSStart();

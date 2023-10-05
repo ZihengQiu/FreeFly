@@ -129,6 +129,30 @@ freefly.elf/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/build
 .PHONY : freefly.elf/fast
 
+Application/Hardware/Src/attitude.obj: Application/Hardware/Src/attitude.c.obj
+.PHONY : Application/Hardware/Src/attitude.obj
+
+# target to build an object file
+Application/Hardware/Src/attitude.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+.PHONY : Application/Hardware/Src/attitude.c.obj
+
+Application/Hardware/Src/attitude.i: Application/Hardware/Src/attitude.c.i
+.PHONY : Application/Hardware/Src/attitude.i
+
+# target to preprocess a source file
+Application/Hardware/Src/attitude.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.i
+.PHONY : Application/Hardware/Src/attitude.c.i
+
+Application/Hardware/Src/attitude.s: Application/Hardware/Src/attitude.c.s
+.PHONY : Application/Hardware/Src/attitude.s
+
+# target to generate assembly for a file
+Application/Hardware/Src/attitude.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.s
+.PHONY : Application/Hardware/Src/attitude.c.s
+
 Application/Hardware/Src/bluetooth.obj: Application/Hardware/Src/bluetooth.c.obj
 .PHONY : Application/Hardware/Src/bluetooth.obj
 
@@ -296,30 +320,6 @@ Application/Hardware/Src/receiver.s: Application/Hardware/Src/receiver.c.s
 Application/Hardware/Src/receiver.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.s
 .PHONY : Application/Hardware/Src/receiver.c.s
-
-Application/SystemConfig/MyDelay.obj: Application/SystemConfig/MyDelay.c.obj
-.PHONY : Application/SystemConfig/MyDelay.obj
-
-# target to build an object file
-Application/SystemConfig/MyDelay.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemConfig/MyDelay.c.obj
-.PHONY : Application/SystemConfig/MyDelay.c.obj
-
-Application/SystemConfig/MyDelay.i: Application/SystemConfig/MyDelay.c.i
-.PHONY : Application/SystemConfig/MyDelay.i
-
-# target to preprocess a source file
-Application/SystemConfig/MyDelay.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemConfig/MyDelay.c.i
-.PHONY : Application/SystemConfig/MyDelay.c.i
-
-Application/SystemConfig/MyDelay.s: Application/SystemConfig/MyDelay.c.s
-.PHONY : Application/SystemConfig/MyDelay.s
-
-# target to generate assembly for a file
-Application/SystemConfig/MyDelay.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/SystemConfig/MyDelay.c.s
-.PHONY : Application/SystemConfig/MyDelay.c.s
 
 Application/SystemConfig/systick.obj: Application/SystemConfig/systick.c.obj
 .PHONY : Application/SystemConfig/systick.obj
@@ -1666,6 +1666,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... freefly.elf"
+	@echo "... Application/Hardware/Src/attitude.obj"
+	@echo "... Application/Hardware/Src/attitude.i"
+	@echo "... Application/Hardware/Src/attitude.s"
 	@echo "... Application/Hardware/Src/bluetooth.obj"
 	@echo "... Application/Hardware/Src/bluetooth.i"
 	@echo "... Application/Hardware/Src/bluetooth.s"
@@ -1687,9 +1690,6 @@ help:
 	@echo "... Application/Hardware/Src/receiver.obj"
 	@echo "... Application/Hardware/Src/receiver.i"
 	@echo "... Application/Hardware/Src/receiver.s"
-	@echo "... Application/SystemConfig/MyDelay.obj"
-	@echo "... Application/SystemConfig/MyDelay.i"
-	@echo "... Application/SystemConfig/MyDelay.s"
 	@echo "... Application/SystemConfig/systick.obj"
 	@echo "... Application/SystemConfig/systick.i"
 	@echo "... Application/SystemConfig/systick.s"

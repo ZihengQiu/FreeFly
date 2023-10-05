@@ -1,6 +1,7 @@
 #include "stm32f4xx.h"                  // Device header
 #include "myI2C.h"
-#include "MyDelay.h"
+#include "ucos_ii.h"
+
 void MyI2C_GPIOInit(void)
 {
 	//GPIO_Init
@@ -160,7 +161,7 @@ uint8_t MyI2C_CheckMasterTransmitterModeSelected()
 	uint16_t temp1 = I2C1->SR1, temp2 = I2C1->SR2;
 	if(((temp1>>1 & 1) == 1) && ((temp1>>7 & 1) == 1) && ((temp2)&1) == 1 && ((temp2>>1)&1) == 1 && ((temp2>>2)&1) == 1 )
 	{
-		if(temp1>>9&1 == 1) I2C1->SR1 |= 0x400;
+		if((temp1>>9&1) == 1) I2C1->SR1 |= 0x400;
 		return 0x1;
 	}
 	return 0x0;	//BUG:ÖÙ²Ã¶ªÊ§
@@ -326,12 +327,14 @@ void MyI2C_WriteRegisterHMC5883(uint8_t SlaveAddress, uint8_t RegisterAddress, u
 	
 	MyI2C_Send7bitAddress(SlaveAddress, Direction_Transmitter);
 	while(!MyI2C_CheckMasterTransmitterModeSelected());
+	// OSTimeDly(10);
 	
 	MyI2C_SendData(RegisterAddress);
 	while(!MyI2C_CheckTXE());
 	
 	MyI2C_SendData(Value);
 	while(!MyI2C_CheckMasterByteTransmitted());
+	// OSTimeDly(10);
 	
 	MyI2C_SetStop(ENABLE);
 	MyI2C_SetAck(DISABLE);

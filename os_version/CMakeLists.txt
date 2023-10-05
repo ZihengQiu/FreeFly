@@ -15,19 +15,15 @@ set(EXECUTABLE ${PROJECT_NAME}.elf)
 
 set(DEBUG 1)
 set(ENABLE_SYSTEMVIEW 1)
+set(USE_SELF_SYSCALL 1)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11")
 
 #add definitions
 add_definitions(-DSTM32F40_41xxx)
 add_definitions(-DUSE_STDPERIPH_DRIVER)
-
-set(USE_SELF_SYSCALL 1)
-# if USE_SELF_SYSCALL = 1, then define USE_SELF_SYSCALL
 if(USE_SELF_SYSCALL)
 	add_definitions(-DUSE_SELF_SYSCALL)
 endif()
-	
-#use c11
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11")
 
 # set project dirs
 set(PROJECT_SYSTEM_PATH ${PROJECT_SOURCE_DIR}/System)
@@ -64,7 +60,6 @@ target_include_directories(${EXECUTABLE} PRIVATE
 		${PROJECT_APP_PATH}
 		${PROJECT_APP_PATH}/Hardware/Inc
 		${PROJECT_APP_PATH}/SystemConfig
-		# if  ENABLE_SYSTEMVIEW then add 3 path using 1 statement
 		$<$<BOOL:${ENABLE_SYSTEMVIEW}>:
 			${PROJECT_APP_PATH}/SystemView/GenericConfig
 			${PROJECT_APP_PATH}/SystemView/GenericFiles
