@@ -1,5 +1,5 @@
-#ifndef __MATH_H
-#define __MATH_H
+#ifndef __MATHKIT_H
+#define __MATHKIT_H
 
 #include "stm32f4xx.h"                   // Device header
 
@@ -13,6 +13,7 @@ typedef struct
 	double w, x, y, z;
 }Vec4d_t;
 
+void Vec3Norm(Vec3d_t *vec);
 void MatrixAdd(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t row, uint8_t col);
 void MatrixScale(double *MatrixB, double *MatrixA, double scale, uint8_t row, uint8_t col);
 void MatrixesMultiply(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t rowA, uint8_t colA, uint8_t colB);

@@ -2,9 +2,11 @@
 #define __GY86_H
 
 #include "stm32f4xx.h"                   // Device header
-#include "math.h"
+#include "mathkit.h"
 #include "bluetooth.h"
 #include "myI2C.h"
+
+#include "ucos_ii.h"
 
 // MPU6050
 #define AddressMPU6050				(uint8_t)0xD0
@@ -62,6 +64,8 @@ typedef struct
 }MpuDataStruct;
 
 extern Vec3d_t acc_offset, acc_scale;
+extern Vec3d_t gyro_offset;
+extern Vec3d_t mag_offset, mag_scale;
 
 void GY86Init(void);
 
@@ -76,6 +80,7 @@ void GyroCalibration(Vec3d_t *offset);
 
 void HMC5883Init(void);
 void GetMagData(Vec3d_t *mag);
+void MagCalibration(Vec3d_t *offset, Vec3d_t *scale);
 
 void MS5611Init(void);
 

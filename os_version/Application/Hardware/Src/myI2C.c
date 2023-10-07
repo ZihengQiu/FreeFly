@@ -262,7 +262,7 @@ uint16_t MyI2C_ReadRegister_2Bytes(uint8_t SlaveAddress, uint8_t RegisterAddress
 
   	while(!MyI2C_CheckRXNE());
   	dataL = MyI2C_ReceiveData();
-	MyI2C_SetAck(DISABLE); 
+	MyI2C_SetAck(DISABLE);
   	MyI2C_SetStop(ENABLE);
   	MyI2C_SetAck(ENABLE);
 	

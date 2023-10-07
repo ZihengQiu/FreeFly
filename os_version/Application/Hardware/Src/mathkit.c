@@ -1,5 +1,14 @@
 #include "stm32f4xx.h"                  // Device header
+#include "mathkit.h"
 #include "math.h"
+
+void Vec3Norm(Vec3d_t *vec)
+{
+	double norm = sqrt(vec->x*vec->x + vec->y*vec->y + vec->z*vec->z);
+	vec->x /= norm;
+	vec->y /= norm;
+	vec->z /= norm;
+}
 
 void MatrixesMultiply(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t rowA, uint8_t colA, uint8_t colB)
 {

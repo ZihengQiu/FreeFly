@@ -1,10 +1,8 @@
 #include "gy86.h"
-#include "math.h"
-#include "ucos_ii.h"
-#include <stdint.h>
 
 Vec3d_t acc_offset = {0, 0, 0}, acc_scale = {1, 1, 1};
 Vec3d_t gyro_offset = {0, 0, 0};
+Vec3d_t mag_offset = {0, 0, 0}, mag_scale = {1, 1, 1};
 
 void GY86Init(void)
 {
@@ -157,6 +155,53 @@ void GetMagData(Vec3d_t *mag)
 	mag->x = (double)(int16_t)((Buffer[0]<<8) + Buffer[1])*mag_full/mag_gain;
 	mag->y = (double)(int16_t)((Buffer[2]<<8) + Buffer[3])*mag_full/mag_gain;
 	mag->z = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*mag_full/mag_gain;
+
+	// mag calibration
+	mag->x = (mag->x - mag_offset.x) * mag_scale.x;
+	mag->y = (mag->y - mag_offset.y) * mag_scale.y;
+	mag->z = (mag->z - mag_offset.z) * mag_scale.z;
+}
+
+void MagCalibration(Vec3d_t *offset, Vec3d_t *scale)
+{
+	Bluetooth_SendString("Mag Calibration start.\n");
+	Bluetooth_SendString("Please rotate the sensor around all axes.\n");
+	// OSTimeDly(3000);
+
+	Vec3d_t mag_data[6];
+	for(uint8_t i=0; i<6; i++)
+	{
+		mag_data[i].x = 0;
+		mag_data[i].y = 0;
+		mag_data[i].z = 0;
+	}
+	char direction[6][10] = {"front", "back", "left", "right", "up", "down"};
+	
+	for(uint8_t i=0; i<6; i++)
+	{
+		Bluetooth_SendString(direction[i]);
+		OSTimeDly(500);
+		Bluetooth_SendString(" measuring...");
+		Vec3d_t temp= {0, 0, 0};
+		for(uint8_t j=0; j<100; j++)
+		{
+			GetMagData(&temp);
+			mag_data[i].x += temp.x;
+			mag_data[i].y += temp.y;
+			mag_data[i].z += temp.z;
+			OSTimeDly(10);
+		}
+		mag_data[i].x /= 100.0;
+		mag_data[i].y /= 100.0;
+		mag_data[i].z /= 100.0;
+		Bluetooth_SendString("done.\n");
+	}
+
+	GaussNewton_LM(mag_data, offset, scale);
+
+	scale->x = 1.0/scale->x;
+	scale->y = 1.0/scale->y;
+	scale->z = 1.0/scale->z;
 }
 
 void MS5611Init(void)

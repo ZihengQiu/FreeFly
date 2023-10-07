@@ -80,6 +80,7 @@ target_compile_options(${EXECUTABLE} PRIVATE
         -mfloat-abi=hard
         -fdata-sections
         -ffunction-sections
+		-fno-math-errno
         -Wall
 		-Og
 		$<$<BOOL:${DEBUG}>:-g>
@@ -91,9 +92,9 @@ target_link_options(${EXECUTABLE} PRIVATE
         -mthumb
         -mfpu=fpv4-sp-d16
         -mfloat-abi=hard
-        -specs=nano.specs
-        -lc
-        -lm
+        # -specs=nano.specs
+		-lc
+		-lm
 		-u_printf_float
 		# if USE_SELF_SYSCALL = 0, then add -lnosys
 		$<$<NOT:$<BOOL:${USE_SELF_SYSCALL}>>:-lnosys>

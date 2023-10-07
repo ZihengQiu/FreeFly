@@ -2,6 +2,7 @@
 #include "includes.h"
 #include "ucos_ii.h"
 
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,7 +15,7 @@
 #include "gy86.h"
 #include "led.h"
 #include "myI2C.h"
-#include "math.h"
+#include "mathkit.h"
 #include "motor.h"
 #include "receiver.h"
 
@@ -88,31 +89,33 @@ void task_MPU6050(void *pdata)
 {
 	// AccCalibration(&acc_offset, &acc_scale);
 	GyroCalibration(&gyro_offset);
+	// MagCalibration(&mag_offset, &mag_scale);
 	while(1)
 	{
 		Vec3d_t acc;
-		GetAccData(&acc);
+		// GetAccData(&acc);
 		acc.x = (acc.x - acc_offset.x) * acc_scale.x;
 		acc.y = (acc.y - acc_offset.y) * acc_scale.y;
 		acc.z = (acc.z - acc_offset.z) * acc_scale.z;
 		// printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
 
 		Vec3d_t gyro;
-		GetGyroData(&gyro);
+		// GetGyroData(&gyro);
 		gyro.x -= gyro_offset.x;
 		gyro.y -= gyro_offset.y;
 		gyro.z -= gyro_offset.z;
 		// printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
 
 		Vec3d_t mag;
-		GetMagData(&mag);
+		// GetMagData(&mag);
+		printf("%f, %f, %f\n", mag.x, mag.y, mag.z);
 		// printf("mag: %f, %f, %f\n", mag.x, mag.y, mag.z);
 		
 		OSTimeDly(100);
 	}
 }
 
-void task_attitude(void *pdata)
+void task_attitude_gyro(void *pdata)
 {
 	Vec4d_t q0 = {1, 0, 0, 0}, q1;
 	Vec3d_t gyro0 = {0, 0, 0}, gyro1;
@@ -124,6 +127,21 @@ void task_attitude(void *pdata)
 		gyro0 = gyro1;
 		OSTimeDly(100);
 		printf("q: %f, %f, %f, %f\n", q0.w, q0.x, q0.y, q0.z);
+	}
+}
+
+void task_attitude_acc(void *pdata)
+{
+	AccCalibration(&acc_offset, &acc_scale);
+	printf("acc_offset: %f, %f, %f\n", acc_offset.x, acc_offset.y, acc_offset.z);
+	Vec3d_t acc_data = {0, 0, 0}, euler = {0, 0, 0};
+	while(1)
+	{
+		GetAccData(&acc_data);
+		printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
+		AccToEuler(&acc_data, &euler);
+		printf("euler: %f, %f, %f\n", euler.x, euler.y, euler.z);
+		OSTimeDly(100);
 	}
 }
 
@@ -149,11 +167,13 @@ void first_task(void *pdata) {
 	// create MPU6050 task
 	// OSTaskCreate(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN - 1], 9);
 	// OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
+	OSTimeDly(5000);
 
 	// create attitude control task
-	OSTaskCreate(task_attitude, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10);
+	OSTaskCreate(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10);
 	OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-
+	// OSTaskCreate(task_attitude_acc, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11);
+	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
     OSTaskDel(OS_PRIO_SELF);
 }
 
