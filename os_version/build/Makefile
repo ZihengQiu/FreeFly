@@ -225,29 +225,29 @@ Application/Hardware/Src/led.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.s
 .PHONY : Application/Hardware/Src/led.c.s
 
-Application/Hardware/Src/math.obj: Application/Hardware/Src/math.c.obj
-.PHONY : Application/Hardware/Src/math.obj
+Application/Hardware/Src/mathkit.obj: Application/Hardware/Src/mathkit.c.obj
+.PHONY : Application/Hardware/Src/mathkit.obj
 
 # target to build an object file
-Application/Hardware/Src/math.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/math.c.obj
-.PHONY : Application/Hardware/Src/math.c.obj
+Application/Hardware/Src/mathkit.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+.PHONY : Application/Hardware/Src/mathkit.c.obj
 
-Application/Hardware/Src/math.i: Application/Hardware/Src/math.c.i
-.PHONY : Application/Hardware/Src/math.i
+Application/Hardware/Src/mathkit.i: Application/Hardware/Src/mathkit.c.i
+.PHONY : Application/Hardware/Src/mathkit.i
 
 # target to preprocess a source file
-Application/Hardware/Src/math.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/math.c.i
-.PHONY : Application/Hardware/Src/math.c.i
+Application/Hardware/Src/mathkit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.i
+.PHONY : Application/Hardware/Src/mathkit.c.i
 
-Application/Hardware/Src/math.s: Application/Hardware/Src/math.c.s
-.PHONY : Application/Hardware/Src/math.s
+Application/Hardware/Src/mathkit.s: Application/Hardware/Src/mathkit.c.s
+.PHONY : Application/Hardware/Src/mathkit.s
 
 # target to generate assembly for a file
-Application/Hardware/Src/math.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/math.c.s
-.PHONY : Application/Hardware/Src/math.c.s
+Application/Hardware/Src/mathkit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/freefly.elf.dir/build.make CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.s
+.PHONY : Application/Hardware/Src/mathkit.c.s
 
 Application/Hardware/Src/motor.obj: Application/Hardware/Src/motor.c.obj
 .PHONY : Application/Hardware/Src/motor.obj
@@ -1678,9 +1678,9 @@ help:
 	@echo "... Application/Hardware/Src/led.obj"
 	@echo "... Application/Hardware/Src/led.i"
 	@echo "... Application/Hardware/Src/led.s"
-	@echo "... Application/Hardware/Src/math.obj"
-	@echo "... Application/Hardware/Src/math.i"
-	@echo "... Application/Hardware/Src/math.s"
+	@echo "... Application/Hardware/Src/mathkit.obj"
+	@echo "... Application/Hardware/Src/mathkit.i"
+	@echo "... Application/Hardware/Src/mathkit.s"
 	@echo "... Application/Hardware/Src/motor.obj"
 	@echo "... Application/Hardware/Src/motor.i"
 	@echo "... Application/Hardware/Src/motor.s"
