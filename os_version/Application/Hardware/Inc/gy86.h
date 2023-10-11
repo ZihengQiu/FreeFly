@@ -2,6 +2,7 @@
 #define __GY86_H
 
 #include "stm32f4xx.h"                   // Device header
+
 #include "mathkit.h"
 #include "bluetooth.h"
 #include "myI2C.h"
@@ -64,7 +65,7 @@ typedef struct
 }MpuDataStruct;
 
 extern Vec3d_t acc_offset, acc_scale;
-extern Vec3d_t gyro_offset;
+extern Vec3d_t gyro_offset, gyro_filter[2];
 extern Vec3d_t mag_offset, mag_scale;
 
 void GY86Init(void);
@@ -76,7 +77,7 @@ void GetAccData(Vec3d_t *acc);
 void AccCalibration(Vec3d_t *offset, Vec3d_t *scale);
 
 void GetGyroData(Vec3d_t *gyro);
-void GyroCalibration(Vec3d_t *offset);
+void GyroCalibration(Vec3d_t *offset, Vec3d_t *gyro_filter[2]);
 
 void HMC5883Init(void);
 void GetMagData(Vec3d_t *mag);

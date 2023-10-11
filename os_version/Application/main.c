@@ -20,19 +20,22 @@
 #include "receiver.h"
 
 #define TASK_STK_LEN 0x0800
+#define TASK_STK_LEN_2 0x0600
 
-OS_STK MainTaskStk[TASK_STK_LEN];
+OS_STK MainTaskStk[TASK_STK_LEN];	// each stack is 4B wide
 OS_STK Task1Stk[TASK_STK_LEN];
 OS_STK Task2Stk[TASK_STK_LEN];
 OS_STK Task3Stk[TASK_STK_LEN];
 OS_STK Task4Stk[TASK_STK_LEN];
-OS_STK Task5Stk[TASK_STK_LEN];
+OS_STK Task5Stk[TASK_STK_LEN_2];
 OS_STK Task6Stk[TASK_STK_LEN];
 OS_STK Task7Stk[TASK_STK_LEN];
+OS_STK Task8Stk[TASK_STK_LEN];
+OS_STK Task9Stk[TASK_STK_LEN];
 
 uint16_t times;
 
-extern Vec3d_t acc_offset, acc_scale, gyro_offset;
+extern Vec3d_t acc_offset, acc_scale, gyro_offset, gyro_filter[2], mag_offset, mag_scale;
 
 extern void My_Systick_Config(uint32_t reload_value);
 
@@ -88,7 +91,7 @@ void task_peripheral_init(void *pdata)
 void task_MPU6050(void *pdata)
 {
 	// AccCalibration(&acc_offset, &acc_scale);
-	GyroCalibration(&gyro_offset);
+	// GyroCalibration(&gyro_offset);
 	// MagCalibration(&mag_offset, &mag_scale);
 	while(1)
 	{
@@ -108,7 +111,7 @@ void task_MPU6050(void *pdata)
 
 		Vec3d_t mag;
 		// GetMagData(&mag);
-		printf("%f, %f, %f\n", mag.x, mag.y, mag.z);
+		// printf("%f,%f,%f\n", mag.x, mag.y, mag.z);
 		// printf("mag: %f, %f, %f\n", mag.x, mag.y, mag.z);
 		
 		OSTimeDly(100);
@@ -117,31 +120,91 @@ void task_MPU6050(void *pdata)
 
 void task_attitude_gyro(void *pdata)
 {
+	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
+	printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
 	Vec4d_t q0 = {1, 0, 0, 0}, q1;
-	Vec3d_t gyro0 = {0, 0, 0}, gyro1;
+	Vec3d_t gyro0 = {0, 0, 0}, gyro1, euler = {0, 0, 0};
+	uint32_t t1, t2;
 	while(1)
 	{
+		t1 = OSTimeGet();
 		GetGyroData(&gyro1);
-		GyroUpdateQuat(&q0, &q1, &gyro0, &gyro1, 0.1);
+		RadToDeg(&gyro1);
+		// printf("gyro: %f, %f, %f\n", gyro1.x, gyro1.y, gyro1.z);
+		GyroUpdateQuat(&q0, &q1, &gyro0, &gyro1, 0.001);
+		Vec4Norm(&q1);
+		// printf("q: %f, %f, %f, %f\n", q1.w, q1.x, q1.y, q1.z);
 		q0 = q1;
 		gyro0 = gyro1;
-		OSTimeDly(100);
-		printf("q: %f, %f, %f, %f\n", q0.w, q0.x, q0.y, q0.z);
+		QuaterToEuler(&q0, &euler);
+		// RadToDeg(&euler);
+		printf("euler: %f, %f, %f\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
+		t2 = OSTimeGet();
+		// printf("ticks: %d %d %d\n",t1,t2,t2-t1);
+		// OSTimeDly(10);
 	}
 }
 
 void task_attitude_acc(void *pdata)
 {
-	AccCalibration(&acc_offset, &acc_scale);
+	// AccCalibration(&acc_offset, &acc_scale);
+	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
+	printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
 	printf("acc_offset: %f, %f, %f\n", acc_offset.x, acc_offset.y, acc_offset.z);
-	Vec3d_t acc_data = {0, 0, 0}, euler = {0, 0, 0};
+	Vec3d_t acc_data = {0, 0, 0}, gyro_data, euler = {0, 0, 0};
+	Vec4d_t q0 = {1, 0, 0, 0}, q1;
+	uint32_t t1, t2;
 	while(1)
 	{
+		t1 = OSTimeGet();
 		GetAccData(&acc_data);
-		printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
-		AccToEuler(&acc_data, &euler);
+		// printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
+		GetGyroData(&gyro_data);
+		AccUpdateQuat(&q0, &q1, &acc_data, &gyro_data, 0.001);
+		// printf("q: %10f, %10f, %10f, %10f\n", q1.w, q1.x, q1.y, q1.z);
+		q0 = q1;
+		QuaterToEuler(&q0, &euler);
+		// RadToDeg(&euler);
+		printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
+		t2 = OSTimeGet();
+		OSTimeDly(10);
+	}
+}
+
+void task_attitude_fusion(void *pdata)
+{
+	// AccCalibration(&acc_offset, &acc_scale);
+	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
+	printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
+	Vec4d_t q0 = {1, 0, 0, 0}, q1, q1_gyro, q1_acc;
+	Vec3d_t gyro0 = {0, 0, 0}, gyro1, acc, euler;
+	uint32_t cnt = 0, t[10];
+	while(1)
+	{
+		t[0] = OSTimeGet();
+
+		GetGyroData(&gyro1);
+		GetAccData(&acc);
+		t[1] = OSTimeGet();	// takes 2~3 ticks, while the reset part < 1 tick
+
+		AccUpdateQuat(&q0, &q1_acc, &acc, &gyro0, 0.001);
+		Vec4Norm(&q1_acc);
+		t[3] = OSTimeGet();
+
+		GyroUpdateQuat(&q0, &q1_gyro, &gyro0, &gyro1, 0.001);
+		Vec4Norm(&q1_gyro);
+		gyro0 = gyro1;
+		t[2] = OSTimeGet();
+
+		MadgwickAHRS(&q1, &q1_acc, &q1_gyro, 0.001);
+		// printf("q: %f, %f, %f, %f\n", q1.w, q1.x, q1.y, q1.z);
+		q0 = q1;
+
+		QuaterToEuler(&q0, &euler);
+		// RadToDeg(&euler);
 		printf("euler: %f, %f, %f\n", euler.x, euler.y, euler.z);
-		OSTimeDly(100);
+
+		t[4] = OSTimeGet();
 	}
 }
 
@@ -152,28 +215,31 @@ void first_task(void *pdata) {
     led_init();
 
     // create LED_ON task
-    OSTaskCreate(task_led_on, (void *)0, &Task2Stk[TASK_STK_LEN - 1], 6);
-    OSTaskNameSet(6, (INT8U *)"LED_ON", (INT8U *)"LED_ON_ERR");
+    // OSTaskCreateExt(task_led_on, (void *)0, &Task2Stk[TASK_STK_LEN - 1], 6, 6, Task2Stk, TASK_STK_LEN, (void *)0, 0);
+    // OSTaskNameSet(6, (INT8U *)"LED_ON", (INT8U *)"LED_ON_ERR");
 
     // create LED_OFF task
-    OSTaskCreate(task_led_off, (void *)0, &Task3Stk[TASK_STK_LEN - 1], 7);
-    OSTaskNameSet(7, (INT8U *)"LED_OFF", (INT8U *)"LED_OFF_ERR");
+    // OSTaskCreateExt(task_led_off, (void *)0, &Task3Stk[TASK_STK_LEN - 1], 7, 7, Task3Stk, TASK_STK_LEN, (void *)0, 0);
+    // OSTaskNameSet(7, (INT8U *)"LED_OFF", (INT8U *)"LED_OFF_ERR");
 
 	// create peripheral init task
-	OSTaskCreate(task_peripheral_init, (void *)0, &Task4Stk[TASK_STK_LEN - 1], 8);
+	OSTaskCreateExt(task_peripheral_init, (void *)0, &Task4Stk[TASK_STK_LEN - 1], 8, 8, Task4Stk, TASK_STK_LEN, (void *)0, 0);
 	OSTaskNameSet(8, (INT8U *)"PERIPHERAL_INIT", (INT8U *)"PERIPHERAL_INIT_ERR");
 	OSTimeDly(3000);
 
 	// create MPU6050 task
-	// OSTaskCreate(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN - 1], 9);
+	// OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
 	// OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
-	OSTimeDly(5000);
+	// OSTimeDly(3000);
 
 	// create attitude control task
-	OSTaskCreate(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10);
-	OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	// OSTaskCreate(task_attitude_acc, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11);
+	// OSTaskCreateExt(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10, 10, Task6Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	// OSTaskCreateExt(task_attitude_acc, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	
     OSTaskDel(OS_PRIO_SELF);
 }
 

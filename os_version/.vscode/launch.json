@@ -16,8 +16,8 @@
                 "target/stm32f4x.cfg"
             ],
             "armToolchainPath": "/usr/bin",
-            "svdFile": "${workspaceRoot}/STM32F401.svd",
-			"runToEntryPoint": "main",
+            "svdFile": "${workspaceRoot}/STM32F411.svd",
+			// "runToEntryPoint": "main",
             "preLaunchTask": "Build",
 			"liveWatch": {
 				"enabled": true,

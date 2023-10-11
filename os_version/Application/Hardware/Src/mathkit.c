@@ -2,25 +2,173 @@
 #include "mathkit.h"
 #include "math.h"
 
+double Vec3Modulus(Vec3d_t vec)
+{
+	return sqrt(vec.x*vec.x + vec.y*vec.y + vec.z*vec.z);
+}
+
+double Vec4Modulus(Vec4d_t vec)
+{
+	return sqrt(vec.w*vec.w + vec.x*vec.x + vec.y*vec.y + vec.z*vec.z);
+}
+
 void Vec3Norm(Vec3d_t *vec)
 {
-	double norm = sqrt(vec->x*vec->x + vec->y*vec->y + vec->z*vec->z);
+	double norm = Vec3Modulus(*vec);
 	vec->x /= norm;
 	vec->y /= norm;
 	vec->z /= norm;
 }
 
-void MatrixesMultiply(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t rowA, uint8_t colA, uint8_t colB)
+
+void Vec4Norm(Vec4d_t *vec)
 {
-	for(uint8_t i=0; i<rowA; i++)
+	double norm = Vec4Modulus(*vec);
+	vec->w /= norm;
+	vec->x /= norm;
+	vec->y /= norm;
+	vec->z /= norm;
+}
+
+void RadToDeg(Vec3d_t *rad)
+{
+	rad->x *= 180.0/PI;
+	rad->y *= 180.0/PI;
+	rad->z *= 180.0/PI;
+}
+
+void DegToRad(Vec3d_t *deg)
+{
+	deg->x *= PI/180.0;
+	deg->y *= PI/180.0;
+	deg->z *= PI/180.0;
+}
+
+void QuaterToEuler(Vec4d_t *q, Vec3d_t *euler)
+{
+	euler->x = atan2f(2*(q->w*q->x+q->y*q->z), 1-2*(q->x*q->x+q->y*q->y));
+	euler->y = asinf(2*(q->w*q->y-q->z*q->x));
+	euler->z = atan2f(2*(q->w*q->z+q->x*q->y), 1-2*(q->y*q->y+q->z*q->z));
+}
+
+void MatrixTranspose(double *MatrixB, double *MatrixA, uint8_t row, uint8_t col)
+{
+	for(uint8_t i=0; i<row; i++)
 	{
-		for(uint8_t j=0; j<colB; j++)
+		for(uint8_t j=0; j<col; j++)
 		{
-			MatrixC[i*colB+j] = 0;
-			for(uint8_t k=0; k<colA; k++)
+			MatrixB[j*row+i] = MatrixA[i*col+j];
+		}
+	}
+}
+
+void MatrixInverse(double *MatrixB, double *MatrixA, uint8_t row)
+{
+	// use LU decomposition to get inverse matrix
+	// MatrixA = L * U
+	// MatrixB = U^-1 * L^-1
+	double MatrixL[row][row], MatrixU[row][row];
+	for(int i=0; i<row; i++)
+	{
+		for(int j=0; j<row; j++)
+		{
+			MatrixL[i][j] = 0;
+			MatrixU[i][j] = 0;
+		}
+	}
+	// get matrix_l 
+	for(int i=0; i<row; i++)
+	{
+		MatrixL[i][i] = 1;
+	}
+
+	for(int i=0; i<row; i++)
+	{
+		for(int j=i; j<row; j++)
+		{
+			double sum = 0;
+			for(int k=0; k<i; k++)
 			{
-				// MatrixC[i][j] += MatrixA[i][k] * MatrixB[k][j];
-				MatrixC[i*colB+j] += MatrixA[i*colA+k] * MatrixB[k*colB+j];
+				sum += MatrixL[i][k]*MatrixU[k][j];
+			}
+			MatrixU[i][j] = MatrixA[i*row+j] - sum;
+		}
+		for(int j=i+1; j<row; j++)
+		{
+			double sum = 0;
+			for(int k=0; k<i; k++)
+			{
+				sum += MatrixL[j][k]*MatrixU[k][i];
+			}
+			MatrixL[j][i] = (MatrixA[j*row+i] - sum)/MatrixU[i][i];
+		}
+	}
+
+	// get matrix_l^-1
+	double MatrixLInverse[row][row];
+	for(int i=0; i<row; i++)
+	{
+		for(int j=0; j<row; j++)
+		{
+			MatrixLInverse[i][j] = 0;
+		}
+	}
+
+	for(int i=0; i<row; i++)
+	{
+		MatrixLInverse[i][i] = 1;
+	}
+
+	for(int i=1; i<row; i++)
+	{
+		for(int j=0; j<i; j++)
+		{
+			double sum = 0;
+			for(int k=0; k<i; k++)
+			{
+				sum += MatrixL[i][k]*MatrixLInverse[k][j];
+			}
+			MatrixLInverse[i][j] = -1*sum;
+		}
+	}
+
+	// get matrix_u^-1
+	double MatrixUInverse[row][row];
+	for(int i=0; i<row; i++)
+	{
+		for(int j=0; j<row; j++)
+		{
+			MatrixUInverse[i][j] = 0;
+		}
+	}
+
+	for(int i=0; i<row; i++)
+	{
+		MatrixUInverse[i][i] = 1/MatrixU[i][i];
+	}
+
+	for(int i=1; i<row; i++)
+	{
+		for(int j=i-1; j>=0; j--)
+		{
+			double sum = 0;
+			for(int k=j+1; k<=i; k++)
+			{
+				sum += MatrixU[j][k]*MatrixUInverse[k][i];
+			}
+			MatrixUInverse[j][i] = -1*sum/MatrixU[j][j];
+		}
+	}
+
+	// get matrix_b
+	for(int i=0; i<row; i++)
+	{
+		for(int j=0; j<row; j++)
+		{
+			MatrixB[i*row+j] = 0;
+			for(int k=0; k<row; k++)
+			{
+				MatrixB[i*row+j] += MatrixUInverse[i][k]*MatrixLInverse[k][j];
 			}
 		}
 	}
@@ -44,6 +192,22 @@ void MatrixScale(double *MatrixB, double *MatrixA, double scale, uint8_t row, ui
 		for(uint8_t j=0; j<col; j++)
 		{
 			MatrixB[i*col+j] = MatrixA[i*col+j] * scale;
+		}
+	}
+}
+
+void MatrixesMultiply(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t rowA, uint8_t colA, uint8_t colB)
+{
+	for(uint8_t i=0; i<rowA; i++)
+	{
+		for(uint8_t j=0; j<colB; j++)
+		{
+			MatrixC[i*colB+j] = 0;
+			for(uint8_t k=0; k<colA; k++)
+			{
+				// MatrixC[i][j] += MatrixA[i][k] * MatrixB[k][j];
+				MatrixC[i*colB+j] += MatrixA[i*colA+k] * MatrixB[k*colB+j];
+			}
 		}
 	}
 }
