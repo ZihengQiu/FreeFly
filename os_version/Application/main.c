@@ -97,22 +97,16 @@ void task_MPU6050(void *pdata)
 	{
 		Vec3d_t acc;
 		// GetAccData(&acc);
-		acc.x = (acc.x - acc_offset.x) * acc_scale.x;
-		acc.y = (acc.y - acc_offset.y) * acc_scale.y;
-		acc.z = (acc.z - acc_offset.z) * acc_scale.z;
 		// printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
 
 		Vec3d_t gyro;
 		// GetGyroData(&gyro);
-		gyro.x -= gyro_offset.x;
-		gyro.y -= gyro_offset.y;
-		gyro.z -= gyro_offset.z;
 		// printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
 
 		Vec3d_t mag;
-		// GetMagData(&mag);
+		GetMagData(&mag);
 		// printf("%f,%f,%f\n", mag.x, mag.y, mag.z);
-		// printf("mag: %f, %f, %f\n", mag.x, mag.y, mag.z);
+		printf("mag: %f, %f, %f\n", mag.x, mag.y, mag.z);
 		
 		OSTimeDly(100);
 	}
@@ -171,40 +165,50 @@ void task_attitude_acc(void *pdata)
 	}
 }
 
-void task_attitude_fusion(void *pdata)
+void task_attitude_acc_mag(void *pdata)
 {
 	// AccCalibration(&acc_offset, &acc_scale);
 	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
-	printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
-	Vec4d_t q0 = {1, 0, 0, 0}, q1, q1_gyro, q1_acc;
-	Vec3d_t gyro0 = {0, 0, 0}, gyro1, acc, euler;
-	uint32_t cnt = 0, t[10];
+	// printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
+	// printf("acc_offset: %f, %f, %f\n", acc_offset.x, acc_offset.y, acc_offset.z);
+	Vec3d_t acc_data = {0, 0, 0}, mag_data0, mag_data, gyro_data, euler = {0, 0, 0};
+	Vec4d_t q0 = {1, 0, 0, 0}, q1;
+	uint32_t t1, t2;
+	printf("Mag sample start!\n");
+	GetMagData(&mag_data0);
+	Vec3Norm(&mag_data0);
+	printf("Mag sample finished!\n");
 	while(1)
 	{
-		t[0] = OSTimeGet();
-
-		GetGyroData(&gyro1);
-		GetAccData(&acc);
-		t[1] = OSTimeGet();	// takes 2~3 ticks, while the reset part < 1 tick
-
-		AccUpdateQuat(&q0, &q1_acc, &acc, &gyro0, 0.001);
-		Vec4Norm(&q1_acc);
-		t[3] = OSTimeGet();
-
-		GyroUpdateQuat(&q0, &q1_gyro, &gyro0, &gyro1, 0.001);
-		Vec4Norm(&q1_gyro);
-		gyro0 = gyro1;
-		t[2] = OSTimeGet();
-
-		MadgwickAHRS(&q1, &q1_acc, &q1_gyro, 0.001);
-		// printf("q: %f, %f, %f, %f\n", q1.w, q1.x, q1.y, q1.z);
+		t1 = OSTimeGet();
+		GetAccData(&acc_data);
+		GetMagData(&mag_data);
+		Vec3Norm(&mag_data);
+		// printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
+		GetGyroData(&gyro_data);
+		AccMagUpdateQuat(&q0, &q1, &acc_data, &gyro_data, &mag_data, &mag_data0, 0.001);
+		// printf("q: %10f, %10f, %10f, %10f\n", q1.w, q1.x, q1.y, q1.z);
 		q0 = q1;
-
 		QuaterToEuler(&q0, &euler);
 		// RadToDeg(&euler);
-		printf("euler: %f, %f, %f\n", euler.x, euler.y, euler.z);
+		printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
+		t2 = OSTimeGet();
+		OSTimeDly(10);
+	}
+}
 
-		t[4] = OSTimeGet();
+void task_attitude_fusion(void *pdata)
+{
+	Vec4d_t q0 = {1, 0, 0, 0};
+	Vec3d_t mag0, euler;
+	GetMagData(&mag0);
+	while(1)
+	{
+		MadgwickAHRS(&q0, &mag0, 0.001);
+		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
+		QuaterToEuler(&q0, &euler);
+		// RadToDeg(&euler);
+		printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
 	}
 }
 
@@ -228,14 +232,16 @@ void first_task(void *pdata) {
 	OSTimeDly(3000);
 
 	// create MPU6050 task
-	// OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
-	// OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
+	OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
+	OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
 	// OSTimeDly(3000);
 
 	// create attitude control task
 	// OSTaskCreateExt(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10, 10, Task6Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
 	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
