@@ -232,8 +232,8 @@ void first_task(void *pdata) {
 	OSTimeDly(3000);
 
 	// create MPU6050 task
-	OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
-	OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
+	// OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
+	// OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
 	// OSTimeDly(3000);
 
 	// create attitude control task

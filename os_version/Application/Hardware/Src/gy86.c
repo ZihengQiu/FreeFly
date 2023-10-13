@@ -218,9 +218,9 @@ void GetMagData(Vec3d_t *mag)
 	mag->z = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*mag_full/mag_gain;
 
 	// mag calibration (ellipsoid fitting)
-	// mag->x = (mag->x - mag_offset.x) / mag_scale.x;
-	// mag->y = (mag->y - mag_offset.y) / mag_scale.y;
-	// mag->z = (mag->z - mag_offset.z) / mag_scale.z;
+	mag->x = (mag->x - mag_offset.x) / mag_scale.x;
+	mag->y = (mag->y - mag_offset.y) / mag_scale.y;
+	mag->z = (mag->z - mag_offset.z) / mag_scale.z;
 }
 
 void MagCalibration(Vec3d_t *offset, Vec3d_t *scale)

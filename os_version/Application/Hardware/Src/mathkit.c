@@ -15,6 +15,10 @@ double Vec4Modulus(Vec4d_t vec)
 void Vec3Norm(Vec3d_t *vec)
 {
 	double norm = Vec3Modulus(*vec);
+	if(norm == 0)
+	{
+		return;
+	}
 	vec->x /= norm;
 	vec->y /= norm;
 	vec->z /= norm;
@@ -24,6 +28,10 @@ void Vec3Norm(Vec3d_t *vec)
 void Vec4Norm(Vec4d_t *vec)
 {
 	double norm = Vec4Modulus(*vec);
+	if(norm == 0)
+	{
+		return;
+	}
 	vec->w /= norm;
 	vec->x /= norm;
 	vec->y /= norm;
