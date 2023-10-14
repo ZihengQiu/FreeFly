@@ -12,9 +12,9 @@
 Vec3d_t acc_offset = {0.037417782323451894, -0.013271198993009256, 0.0010460136242150379},
 		acc_scale = {0.99615152668035645, 0.99960933237994376, 1.0040191999055366};
 uint8_t acc_calibrated = 1, gyro_calibrated = 1, mag_calibrated = 1;
-Vec3d_t gyro_offset = {-0.04861440780274201, -0.011583685477408732, -0.02491227410103693}, 
-		gyro_filter[2] = {{-0.0046488139988427532, -0.0043952810630666968, -0.00065407236372375457},
-						{0.0070690947975058926, 0.0062573632972502558, 0.0014764565083396353}};
+Vec3d_t gyro_offset = {-2.86273193359375, -0.65972900390625, -1.403076171875}, 
+		gyro_filter[2] = {{-0.00592041015625, -0.07269287109375, -0.061767578125},
+						{0.05511474609375, 0.04937744140625, 0.060302734375}};
 Vec3d_t mag_offset = {0.4479153454629381, 0.13242835683955598, -0.04967758735144858}, 
 		mag_scale = {0.4675627581500121, 0.4310428650240345, 0.4639468446544417};
 
@@ -127,9 +127,9 @@ void GetGyroData(Vec3d_t *gyro)
 	gyro->z = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*gyro_full/32768.0;
 
 	// convert to rad/s
-	gyro->x *= PI/180.0;
-	gyro->y *= PI/180.0;
-	gyro->z *= PI/180.0;
+	// gyro->x *= PI/180.0;
+	// gyro->y *= PI/180.0;
+	// gyro->z *= PI/180.0;
 
 	if(gyro_calibrated == 0)	return;
 
@@ -137,15 +137,15 @@ void GetGyroData(Vec3d_t *gyro)
 	gyro->x -= gyro_offset.x;
 	gyro->y -= gyro_offset.y;
 	gyro->z -= gyro_offset.z;
-	if(gyro->x > gyro_filter[0].x && gyro->x < gyro_filter[1].x)
+	if(gyro->x >= gyro_filter[0].x && gyro->x <= gyro_filter[1].x)
 	{
 		gyro->x = 0;
 	}
-	if(gyro->y > gyro_filter[0].y && gyro->y < gyro_filter[1].y)
+	if(gyro->y >= gyro_filter[0].y && gyro->y <= gyro_filter[1].y)
 	{
 		gyro->y = 0;
 	}
-	if(gyro->z > gyro_filter[0].z && gyro->z < gyro_filter[1].z)
+	if(gyro->z >= gyro_filter[0].z && gyro->z <= gyro_filter[1].z)
 	{
 		gyro->z = 0;
 	}

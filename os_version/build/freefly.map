@@ -2156,11 +2156,11 @@ Discarded input sections
  .text.AccToEuler
                 0x00000000       0x8a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
  .text.AccUpdateQuat
-                0x00000000      0x740 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+                0x00000000      0x734 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
  .text.AccMagUpdateQuat
-                0x00000000      0x174 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+                0x00000000      0x16c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
  .text.GyroUpdateQuat
-                0x00000000       0x92 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+                0x00000000       0x98 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
  .text          0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
  .data          0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
  .bss           0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
@@ -2259,11 +2259,11 @@ Discarded input sections
  .text.task_MPU6050
                 0x00000000       0x40 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .text.task_attitude_gyro
-                0x00000000      0x160 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x00000000      0x148 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .text.task_attitude_acc
                 0x00000000      0x170 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .text.task_attitude_acc_mag
-                0x00000000      0x160 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x00000000      0x140 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .text          0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
  .data          0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
  .bss           0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
@@ -3410,7 +3410,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
                 0x08000000                g_pfnVectors
                 0x08000194                        . = ALIGN (0x4)
 
-.text           0x080001c0     0xc8cc
+.text           0x080001c0     0xc79c
                 0x080001c0                        . = ALIGN (0x4)
  *(.text)
  .text          0x080001c0      0x158 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
@@ -3619,794 +3619,795 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
                 0x0800255a                USART_GetFlagStatus
  *fill*         0x08002592        0x2 
  .text.AccMagUpdateQuatDelta
-                0x08002594      0xffc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+                0x08002594      0xf88 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
                 0x08002594                AccMagUpdateQuatDelta
+ *fill*         0x0800351c        0x4 
  .text.GyroUpdateQuatDelta
-                0x08003590      0x6fc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
-                0x08003590                GyroUpdateQuatDelta
- *fill*         0x08003c8c        0x4 
+                0x08003520      0x6fc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+                0x08003520                GyroUpdateQuatDelta
+ *fill*         0x08003c1c        0x4 
  .text.MadgwickAHRS
-                0x08003c90      0x2c0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
-                0x08003c90                MadgwickAHRS
+                0x08003c20      0x238 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+                0x08003c20                MadgwickAHRS
  .text.Bluetooth_GPIOInit
-                0x08003f50       0xf0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
-                0x08003f50                Bluetooth_GPIOInit
+                0x08003e58       0xf0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+                0x08003e58                Bluetooth_GPIOInit
  .text.Bluetooth_ConfigInit
-                0x08004040       0x7c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
-                0x08004040                Bluetooth_ConfigInit
+                0x08003f48       0x7c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+                0x08003f48                Bluetooth_ConfigInit
  .text.Bluetooth_SendByte
-                0x080040bc       0x30 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
-                0x080040bc                Bluetooth_SendByte
+                0x08003fc4       0x30 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+                0x08003fc4                Bluetooth_SendByte
  .text.BluetoothInit
-                0x080040ec       0x10 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
-                0x080040ec                BluetoothInit
+                0x08003ff4       0x10 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+                0x08003ff4                BluetoothInit
  .text.GY86Init
-                0x080040fc       0x10 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x080040fc                GY86Init
+                0x08004004       0x10 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x08004004                GY86Init
  .text.MPU6050Init
-                0x0800410c       0x4e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x0800410c                MPU6050Init
- *fill*         0x0800415a        0x2 
+                0x08004014       0x4e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x08004014                MPU6050Init
+ *fill*         0x08004062        0x2 
  .text.GetAccData
-                0x0800415c      0x194 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x0800415c                GetAccData
+                0x08004064      0x194 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x08004064                GetAccData
  .text.GetGyroData
-                0x080042f0      0x264 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x080042f0                GetGyroData
+                0x080041f8      0x210 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x080041f8                GetGyroData
  .text.HMC5883Init
-                0x08004554       0x26 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x08004554                HMC5883Init
- *fill*         0x0800457a        0x2 
+                0x08004408       0x26 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x08004408                HMC5883Init
+ *fill*         0x0800442e        0x2 
  .text.GetMagData
-                0x0800457c      0x1a4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x0800457c                GetMagData
+                0x08004430      0x1a4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x08004430                GetMagData
  .text.led_init
-                0x08004720       0x6c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
-                0x08004720                led_init
+                0x080045d4       0x6c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+                0x080045d4                led_init
  .text.Vec4Modulus
-                0x0800478c       0xcc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x0800478c                Vec4Modulus
+                0x08004640       0xcc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x08004640                Vec4Modulus
  .text.Vec4Norm
-                0x08004858       0xc2 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x08004858                Vec4Norm
- *fill*         0x0800491a        0x2 
+                0x0800470c       0xc2 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x0800470c                Vec4Norm
+ *fill*         0x080047ce        0x2 
  .text.QuaterToEuler
-                0x0800491c      0x228 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x0800491c                QuaterToEuler
+                0x080047d0      0x228 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x080047d0                QuaterToEuler
  .text.MatrixAdd
-                0x08004b44       0x92 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x08004b44                MatrixAdd
+                0x080049f8       0x92 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x080049f8                MatrixAdd
  .text.MatrixScale
-                0x08004bd6       0x84 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x08004bd6                MatrixScale
+                0x08004a8a       0x84 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x08004a8a                MatrixScale
  .text.MatrixesMultiply
-                0x08004c5a       0xf4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x08004c5a                MatrixesMultiply
- *fill*         0x08004d4e        0x2 
+                0x08004b0e       0xf4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x08004b0e                MatrixesMultiply
+ *fill*         0x08004c02        0x2 
  .text.Motor_Init
-                0x08004d50       0xa4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
-                0x08004d50                Motor_Init
+                0x08004c04       0xa4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+                0x08004c04                Motor_Init
  .text.MyI2C_GPIOInit
-                0x08004df4       0xb4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004df4                MyI2C_GPIOInit
+                0x08004ca8       0xb4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004ca8                MyI2C_GPIOInit
  .text.MyI2C_SetMasterMode
-                0x08004ea8       0xd0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004ea8                MyI2C_SetMasterMode
+                0x08004d5c       0xd0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004d5c                MyI2C_SetMasterMode
  .text.MyI2C_SetStart
-                0x08004f78       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004f78                MyI2C_SetStart
+                0x08004e2c       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004e2c                MyI2C_SetStart
  .text.MyI2C_SetStop
-                0x08004fbc       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004fbc                MyI2C_SetStop
+                0x08004e70       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004e70                MyI2C_SetStop
  .text.MyI2C_SetAck
-                0x08005000       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08005000                MyI2C_SetAck
+                0x08004eb4       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004eb4                MyI2C_SetAck
  .text.MyI2C_SendData
-                0x08005044       0x24 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08005044                MyI2C_SendData
+                0x08004ef8       0x24 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004ef8                MyI2C_SendData
  .text.MyI2C_ReceiveData
-                0x08005068       0x1c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08005068                MyI2C_ReceiveData
+                0x08004f1c       0x1c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004f1c                MyI2C_ReceiveData
  .text.MyI2C_Send7bitAddress
-                0x08005084       0x40 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08005084                MyI2C_Send7bitAddress
+                0x08004f38       0x40 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004f38                MyI2C_Send7bitAddress
  .text.MyI2C_CheckBusy
-                0x080050c4       0x30 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080050c4                MyI2C_CheckBusy
+                0x08004f78       0x30 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004f78                MyI2C_CheckBusy
  .text.MyI2C_CheckMasterModeSelected
-                0x080050f4       0x48 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080050f4                MyI2C_CheckMasterModeSelected
+                0x08004fa8       0x48 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004fa8                MyI2C_CheckMasterModeSelected
  .text.MyI2C_CheckMasterTransmitterModeSelected
-                0x0800513c       0x88 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x0800513c                MyI2C_CheckMasterTransmitterModeSelected
+                0x08004ff0       0x88 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004ff0                MyI2C_CheckMasterTransmitterModeSelected
  .text.MyI2C_CheckMasterByteTransmitted
-                0x080051c4       0x70 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080051c4                MyI2C_CheckMasterByteTransmitted
+                0x08005078       0x70 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08005078                MyI2C_CheckMasterByteTransmitted
  .text.MyI2C_CheckMasterReceiverModeSelected
-                0x08005234       0x4c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08005234                MyI2C_CheckMasterReceiverModeSelected
+                0x080050e8       0x4c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x080050e8                MyI2C_CheckMasterReceiverModeSelected
  .text.MyI2C_CheckRXNE
-                0x08005280       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08005280                MyI2C_CheckRXNE
+                0x08005134       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08005134                MyI2C_CheckRXNE
  .text.MyI2C_CheckTXE
-                0x080052ac       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080052ac                MyI2C_CheckTXE
+                0x08005160       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08005160                MyI2C_CheckTXE
  .text.MyI2C_BurstReadRegister
-                0x080052d8       0xd4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080052d8                MyI2C_BurstReadRegister
+                0x0800518c       0xd4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x0800518c                MyI2C_BurstReadRegister
  .text.MyI2C_WriteRegister
-                0x080053ac       0x7c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080053ac                MyI2C_WriteRegister
+                0x08005260       0x7c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08005260                MyI2C_WriteRegister
  .text.MyI2C_WriteRegisterHMC5883
-                0x08005428       0x88 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08005428                MyI2C_WriteRegisterHMC5883
+                0x080052dc       0x88 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x080052dc                MyI2C_WriteRegisterHMC5883
  .text.MyI2C_Init
-                0x080054b0       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080054b0                MyI2C_Init
+                0x08005364       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08005364                MyI2C_Init
  .text.TIM1_init
-                0x080054dc      0x22c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
-                0x080054dc                TIM1_init
+                0x08005390      0x22c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+                0x08005390                TIM1_init
  .text.Receiver_CalcDutyCycle
-                0x08005708       0x38 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
-                0x08005708                Receiver_CalcDutyCycle
+                0x080055bc       0x38 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+                0x080055bc                Receiver_CalcDutyCycle
  .text.TIM1_CC_IRQHandler
-                0x08005740       0x94 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
-                0x08005740                TIM1_CC_IRQHandler
+                0x080055f4       0x94 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+                0x080055f4                TIM1_CC_IRQHandler
  .text.task_peripheral_init
-                0x080057d4       0x7c CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                0x080057d4                task_peripheral_init
+                0x08005688       0x7c CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x08005688                task_peripheral_init
+ *fill*         0x08005704        0x4 
  .text.task_attitude_fusion
-                0x08005850       0x98 CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                0x08005850                task_attitude_fusion
+                0x08005708       0xb0 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x08005708                task_attitude_fusion
  .text.first_task
-                0x080058e8       0xac CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                0x080058e8                first_task
- .text.main     0x08005994       0x38 CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                0x08005994                main
+                0x080057b8       0xac CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x080057b8                first_task
+ .text.main     0x08005864       0x38 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x08005864                main
  .text.My_Systick_Config
-                0x080059cc       0x58 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
-                0x080059cc                My_Systick_Config
+                0x0800589c       0x58 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+                0x0800589c                My_Systick_Config
  .text.OSInitHookBegin
-                0x08005a24       0x60 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005a24                OSInitHookBegin
+                0x080058f4       0x60 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x080058f4                OSInitHookBegin
  .text.OSInitHookEnd
-                0x08005a84        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005a84                OSInitHookEnd
+                0x08005954        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x08005954                OSInitHookEnd
  .text.OSTaskCreateHook
-                0x08005a92       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005a92                OSTaskCreateHook
+                0x08005962       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x08005962                OSTaskCreateHook
  .text.OSTaskDelHook
-                0x08005aa6       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005aa6                OSTaskDelHook
+                0x08005976       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x08005976                OSTaskDelHook
  .text.OSTaskIdleHook
-                0x08005aba        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005aba                OSTaskIdleHook
+                0x0800598a        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x0800598a                OSTaskIdleHook
  .text.OSTaskReturnHook
-                0x08005ac8       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005ac8                OSTaskReturnHook
+                0x08005998       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x08005998                OSTaskReturnHook
  .text.OSTaskStatHook
-                0x08005adc        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005adc                OSTaskStatHook
- *fill*         0x08005aea        0x2 
+                0x080059ac        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x080059ac                OSTaskStatHook
+ *fill*         0x080059ba        0x2 
  .text.OSTaskStkInit
-                0x08005aec      0x118 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005aec                OSTaskStkInit
+                0x080059bc      0x118 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x080059bc                OSTaskStkInit
  .text.OSTCBInitHook
-                0x08005c04       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005c04                OSTCBInitHook
+                0x08005ad4       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x08005ad4                OSTCBInitHook
  .text.SysTick_Handler
-                0x08005c18       0x28 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005c18                SysTick_Handler
- .text.OSInit   0x08005c40       0x38 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005c40                OSInit
+                0x08005ae8       0x28 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x08005ae8                SysTick_Handler
+ .text.OSInit   0x08005b10       0x38 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005b10                OSInit
  .text.OSIntEnter
-                0x08005c78       0x34 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005c78                OSIntEnter
+                0x08005b48       0x34 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005b48                OSIntEnter
  .text.OSIntExit
-                0x08005cac       0xa4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005cac                OSIntExit
- .text.OSStart  0x08005d50       0x50 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005d50                OSStart
+                0x08005b7c       0xa4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005b7c                OSIntExit
+ .text.OSStart  0x08005c20       0x50 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005c20                OSStart
  .text.OSTimeTick
-                0x08005da0      0x140 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005da0                OSTimeTick
+                0x08005c70      0x140 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005c70                OSTimeTick
  .text.OS_Dummy
-                0x08005ee0        0xe CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005ee0                OS_Dummy
+                0x08005db0        0xe CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005db0                OS_Dummy
  .text.OS_EventTaskRemove
-                0x08005eee       0x66 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005eee                OS_EventTaskRemove
+                0x08005dbe       0x66 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005dbe                OS_EventTaskRemove
  .text.OS_InitEventList
-                0x08005f54       0x94 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005e24       0x94 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitMisc
-                0x08005fe8       0x7c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005eb8       0x7c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitRdyList
-                0x08006064       0x64 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005f34       0x64 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitTaskIdle
-                0x080060c8       0x4c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005f98       0x4c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitTaskStat
-                0x08006114       0x4c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005fe4       0x4c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitTCBList
-                0x08006160       0x9c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08006030       0x9c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_MemClr
-                0x080061fc       0x32 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x080061fc                OS_MemClr
- *fill*         0x0800622e        0x2 
+                0x080060cc       0x32 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x080060cc                OS_MemClr
+ *fill*         0x080060fe        0x2 
  .text.OS_Sched
-                0x08006230       0x84 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08006230                OS_Sched
+                0x08006100       0x84 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08006100                OS_Sched
  .text.OS_SchedNew
-                0x080062b4       0x48 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08006184       0x48 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_TaskIdle
-                0x080062fc       0x30 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x080062fc                OS_TaskIdle
+                0x080061cc       0x30 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x080061cc                OS_TaskIdle
  .text.OS_TaskStat
-                0x0800632c       0xf0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x0800632c                OS_TaskStat
+                0x080061fc       0xf0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x080061fc                OS_TaskStat
  .text.OS_TaskStatStkChk
-                0x0800641c       0x68 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x0800641c                OS_TaskStatStkChk
+                0x080062ec       0x68 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x080062ec                OS_TaskStatStkChk
  .text.OS_TCBInit
-                0x08006484      0x1e0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08006484                OS_TCBInit
+                0x08006354      0x1e0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08006354                OS_TCBInit
  .text.OSDebugInit
-                0x08006664      0x184 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08006664                OSDebugInit
+                0x08006534      0x184 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08006534                OSDebugInit
  .text.OS_FlagInit
-                0x080067e8       0x84 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
-                0x080067e8                OS_FlagInit
+                0x080066b8       0x84 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+                0x080066b8                OS_FlagInit
  .text.OS_FlagUnlink
-                0x0800686c       0x5e CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
-                0x0800686c                OS_FlagUnlink
- *fill*         0x080068ca        0x2 
+                0x0800673c       0x5e CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+                0x0800673c                OS_FlagUnlink
+ *fill*         0x0800679a        0x2 
  .text.OS_MemInit
-                0x080068cc       0x80 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
-                0x080068cc                OS_MemInit
+                0x0800679c       0x80 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+                0x0800679c                OS_MemInit
  .text.OS_QInit
-                0x0800694c       0x78 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
-                0x0800694c                OS_QInit
+                0x0800681c       0x78 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+                0x0800681c                OS_QInit
  .text.OSTaskCreate
-                0x080069c4       0xc0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x080069c4                OSTaskCreate
+                0x08006894       0xc0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006894                OSTaskCreate
  .text.OSTaskCreateExt
-                0x08006a84       0xcc CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006a84                OSTaskCreateExt
+                0x08006954       0xcc CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006954                OSTaskCreateExt
  .text.OSTaskDel
-                0x08006b50      0x1cc CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006b50                OSTaskDel
+                0x08006a20      0x1cc CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006a20                OSTaskDel
  .text.OSTaskNameSet
-                0x08006d1c       0x90 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006d1c                OSTaskNameSet
+                0x08006bec       0x90 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006bec                OSTaskNameSet
  .text.OSTaskStkChk
-                0x08006dac       0xc0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006dac                OSTaskStkChk
+                0x08006c7c       0xc0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006c7c                OSTaskStkChk
  .text.OSTaskSuspend
-                0x08006e6c       0xec CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006e6c                OSTaskSuspend
+                0x08006d3c       0xec CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006d3c                OSTaskSuspend
  .text.OS_TaskReturn
-                0x08006f58       0x1c CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006f58                OS_TaskReturn
+                0x08006e28       0x1c CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006e28                OS_TaskReturn
  .text.OS_TaskStkClr
-                0x08006f74       0x46 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006f74                OS_TaskStkClr
- *fill*         0x08006fba        0x2 
+                0x08006e44       0x46 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006e44                OS_TaskStkClr
+ *fill*         0x08006e8a        0x2 
  .text.OSTimeDly
-                0x08006fbc       0xb8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
-                0x08006fbc                OSTimeDly
+                0x08006e8c       0xb8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+                0x08006e8c                OSTimeDly
  .text.OSTimeGet
-                0x08007074       0x2c CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
-                0x08007074                OSTimeGet
+                0x08006f44       0x2c CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+                0x08006f44                OSTimeGet
  .text.Reset_Handler
-                0x080070a0       0x50 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
-                0x080070a0                Reset_Handler
+                0x08006f70       0x50 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+                0x08006f70                Reset_Handler
  .text.Default_Handler
-                0x080070f0        0x2 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
-                0x080070f0                RTC_Alarm_IRQHandler
-                0x080070f0                EXTI2_IRQHandler
-                0x080070f0                DebugMon_Handler
-                0x080070f0                SPI4_IRQHandler
-                0x080070f0                DMA2_Stream5_IRQHandler
-                0x080070f0                HardFault_Handler
-                0x080070f0                DMA1_Stream5_IRQHandler
-                0x080070f0                PVD_IRQHandler
-                0x080070f0                SDIO_IRQHandler
-                0x080070f0                TAMP_STAMP_IRQHandler
-                0x080070f0                NMI_Handler
-                0x080070f0                EXTI3_IRQHandler
-                0x080070f0                TIM1_UP_TIM10_IRQHandler
-                0x080070f0                I2C3_ER_IRQHandler
-                0x080070f0                EXTI0_IRQHandler
-                0x080070f0                I2C2_EV_IRQHandler
-                0x080070f0                DMA1_Stream2_IRQHandler
-                0x080070f0                FPU_IRQHandler
-                0x080070f0                UsageFault_Handler
-                0x080070f0                DMA2_Stream2_IRQHandler
-                0x080070f0                SPI1_IRQHandler
-                0x080070f0                TIM1_BRK_TIM9_IRQHandler
-                0x080070f0                DMA2_Stream3_IRQHandler
-                0x080070f0                USART6_IRQHandler
-                0x080070f0                DMA2_Stream0_IRQHandler
-                0x080070f0                TIM4_IRQHandler
-                0x080070f0                I2C1_EV_IRQHandler
-                0x080070f0                DMA1_Stream6_IRQHandler
-                0x080070f0                DMA1_Stream1_IRQHandler
-                0x080070f0                TIM3_IRQHandler
-                0x080070f0                RCC_IRQHandler
-                0x080070f0                Default_Handler
-                0x080070f0                EXTI15_10_IRQHandler
-                0x080070f0                ADC_IRQHandler
-                0x080070f0                DMA1_Stream7_IRQHandler
-                0x080070f0                TIM5_IRQHandler
-                0x080070f0                DMA2_Stream7_IRQHandler
-                0x080070f0                I2C3_EV_IRQHandler
-                0x080070f0                EXTI9_5_IRQHandler
-                0x080070f0                RTC_WKUP_IRQHandler
-                0x080070f0                SPI2_IRQHandler
-                0x080070f0                MemManage_Handler
-                0x080070f0                DMA1_Stream0_IRQHandler
-                0x080070f0                SVC_Handler
-                0x080070f0                EXTI4_IRQHandler
-                0x080070f0                WWDG_IRQHandler
-                0x080070f0                TIM2_IRQHandler
-                0x080070f0                OTG_FS_WKUP_IRQHandler
-                0x080070f0                TIM1_TRG_COM_TIM11_IRQHandler
-                0x080070f0                EXTI1_IRQHandler
-                0x080070f0                USART2_IRQHandler
-                0x080070f0                I2C2_ER_IRQHandler
-                0x080070f0                DMA2_Stream1_IRQHandler
-                0x080070f0                FLASH_IRQHandler
-                0x080070f0                DMA2_Stream4_IRQHandler
-                0x080070f0                BusFault_Handler
-                0x080070f0                USART1_IRQHandler
-                0x080070f0                OTG_FS_IRQHandler
-                0x080070f0                SPI3_IRQHandler
-                0x080070f0                DMA1_Stream4_IRQHandler
-                0x080070f0                I2C1_ER_IRQHandler
-                0x080070f0                DMA2_Stream6_IRQHandler
-                0x080070f0                DMA1_Stream3_IRQHandler
- *fill*         0x080070f2        0x2 
+                0x08006fc0        0x2 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+                0x08006fc0                RTC_Alarm_IRQHandler
+                0x08006fc0                EXTI2_IRQHandler
+                0x08006fc0                DebugMon_Handler
+                0x08006fc0                SPI4_IRQHandler
+                0x08006fc0                DMA2_Stream5_IRQHandler
+                0x08006fc0                HardFault_Handler
+                0x08006fc0                DMA1_Stream5_IRQHandler
+                0x08006fc0                PVD_IRQHandler
+                0x08006fc0                SDIO_IRQHandler
+                0x08006fc0                TAMP_STAMP_IRQHandler
+                0x08006fc0                NMI_Handler
+                0x08006fc0                EXTI3_IRQHandler
+                0x08006fc0                TIM1_UP_TIM10_IRQHandler
+                0x08006fc0                I2C3_ER_IRQHandler
+                0x08006fc0                EXTI0_IRQHandler
+                0x08006fc0                I2C2_EV_IRQHandler
+                0x08006fc0                DMA1_Stream2_IRQHandler
+                0x08006fc0                FPU_IRQHandler
+                0x08006fc0                UsageFault_Handler
+                0x08006fc0                DMA2_Stream2_IRQHandler
+                0x08006fc0                SPI1_IRQHandler
+                0x08006fc0                TIM1_BRK_TIM9_IRQHandler
+                0x08006fc0                DMA2_Stream3_IRQHandler
+                0x08006fc0                USART6_IRQHandler
+                0x08006fc0                DMA2_Stream0_IRQHandler
+                0x08006fc0                TIM4_IRQHandler
+                0x08006fc0                I2C1_EV_IRQHandler
+                0x08006fc0                DMA1_Stream6_IRQHandler
+                0x08006fc0                DMA1_Stream1_IRQHandler
+                0x08006fc0                TIM3_IRQHandler
+                0x08006fc0                RCC_IRQHandler
+                0x08006fc0                Default_Handler
+                0x08006fc0                EXTI15_10_IRQHandler
+                0x08006fc0                ADC_IRQHandler
+                0x08006fc0                DMA1_Stream7_IRQHandler
+                0x08006fc0                TIM5_IRQHandler
+                0x08006fc0                DMA2_Stream7_IRQHandler
+                0x08006fc0                I2C3_EV_IRQHandler
+                0x08006fc0                EXTI9_5_IRQHandler
+                0x08006fc0                RTC_WKUP_IRQHandler
+                0x08006fc0                SPI2_IRQHandler
+                0x08006fc0                MemManage_Handler
+                0x08006fc0                DMA1_Stream0_IRQHandler
+                0x08006fc0                SVC_Handler
+                0x08006fc0                EXTI4_IRQHandler
+                0x08006fc0                WWDG_IRQHandler
+                0x08006fc0                TIM2_IRQHandler
+                0x08006fc0                OTG_FS_WKUP_IRQHandler
+                0x08006fc0                TIM1_TRG_COM_TIM11_IRQHandler
+                0x08006fc0                EXTI1_IRQHandler
+                0x08006fc0                USART2_IRQHandler
+                0x08006fc0                I2C2_ER_IRQHandler
+                0x08006fc0                DMA2_Stream1_IRQHandler
+                0x08006fc0                FLASH_IRQHandler
+                0x08006fc0                DMA2_Stream4_IRQHandler
+                0x08006fc0                BusFault_Handler
+                0x08006fc0                USART1_IRQHandler
+                0x08006fc0                OTG_FS_IRQHandler
+                0x08006fc0                SPI3_IRQHandler
+                0x08006fc0                DMA1_Stream4_IRQHandler
+                0x08006fc0                I2C1_ER_IRQHandler
+                0x08006fc0                DMA2_Stream6_IRQHandler
+                0x08006fc0                DMA1_Stream3_IRQHandler
+ *fill*         0x08006fc2        0x2 
  .text.SystemInit
-                0x080070f4       0x6c CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
-                0x080070f4                SystemInit
+                0x08006fc4       0x6c CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+                0x08006fc4                SystemInit
  .text.SetSysClock
-                0x08007160       0xf4 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .text._fstat   0x08007254       0x20 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08007254                _fstat
- .text._isatty  0x08007274       0x16 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08007274                _isatty
- .text._close   0x0800728a       0x18 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x0800728a                _close
- .text._lseek   0x080072a2       0x1a CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x080072a2                _lseek
- .text._write   0x080072bc       0x38 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x080072bc                _write
- .text._read    0x080072f4       0x1a CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x080072f4                _read
- *fill*         0x0800730e        0x2 
- .text._sbrk    0x08007310       0x40 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08007310                _sbrk
- .text._kill    0x08007350       0x24 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08007350                _kill
- .text._getpid  0x08007374       0x16 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08007374                _getpid
- .text._exit    0x0800738a        0xc CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x0800738a                _exit
- *fill*         0x08007396        0x2 
- .text.printf   0x08007398       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
-                0x08007398                printf
- .text._puts_r  0x080073c0       0x98 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
-                0x080073c0                _puts_r
- .text.puts     0x08007458       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
-                0x08007458                puts
+                0x08007030       0xf4 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .text._fstat   0x08007124       0x20 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08007124                _fstat
+ .text._isatty  0x08007144       0x16 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08007144                _isatty
+ .text._close   0x0800715a       0x18 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x0800715a                _close
+ .text._lseek   0x08007172       0x1a CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08007172                _lseek
+ .text._write   0x0800718c       0x38 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x0800718c                _write
+ .text._read    0x080071c4       0x1a CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x080071c4                _read
+ *fill*         0x080071de        0x2 
+ .text._sbrk    0x080071e0       0x40 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x080071e0                _sbrk
+ .text._kill    0x08007220       0x24 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08007220                _kill
+ .text._getpid  0x08007244       0x16 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08007244                _getpid
+ .text._exit    0x0800725a        0xc CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x0800725a                _exit
+ *fill*         0x08007266        0x2 
+ .text.printf   0x08007268       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
+                0x08007268                printf
+ .text._puts_r  0x08007290       0x98 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+                0x08007290                _puts_r
+ .text.puts     0x08007328       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+                0x08007328                puts
  .text._vfprintf_r
-                0x08007468     0x1ae4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
-                0x08007468                _vfprintf_r
+                0x08007338     0x1ae4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
+                0x08007338                _vfprintf_r
  .text.__sbprintf
-                0x08008f4c       0x80 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
+                0x08008e1c       0x80 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
  .text.__sprint_r.part.0
-                0x08008fcc       0x78 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+                0x08008e9c       0x78 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
  .text.__sprint_r
-                0x08009044       0x18 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
-                0x08009044                __sprint_r
+                0x08008f14       0x18 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+                0x08008f14                __sprint_r
  .text._vfiprintf_r
-                0x0800905c      0xd4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
-                0x0800905c                _vfiprintf_r
+                0x08008f2c      0xd4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+                0x08008f2c                _vfiprintf_r
  .text.__sbprintf
-                0x08009da8       0x80 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+                0x08009c78       0x80 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
  .text.__sfvwrite_r
-                0x08009e28      0x300 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
-                0x08009e28                __sfvwrite_r
+                0x08009cf8      0x300 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+                0x08009cf8                __sfvwrite_r
  .text.__swsetup_r
-                0x0800a128       0xc0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
-                0x0800a128                __swsetup_r
+                0x08009ff8       0xc0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+                0x08009ff8                __swsetup_r
  .text.__fputwc
-                0x0800a1e8       0x7c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
-                0x0800a1e8                __fputwc
+                0x0800a0b8       0x7c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
+                0x0800a0b8                __fputwc
  .text._fputwc_r
-                0x0800a264       0x60 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
-                0x0800a264                _fputwc_r
- .text.memmove  0x0800a2c4      0x100 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
-                0x0800a2c4                memmove
- .text.strncpy  0x0800a3c4       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
-                0x0800a3c4                strncpy
+                0x0800a134       0x60 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
+                0x0800a134                _fputwc_r
+ .text.memmove  0x0800a194      0x100 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+                0x0800a194                memmove
+ .text.strncpy  0x0800a294       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
+                0x0800a294                strncpy
  .text.__locale_mb_cur_max
-                0x0800a42c        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
-                0x0800a42c                __locale_mb_cur_max
+                0x0800a2fc        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
+                0x0800a2fc                __locale_mb_cur_max
  .text._localeconv_r
-                0x0800a438        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
-                0x0800a438                _localeconv_r
- .text.frexp    0x0800a440       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
-                0x0800a440                frexp
- .text.quorem   0x0800a4a8      0x12c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
- *fill*         0x0800a5d4        0x4 
- .text._dtoa_r  0x0800a5d8      0xe4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
-                0x0800a5d8                _dtoa_r
+                0x0800a308        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
+                0x0800a308                _localeconv_r
+ .text.frexp    0x0800a310       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
+                0x0800a310                frexp
+ .text.quorem   0x0800a378      0x12c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
+ *fill*         0x0800a4a4        0x4 
+ .text._dtoa_r  0x0800a4a8      0xe4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
+                0x0800a4a8                _dtoa_r
  .text.__ascii_mbtowc
-                0x0800b424       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
-                0x0800b424                __ascii_mbtowc
- .text._Balloc  0x0800b450       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b450                _Balloc
- .text._Bfree   0x0800b49c       0x14 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b49c                _Bfree
+                0x0800b2f4       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
+                0x0800b2f4                __ascii_mbtowc
+ .text._Balloc  0x0800b320       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b320                _Balloc
+ .text._Bfree   0x0800b36c       0x14 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b36c                _Bfree
  .text.__multadd
-                0x0800b4b0       0xa0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b4b0                __multadd
+                0x0800b380       0xa0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b380                __multadd
  .text.__hi0bits
-                0x0800b550       0x44 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b550                __hi0bits
+                0x0800b420       0x44 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b420                __hi0bits
  .text.__lo0bits
-                0x0800b594       0x60 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b594                __lo0bits
- .text.__i2b    0x0800b5f4       0x5c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b5f4                __i2b
+                0x0800b464       0x60 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b464                __lo0bits
+ .text.__i2b    0x0800b4c4       0x5c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b4c4                __i2b
  .text.__multiply
-                0x0800b650      0x16c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b650                __multiply
+                0x0800b520      0x16c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b520                __multiply
  .text.__pow5mult
-                0x0800b7bc       0xb4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b7bc                __pow5mult
+                0x0800b68c       0xb4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b68c                __pow5mult
  .text.__lshift
-                0x0800b870       0xf0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b870                __lshift
- .text.__mcmp   0x0800b960       0x44 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b960                __mcmp
- .text.__mdiff  0x0800b9a4      0x164 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800b9a4                __mdiff
- .text.__d2b    0x0800bb08       0xc0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800bb08                __d2b
+                0x0800b740       0xf0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b740                __lshift
+ .text.__mcmp   0x0800b830       0x44 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b830                __mcmp
+ .text.__mdiff  0x0800b874      0x164 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b874                __mdiff
+ .text.__d2b    0x0800b9d8       0xc0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800b9d8                __d2b
  .text._realloc_r
-                0x0800bbc8      0x344 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
-                0x0800bbc8                _realloc_r
+                0x0800ba98      0x344 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+                0x0800ba98                _realloc_r
  .text.__ascii_wctomb
-                0x0800bf0c       0x1c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
-                0x0800bf0c                __ascii_wctomb
+                0x0800bddc       0x1c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
+                0x0800bddc                __ascii_wctomb
  .text._wcrtomb_r
-                0x0800bf28       0x34 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
-                0x0800bf28                _wcrtomb_r
+                0x0800bdf8       0x34 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
+                0x0800bdf8                _wcrtomb_r
  .text.__smakebuf_r
-                0x0800bf5c       0xdc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
-                0x0800bf5c                __smakebuf_r
+                0x0800be2c       0xdc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+                0x0800be2c                __smakebuf_r
  .text.__swbuf_r
-                0x0800c038       0xac /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
-                0x0800c038                __swbuf_r
+                0x0800bf08       0xac /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
+                0x0800bf08                __swbuf_r
  .text._fstat_r
-                0x0800c0e4       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
-                0x0800c0e4                _fstat_r
+                0x0800bfb4       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+                0x0800bfb4                _fstat_r
  .text._isatty_r
-                0x0800c110       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
-                0x0800c110                _isatty_r
+                0x0800bfe0       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+                0x0800bfe0                _isatty_r
  .text.__assert_func
-                0x0800c134       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
-                0x0800c134                __assert_func
+                0x0800c004       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
+                0x0800c004                __assert_func
  .text._calloc_r
-                0x0800c174       0x6c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
-                0x0800c174                _calloc_r
+                0x0800c044       0x6c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
+                0x0800c044                _calloc_r
  .text.fiprintf
-                0x0800c1e0       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
-                0x0800c1e0                fiprintf
- .text.abort    0x0800c208       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
-                0x0800c208                abort
- .text.raise    0x0800c218       0x58 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
-                0x0800c218                raise
- .text._kill_r  0x0800c270       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
-                0x0800c270                _kill_r
+                0x0800c0b0       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
+                0x0800c0b0                fiprintf
+ .text.abort    0x0800c0d8       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
+                0x0800c0d8                abort
+ .text.raise    0x0800c0e8       0x58 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
+                0x0800c0e8                raise
+ .text._kill_r  0x0800c140       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
+                0x0800c140                _kill_r
  .text._getpid_r
-                0x0800c29c        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
-                0x0800c29c                _getpid_r
- .text.sqrt     0x0800c2a0       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-w_sqrt.o)
-                0x0800c2a0                sqrt
- .text.asinf    0x0800c308       0x58 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-wf_asin.o)
-                0x0800c308                asinf
- .text.atan2f   0x0800c360        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-wf_atan2.o)
-                0x0800c360                atan2f
- .text.fabsf    0x0800c364       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_fabs.o)
-                0x0800c364                fabsf
- .text.nanf     0x0800c374        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_nan.o)
-                0x0800c374                nanf
+                0x0800c16c        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
+                0x0800c16c                _getpid_r
+ .text.sqrt     0x0800c170       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-w_sqrt.o)
+                0x0800c170                sqrt
+ .text.asinf    0x0800c1d8       0x58 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-wf_asin.o)
+                0x0800c1d8                asinf
+ .text.atan2f   0x0800c230        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-wf_atan2.o)
+                0x0800c230                atan2f
+ .text.fabsf    0x0800c234       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_fabs.o)
+                0x0800c234                fabsf
+ .text.nanf     0x0800c244        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_nan.o)
+                0x0800c244                nanf
  .text.__ieee754_sqrt
-                0x0800c380      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-e_sqrt.o)
-                0x0800c380                __ieee754_sqrt
+                0x0800c250      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-e_sqrt.o)
+                0x0800c250                __ieee754_sqrt
  .text.__ieee754_asinf
-                0x0800c574      0x1fc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_asin.o)
-                0x0800c574                __ieee754_asinf
+                0x0800c444      0x1fc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_asin.o)
+                0x0800c444                __ieee754_asinf
  .text.__ieee754_atan2f
-                0x0800c770      0x150 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
-                0x0800c770                __ieee754_atan2f
- .text.atanf    0x0800c8c0      0x1ac /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
-                0x0800c8c0                atanf
+                0x0800c640      0x150 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
+                0x0800c640                __ieee754_atan2f
+ .text.atanf    0x0800c790      0x1ac /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
+                0x0800c790                atanf
  .text.__ieee754_sqrtf
-                0x0800ca6c        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_sqrt.o)
-                0x0800ca6c                __ieee754_sqrtf
+                0x0800c93c        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_sqrt.o)
+                0x0800c93c                __ieee754_sqrtf
  *(.glue_7)
- .glue_7        0x0800ca74        0x0 linker stubs
+ .glue_7        0x0800c944        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0800ca74        0x0 linker stubs
+ .glue_7t       0x0800c944        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0800ca74        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x0800c944        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
  *(.init)
- .init          0x0800ca74        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o
-                0x0800ca74                _init
- .init          0x0800ca78        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x0800c944        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o
+                0x0800c944                _init
+ .init          0x0800c948        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x0800ca80        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o
-                0x0800ca80                _fini
- .fini          0x0800ca84        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
-                0x0800ca8c                        . = ALIGN (0x4)
-                0x0800ca8c                        _etext = .
+ .fini          0x0800c950        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o
+                0x0800c950                _fini
+ .fini          0x0800c954        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
+                0x0800c95c                        . = ALIGN (0x4)
+                0x0800c95c                        _etext = .
 
-.vfp11_veneer   0x0800ca8c        0x0
- .vfp11_veneer  0x0800ca8c        0x0 linker stubs
+.vfp11_veneer   0x0800c95c        0x0
+ .vfp11_veneer  0x0800c95c        0x0 linker stubs
 
-.v4_bx          0x0800ca8c        0x0
- .v4_bx         0x0800ca8c        0x0 linker stubs
+.v4_bx          0x0800c95c        0x0
+ .v4_bx         0x0800c95c        0x0 linker stubs
 
-.iplt           0x0800ca8c        0x0
- .iplt          0x0800ca8c        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x0800c95c        0x0
+ .iplt          0x0800c95c        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x0800ca90      0x6ac
-                0x0800ca90                        . = ALIGN (0x4)
+.rodata         0x0800c960      0x67c
+                0x0800c960                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x0800ca90      0x15b CMakeFiles/freefly.elf.dir/Application/main.c.obj
- *fill*         0x0800cbeb        0x1 
- .rodata        0x0800cbec       0x22 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- *fill*         0x0800cc0e        0x2 
- .rodata        0x0800cc10        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- *fill*         0x0800cc12        0x2 
- .rodata        0x0800cc14        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- *fill*         0x0800cc16        0x2 
- .rodata        0x0800cc18        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .rodata        0x0800c960      0x12f CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ *fill*         0x0800ca8f        0x1 
+ .rodata        0x0800ca90       0x22 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ *fill*         0x0800cab2        0x2 
+ .rodata        0x0800cab4        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ *fill*         0x0800cab6        0x2 
+ .rodata        0x0800cab8        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ *fill*         0x0800caba        0x2 
+ .rodata        0x0800cabc        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
  *(.rodata*)
- *fill*         0x0800cc1a        0x2 
+ *fill*         0x0800cabe        0x2 
  .rodata.OSUnMapTbl
-                0x0800cc1c      0x100 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x0800cc1c                OSUnMapTbl
+                0x0800cac0      0x100 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x0800cac0                OSUnMapTbl
  .rodata.OSDebugEn
-                0x0800cd1c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd1c                OSDebugEn
- *fill*         0x0800cd1e        0x2 
+                0x0800cbc0        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbc0                OSDebugEn
+ *fill*         0x0800cbc2        0x2 
  .rodata.OSEndiannessTest
-                0x0800cd20        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd20                OSEndiannessTest
+                0x0800cbc4        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbc4                OSEndiannessTest
  .rodata.OSEventEn
-                0x0800cd24        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd24                OSEventEn
+                0x0800cbc8        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbc8                OSEventEn
  .rodata.OSEventMax
-                0x0800cd26        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd26                OSEventMax
+                0x0800cbca        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbca                OSEventMax
  .rodata.OSEventNameEn
-                0x0800cd28        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd28                OSEventNameEn
+                0x0800cbcc        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbcc                OSEventNameEn
  .rodata.OSEventSize
-                0x0800cd2a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd2a                OSEventSize
+                0x0800cbce        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbce                OSEventSize
  .rodata.OSEventTblSize
-                0x0800cd2c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd2c                OSEventTblSize
+                0x0800cbd0        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbd0                OSEventTblSize
  .rodata.OSEventMultiEn
-                0x0800cd2e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd2e                OSEventMultiEn
+                0x0800cbd2        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbd2                OSEventMultiEn
  .rodata.OSFlagEn
-                0x0800cd30        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd30                OSFlagEn
+                0x0800cbd4        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbd4                OSFlagEn
  .rodata.OSFlagGrpSize
-                0x0800cd32        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd32                OSFlagGrpSize
+                0x0800cbd6        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbd6                OSFlagGrpSize
  .rodata.OSFlagNodeSize
-                0x0800cd34        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd34                OSFlagNodeSize
+                0x0800cbd8        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbd8                OSFlagNodeSize
  .rodata.OSFlagWidth
-                0x0800cd36        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd36                OSFlagWidth
+                0x0800cbda        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbda                OSFlagWidth
  .rodata.OSFlagMax
-                0x0800cd38        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd38                OSFlagMax
+                0x0800cbdc        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbdc                OSFlagMax
  .rodata.OSFlagNameEn
-                0x0800cd3a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd3a                OSFlagNameEn
+                0x0800cbde        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbde                OSFlagNameEn
  .rodata.OSLowestPrio
-                0x0800cd3c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd3c                OSLowestPrio
+                0x0800cbe0        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbe0                OSLowestPrio
  .rodata.OSMboxEn
-                0x0800cd3e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd3e                OSMboxEn
+                0x0800cbe2        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbe2                OSMboxEn
  .rodata.OSMemEn
-                0x0800cd40        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd40                OSMemEn
+                0x0800cbe4        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbe4                OSMemEn
  .rodata.OSMemMax
-                0x0800cd42        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd42                OSMemMax
+                0x0800cbe6        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbe6                OSMemMax
  .rodata.OSMemNameEn
-                0x0800cd44        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd44                OSMemNameEn
+                0x0800cbe8        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbe8                OSMemNameEn
  .rodata.OSMemSize
-                0x0800cd46        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd46                OSMemSize
+                0x0800cbea        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbea                OSMemSize
  .rodata.OSMemTblSize
-                0x0800cd48        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd48                OSMemTblSize
+                0x0800cbec        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbec                OSMemTblSize
  .rodata.OSMutexEn
-                0x0800cd4a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd4a                OSMutexEn
+                0x0800cbee        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbee                OSMutexEn
  .rodata.OSPtrSize
-                0x0800cd4c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd4c                OSPtrSize
- .rodata.OSQEn  0x0800cd4e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd4e                OSQEn
+                0x0800cbf0        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbf0                OSPtrSize
+ .rodata.OSQEn  0x0800cbf2        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbf2                OSQEn
  .rodata.OSQMax
-                0x0800cd50        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd50                OSQMax
+                0x0800cbf4        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbf4                OSQMax
  .rodata.OSQSize
-                0x0800cd52        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd52                OSQSize
+                0x0800cbf6        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbf6                OSQSize
  .rodata.OSRdyTblSize
-                0x0800cd54        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd54                OSRdyTblSize
+                0x0800cbf8        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbf8                OSRdyTblSize
  .rodata.OSSemEn
-                0x0800cd56        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd56                OSSemEn
+                0x0800cbfa        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbfa                OSSemEn
  .rodata.OSStkWidth
-                0x0800cd58        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd58                OSStkWidth
+                0x0800cbfc        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbfc                OSStkWidth
  .rodata.OSTaskCreateEn
-                0x0800cd5a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd5a                OSTaskCreateEn
+                0x0800cbfe        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cbfe                OSTaskCreateEn
  .rodata.OSTaskCreateExtEn
-                0x0800cd5c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd5c                OSTaskCreateExtEn
+                0x0800cc00        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc00                OSTaskCreateExtEn
  .rodata.OSTaskDelEn
-                0x0800cd5e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd5e                OSTaskDelEn
+                0x0800cc02        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc02                OSTaskDelEn
  .rodata.OSTaskIdleStkSize
-                0x0800cd60        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd60                OSTaskIdleStkSize
+                0x0800cc04        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc04                OSTaskIdleStkSize
  .rodata.OSTaskProfileEn
-                0x0800cd62        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd62                OSTaskProfileEn
+                0x0800cc06        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc06                OSTaskProfileEn
  .rodata.OSTaskMax
-                0x0800cd64        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd64                OSTaskMax
+                0x0800cc08        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc08                OSTaskMax
  .rodata.OSTaskNameEn
-                0x0800cd66        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd66                OSTaskNameEn
+                0x0800cc0a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc0a                OSTaskNameEn
  .rodata.OSTaskStatEn
-                0x0800cd68        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd68                OSTaskStatEn
+                0x0800cc0c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc0c                OSTaskStatEn
  .rodata.OSTaskStatStkSize
-                0x0800cd6a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd6a                OSTaskStatStkSize
+                0x0800cc0e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc0e                OSTaskStatStkSize
  .rodata.OSTaskStatStkChkEn
-                0x0800cd6c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd6c                OSTaskStatStkChkEn
+                0x0800cc10        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc10                OSTaskStatStkChkEn
  .rodata.OSTaskSwHookEn
-                0x0800cd6e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd6e                OSTaskSwHookEn
+                0x0800cc12        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc12                OSTaskSwHookEn
  .rodata.OSTCBPrioTblMax
-                0x0800cd70        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd70                OSTCBPrioTblMax
+                0x0800cc14        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc14                OSTCBPrioTblMax
  .rodata.OSTCBSize
-                0x0800cd72        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd72                OSTCBSize
+                0x0800cc16        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc16                OSTCBSize
  .rodata.OSTicksPerSec
-                0x0800cd74        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd74                OSTicksPerSec
+                0x0800cc18        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc18                OSTicksPerSec
  .rodata.OSTimeTickHookEn
-                0x0800cd76        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd76                OSTimeTickHookEn
+                0x0800cc1a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc1a                OSTimeTickHookEn
  .rodata.OSVersionNbr
-                0x0800cd78        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd78                OSVersionNbr
+                0x0800cc1c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc1c                OSVersionNbr
  .rodata.OSDataSize
-                0x0800cd7a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800cd7a                OSDataSize
+                0x0800cc1e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800cc1e                OSDataSize
  .rodata._puts_r.str1.4
-                0x0800cd7c      0x143 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+                0x0800cc20      0x143 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
                                   0x2 (size before relaxing)
  .rodata._vfprintf_r.str1.4
-                0x0800cebf       0x42 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
- *fill*         0x0800cebf        0x1 
+                0x0800cd63       0x42 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
+ *fill*         0x0800cd63        0x1 
  .rodata.zeroes.0
-                0x0800cec0       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
+                0x0800cd64       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
  .rodata.blanks.1
-                0x0800ced0       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
+                0x0800cd74       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
  .rodata._vfiprintf_r.str1.4
-                0x0800cee0       0x2f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+                0x0800cd84       0x2f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
  .rodata.zeroes.0
-                0x0800cee0       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+                0x0800cd84       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
  .rodata.blanks.1
-                0x0800cef0       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+                0x0800cd94       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
  .rodata._setlocale_r.str1.4
-                0x0800cf00        0xd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
+                0x0800cda4        0xd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
  .rodata.str1.4
-                0x0800cf00        0x2 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
+                0x0800cda4        0x2 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
  .rodata._dtoa_r.str1.4
-                0x0800cf00       0x6a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
+                0x0800cda4       0x6a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
  .rodata.__multadd.str1.4
-                0x0800cf00       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
- .rodata.p05.0  0x0800cf00        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
- *fill*         0x0800cf0c        0x4 
+                0x0800cda4       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+ .rodata.p05.0  0x0800cda4        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
  .rodata.__mprec_bigtens
-                0x0800cf10       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800cf10                __mprec_bigtens
+                0x0800cdb0       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800cdb0                __mprec_bigtens
  .rodata.__mprec_tens
-                0x0800cf38       0xc8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
-                0x0800cf38                __mprec_tens
+                0x0800cdd8       0xc8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+                0x0800cdd8                __mprec_tens
  .rodata._ctype_
-                0x0800d000      0x101 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-ctype_.o)
-                0x0800d000                _ctype_
+                0x0800cea0      0x101 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-ctype_.o)
+                0x0800cea0                _ctype_
  .rodata.__assert_func.str1.4
-                0x0800d101       0x43 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
+                0x0800cfa1       0x43 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
  .rodata.asinf.str1.4
-                0x0800d101        0x1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-wf_asin.o)
- *fill*         0x0800d101        0x3 
+                0x0800cfa1        0x1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-wf_asin.o)
+ *fill*         0x0800cfa1        0x3 
  .rodata.CSWTCH.9
-                0x0800d104        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
+                0x0800cfa4        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
  .rodata.CSWTCH.8
-                0x0800d110        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
+                0x0800cfb0        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
  .rodata.atanlo
-                0x0800d11c       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
+                0x0800cfbc       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
  .rodata.atanhi
-                0x0800d12c       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
-                0x0800d13c                        . = ALIGN (0x4)
+                0x0800cfcc       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
+                0x0800cfdc                        . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x0800d13c        0x8
-                0x0800d13c                        __exidx_start = .
+.ARM            0x0800cfdc        0x8
+                0x0800cfdc                        __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x0800d13c        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
- .ARM.exidx     0x0800d144        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+ .ARM.exidx     0x0800cfdc        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+ .ARM.exidx     0x0800cfe4        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x0800d144        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+ .ARM.exidx     0x0800cfe4        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
                                   0x8 (size before relaxing)
-                0x0800d144                        __exidx_end = .
+                0x0800cfe4                        __exidx_end = .
 
-.rel.dyn        0x0800d144        0x0
- .rel.iplt      0x0800d144        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x0800cfe4        0x0
+ .rel.iplt      0x0800cfe4        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
 
-.preinit_array  0x0800d144        0x0
-                0x0800d144                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x0800cfe4        0x0
+                0x0800cfe4                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x0800d144                        PROVIDE (__preinit_array_end = .)
+                0x0800cfe4                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x0800d144        0x8
-                0x0800d144                        PROVIDE (__init_array_start = .)
+.init_array     0x0800cfe4        0x8
+                0x0800cfe4                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.00000
-                0x0800d144        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__call_atexit.o)
+                0x0800cfe4        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__call_atexit.o)
  *(.init_array*)
- .init_array    0x0800d148        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
-                0x0800d14c                        PROVIDE (__init_array_end = .)
+ .init_array    0x0800cfe8        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0800cfec                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x0800d14c        0x4
-                0x0800d14c                        PROVIDE (__fini_array_start = .)
+.fini_array     0x0800cfec        0x4
+                0x0800cfec                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x0800d14c        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
-                0x0800d150                        PROVIDE (__fini_array_end = .)
-                0x0800d150                        _sidata = LOADADDR (.data)
+ .fini_array    0x0800cfec        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0800cff0                        PROVIDE (__fini_array_end = .)
+                0x0800cff0                        _sidata = LOADADDR (.data)
 
-.data           0x20000000      0x778 load address 0x0800d150
+.data           0x20000000      0x778 load address 0x0800cff0
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -4466,11 +4467,11 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
                 0x20000778                        . = ALIGN (0x4)
                 0x20000778                        _edata = .
 
-.igot.plt       0x20000778        0x0 load address 0x0800d8c8
+.igot.plt       0x20000778        0x0 load address 0x0800d768
  .igot.plt      0x20000778        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
                 0x20000778                        . = ALIGN (0x4)
 
-.bss            0x20000778     0x761c load address 0x0800d8c8
+.bss            0x20000778     0x761c load address 0x0800d768
                 0x20000778                        _sbss = .
                 0x20000778                        __bss_start__ = _sbss
  *(.bss)
@@ -4649,7 +4650,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
                 0x20007d94                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20007d94      0x604 load address 0x0800d8c8
+                0x20007d94      0x604 load address 0x0800d768
                 0x20007d98                        . = ALIGN (0x8)
  *fill*         0x20007d94        0x4 
                 [!provide]                        PROVIDE (end = .)
@@ -4858,7 +4859,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m
 LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a
 LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
 
-.debug_info     0x00000000    0x2bd9a
+.debug_info     0x00000000    0x2bd38
  .debug_info    0x00000000      0x118 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
  .debug_info    0x00000118     0x10da /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
  .debug_info    0x000011f2      0x7ee /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
@@ -4888,66 +4889,66 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_info    0x0000aa89      0xde8 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
  .debug_info    0x0000b871     0x1c0b CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
  .debug_info    0x0000d47c      0x9c6 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
- .debug_info    0x0000de42      0x768 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
- .debug_info    0x0000e5aa      0xd22 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
- .debug_info    0x0000f2cc      0x7d1 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
- .debug_info    0x0000fa9d      0x343 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
- .debug_info    0x0000fde0      0xb54 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
- .debug_info    0x00010934      0x671 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
- .debug_info    0x00010fa5      0x83e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
- .debug_info    0x000117e3      0xd04 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
- .debug_info    0x000124e7      0x7a2 CMakeFiles/freefly.elf.dir/Application/main.c.obj
- .debug_info    0x00012c89      0x10d CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
- .debug_info    0x00012d96       0x25 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
- .debug_info    0x00012dbb      0x5eb CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
- .debug_info    0x000133a6      0xfad CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- .debug_info    0x00014353      0x45e CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
- .debug_info    0x000147b1      0xa28 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- .debug_info    0x000151d9      0x465 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- .debug_info    0x0001563e      0x971 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
- .debug_info    0x00015faf      0xbda CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
- .debug_info    0x00016b89      0x540 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
- .debug_info    0x000170c9       0x30 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
- .debug_info    0x000170f9      0x615 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .debug_info    0x0001770e      0xb5f CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
- .debug_info    0x0001826d       0xd3 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_info    0x00018340       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_info    0x00018397       0xdf /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_info    0x00018476       0x3f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_info    0x000184b5      0x859 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
- .debug_info    0x00018d0e      0x942 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- .debug_info    0x00019650       0x31 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
- .debug_info    0x00019681       0x31 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
- .debug_info    0x000196b2     0x1cf5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
- .debug_info    0x0001b3a7     0x18df /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
- .debug_info    0x0001cc86      0xb19 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
- .debug_info    0x0001d79f      0x7d9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
- .debug_info    0x0001df78      0xaaf /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
- .debug_info    0x0001ea27      0x148 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
- .debug_info    0x0001eb6f      0x14a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
- .debug_info    0x0001ecb9      0xbe1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
- .debug_info    0x0001f89a      0xa36 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
- .debug_info    0x000202d0       0x25 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
- .debug_info    0x000202f5      0x1e0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
- .debug_info    0x000204d5     0x18e9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
- .debug_info    0x00021dbe      0xac0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
- .debug_info    0x0002287e     0x1e42 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
- .debug_info    0x000246c0      0xbcd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
- .debug_info    0x0002528d      0xa7c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
- .debug_info    0x00025d09      0xb36 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
- .debug_info    0x0002683f       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-ctype_.o)
- .debug_info    0x000268f8      0xc0c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
- .debug_info    0x00027504      0x87f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
- .debug_info    0x00027d83      0x993 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
- .debug_info    0x00028716      0x774 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
- .debug_info    0x00028e8a      0x83b /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
- .debug_info    0x000296c5      0x8d1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
- .debug_info    0x00029f96      0x86a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
- .debug_info    0x0002a800       0xd8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
- .debug_info    0x0002a8d8      0xc4f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
- .debug_info    0x0002b527      0x7fb /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
- .debug_info    0x0002bd22       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
- .debug_info    0x0002bd5e       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_fixdfsi.o)
+ .debug_info    0x0000de42      0x73d CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+ .debug_info    0x0000e57f      0xd22 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+ .debug_info    0x0000f2a1      0x7d1 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+ .debug_info    0x0000fa72      0x343 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+ .debug_info    0x0000fdb5      0xb55 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+ .debug_info    0x0001090a      0x671 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+ .debug_info    0x00010f7b      0x83e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+ .debug_info    0x000117b9      0xd04 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+ .debug_info    0x000124bd      0x76a CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .debug_info    0x00012c27      0x10d CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+ .debug_info    0x00012d34       0x25 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
+ .debug_info    0x00012d59      0x5eb CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+ .debug_info    0x00013344      0xfad CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ .debug_info    0x000142f1      0x45e CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+ .debug_info    0x0001474f      0xa28 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ .debug_info    0x00015177      0x465 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ .debug_info    0x000155dc      0x971 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+ .debug_info    0x00015f4d      0xbda CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .debug_info    0x00016b27      0x540 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+ .debug_info    0x00017067       0x30 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+ .debug_info    0x00017097      0x615 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .debug_info    0x000176ac      0xb5f CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+ .debug_info    0x0001820b       0xd3 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_info    0x000182de       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_info    0x00018335       0xdf /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_info    0x00018414       0x3f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_info    0x00018453      0x859 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
+ .debug_info    0x00018cac      0x942 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ .debug_info    0x000195ee       0x31 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+ .debug_info    0x0001961f       0x31 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+ .debug_info    0x00019650     0x1cf5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
+ .debug_info    0x0001b345     0x18df /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+ .debug_info    0x0001cc24      0xb19 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+ .debug_info    0x0001d73d      0x7d9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+ .debug_info    0x0001df16      0xaaf /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
+ .debug_info    0x0001e9c5      0x148 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+ .debug_info    0x0001eb0d      0x14a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
+ .debug_info    0x0001ec57      0xbe1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
+ .debug_info    0x0001f838      0xa36 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
+ .debug_info    0x0002026e       0x25 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+ .debug_info    0x00020293      0x1e0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
+ .debug_info    0x00020473     0x18e9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
+ .debug_info    0x00021d5c      0xac0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
+ .debug_info    0x0002281c     0x1e42 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+ .debug_info    0x0002465e      0xbcd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+ .debug_info    0x0002522b      0xa7c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
+ .debug_info    0x00025ca7      0xb36 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
+ .debug_info    0x000267dd       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-ctype_.o)
+ .debug_info    0x00026896      0xc0c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+ .debug_info    0x000274a2      0x87f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
+ .debug_info    0x00027d21      0x993 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+ .debug_info    0x000286b4      0x774 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+ .debug_info    0x00028e28      0x83b /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
+ .debug_info    0x00029663      0x8d1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
+ .debug_info    0x00029f34      0x86a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
+ .debug_info    0x0002a79e       0xd8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
+ .debug_info    0x0002a876      0xc4f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
+ .debug_info    0x0002b4c5      0x7fb /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
+ .debug_info    0x0002bcc0       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+ .debug_info    0x0002bcfc       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_fixdfsi.o)
 
 .debug_abbrev   0x00000000     0xa21b
  .debug_abbrev  0x00000000       0xc1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
@@ -5478,7 +5479,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_rnglists
                 0x00001680       0x19 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
 
-.debug_line     0x00000000    0x174f7
+.debug_line     0x00000000    0x174d9
  .debug_line    0x00000000       0xe4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
  .debug_line    0x000000e4      0x6a6 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
  .debug_line    0x0000078a      0x1f6 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
@@ -5508,158 +5509,158 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_line    0x00004293      0xaaa CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
  .debug_line    0x00004d3d     0x1167 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
  .debug_line    0x00005ea4      0x73e CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
- .debug_line    0x000065e2      0xc0f CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
- .debug_line    0x000071f1      0x3ea CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
- .debug_line    0x000075db      0x93f CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
- .debug_line    0x00007f1a      0x18f CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
- .debug_line    0x000080a9      0xb14 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
- .debug_line    0x00008bbd      0x204 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
- .debug_line    0x00008dc1      0x860 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
- .debug_line    0x00009621      0x3cb CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
- .debug_line    0x000099ec      0x3ce CMakeFiles/freefly.elf.dir/Application/main.c.obj
- .debug_line    0x00009dba      0x159 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
- .debug_line    0x00009f13       0xcc CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
- .debug_line    0x00009fdf      0x23a CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
- .debug_line    0x0000a219      0x881 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- .debug_line    0x0000aa9a       0xf1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
- .debug_line    0x0000ab8b      0x6bc CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- .debug_line    0x0000b247      0x29f CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- .debug_line    0x0000b4e6      0x5a5 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
- .debug_line    0x0000ba8b      0x6eb CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
- .debug_line    0x0000c176      0x22b CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
- .debug_line    0x0000c3a1       0x7a CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
- .debug_line    0x0000c41b      0x2ee CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .debug_line    0x0000c709      0x2b9 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
- .debug_line    0x0000c9c2      0x16f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_line    0x0000cb31      0x184 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_line    0x0000ccb5       0xa6 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_line    0x0000cd5b       0x76 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_line    0x0000cdd1      0x1f7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
- .debug_line    0x0000cfc8      0x2ab /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- .debug_line    0x0000d273       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
- .debug_line    0x0000d32c       0x86 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
- .debug_line    0x0000d3b2     0x1e9b /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
- .debug_line    0x0000f24d     0x14a9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
- .debug_line    0x000106f6      0x62a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
- .debug_line    0x00010d20      0x2fc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
- .debug_line    0x0001101c      0x394 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
- .debug_line    0x000113b0      0x214 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
- .debug_line    0x000115c4      0x1a2 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
- .debug_line    0x00011766      0x2d2 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
- .debug_line    0x00011a38      0x1c9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
- .debug_line    0x00011c01       0x84 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
- .debug_line    0x00011c85      0x208 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
- .debug_line    0x00011e8d     0x1520 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
- .debug_line    0x000133ad      0x250 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
- .debug_line    0x000135fd     0x1747 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
- .debug_line    0x00014d44      0x6b7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
- .debug_line    0x000153fb      0x23c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
- .debug_line    0x00015637      0x2c9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
- .debug_line    0x00015900       0xb8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-ctype_.o)
- .debug_line    0x000159b8      0x3e9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
- .debug_line    0x00015da1      0x303 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
- .debug_line    0x000160a4      0x24f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
- .debug_line    0x000162f3      0x1bc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
- .debug_line    0x000164af      0x1d1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
- .debug_line    0x00016680      0x21e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
- .debug_line    0x0001689e      0x1dd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
- .debug_line    0x00016a7b      0x141 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
- .debug_line    0x00016bbc      0x68e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
- .debug_line    0x0001724a      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
- .debug_line    0x0001743e       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
- .debug_line    0x00017495       0x62 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_fixdfsi.o)
+ .debug_line    0x000065e2      0xc09 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+ .debug_line    0x000071eb      0x3ea CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+ .debug_line    0x000075d5      0x92e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+ .debug_line    0x00007f03      0x18f CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+ .debug_line    0x00008092      0xb15 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+ .debug_line    0x00008ba7      0x204 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+ .debug_line    0x00008dab      0x860 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+ .debug_line    0x0000960b      0x3cb CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+ .debug_line    0x000099d6      0x3c6 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .debug_line    0x00009d9c      0x159 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+ .debug_line    0x00009ef5       0xcc CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
+ .debug_line    0x00009fc1      0x23a CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+ .debug_line    0x0000a1fb      0x881 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ .debug_line    0x0000aa7c       0xf1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+ .debug_line    0x0000ab6d      0x6bc CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ .debug_line    0x0000b229      0x29f CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ .debug_line    0x0000b4c8      0x5a5 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+ .debug_line    0x0000ba6d      0x6eb CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .debug_line    0x0000c158      0x22b CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+ .debug_line    0x0000c383       0x7a CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+ .debug_line    0x0000c3fd      0x2ee CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .debug_line    0x0000c6eb      0x2b9 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+ .debug_line    0x0000c9a4      0x16f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_line    0x0000cb13      0x184 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_line    0x0000cc97       0xa6 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_line    0x0000cd3d       0x76 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_line    0x0000cdb3      0x1f7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
+ .debug_line    0x0000cfaa      0x2ab /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ .debug_line    0x0000d255       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+ .debug_line    0x0000d30e       0x86 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+ .debug_line    0x0000d394     0x1e9b /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
+ .debug_line    0x0000f22f     0x14a9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+ .debug_line    0x000106d8      0x62a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+ .debug_line    0x00010d02      0x2fc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+ .debug_line    0x00010ffe      0x394 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
+ .debug_line    0x00011392      0x214 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+ .debug_line    0x000115a6      0x1a2 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
+ .debug_line    0x00011748      0x2d2 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
+ .debug_line    0x00011a1a      0x1c9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
+ .debug_line    0x00011be3       0x84 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+ .debug_line    0x00011c67      0x208 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
+ .debug_line    0x00011e6f     0x1520 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
+ .debug_line    0x0001338f      0x250 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
+ .debug_line    0x000135df     0x1747 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+ .debug_line    0x00014d26      0x6b7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+ .debug_line    0x000153dd      0x23c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
+ .debug_line    0x00015619      0x2c9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
+ .debug_line    0x000158e2       0xb8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-ctype_.o)
+ .debug_line    0x0001599a      0x3e9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+ .debug_line    0x00015d83      0x303 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
+ .debug_line    0x00016086      0x24f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+ .debug_line    0x000162d5      0x1bc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+ .debug_line    0x00016491      0x1d1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
+ .debug_line    0x00016662      0x21e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
+ .debug_line    0x00016880      0x1dd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
+ .debug_line    0x00016a5d      0x141 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
+ .debug_line    0x00016b9e      0x68e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
+ .debug_line    0x0001722c      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
+ .debug_line    0x00017420       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+ .debug_line    0x00017477       0x62 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_fixdfsi.o)
 
-.debug_str      0x00000000     0x6a26
- .debug_str     0x00000000     0x6a26 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
+.debug_str      0x00000000     0x6a17
+ .debug_str     0x00000000     0x6a17 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
                                 0x1fe (size before relaxing)
- .debug_str     0x00006a26      0x759 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
- .debug_str     0x00006a26      0x4e1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
- .debug_str     0x00006a26      0x53e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-stdio.o)
- .debug_str     0x00006a26      0x1d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-memset.o)
- .debug_str     0x00006a26      0x4c7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-closer.o)
- .debug_str     0x00006a26      0x4f0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-reent.o)
- .debug_str     0x00006a26      0x4d6 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-impure.o)
- .debug_str     0x00006a26      0x4d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-lseekr.o)
- .debug_str     0x00006a26      0x4d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-readr.o)
- .debug_str     0x00006a26      0x4d7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-writer.o)
- .debug_str     0x00006a26      0x222 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-init.o)
- .debug_str     0x00006a26      0x1f8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fini.o)
- .debug_str     0x00006a26      0x334 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-lock.o)
- .debug_str     0x00006a26      0x2d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__atexit.o)
- .debug_str     0x00006a26      0x2fe /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__call_atexit.o)
- .debug_str     0x00006a26      0x641 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-freer.o)
- .debug_str     0x00006a26      0x6f9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-mallocr.o)
- .debug_str     0x00006a26      0x553 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-mlock.o)
- .debug_str     0x00006a26      0x594 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fclose.o)
- .debug_str     0x00006a26      0x59c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fflush.o)
- .debug_str     0x00006a26      0x4da /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-sbrkr.o)
- .debug_str     0x00006a26      0x1ca /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-sysconf.o)
- .debug_str     0x00006a26      0x4cb /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-errno.o)
- .debug_str     0x00006a26      0x411 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/misc.c.obj
- .debug_str     0x00006a26      0x50a CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_gpio.c.obj
- .debug_str     0x00006a26      0x9ef CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
- .debug_str     0x00006a26      0xe41 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
- .debug_str     0x00006a26      0x712 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
- .debug_str     0x00006a26      0x384 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
- .debug_str     0x00006a26      0x78c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
- .debug_str     0x00006a26      0x4b0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
- .debug_str     0x00006a26      0x33a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
- .debug_str     0x00006a26      0x361 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
- .debug_str     0x00006a26      0x63a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
- .debug_str     0x00006a26      0x61a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
- .debug_str     0x00006a26      0xb4d CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
- .debug_str     0x00006a26      0x4ae CMakeFiles/freefly.elf.dir/Application/main.c.obj
- .debug_str     0x00006a26      0x212 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
- .debug_str     0x00006a26       0x83 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
- .debug_str     0x00006a26      0x5ad CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
- .debug_str     0x00006a26      0x9d9 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- .debug_str     0x00006a26      0x4ba CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
- .debug_str     0x00006a26      0x65a CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- .debug_str     0x00006a26      0x357 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- .debug_str     0x00006a26      0x61c CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
- .debug_str     0x00006a26      0x70e CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
- .debug_str     0x00006a26      0x4f5 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
- .debug_str     0x00006a26       0xa4 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
- .debug_str     0x00006a26      0x410 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .debug_str     0x00006a26      0x68c CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
- .debug_str     0x00006a26      0x14f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_str     0x00006a26       0xcf /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_str     0x00006a26      0x158 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_str     0x00006a26       0xbc /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_str     0x00006a26      0x50c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
- .debug_str     0x00006a26      0x58e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- .debug_str     0x00006a26       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
- .debug_str     0x00006a26       0xb8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
- .debug_str     0x00006a26      0xa3e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
- .debug_str     0x00006a26      0x91d /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
- .debug_str     0x00006a26      0x575 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
- .debug_str     0x00006a26      0x502 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
- .debug_str     0x00006a26      0x596 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
- .debug_str     0x00006a26      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
- .debug_str     0x00006a26      0x1eb /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
- .debug_str     0x00006a26      0x750 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
- .debug_str     0x00006a26      0x717 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
- .debug_str     0x00006a26       0xab /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
- .debug_str     0x00006a26      0x224 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
- .debug_str     0x00006a26      0x8a9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
- .debug_str     0x00006a26      0x6f7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
- .debug_str     0x00006a26      0x7e7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
- .debug_str     0x00006a26      0x5c4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
- .debug_str     0x00006a26      0x6fe /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
- .debug_str     0x00006a26      0x6fd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
- .debug_str     0x00006a26      0x1ba /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-ctype_.o)
- .debug_str     0x00006a26      0x664 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
- .debug_str     0x00006a26      0x507 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
- .debug_str     0x00006a26      0x619 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
- .debug_str     0x00006a26      0x4d1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
- .debug_str     0x00006a26      0x50a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
- .debug_str     0x00006a26      0x523 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
- .debug_str     0x00006a26      0x513 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
- .debug_str     0x00006a26      0x1c4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
- .debug_str     0x00006a26      0x558 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
- .debug_str     0x00006a26      0x4ed /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
- .debug_str     0x00006a26       0xbd /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
- .debug_str     0x00006a26       0xba /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_fixdfsi.o)
+ .debug_str     0x00006a17      0x759 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
+ .debug_str     0x00006a17      0x4e1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
+ .debug_str     0x00006a17      0x53e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-stdio.o)
+ .debug_str     0x00006a17      0x1d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-memset.o)
+ .debug_str     0x00006a17      0x4c7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-closer.o)
+ .debug_str     0x00006a17      0x4f0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-reent.o)
+ .debug_str     0x00006a17      0x4d6 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-impure.o)
+ .debug_str     0x00006a17      0x4d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-lseekr.o)
+ .debug_str     0x00006a17      0x4d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-readr.o)
+ .debug_str     0x00006a17      0x4d7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-writer.o)
+ .debug_str     0x00006a17      0x222 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-init.o)
+ .debug_str     0x00006a17      0x1f8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fini.o)
+ .debug_str     0x00006a17      0x334 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-lock.o)
+ .debug_str     0x00006a17      0x2d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__atexit.o)
+ .debug_str     0x00006a17      0x2fe /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__call_atexit.o)
+ .debug_str     0x00006a17      0x641 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-freer.o)
+ .debug_str     0x00006a17      0x6f9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-mallocr.o)
+ .debug_str     0x00006a17      0x553 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-mlock.o)
+ .debug_str     0x00006a17      0x594 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fclose.o)
+ .debug_str     0x00006a17      0x59c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fflush.o)
+ .debug_str     0x00006a17      0x4da /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-sbrkr.o)
+ .debug_str     0x00006a17      0x1ca /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-sysconf.o)
+ .debug_str     0x00006a17      0x4cb /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-errno.o)
+ .debug_str     0x00006a17      0x411 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/misc.c.obj
+ .debug_str     0x00006a17      0x50a CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_gpio.c.obj
+ .debug_str     0x00006a17      0x9ef CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
+ .debug_str     0x00006a17      0xe41 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
+ .debug_str     0x00006a17      0x712 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
+ .debug_str     0x00006a17      0x37f CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+ .debug_str     0x00006a17      0x78c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+ .debug_str     0x00006a17      0x4b0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+ .debug_str     0x00006a17      0x33a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+ .debug_str     0x00006a17      0x361 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+ .debug_str     0x00006a17      0x63a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+ .debug_str     0x00006a17      0x61a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+ .debug_str     0x00006a17      0xb4d CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+ .debug_str     0x00006a17      0x48d CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .debug_str     0x00006a17      0x212 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+ .debug_str     0x00006a17       0x83 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
+ .debug_str     0x00006a17      0x5ad CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+ .debug_str     0x00006a17      0x9d9 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ .debug_str     0x00006a17      0x4ba CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+ .debug_str     0x00006a17      0x65a CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ .debug_str     0x00006a17      0x357 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ .debug_str     0x00006a17      0x61c CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+ .debug_str     0x00006a17      0x70e CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .debug_str     0x00006a17      0x4f5 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+ .debug_str     0x00006a17       0xa4 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+ .debug_str     0x00006a17      0x410 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .debug_str     0x00006a17      0x68c CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+ .debug_str     0x00006a17      0x14f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_str     0x00006a17       0xcf /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_str     0x00006a17      0x158 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_str     0x00006a17       0xbc /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_str     0x00006a17      0x50c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
+ .debug_str     0x00006a17      0x58e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ .debug_str     0x00006a17       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+ .debug_str     0x00006a17       0xb8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+ .debug_str     0x00006a17      0xa3e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
+ .debug_str     0x00006a17      0x91d /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+ .debug_str     0x00006a17      0x575 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+ .debug_str     0x00006a17      0x502 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+ .debug_str     0x00006a17      0x596 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
+ .debug_str     0x00006a17      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+ .debug_str     0x00006a17      0x1eb /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
+ .debug_str     0x00006a17      0x750 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
+ .debug_str     0x00006a17      0x717 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
+ .debug_str     0x00006a17       0xab /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+ .debug_str     0x00006a17      0x224 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
+ .debug_str     0x00006a17      0x8a9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
+ .debug_str     0x00006a17      0x6f7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
+ .debug_str     0x00006a17      0x7e7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+ .debug_str     0x00006a17      0x5c4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+ .debug_str     0x00006a17      0x6fe /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
+ .debug_str     0x00006a17      0x6fd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
+ .debug_str     0x00006a17      0x1ba /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-ctype_.o)
+ .debug_str     0x00006a17      0x664 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+ .debug_str     0x00006a17      0x507 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
+ .debug_str     0x00006a17      0x619 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+ .debug_str     0x00006a17      0x4d1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+ .debug_str     0x00006a17      0x50a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
+ .debug_str     0x00006a17      0x523 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
+ .debug_str     0x00006a17      0x513 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
+ .debug_str     0x00006a17      0x1c4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
+ .debug_str     0x00006a17      0x558 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
+ .debug_str     0x00006a17      0x4ed /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
+ .debug_str     0x00006a17       0xbd /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+ .debug_str     0x00006a17       0xba /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_fixdfsi.o)
 
 .comment        0x00000000       0x3c
  .comment       0x00000000       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
@@ -5742,7 +5743,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .comment       0x0000003c       0x1f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
  .comment       0x0000003c       0x1f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
 
-.debug_frame    0x00000000     0x50c8
+.debug_frame    0x00000000     0x50c4
  .debug_frame   0x00000000       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
  .debug_frame   0x00000020      0x13c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
  .debug_frame   0x0000015c       0x34 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
@@ -5773,58 +5774,58 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_frame   0x00002088      0x490 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
  .debug_frame   0x00002518      0x14c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
  .debug_frame   0x00002664      0x160 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
- .debug_frame   0x000027c4      0x1b8 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
- .debug_frame   0x0000297c       0x70 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
- .debug_frame   0x000029ec      0x224 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
- .debug_frame   0x00002c10       0x5c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
- .debug_frame   0x00002c6c      0x360 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
- .debug_frame   0x00002fcc       0xcc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
- .debug_frame   0x00003098      0x168 CMakeFiles/freefly.elf.dir/Application/main.c.obj
- .debug_frame   0x00003200       0x38 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
- .debug_frame   0x00003238      0x1d0 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
- .debug_frame   0x00003408      0x464 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- .debug_frame   0x0000386c       0x38 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
- .debug_frame   0x000038a4      0x1f0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- .debug_frame   0x00003a94      0x10c CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- .debug_frame   0x00003ba0      0x19c CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
- .debug_frame   0x00003d3c      0x254 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
- .debug_frame   0x00003f90       0xc8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
- .debug_frame   0x00004058       0x7c CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .debug_frame   0x000040d4      0x190 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
- .debug_frame   0x00004264       0xac /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_frame   0x00004310       0x50 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_frame   0x00004360       0xc4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_frame   0x00004424       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_frame   0x00004448       0x74 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
- .debug_frame   0x000044bc       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- .debug_frame   0x00004508       0xac /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
- .debug_frame   0x000045b4       0xdc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
- .debug_frame   0x00004690       0x64 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
- .debug_frame   0x000046f4       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
- .debug_frame   0x00004720       0x80 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
- .debug_frame   0x000047a0       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
- .debug_frame   0x000047e0       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
- .debug_frame   0x00004808       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
- .debug_frame   0x00004870       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
- .debug_frame   0x000048b0       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
- .debug_frame   0x000048dc       0x84 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
- .debug_frame   0x00004960       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
- .debug_frame   0x000049ac      0x288 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
- .debug_frame   0x00004c34       0x48 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
- .debug_frame   0x00004c7c       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
- .debug_frame   0x00004cb8       0x60 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
- .debug_frame   0x00004d18       0x70 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
- .debug_frame   0x00004d88       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
- .debug_frame   0x00004dd4       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
- .debug_frame   0x00004e00       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
- .debug_frame   0x00004e2c       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
- .debug_frame   0x00004e6c       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
- .debug_frame   0x00004e98       0x70 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
- .debug_frame   0x00004f08       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
- .debug_frame   0x00004f30      0x118 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
- .debug_frame   0x00005048       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
- .debug_frame   0x00005084       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
- .debug_frame   0x000050a4       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_fixdfsi.o)
+ .debug_frame   0x000027c4      0x1b4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+ .debug_frame   0x00002978       0x70 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+ .debug_frame   0x000029e8      0x224 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+ .debug_frame   0x00002c0c       0x5c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+ .debug_frame   0x00002c68      0x360 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+ .debug_frame   0x00002fc8       0xcc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+ .debug_frame   0x00003094      0x168 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .debug_frame   0x000031fc       0x38 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+ .debug_frame   0x00003234      0x1d0 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+ .debug_frame   0x00003404      0x464 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ .debug_frame   0x00003868       0x38 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+ .debug_frame   0x000038a0      0x1f0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ .debug_frame   0x00003a90      0x10c CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ .debug_frame   0x00003b9c      0x19c CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+ .debug_frame   0x00003d38      0x254 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .debug_frame   0x00003f8c       0xc8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+ .debug_frame   0x00004054       0x7c CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .debug_frame   0x000040d0      0x190 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+ .debug_frame   0x00004260       0xac /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x0000430c       0x50 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_frame   0x0000435c       0xc4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_frame   0x00004420       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x00004444       0x74 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-printf.o)
+ .debug_frame   0x000044b8       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ .debug_frame   0x00004504       0xac /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
+ .debug_frame   0x000045b0       0xdc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
+ .debug_frame   0x0000468c       0x64 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+ .debug_frame   0x000046f0       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+ .debug_frame   0x0000471c       0x80 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fputwc.o)
+ .debug_frame   0x0000479c       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+ .debug_frame   0x000047dc       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strncpy.o)
+ .debug_frame   0x00004804       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-locale.o)
+ .debug_frame   0x0000486c       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-localeconv.o)
+ .debug_frame   0x000048ac       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libm_a-s_frexp.o)
+ .debug_frame   0x000048d8       0x84 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
+ .debug_frame   0x0000495c       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mbtowc_r.o)
+ .debug_frame   0x000049a8      0x288 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-mprec.o)
+ .debug_frame   0x00004c30       0x48 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+ .debug_frame   0x00004c78       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wctomb_r.o)
+ .debug_frame   0x00004cb4       0x60 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wcrtomb.o)
+ .debug_frame   0x00004d14       0x70 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+ .debug_frame   0x00004d84       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wbuf.o)
+ .debug_frame   0x00004dd0       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+ .debug_frame   0x00004dfc       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+ .debug_frame   0x00004e28       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-assert.o)
+ .debug_frame   0x00004e68       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-callocr.o)
+ .debug_frame   0x00004e94       0x70 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fiprintf.o)
+ .debug_frame   0x00004f04       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-abort.o)
+ .debug_frame   0x00004f2c      0x118 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signal.o)
+ .debug_frame   0x00005044       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
+ .debug_frame   0x00005080       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+ .debug_frame   0x000050a0       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_fixdfsi.o)
 
 .debug_line_str
                 0x00000000      0x223
@@ -6918,7 +6919,6 @@ RTC_WakeUpCmd                                     CMakeFiles/freefly.elf.dir/Sys
 RTC_WriteBackupRegister                           CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rtc.c.obj
 RTC_WriteProtectionCmd                            CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rtc.c.obj
 RadToDeg                                          CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                                                  CMakeFiles/freefly.elf.dir/Application/main.c.obj
 Receiver_CalcDutyCycle                            CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
 Reset_Handler                                     CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
 SAI_ClearFlag                                     CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_sai.c.obj
@@ -7314,7 +7314,6 @@ Vec3Norm                                          CMakeFiles/freefly.elf.dir/App
 Vec4Modulus                                       CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
                                                   CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
 Vec4Norm                                          CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                                                  CMakeFiles/freefly.elf.dir/Application/main.c.obj
                                                   CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
 WWDG_ClearFlag                                    CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_wwdg.c.obj
 WWDG_DeInit                                       CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_wwdg.c.obj
@@ -7355,6 +7354,7 @@ __aeabi_dcmpeq                                    /usr/lib/gcc/arm-none-eabi/13.
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-svfprintf.o)
                                                   CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
 __aeabi_dcmpge                                    /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+                                                  CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
 __aeabi_dcmpgt                                    /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
@@ -7366,6 +7366,7 @@ __aeabi_dcmple                                    /usr/lib/gcc/arm-none-eabi/13.
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-dtoa.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-svfprintf.o)
+                                                  CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
 __aeabi_dcmplt                                    /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-e_sqrt.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-w_sqrt.o)

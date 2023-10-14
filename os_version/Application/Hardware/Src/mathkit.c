@@ -57,6 +57,13 @@ void QuaterToEuler(Vec4d_t *q, Vec3d_t *euler)
 	euler->x = atan2f(2*(q->w*q->x+q->y*q->z), 1-2*(q->x*q->x+q->y*q->y));
 	euler->y = asinf(2*(q->w*q->y-q->z*q->x));
 	euler->z = atan2f(2*(q->w*q->z+q->x*q->y), 1-2*(q->y*q->y+q->z*q->z));
+	
+    // roll  = -arcsin(2q1q3-2q0q2)
+    // pitch = arctan((2q0q1+2q2q3)/(1-2q1q1-2q2q2))
+    // yaw   = arctan((2q0q3-2q1q2)/(1-2q2q2-2q3q3))
+	// euler->x = -1.0*asinf(2*q->x*q->z-2*q->w*q->y);
+	// euler->y = atan2f(2*q->w*q->x+2*q->y*q->z, 1-2*q->x*q->x-2*q->y*q->y);
+	// euler->z = atan2f(2*q->w*q->z+2*q->x*q->y, 1-2*q->y*q->y-2*q->z*q->z);
 }
 
 void MatrixTranspose(double *MatrixB, double *MatrixA, uint8_t row, uint8_t col)

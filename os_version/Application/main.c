@@ -91,7 +91,7 @@ void task_peripheral_init(void *pdata)
 void task_MPU6050(void *pdata)
 {
 	// AccCalibration(&acc_offset, &acc_scale);
-	// GyroCalibration(&gyro_offset);
+	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
 	// MagCalibration(&mag_offset, &mag_scale);
 	while(1)
 	{
@@ -100,13 +100,13 @@ void task_MPU6050(void *pdata)
 		// printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
 
 		Vec3d_t gyro;
-		// GetGyroData(&gyro);
-		// printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
+		GetGyroData(&gyro);
+		printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
 
 		Vec3d_t mag;
-		GetMagData(&mag);
+		// GetMagData(&mag);
 		// printf("%f,%f,%f\n", mag.x, mag.y, mag.z);
-		printf("mag: %f, %f, %f\n", mag.x, mag.y, mag.z);
+		// printf("mag: %f, %f, %f\n", mag.x, mag.y, mag.z);
 		
 		OSTimeDly(100);
 	}
@@ -123,10 +123,8 @@ void task_attitude_gyro(void *pdata)
 	{
 		t1 = OSTimeGet();
 		GetGyroData(&gyro1);
-		RadToDeg(&gyro1);
 		// printf("gyro: %f, %f, %f\n", gyro1.x, gyro1.y, gyro1.z);
 		GyroUpdateQuat(&q0, &q1, &gyro0, &gyro1, 0.001);
-		Vec4Norm(&q1);
 		// printf("q: %f, %f, %f, %f\n", q1.w, q1.x, q1.y, q1.z);
 		q0 = q1;
 		gyro0 = gyro1;
@@ -171,22 +169,19 @@ void task_attitude_acc_mag(void *pdata)
 	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
 	// printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
 	// printf("acc_offset: %f, %f, %f\n", acc_offset.x, acc_offset.y, acc_offset.z);
-	Vec3d_t acc_data = {0, 0, 0}, mag_data0, mag_data, gyro_data, euler = {0, 0, 0};
+	Vec3d_t acc_data = {0, 0, 0}, mag_data, gyro_data, euler = {0, 0, 0};
 	Vec4d_t q0 = {1, 0, 0, 0}, q1;
 	uint32_t t1, t2;
-	printf("Mag sample start!\n");
-	GetMagData(&mag_data0);
-	Vec3Norm(&mag_data0);
-	printf("Mag sample finished!\n");
 	while(1)
 	{
 		t1 = OSTimeGet();
 		GetAccData(&acc_data);
+		Vec3Norm(&acc_data);
 		GetMagData(&mag_data);
 		Vec3Norm(&mag_data);
 		// printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
 		GetGyroData(&gyro_data);
-		AccMagUpdateQuat(&q0, &q1, &acc_data, &gyro_data, &mag_data, &mag_data0, 0.001);
+		AccMagUpdateQuat(&q0, &q1, &acc_data, &gyro_data, &mag_data, 0.001);
 		// printf("q: %10f, %10f, %10f, %10f\n", q1.w, q1.x, q1.y, q1.z);
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
@@ -200,11 +195,10 @@ void task_attitude_acc_mag(void *pdata)
 void task_attitude_fusion(void *pdata)
 {
 	Vec4d_t q0 = {1, 0, 0, 0};
-	Vec3d_t mag0, euler;
-	GetMagData(&mag0);
+	Vec3d_t gyro0 = {0, 0, 0}, euler;
 	while(1)
 	{
-		MadgwickAHRS(&q0, &mag0, 0.001);
+		MadgwickAHRS(&q0, &gyro0, 0.001);
 		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 		QuaterToEuler(&q0, &euler);
 		// RadToDeg(&euler);

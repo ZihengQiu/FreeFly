@@ -30,7 +30,7 @@ void AccUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, double
 	q_grad.z = 8*q0->x*q0->x*q0->z + 8*q0->y*q0->y*q0->z - 4*acc->x*q0->x - 4*acc->y*q0->y;
 
 	double q_grad_mod = Vec4Modulus(q_grad);
-	double mu0=0.05, alpha=3000;
+	double mu0=0.05, alpha=0;
 	mu = mu0+alpha*dt*Vec3Modulus(*gyro);
 	q1->w = q0->w - mu*q_grad.w/q_grad_mod;
 	q1->x = q0->x - mu*q_grad.x/q_grad_mod;
@@ -40,7 +40,7 @@ void AccUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, double
 	Vec4Norm(q1);
 }
 
-void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, Vec3d_t *mag, Vec3d_t *mag0, double dt)
+void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, Vec3d_t *mag, double dt)
 {	
 	// Gradient Decent Method
 
@@ -58,9 +58,9 @@ void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro
 	h.z = 2*(q0->x*q0->z-q0->w*q0->y)*mag->x \
 		+ 2*(q0->w*q0->x+q0->y*q0->z)*mag->y \
 		+ 2*(0.5-q0->x*q0->x-q0->y*q0->y)*mag->z;
-	mag0->x = sqrt(h.x*h.x+h.y*h.y);
-	mag0->y = 0;
-	mag0->z = h.z;
+	b.x = sqrt(h.x*h.x+h.y*h.y);
+	b.y = 0;
+	b.z = h.z;
 
 #if MAG_HORIZON_Y_ZERO
 
@@ -71,21 +71,21 @@ void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro
 	// 2*(0.5-q1*q1-q2*q2)-az
 	f[2] = 2*(0.5-q0->x*q0->x-q0->y*q0->y)-acc->z;
 	// 2*bx*(0.5-q2*q2-q3*q3)+2*bz*(q1*q3-q0*q2)-mx
-	f[3] = 2*mag0->x*(0.5-q0->y*q0->y-q0->z*q0->z) + 2*mag0->z*(q0->x*q0->z-q0->w*q0->y)-mag->x;
+	f[3] = 2*b.x*(0.5-q0->y*q0->y-q0->z*q0->z) + 2*b.z*(q0->x*q0->z-q0->w*q0->y)-mag->x;
 	// 2*bx*(q1*q2-q0*q3)+2*bz*(q0*q1+q2*q3)-my
-	f[4] = 2*mag0->x*(q0->x*q0->y-q0->w*q0->z) + 2*mag0->z*(q0->w*q0->x+q0->y*q0->z)-mag->y;
+	f[4] = 2*b.x*(q0->x*q0->y-q0->w*q0->z) + 2*b.z*(q0->w*q0->x+q0->y*q0->z)-mag->y;
 	// 2*bx*(q0*q2+q1*q3)+2*bz*(0.5-q1*q1-q2*q2)-mz
-	f[5] = 2*mag0->x*(q0->w*q0->y+q0->x*q0->z) + 2*mag0->z*(0.5-q0->x*q0->x-q0->y*q0->y)-mag->z;
+	f[5] = 2*b.x*(q0->w*q0->y+q0->x*q0->z) + 2*b.z*(0.5-q0->x*q0->x-q0->y*q0->y)-mag->z;
 
 	Vec4d_t q_grad;
 	// -2*q2	2*q1	0		-2*bz*q2			-2*bx*q3+2*bz*q1	2*bx*q2
-	q_grad.w = -2*q0->y*f[0] + 2*q0->x*f[1] +0 -2*mag0->z*q0->y*f[3] + (-2*mag0->x*q0->z+2*mag0->z*q0->x)*f[4] + 2*mag0->x*q0->y*f[5];
+	q_grad.w = -2*q0->y*f[0] + 2*q0->x*f[1] +0 -2*b.z*q0->y*f[3] + (-2*b.x*q0->z+2*b.z*q0->x)*f[4] + 2*b.x*q0->y*f[5];
 	// 2*q3		2*q0	-4*q1	2*bz*q3				2*bx*q2+2*bz*q0		2*bx*q3-4*bz*q1
-	q_grad.x = 2*q0->z*f[0] + 2*q0->w*f[1] -4*q0->x*f[2] + 2*mag0->z*q0->z*f[3] + (2*mag0->x*q0->y+2*mag0->z*q0->w)*f[4] + (2*mag0->x*q0->z-4*mag0->z*q0->x)*f[5];
+	q_grad.x = 2*q0->z*f[0] + 2*q0->w*f[1] -4*q0->x*f[2] + 2*b.z*q0->z*f[3] + (2*b.x*q0->y+2*b.z*q0->w)*f[4] + (2*b.x*q0->z-4*b.z*q0->x)*f[5];
 	// -2*q0	2*q3	-4*q2	-4*bx*q2-2*bz*q0	2*bx*q1+2*bz*q3		2*bx*q0-4*bz*q2
-	q_grad.y = -2*q0->w*f[0] + 2*q0->z*f[1] -4*q0->y*f[2] +(-4*mag0->x*q0->y-2*mag0->z*q0->w)*f[3] + (2*mag0->x*q0->x+2*mag0->z*q0->w)*f[4] + (2*mag0->x*q0->w-4*mag0->z*q0->y)*f[5];
+	q_grad.y = -2*q0->w*f[0] + 2*q0->z*f[1] -4*q0->y*f[2] +(-4*b.x*q0->y-2*b.z*q0->w)*f[3] + (2*b.x*q0->x+2*b.z*q0->z)*f[4] + (2*b.x*q0->w-4*b.z*q0->y)*f[5];
 	// 2*q1		2*q2	0		-4*bx*q3+2*bz*q1	-2*bx*q0+2*bz*q2	2*bx*q1
-	q_grad.z = 2*q0->x*f[0] + 2*q0->y*f[1] +0 +(-4*mag0->x*q0->z+2*mag0->z*q0->x)*f[3] + (-2*mag0->x*q0->w+2*mag0->z*q0->y)*f[4] + 2*mag0->x*q0->x*f[5];
+	q_grad.z = 2*q0->x*f[0] + 2*q0->y*f[1] +0 +(-4*b.x*q0->z+2*b.z*q0->x)*f[3] + (-2*b.x*q0->w+2*b.z*q0->y)*f[4] + 2*b.x*q0->x*f[5];
 	
 #else
 
@@ -96,21 +96,21 @@ void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro
 	// 2*(0.5-q1*q1-q2*q2)-az
 	f[2] = 2*(0.5-q0->x*q0->x-q0->y*q0->y)-acc->z;
 	// 2*bx*(0.5-q2*q2-q3*q3) + 2*bz*(q1*q3-q0*q2)-mx + 2*by*(q1*q2+q0*q3)
-	f[3] = 2*mag0->x*(0.5-q0->y*q0->y-q0->z*q0->z) +  2*mag0->z*(q0->x*q0->z-q0->w*q0->y) - mag->x + 2*mag0->y*(q0->x*q0->y+q0->w*q0->z);
+	f[3] = 2*b.x*(0.5-q0->y*q0->y-q0->z*q0->z) +  2*b.z*(q0->x*q0->z-q0->w*q0->y) - mag->x + 2*b.y*(q0->x*q0->y+q0->w*q0->z);
 	// 2*bx*(q1*q2-q0*q3) + 2*bz*(q0*q1+q2*q3) - my + 2*(0.5-q1*q1-q3*q3)*by
-	f[4] = 2*mag0->x*(q0->x*q0->y-q0->w*q0->z) + 2*mag0->z*(q0->w*q0->x+q0->y*q0->z) - mag->y + 2*mag0->y*(0.5-q0->x*q0->x-q0->z*q0->z);
+	f[4] = 2*b.x*(q0->x*q0->y-q0->w*q0->z) + 2*b.z*(q0->w*q0->x+q0->y*q0->z) - mag->y + 2*b.y*(0.5-q0->x*q0->x-q0->z*q0->z);
 	// 2*bx*(q0*q2+q1*q3) + 2*bz*(0.5-q1*q1-q2*q2) - mz + 2*(q2*q3-q0*q1)*by
-	f[5] = 2*mag0->x*(q0->w*q0->y+q0->x*q0->z) + 2*mag0->z*(0.5-q0->x*q0->x-q0->y*q0->y) - mag->z + 2*mag0->y*(q0->y*q0->z-q0->w*q0->x);
+	f[5] = 2*b.x*(q0->w*q0->y+q0->x*q0->z) + 2*b.z*(0.5-q0->x*q0->x-q0->y*q0->y) - mag->z + 2*b.y*(q0->y*q0->z-q0->w*q0->x);
 
 	Vec4d_t q_grad;
 	// -2*q2	2*q1	0		-2*bz*q2+2*by*q3			-2*bx*q3+2*bz*q1	2*bx*q2-2*by*q1
-	q_grad.w = -2*q0->y*f[0] + 2*q0->x*f[1] +0 +(-2*mag0->z*q0->y+2*mag0->y*q0->z)*f[3] + (-2*mag0->x*q0->z+2*mag0->z*q0->x)*f[4] + (2*mag0->x*q0->y-2*mag0->y*q0->x)*f[5];
+	q_grad.w = -2*q0->y*f[0] + 2*q0->x*f[1] +0 +(-2*b.z*q0->y+2*b.y*q0->z)*f[3] + (-2*b.x*q0->z+2*b.z*q0->x)*f[4] + (2*b.x*q0->y-2*b.y*q0->x)*f[5];
 	// 2*q3		2*q0	-4*q1	2*bz*q3+2*by*q2			2*bx*q2+2*bz*q0-4*by*q1		2*bx*q3-4*bz*q1-2*by*q0
-	q_grad.x = 2*q0->z*f[0] + 2*q0->w*f[1] -4*q0->x*f[2] + (2*mag0->z*q0->z+2*mag0->y*q0->y)*f[3] + (2*mag0->x*q0->y+2*mag0->z*q0->w-4*mag0->y*q0->x)*f[4] + (2*mag0->x*q0->z-4*mag0->z*q0->x-2*mag0->y*q0->w)*f[5];
+	q_grad.x = 2*q0->z*f[0] + 2*q0->w*f[1] -4*q0->x*f[2] + (2*b.z*q0->z+2*b.y*q0->y)*f[3] + (2*b.x*q0->y+2*b.z*q0->w-4*b.y*q0->x)*f[4] + (2*b.x*q0->z-4*b.z*q0->x-2*b.y*q0->w)*f[5];
 	// -2*q0	2*q3	-4*q2	-4*bx*q2-2*bz*q0+2*by*q1	2*bx*q1+2*bz*q3		2*bx*q0-4*bz*q2+2*q3
-	q_grad.y = -2*q0->w*f[0] + 2*q0->z*f[1] -4*q0->y*f[2] +(-4*mag0->x*q0->y-2*mag0->z*q0->w+2*mag0->y*q0->x)*f[3] + (2*mag0->x*q0->x+2*mag0->z*q0->w)*f[4] + (2*mag0->x*q0->w-4*mag0->z*q0->y+2*mag0->y*q0->z)*f[5];
+	q_grad.y = -2*q0->w*f[0] + 2*q0->z*f[1] -4*q0->y*f[2] +(-4*b.x*q0->y-2*b.z*q0->w+2*b.y*q0->x)*f[3] + (2*b.x*q0->x+2*b.z*q0->z)*f[4] + (2*b.x*q0->w-4*b.z*q0->y+2*b.y*q0->z)*f[5];
 	// 2*q1		2*q2	0		-4*bx*q3+2*bz*q1+2*by*q0	-2*bx*q0+2*bz*q2-4*by*q3	2*bx*q1+2*by*q2
-	q_grad.z = 2*q0->x*f[0] + 2*q0->y*f[1] +0 +(-4*mag0->x*q0->z+2*mag0->z*q0->x+2*mag0->y*q0->w)*f[3] + (-2*mag0->x*q0->w+2*mag0->z*q0->y-4*mag0->y*q0->z)*f[4] + (2*mag0->x*q0->x+2*mag0->y*q0->y)*f[5];
+	q_grad.z = 2*q0->x*f[0] + 2*q0->y*f[1] +0 +(-4*b.x*q0->z+2*b.z*q0->x+2*b.y*q0->w)*f[3] + (-2*b.x*q0->w+2*b.z*q0->y-4*b.y*q0->z)*f[4] + (2*b.x*q0->x+2*b.y*q0->y)*f[5];
 
 #endif
 
@@ -124,9 +124,9 @@ void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro
 	Vec4Norm(q1);
  }
 
-void AccMagUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, Vec3d_t *mag, Vec3d_t *mag0, double dt)
+void AccMagUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, Vec3d_t *mag, double dt)
 {
-	AccMagUpdateQuatDelta(q0, q1, acc, gyro, mag, mag0, dt);
+	AccMagUpdateQuatDelta(q0, q1, acc, gyro, mag, dt);
 
 	double mu0=0.05, alpha=0;
 	mu = mu0+alpha*dt*Vec3Modulus(*gyro);
@@ -218,12 +218,14 @@ void GyroUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *gyro0, Vec3d_t *gyro1, do
 	q1->x += q0->x;
 	q1->y += q0->y;
 	q1->z += q0->z;
+
+	Vec4Norm(q1);
 }
 
-void MadgwickAHRS(Vec4d_t *q0, Vec3d_t *mag0, double dt)
+void MadgwickAHRS(Vec4d_t *q0, Vec3d_t *gyro0, double dt)
 {
 	Vec4d_t q1, delta_q_acc, delta_q_gyro;
-	Vec3d_t gyro0 = {0, 0, 0}, gyro1, acc, mag, euler;
+	Vec3d_t gyro1, acc, mag, euler;
 	uint32_t cnt = 0, t[10];
 	t[0] = OSTimeGet();
 
@@ -232,15 +234,24 @@ void MadgwickAHRS(Vec4d_t *q0, Vec3d_t *mag0, double dt)
 	GetMagData(&mag);
 	t[1] = OSTimeGet();	// takes 2~3 ticks, while the reset part < 1 tick
 
-	AccMagUpdateQuatDelta(q0, &delta_q_acc, &acc, &gyro1, &mag, mag0, 0.001);
+	AccMagUpdateQuatDelta(q0, &delta_q_acc, &acc, &gyro1, &mag, 0.001);
 	t[3] = OSTimeGet();
 
-	GyroUpdateQuatDelta(q0, &delta_q_gyro, &gyro0, &gyro1, 0.001);
-	Vec4Norm(&delta_q_gyro);
-	gyro0 = gyro1;
+	GyroUpdateQuatDelta(q0, &delta_q_gyro, gyro0, &gyro1, 0.0015);
+	gyro0->x = gyro1.x;
+	gyro0->y = gyro1.y;
+	gyro0->z = gyro1.z;
 	t[2] = OSTimeGet();
 	
 	double beta = 0.003;
+	// q0->w = q0->w +  beta*delta_q_acc.w*dt;
+	// q0->x = q0->x +  beta*delta_q_acc.x*dt;
+	// q0->y = q0->y +  beta*delta_q_acc.y*dt;
+	// q0->z = q0->z +  beta*delta_q_acc.z*dt;
+	// q0->w = q0->w + delta_q_gyro.w;
+	// q0->x = q0->x + delta_q_gyro.x;
+	// q0->y = q0->y + delta_q_gyro.y;
+	// q0->z = q0->z + delta_q_gyro.z;
 	q0->w = q0->w + delta_q_gyro.w + beta*delta_q_acc.w*dt;
 	q0->x = q0->x + delta_q_gyro.x + beta*delta_q_acc.x*dt;
 	q0->y = q0->y + delta_q_gyro.y + beta*delta_q_acc.y*dt;
