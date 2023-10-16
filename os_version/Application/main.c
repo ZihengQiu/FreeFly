@@ -100,13 +100,14 @@ void task_MPU6050(void *pdata)
 		// printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
 
 		Vec3d_t gyro;
-		GetGyroData(&gyro);
-		printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
+		// GetGyroData(&gyro);
+		// printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
 
 		Vec3d_t mag;
-		// GetMagData(&mag);
+		GetMagData(&mag);
+		double modulus = Vec3Modulus(mag);
 		// printf("%f,%f,%f\n", mag.x, mag.y, mag.z);
-		// printf("mag: %f, %f, %f\n", mag.x, mag.y, mag.z);
+		printf("mag: %f, %f, %f, M:%f\n", mag.x, mag.y, mag.z, modulus);
 		
 		OSTimeDly(100);
 	}
@@ -226,7 +227,7 @@ void first_task(void *pdata) {
 	OSTimeDly(3000);
 
 	// create MPU6050 task
-	// OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
+	// OSTaskCreateExt(task_MPU60W50, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
 	// OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
 	// OSTimeDly(3000);
 

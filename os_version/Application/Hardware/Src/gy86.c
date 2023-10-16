@@ -221,6 +221,11 @@ void GetMagData(Vec3d_t *mag)
 	mag->x = (mag->x - mag_offset.x) / mag_scale.x;
 	mag->y = (mag->y - mag_offset.y) / mag_scale.y;
 	mag->z = (mag->z - mag_offset.z) / mag_scale.z;
+
+	// sequence fix : x-z-y
+	double t = mag->y;
+	mag->y = mag->z;
+	mag->z = t;
 }
 
 void MagCalibration(Vec3d_t *offset, Vec3d_t *scale)

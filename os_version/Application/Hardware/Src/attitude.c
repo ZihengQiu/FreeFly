@@ -44,11 +44,25 @@ void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro
 {	
 	// Gradient Decent Method
 
+#define FUSION_MAGNETIC 1
+
 	// compute gradient of loss function
+
+#if FUSION_MAGNETIC
+
 	double f[6];
-	
 	Vec3d_t h, b;
 
+	h.x = 2*(0.5-q0->y*q0->y-q0->z*q0->z)*mag->x \
+		+ 2*(q0->x*q0->y-q0->w*q0->z)*mag->y \
+		+ 2*(q0->w*q0->y+q0->x*q0->z)*mag->z;
+	h.y = 2*(q0->x*q0->y+q0->w*q0->z)*mag->x \
+		+ 2*(0.5-q0->x*q0->x-q0->z*q0->z)*mag->y \
+		+ 2*(q0->y*q0->z-q0->w*q0->x)*mag->z;
+	h.z = 2*(q0->x*q0->z-q0->w*q0->y)*mag->x \
+		+ 2*(q0->w*q0->x+q0->y*q0->z)*mag->y \
+		+ 2*(0.5-q0->x*q0->x-q0->y*q0->y)*mag->z;
+	
 	h.x = 2*(0.5-q0->y*q0->y-q0->z*q0->z)*mag->x \
 		+ 2*(q0->x*q0->y-q0->w*q0->z)*mag->y \
 		+ 2*(q0->w*q0->y+q0->x*q0->z)*mag->z;
@@ -111,6 +125,20 @@ void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro
 	q_grad.y = -2*q0->w*f[0] + 2*q0->z*f[1] -4*q0->y*f[2] +(-4*b.x*q0->y-2*b.z*q0->w+2*b.y*q0->x)*f[3] + (2*b.x*q0->x+2*b.z*q0->z)*f[4] + (2*b.x*q0->w-4*b.z*q0->y+2*b.y*q0->z)*f[5];
 	// 2*q1		2*q2	0		-4*bx*q3+2*bz*q1+2*by*q0	-2*bx*q0+2*bz*q2-4*by*q3	2*bx*q1+2*by*q2
 	q_grad.z = 2*q0->x*f[0] + 2*q0->y*f[1] +0 +(-4*b.x*q0->z+2*b.z*q0->x+2*b.y*q0->w)*f[3] + (-2*b.x*q0->w+2*b.z*q0->y-4*b.y*q0->z)*f[4] + (2*b.x*q0->x+2*b.y*q0->y)*f[5];
+
+#endif
+
+#else
+
+	Vec4d_t q_grad;
+	// 8*q2*q2*q0+8*q1*q1*q0+4*ax*q2-4*ay*q1
+	q_grad.w = 8*q0->y*q0->y + 8*q0->x*q0->x + 4*acc->x*q0->y - 4*acc->y*q0->x;
+	// 8*q3*q3*q1+8*q0*q0*q1+16*q2*q2*q1+16*q3*q3-4*ax*q3-4*ay*q0+8*az*q1-8*q1
+	q_grad.x = 8*q0->z*q0->z + 8*q0->w*q0->w*q0->x + 16*q0->y*q0->y*q0->x + 16*q0->z*q0->z - 4*acc->x*q0->z - 4*acc->y*q0->w + 8*acc->z*q0->x - 8*q0->x;
+	// 8*q0*q0*q2+4*ax*q0+8*q3*q3*q2-4*ay*q3-8*q2+16*q1*q1*q2+16*q2*q2*q2+8*az*q2
+	q_grad.y = 8*q0->w*q0->w*q0->y + 4*acc->x*q0->w + 8*q0->z*q0->z*q0->y - 4*acc->y*q0->z - 8*q0->y + 16*q0->x*q0->x*q0->y + 16*q0->y*q0->y*q0->y + 8*acc->z*q0->y;
+	// 8*q1*q1*q3+8*q2*q2*q3-4*ax*q1-4*ay*q2
+	q_grad.z = 8*q0->x*q0->x*q0->z + 8*q0->y*q0->y*q0->z - 4*acc->x*q0->x - 4*acc->y*q0->y;
 
 #endif
 
@@ -237,13 +265,23 @@ void MadgwickAHRS(Vec4d_t *q0, Vec3d_t *gyro0, double dt)
 	AccMagUpdateQuatDelta(q0, &delta_q_acc, &acc, &gyro1, &mag, 0.001);
 	t[3] = OSTimeGet();
 
+#define USE_RK4 0
+
+#if USE_RK4
 	GyroUpdateQuatDelta(q0, &delta_q_gyro, gyro0, &gyro1, 0.0015);
 	gyro0->x = gyro1.x;
 	gyro0->y = gyro1.y;
 	gyro0->z = gyro1.z;
+#else
+	delta_q_gyro.w = 0.5*(-q0->x*gyro1.x-q0->y*gyro1.y-q0->z*gyro1.z)*dt;
+	delta_q_gyro.x = 0.5*(q0->w*gyro1.x+q0->y*gyro1.z-q0->z*gyro1.y)*dt;
+	delta_q_gyro.y = 0.5*(q0->w*gyro1.y-q0->x*gyro1.z+q0->z*gyro1.x)*dt;
+	delta_q_gyro.z = 0.5*(q0->w*gyro1.z+q0->x*gyro1.y-q0->y*gyro1.x)*dt;
+#endif
+
 	t[2] = OSTimeGet();
 	
-	double beta = 0.003;
+	double beta = 0.033;
 	// q0->w = q0->w +  beta*delta_q_acc.w*dt;
 	// q0->x = q0->x +  beta*delta_q_acc.x*dt;
 	// q0->y = q0->y +  beta*delta_q_acc.y*dt;
@@ -256,6 +294,8 @@ void MadgwickAHRS(Vec4d_t *q0, Vec3d_t *gyro0, double dt)
 	q0->x = q0->x + delta_q_gyro.x + beta*delta_q_acc.x*dt;
 	q0->y = q0->y + delta_q_gyro.y + beta*delta_q_acc.y*dt;
 	q0->z = q0->z + delta_q_gyro.z + beta*delta_q_acc.z*dt;
+
 	Vec4Norm(q0);
+
 	t[4] = OSTimeGet();
 }
