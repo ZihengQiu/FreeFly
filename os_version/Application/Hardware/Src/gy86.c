@@ -15,9 +15,9 @@ uint8_t acc_calibrated = 1, gyro_calibrated = 1, mag_calibrated = 1;
 Vec3d_t gyro_offset = {-2.86273193359375, -0.65972900390625, -1.403076171875}, 
 		gyro_filter[2] = {{-0.00592041015625, -0.07269287109375, -0.061767578125},
 						{0.05511474609375, 0.04937744140625, 0.060302734375}};
-Vec3d_t mag_offset = {0.4479153454629381, 0.13242835683955598, -0.04967758735144858}, 
-		mag_scale = {0.4675627581500121, 0.4310428650240345, 0.4639468446544417};
-
+Vec3d_t mag_offset = {0.4479153454629381, -0.04967758735144858, 0.13242835683955598}, 
+		mag_scale = {0.4675627581500121, 0.4639468446544417, 0.4310428650240345};
+		
 void GY86Init(void)
 {
 	MPU6050Init();
@@ -213,19 +213,17 @@ void GetMagData(Vec3d_t *mag)
 	uint8_t Buffer[6];
 	float mag_full = 1.0, mag_gain = 1090;
 	MyI2C_BurstReadRegister(AddressHMC5883, MAG_X_OUT_H, Buffer, 6);
+	// sequence : x-z-y
 	mag->x = (double)(int16_t)((Buffer[0]<<8) + Buffer[1])*mag_full/mag_gain;
-	mag->y = (double)(int16_t)((Buffer[2]<<8) + Buffer[3])*mag_full/mag_gain;
-	mag->z = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*mag_full/mag_gain;
+	mag->z = (double)(int16_t)((Buffer[2]<<8) + Buffer[3])*mag_full/mag_gain;
+	mag->y = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*mag_full/mag_gain;
 
 	// mag calibration (ellipsoid fitting)
 	mag->x = (mag->x - mag_offset.x) / mag_scale.x;
 	mag->y = (mag->y - mag_offset.y) / mag_scale.y;
 	mag->z = (mag->z - mag_offset.z) / mag_scale.z;
 
-	// sequence fix : x-z-y
-	double t = mag->y;
-	mag->y = mag->z;
-	mag->z = t;
+	Vec3Norm(mag);
 }
 
 void MagCalibration(Vec3d_t *offset, Vec3d_t *scale)

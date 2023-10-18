@@ -76,6 +76,8 @@ void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro
 	b.y = 0;
 	b.z = h.z;
 
+	// printf("bx: %10f, %10f\n", b.x, b.z);
+
 #if MAG_HORIZON_Y_ZERO
 
 	// 2*(q1*q3-q0*q2)-ax
@@ -144,12 +146,16 @@ void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro
 
 	double q_grad_mod = Vec4Modulus(q_grad); 
 	
-	q1->w = q_grad.w/q_grad_mod;
-	q1->x = q_grad.x/q_grad_mod;
-	q1->y = q_grad.y/q_grad_mod;
-	q1->z = q_grad.z/q_grad_mod;
+	// q1->w = q_grad.w/q_grad_mod;
+	// q1->x = q_grad.x/q_grad_mod;
+	// q1->y = q_grad.y/q_grad_mod;
+	// q1->z = q_grad.z/q_grad_mod;
+	q1->w = q_grad.w;
+	q1->x = q_grad.x;
+	q1->y = q_grad.y;
+	q1->z = q_grad.z;
 
-	Vec4Norm(q1);
+	// Vec4Norm(q1);
  }
 
 void AccMagUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, Vec3d_t *mag, double dt)
@@ -250,7 +256,7 @@ void GyroUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *gyro0, Vec3d_t *gyro1, do
 	Vec4Norm(q1);
 }
 
-void MadgwickAHRS(Vec4d_t *q0, Vec3d_t *gyro0, double dt)
+void MadgwickAHRS(Vec4d_t *q0, double dt)
 {
 	Vec4d_t q1, delta_q_acc, delta_q_gyro;
 	Vec3d_t gyro1, acc, mag, euler;
@@ -260,40 +266,34 @@ void MadgwickAHRS(Vec4d_t *q0, Vec3d_t *gyro0, double dt)
 	GetGyroData(&gyro1);
 	GetAccData(&acc);
 	GetMagData(&mag);
-	t[1] = OSTimeGet();	// takes 2~3 ticks, while the reset part < 1 tick
+	t[1] = OSTimeGet();	// takes 4 ticks, while the rest part < 1 tick
 
-	AccMagUpdateQuatDelta(q0, &delta_q_acc, &acc, &gyro1, &mag, 0.001);
+	AccMagUpdateQuatDelta(q0, &delta_q_acc, &acc, &gyro1, &mag, dt);
 	t[3] = OSTimeGet();
 
-#define USE_RK4 0
-
-#if USE_RK4
-	GyroUpdateQuatDelta(q0, &delta_q_gyro, gyro0, &gyro1, 0.0015);
-	gyro0->x = gyro1.x;
-	gyro0->y = gyro1.y;
-	gyro0->z = gyro1.z;
-#else
 	delta_q_gyro.w = 0.5*(-q0->x*gyro1.x-q0->y*gyro1.y-q0->z*gyro1.z)*dt;
 	delta_q_gyro.x = 0.5*(q0->w*gyro1.x+q0->y*gyro1.z-q0->z*gyro1.y)*dt;
 	delta_q_gyro.y = 0.5*(q0->w*gyro1.y-q0->x*gyro1.z+q0->z*gyro1.x)*dt;
 	delta_q_gyro.z = 0.5*(q0->w*gyro1.z+q0->x*gyro1.y-q0->y*gyro1.x)*dt;
-#endif
+
 
 	t[2] = OSTimeGet();
 	
+	dt = 0.5;
 	double beta = 0.033;
-	// q0->w = q0->w +  beta*delta_q_acc.w*dt;
-	// q0->x = q0->x +  beta*delta_q_acc.x*dt;
-	// q0->y = q0->y +  beta*delta_q_acc.y*dt;
-	// q0->z = q0->z +  beta*delta_q_acc.z*dt;
+	double modulus = Vec4Modulus(delta_q_acc), lamda = 0.003/modulus+0.01;
+	// q0->w = q0->w - delta_q_acc.w*dt*5;
+	// q0->x = q0->x - delta_q_acc.x*dt*5;
+	// q0->y = q0->y - delta_q_acc.y*dt*5;
+	// q0->z = q0->z - delta_q_acc.z*dt*5;
 	// q0->w = q0->w + delta_q_gyro.w;
 	// q0->x = q0->x + delta_q_gyro.x;
 	// q0->y = q0->y + delta_q_gyro.y;
 	// q0->z = q0->z + delta_q_gyro.z;
-	q0->w = q0->w + delta_q_gyro.w + beta*delta_q_acc.w*dt;
-	q0->x = q0->x + delta_q_gyro.x + beta*delta_q_acc.x*dt;
-	q0->y = q0->y + delta_q_gyro.y + beta*delta_q_acc.y*dt;
-	q0->z = q0->z + delta_q_gyro.z + beta*delta_q_acc.z*dt;
+	q0->w = q0->w + delta_q_gyro.w - lamda*delta_q_acc.w*dt;
+	q0->x = q0->x + delta_q_gyro.x - lamda*delta_q_acc.x*dt;
+	q0->y = q0->y + delta_q_gyro.y - lamda*delta_q_acc.y*dt;
+	q0->z = q0->z + delta_q_gyro.z - lamda*delta_q_acc.z*dt;
 
 	Vec4Norm(q0);
 

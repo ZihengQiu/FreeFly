@@ -3,6 +3,7 @@
 #include "ucos_ii.h"
 
 #include <math.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -195,11 +196,22 @@ void task_attitude_acc_mag(void *pdata)
 
 void task_attitude_fusion(void *pdata)
 {
-	Vec4d_t q0 = {1, 0, 0, 0};
+	Vec4d_t q0 = {1, 0, 0, 0}, q1;
 	Vec3d_t gyro0 = {0, 0, 0}, euler;
+
+	Vec3d_t acc, mag, gyro;
+	for(uint8_t i=0; i<100; i++)
+	{
+		GetAccData(&acc);
+		GetMagData(&mag);
+		GetGyroData(&gyro); 
+		AccMagUpdateQuat(&q0, &q1, &acc, &gyro, &mag, 0.5);
+	}
+	q0 = q1;
+	printf("q0: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 	while(1)
 	{
-		MadgwickAHRS(&q0, &gyro0, 0.001);
+		MadgwickAHRS(&q0, 0.001);
 		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 		QuaterToEuler(&q0, &euler);
 		// RadToDeg(&euler);
@@ -227,7 +239,7 @@ void first_task(void *pdata) {
 	OSTimeDly(3000);
 
 	// create MPU6050 task
-	// OSTaskCreateExt(task_MPU60W50, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
+	// OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
 	// OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
 	// OSTimeDly(3000);
 

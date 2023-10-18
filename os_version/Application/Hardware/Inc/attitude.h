@@ -14,5 +14,5 @@ void AccToEuler(Vec3d_t *acc, Vec3d_t *euler);
 void AccUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, double dt);
 void AccMagUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, Vec3d_t *mag, double dt);
 void GyroUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *gyro0, Vec3d_t *gyro1, double dt);
-void MadgwickAHRS(Vec4d_t *q0, Vec3d_t *gyro0, double dt);
+void MadgwickAHRS(Vec4d_t *q0, double dt);
 #endif
