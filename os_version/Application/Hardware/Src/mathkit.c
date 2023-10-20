@@ -2,19 +2,19 @@
 #include "mathkit.h"
 #include "math.h"
 
-double Vec3Modulus(Vec3d_t vec)
+float Vec3Modulus(Vec3d_t vec)
 {
 	return sqrt(vec.x*vec.x + vec.y*vec.y + vec.z*vec.z);
 }
 
-double Vec4Modulus(Vec4d_t vec)
+float Vec4Modulus(Vec4d_t vec)
 {
 	return sqrt(vec.w*vec.w + vec.x*vec.x + vec.y*vec.y + vec.z*vec.z);
 }
 
 void Vec3Norm(Vec3d_t *vec)
 {
-	double norm = Vec3Modulus(*vec);
+	float norm = Vec3Modulus(*vec);
 	if(norm == 0)
 	{
 		return;
@@ -27,7 +27,7 @@ void Vec3Norm(Vec3d_t *vec)
 
 void Vec4Norm(Vec4d_t *vec)
 {
-	double norm = Vec4Modulus(*vec);
+	float norm = Vec4Modulus(*vec);
 	if(norm == 0)
 	{
 		return;
@@ -67,7 +67,7 @@ void QuaterToEuler(Vec4d_t *q, Vec3d_t *euler)
 	// euler->z = atan2f(2*q->w*q->z+2*q->x*q->y, 1-2*q->y*q->y-2*q->z*q->z);
 }
 
-void MatrixTranspose(double *MatrixB, double *MatrixA, uint8_t row, uint8_t col)
+void MatrixTranspose(float *MatrixB, float *MatrixA, uint8_t row, uint8_t col)
 {
 	for(uint8_t i=0; i<row; i++)
 	{
@@ -78,12 +78,12 @@ void MatrixTranspose(double *MatrixB, double *MatrixA, uint8_t row, uint8_t col)
 	}
 }
 
-void MatrixInverse(double *MatrixB, double *MatrixA, uint8_t row)
+void MatrixInverse(float *MatrixB, float *MatrixA, uint8_t row)
 {
 	// use LU decomposition to get inverse matrix
 	// MatrixA = L * U
 	// MatrixB = U^-1 * L^-1
-	double MatrixL[row][row], MatrixU[row][row];
+	float MatrixL[row][row], MatrixU[row][row];
 	for(int i=0; i<row; i++)
 	{
 		for(int j=0; j<row; j++)
@@ -102,7 +102,7 @@ void MatrixInverse(double *MatrixB, double *MatrixA, uint8_t row)
 	{
 		for(int j=i; j<row; j++)
 		{
-			double sum = 0;
+			float sum = 0;
 			for(int k=0; k<i; k++)
 			{
 				sum += MatrixL[i][k]*MatrixU[k][j];
@@ -111,7 +111,7 @@ void MatrixInverse(double *MatrixB, double *MatrixA, uint8_t row)
 		}
 		for(int j=i+1; j<row; j++)
 		{
-			double sum = 0;
+			float sum = 0;
 			for(int k=0; k<i; k++)
 			{
 				sum += MatrixL[j][k]*MatrixU[k][i];
@@ -121,7 +121,7 @@ void MatrixInverse(double *MatrixB, double *MatrixA, uint8_t row)
 	}
 
 	// get matrix_l^-1
-	double MatrixLInverse[row][row];
+	float MatrixLInverse[row][row];
 	for(int i=0; i<row; i++)
 	{
 		for(int j=0; j<row; j++)
@@ -139,7 +139,7 @@ void MatrixInverse(double *MatrixB, double *MatrixA, uint8_t row)
 	{
 		for(int j=0; j<i; j++)
 		{
-			double sum = 0;
+			float sum = 0;
 			for(int k=0; k<i; k++)
 			{
 				sum += MatrixL[i][k]*MatrixLInverse[k][j];
@@ -149,7 +149,7 @@ void MatrixInverse(double *MatrixB, double *MatrixA, uint8_t row)
 	}
 
 	// get matrix_u^-1
-	double MatrixUInverse[row][row];
+	float MatrixUInverse[row][row];
 	for(int i=0; i<row; i++)
 	{
 		for(int j=0; j<row; j++)
@@ -167,7 +167,7 @@ void MatrixInverse(double *MatrixB, double *MatrixA, uint8_t row)
 	{
 		for(int j=i-1; j>=0; j--)
 		{
-			double sum = 0;
+			float sum = 0;
 			for(int k=j+1; k<=i; k++)
 			{
 				sum += MatrixU[j][k]*MatrixUInverse[k][i];
@@ -190,7 +190,7 @@ void MatrixInverse(double *MatrixB, double *MatrixA, uint8_t row)
 	}
 }
 
-void MatrixAdd(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t row, uint8_t col)
+void MatrixAdd(float *MatrixC, float *MatrixA, float *MatrixB, uint8_t row, uint8_t col)
 {
 	for(uint8_t i=0; i<row; i++)
 	{
@@ -201,7 +201,7 @@ void MatrixAdd(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t row, u
 	}
 }
 
-void MatrixScale(double *MatrixB, double *MatrixA, double scale, uint8_t row, uint8_t col)
+void MatrixScale(float *MatrixB, float *MatrixA, float scale, uint8_t row, uint8_t col)
 {
 	for(uint8_t i=0; i<row; i++)
 	{
@@ -212,7 +212,7 @@ void MatrixScale(double *MatrixB, double *MatrixA, double scale, uint8_t row, ui
 	}
 }
 
-void MatrixesMultiply(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t rowA, uint8_t colA, uint8_t colB)
+void MatrixesMultiply(float *MatrixC, float *MatrixA, float *MatrixB, uint8_t rowA, uint8_t colA, uint8_t colB)
 {
 	for(uint8_t i=0; i<rowA; i++)
 	{
@@ -231,16 +231,16 @@ void MatrixesMultiply(double *MatrixC, double *MatrixA, double *MatrixB, uint8_t
 void GaussNewton_LM(Vec3d_t input[6], Vec3d_t* offset, Vec3d_t* scale)
 {
 	uint8_t	cnt = 0;
-	double eps = 0.000000001;
-	double step = 100.0;
-	double lambda = 0.001;
-	double beta[6]; // the result, offset and scale of x, y, z
-	double residual[6]; // residual
-	double diff[6][3]; // difference between xi and xi_offset (e.t. xi- xi_offset)
+	float eps = 0.000000001;
+	float step = 100.0;
+	float lambda = 0.001;
+	float beta[6]; // the result, offset and scale of x, y, z
+	float residual[6]; // residual
+	float diff[6][3]; // difference between xi and xi_offset (e.t. xi- xi_offset)
 
-	double Jacobian[6][6]; // Jacobian matrix
-	double JT_J[6][6]; // J^T * J matrix
-	double JT_R[6]; // J^T * R matrix
+	float Jacobian[6][6]; // Jacobian matrix
+	float JT_J[6][6]; // J^T * J matrix
+	float JT_R[6]; // J^T * R matrix
 
 	// initialization
 	beta[0] = beta[1] = beta[2] = 0;
@@ -315,7 +315,7 @@ void GaussNewton_LM(Vec3d_t input[6], Vec3d_t* offset, Vec3d_t* scale)
 		{
 			for(uint8_t j=i+1; j<6; j++) // j : row belows i, make ith column to 0
 			{
-				double quotient = JT_J[j][i] / JT_J[i][i];
+				float quotient = JT_J[j][i] / JT_J[i][i];
 				if(quotient)
 				{
 					// update JT_J
@@ -334,7 +334,7 @@ void GaussNewton_LM(Vec3d_t input[6], Vec3d_t* offset, Vec3d_t* scale)
 		// 2. make J^T*J to diagonal matrix
 		for(int8_t i=5; i>=0; i--)
 		{
-			double quotient = JT_J[i][i];
+			float quotient = JT_J[i][i];
 			JT_J[i][i] = 1.0;
 
 			// update ith row
@@ -358,7 +358,7 @@ void GaussNewton_LM(Vec3d_t input[6], Vec3d_t* offset, Vec3d_t* scale)
 		}
 
 		// calculate step
-		double step_cur = 0;
+		float step_cur = 0;
 		for(uint8_t i=0; i<6; i++)
 		{
 			if(i < 3)

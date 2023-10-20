@@ -48,13 +48,13 @@ void GetMpuData(MpuDataStruct *data)
 	uint8_t Buffer[20];
 	float acc_full = 16.0, gyro_full = 2000.0;
 	MyI2C_BurstReadRegister(AddressMPU6050, ACCEL_X_OUT_H, Buffer, 14);
-	data->acc_x = ((double)(int16_t)((Buffer[0]<<8) + Buffer[1]))*acc_full/32768.0;
-	data->acc_y = (double)(int16_t)((Buffer[2]<<8) + Buffer[3])*acc_full/32768.0;
-	data->acc_z = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*acc_full/32768.0;
-	data->temp = (double)(int16_t)((Buffer[6]<<8) + Buffer[7]) / 340.0 + 36.53;
-	data->gyro_x = (double)(int16_t)((Buffer[8]<<8) + Buffer[9])*gyro_full/32768.0;
-	data->gyro_y = (double)(int16_t)((Buffer[10]<<8) + Buffer[11])*gyro_full/32768.0;
-	data->gyro_z = (double)(int16_t)((Buffer[12]<<8) + Buffer[13])*gyro_full/32768.0;
+	data->acc_x = ((float)(int16_t)((Buffer[0]<<8) + Buffer[1]))*acc_full/32768.0;
+	data->acc_y = (float)(int16_t)((Buffer[2]<<8) + Buffer[3])*acc_full/32768.0;
+	data->acc_z = (float)(int16_t)((Buffer[4]<<8) + Buffer[5])*acc_full/32768.0;
+	data->temp = (float)(int16_t)((Buffer[6]<<8) + Buffer[7]) / 340.0 + 36.53;
+	data->gyro_x = (float)(int16_t)((Buffer[8]<<8) + Buffer[9])*gyro_full/32768.0;
+	data->gyro_y = (float)(int16_t)((Buffer[10]<<8) + Buffer[11])*gyro_full/32768.0;
+	data->gyro_z = (float)(int16_t)((Buffer[12]<<8) + Buffer[13])*gyro_full/32768.0;
 	
 }
 
@@ -64,16 +64,23 @@ void GetAccData(Vec3d_t *acc)
 	uint8_t Buffer[6];
 	float acc_full = 16.0;
 	MyI2C_BurstReadRegister(AddressMPU6050, ACCEL_X_OUT_H, Buffer, 6);
-	acc->x = (double)(int16_t)((Buffer[0]<<8) + Buffer[1])*acc_full/32768.0;
-	acc->y = (double)(int16_t)((Buffer[2]<<8) + Buffer[3])*acc_full/32768.0;
-	acc->z = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*acc_full/32768.0;
+	float acc_x = (float)(int16_t)((Buffer[0]<<8) + Buffer[1])*acc_full/32768.0;
+	float acc_y = (float)(int16_t)((Buffer[2]<<8) + Buffer[3])*acc_full/32768.0;
+	float acc_z = (float)(int16_t)((Buffer[4]<<8) + Buffer[5])*acc_full/32768.0;
 
-	if(acc_calibrated == 0)	return;
+	do
+	{
+		if(acc_calibrated == 0)	break;
 
-	// acc calibration
-	acc->x = (acc->x - acc_offset.x) * acc_scale.x;
-	acc->y = (acc->y - acc_offset.y) * acc_scale.y;
-	acc->z = (acc->z - acc_offset.z) * acc_scale.z;
+		// acc calibration
+		acc_x = (acc_x - acc_offset.x) * acc_scale.x;
+		acc_y = (acc_y - acc_offset.y) * acc_scale.y;
+		acc_z = (acc_z - acc_offset.z) * acc_scale.z;
+	}while(0);
+
+	acc->x = acc_x;
+	acc->y = acc_y;
+	acc->z = acc_z;
 }
 
 void AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
@@ -122,33 +129,38 @@ void GetGyroData(Vec3d_t *gyro)
 	uint8_t Buffer[6];
 	float gyro_full = 2000.0;
 	MyI2C_BurstReadRegister(AddressMPU6050, GYRO_X_OUT_H, Buffer, 6);
-	gyro->x = (double)(int16_t)((Buffer[0]<<8) + Buffer[1])*gyro_full/32768.0;
-	gyro->y = (double)(int16_t)((Buffer[2]<<8) + Buffer[3])*gyro_full/32768.0;
-	gyro->z = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*gyro_full/32768.0;
+	// gyro->x = (float)(int16_t)((Buffer[0]<<8) + Buffer[1])*gyro_full/32768.0;
+	// gyro->y = (float)(int16_t)((Buffer[2]<<8) + Buffer[3])*gyro_full/32768.0;
+	// gyro->z = (float)(int16_t)((Buffer[4]<<8) + Buffer[5])*gyro_full/32768.0;
+	float gyro_x = (float)(int16_t)((Buffer[0]<<8) + Buffer[1])*gyro_full/32768.0;
+	float gyro_y = (float)(int16_t)((Buffer[2]<<8) + Buffer[3])*gyro_full/32768.0;
+	float gyro_z = (float)(int16_t)((Buffer[4]<<8) + Buffer[5])*gyro_full/32768.0;
 
-	// convert to rad/s
-	// gyro->x *= PI/180.0;
-	// gyro->y *= PI/180.0;
-	// gyro->z *= PI/180.0;
+	do
+	{
+		if(gyro_calibrated == 0)	break;
 
-	if(gyro_calibrated == 0)	return;
-
-	// gyro calibration
-	gyro->x -= gyro_offset.x;
-	gyro->y -= gyro_offset.y;
-	gyro->z -= gyro_offset.z;
-	if(gyro->x >= gyro_filter[0].x && gyro->x <= gyro_filter[1].x)
-	{
-		gyro->x = 0;
-	}
-	if(gyro->y >= gyro_filter[0].y && gyro->y <= gyro_filter[1].y)
-	{
-		gyro->y = 0;
-	}
-	if(gyro->z >= gyro_filter[0].z && gyro->z <= gyro_filter[1].z)
-	{
-		gyro->z = 0;
-	}
+		// gyro calibration
+		gyro_x -= gyro_offset.x;
+		gyro_y -= gyro_offset.y;
+		gyro_z -= gyro_offset.z;
+		if(gyro_x >= gyro_filter[0].x && gyro_x <= gyro_filter[1].x)
+		{
+			gyro_x = 0;
+		}
+		if(gyro_y >= gyro_filter[0].y && gyro_y <= gyro_filter[1].y)
+		{
+			gyro_y = 0;
+		}
+		if(gyro_z >= gyro_filter[0].z && gyro_z <= gyro_filter[1].z)
+		{
+			gyro_z = 0;
+		}
+	}while(0);
+	
+	gyro->x = gyro_x;
+	gyro->y = gyro_y;
+	gyro->z = gyro_z;	
 }
 
 // TODO : optimize the way to pass parameter filter
@@ -213,15 +225,25 @@ void GetMagData(Vec3d_t *mag)
 	uint8_t Buffer[6];
 	float mag_full = 1.0, mag_gain = 1090;
 	MyI2C_BurstReadRegister(AddressHMC5883, MAG_X_OUT_H, Buffer, 6);
+	// // sequence : x-z-y
+	// mag->x = (float)(int16_t)((Buffer[0]<<8) + Buffer[1])*mag_full/mag_gain;
+	// mag->z = (float)(int16_t)((Buffer[2]<<8) + Buffer[3])*mag_full/mag_gain;
+	// mag->y = (float)(int16_t)((Buffer[4]<<8) + Buffer[5])*mag_full/mag_gain;
+
+	// // mag calibration (ellipsoid fitting)
+	// mag->x = (mag->x - mag_offset.x) / mag_scale.x;
+	// mag->y = (mag->y - mag_offset.y) / mag_scale.y;
+	// mag->z = (mag->z - mag_offset.z) / mag_scale.z;
+
 	// sequence : x-z-y
-	mag->x = (double)(int16_t)((Buffer[0]<<8) + Buffer[1])*mag_full/mag_gain;
-	mag->z = (double)(int16_t)((Buffer[2]<<8) + Buffer[3])*mag_full/mag_gain;
-	mag->y = (double)(int16_t)((Buffer[4]<<8) + Buffer[5])*mag_full/mag_gain;
+	float mag_x = (float)(int16_t)((Buffer[0]<<8) + Buffer[1])*mag_full/mag_gain;
+	float mag_z = (float)(int16_t)((Buffer[2]<<8) + Buffer[3])*mag_full/mag_gain;
+	float mag_y = (float)(int16_t)((Buffer[4]<<8) + Buffer[5])*mag_full/mag_gain;
 
 	// mag calibration (ellipsoid fitting)
-	mag->x = (mag->x - mag_offset.x) / mag_scale.x;
-	mag->y = (mag->y - mag_offset.y) / mag_scale.y;
-	mag->z = (mag->z - mag_offset.z) / mag_scale.z;
+	mag->x = (mag_x - mag_offset.x) / mag_scale.x;
+	mag->y = (mag_y - mag_offset.y) / mag_scale.y;
+	mag->z = (mag_z - mag_offset.z) / mag_scale.z;
 
 	Vec3Norm(mag);
 }
@@ -235,7 +257,7 @@ void MagCalibration(Vec3d_t *offset, Vec3d_t *scale)
 	uint8_t sample_cnt = 100;
 
 	Vec3d_t mag_data[sample_cnt];
-	double matrix_k[sample_cnt][6], matrix_y[sample_cnt][1];
+	float matrix_k[sample_cnt][6], matrix_y[sample_cnt][1];
 	for(uint8_t i=0; i<sample_cnt; i++)
 	{
 		GetMagData(&mag_data[i]);
@@ -251,12 +273,12 @@ void MagCalibration(Vec3d_t *offset, Vec3d_t *scale)
 
 	// LeastSquare
 	// X = (K^T * K)^-1 * K^T * Y
-	double matrix_kt[6][sample_cnt], matrix_ktk[6][6], matrix_ktki[6][6], tmp4[6][sample_cnt], tmp5[6][1];
-	MatrixTranspose((double *)matrix_kt, (double *)matrix_k, sample_cnt, 6);
-	MatrixesMultiply((double *)matrix_ktk, (double *)matrix_kt, (double *)matrix_k, sample_cnt, 6, 6);
-	MatrixInverse((double *)matrix_ktki, (double *)matrix_ktk, 6);
-	MatrixesMultiply((double *)tmp4, (double *)matrix_ktki, (double *)matrix_kt, 6, 6, sample_cnt);
-	MatrixesMultiply((double *)tmp5, (double *)tmp4, (double *)matrix_y, 6, sample_cnt, 1);
+	float matrix_kt[6][sample_cnt], matrix_ktk[6][6], matrix_ktki[6][6], tmp4[6][sample_cnt], tmp5[6][1];
+	MatrixTranspose((float *)matrix_kt, (float *)matrix_k, sample_cnt, 6);
+	MatrixesMultiply((float *)matrix_ktk, (float *)matrix_kt, (float *)matrix_k, sample_cnt, 6, 6);
+	MatrixInverse((float *)matrix_ktki, (float *)matrix_ktk, 6);
+	MatrixesMultiply((float *)tmp4, (float *)matrix_ktki, (float *)matrix_kt, 6, 6, sample_cnt);
+	MatrixesMultiply((float *)tmp5, (float *)tmp4, (float *)matrix_y, 6, sample_cnt, 1);
 
 	// return offset and scale
 	offset->x = -1*tmp5[2][0]/2;

@@ -58,10 +58,10 @@
 
 typedef struct
 {
-  double acc_x, acc_y, acc_z;
-  double gyro_x, gyro_y, gyro_z;
-  double temp;
-  double hmc5883_x, hmc5883_y, hmc5883_z;
+  float acc_x, acc_y, acc_z;
+  float gyro_x, gyro_y, gyro_z;
+  float temp;
+  float hmc5883_x, hmc5883_y, hmc5883_z;
 }MpuDataStruct;
 
 extern Vec3d_t acc_offset, acc_scale;

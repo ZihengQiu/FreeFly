@@ -104,7 +104,7 @@ void task_MPU6050(void *pdata)
 
 		Vec3d_t mag;
 		GetMagData(&mag);
-		double modulus = Vec3Modulus(mag);
+		float modulus = Vec3Modulus(mag);
 		// printf("%f,%f,%f\n", mag.x, mag.y, mag.z);
 		printf("mag: %f, %f, %f, M:%f\n", mag.x, mag.y, mag.z, modulus);
 		
@@ -247,13 +247,14 @@ void task_attitude_fusion(void *pdata)
 	Vec4d_t q0 = {1, 0, 0, 0}, q1;
 	Vec3d_t gyro0 = {0, 0, 0}, euler;
 
+	// estimate the attitude of the first frame by acc and mag
 	Vec3d_t acc, mag, gyro;
-	for(uint8_t i=0; i<200; i++)
+	for(uint8_t i=0; i<50; i++)	// takes 3s 
 	{
 		GetAccData(&acc);
 		GetMagData(&mag);
 		GetGyroData(&gyro); 
-		AccMagUpdateQuat(&q0, &q1, &acc, &gyro, &mag, 0.5);
+		AccMagUpdateQuat(&q0, &q1, &acc, &gyro, &mag, 0.001);
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
