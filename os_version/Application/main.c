@@ -40,8 +40,6 @@ extern Vec3d_t acc_offset, acc_scale, gyro_offset, gyro_filter[2], mag_offset, m
 
 extern void My_Systick_Config(uint32_t reload_value);
 
-
-
 void task_led_on(void *pdata)
 {
 	while(1)
@@ -194,28 +192,83 @@ void task_attitude_acc_mag(void *pdata)
 	}
 }
 
+void SendAnotc(Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, Vec3d_t angle)
+{
+	// send attitude data to anotc v2.6
+	uint8_t sum;
+	sum = 0;
+	int8_t data[32] = {0x00};
+	data[0] = 0x88;
+	data[1] = 0xAF;
+	data[2] = 0x1C;
+	data[3] = (int16_t)(acc.x*100)>>8;
+	data[4] = (int16_t)(acc.x*100)&0xFF;
+	data[5] = (int16_t)(acc.y*100)>>8;
+	data[6] = (int16_t)(acc.y*100)&0xFF;
+	data[7] = (int16_t)(acc.z*100)>>8;
+	data[8] = (int16_t)(acc.z*100)&0xFF;
+	data[9] = (int16_t)(gyro.x*100)>>8;
+	data[10] = (int16_t)(gyro.x*100)&0xFF;
+	data[11] = (int16_t)(gyro.y*100)>>8;
+	data[12] = (int16_t)(gyro.y*100)&0xFF;
+	data[13] = (int16_t)(gyro.z*100)>>8;
+	data[14] = (int16_t)(gyro.z*100)&0xFF;
+	data[15] = (int16_t)(mag.x*100)>>8;
+	data[16] = (int16_t)(mag.x*100)&0xFF;
+	data[17] = (int16_t)(mag.y*100)>>8;
+	data[18] = (int16_t)(mag.y*100)&0xFF;
+	data[19] = (int16_t)(mag.z*100)>>8;
+	data[20] = (int16_t)(mag.z*100)&0xFF;
+	data[21] = (int16_t)(angle.x*100)>>8;
+	data[22] = (int16_t)(angle.x*100)&0xFF;
+	data[23] = (int16_t)(angle.y*100)>>8;
+	data[24] = (int16_t)(angle.y*100)&0xFF;
+	data[25] = (int16_t)(angle.z*10)>>8;
+	data[26] = (int16_t)(angle.z*10)&0xFF;
+	data[27] = 0x00;
+	data[28] = 0x00;
+	data[29] = 0x00;
+	data[30] = 0x00;
+
+	for(int i=0; i<31; i++)
+	{
+		sum += data[i];
+	}
+	
+	data[31] = sum;
+	for(int i=0; i<32; i++)
+	{
+		Bluetooth_SendByte(data[i]);
+	}
+}
+
 void task_attitude_fusion(void *pdata)
 {
 	Vec4d_t q0 = {1, 0, 0, 0}, q1;
 	Vec3d_t gyro0 = {0, 0, 0}, euler;
 
 	Vec3d_t acc, mag, gyro;
-	for(uint8_t i=0; i<100; i++)
+	for(uint8_t i=0; i<200; i++)
 	{
 		GetAccData(&acc);
 		GetMagData(&mag);
 		GetGyroData(&gyro); 
 		AccMagUpdateQuat(&q0, &q1, &acc, &gyro, &mag, 0.5);
+		q0 = q1;
+		QuaterToEuler(&q0, &euler);
+		RadToDeg(&euler);
+		SendAnotc(acc, gyro, mag, euler);
 	}
-	q0 = q1;
-	printf("q0: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
+	// printf("q0: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 	while(1)
 	{
 		MadgwickAHRS(&q0, 0.001);
 		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 		QuaterToEuler(&q0, &euler);
+		RadToDeg(&euler);
+		SendAnotc(acc, gyro, mag, euler);
 		// RadToDeg(&euler);
-		printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
+		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
 	}
 }
 
