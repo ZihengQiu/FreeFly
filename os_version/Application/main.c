@@ -245,15 +245,14 @@ void SendAnotc(Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, Vec3d_t angle)
 void task_attitude_fusion(void *pdata)
 {
 	Vec4d_t q0 = {1, 0, 0, 0}, q1;
-	Vec3d_t gyro0 = {0, 0, 0}, euler;
+	Vec3d_t acc, mag, gyro, euler;
 
 	// estimate the attitude of the first frame by acc and mag
-	Vec3d_t acc, mag, gyro;
 	for(uint8_t i=0; i<50; i++)	// takes 3s 
 	{
 		GetAccData(&acc);
-		GetMagData(&mag);
 		GetGyroData(&gyro); 
+		GetMagData(&mag);
 		AccMagUpdateQuat(&q0, &q1, &acc, &gyro, &mag, 0.001);
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
@@ -261,9 +260,17 @@ void task_attitude_fusion(void *pdata)
 		SendAnotc(acc, gyro, mag, euler);
 	}
 	// printf("q0: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
+	uint32_t t[10];
 	while(1)
 	{
-		MadgwickAHRS(&q0, 0.001);
+		GetGyroData(&gyro);
+		t[1] = OSTimeGet();
+		GetAccData(&acc);
+		t[2] = OSTimeGet();
+		GetMagData(&mag);
+		t[3] = OSTimeGet();	// 0~1 takes 4 ticks, while the rest part < 1 tick
+
+		MadgwickAHRS(&q0, acc, gyro, mag, 0.001);
 		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);

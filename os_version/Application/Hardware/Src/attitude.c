@@ -226,19 +226,11 @@ void GyroUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *gyro0, Vec3d_t *gyro1, fl
 	Vec4Norm(q1);
 }
 
-void MadgwickAHRS(Vec4d_t *q0, float dt)
+void MadgwickAHRS(Vec4d_t *q0, Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, float dt)
 {
 	Vec4d_t delta_q_acc, delta_q_gyro;
-	Vec3d_t gyro, acc, mag;
 	uint32_t t[10];
 	t[0] = OSTimeGet();
-
-	GetGyroData(&gyro);
-	t[1] = OSTimeGet();
-	GetAccData(&acc);
-	t[2] = OSTimeGet();
-	GetMagData(&mag);
-	t[3] = OSTimeGet();	// 0~1 takes 4 ticks, while the rest part < 1 tick
 
 	AccMagUpdateQuatDelta(q0, &delta_q_acc, &acc, &gyro, &mag, dt);
 
@@ -249,9 +241,9 @@ void MadgwickAHRS(Vec4d_t *q0, float dt)
 	
 	float beta = 0.033,
 		  modulus_acc = Vec4Modulus(delta_q_acc), modulus_gyro = Vec4Modulus(delta_q_gyro),
-		  lambda = beta*150/modulus_acc*(0.9+modulus_gyro);
+		  lambda = beta/modulus_acc*(1+100*modulus_gyro)*200;
 
-	q0->w = q0->w + delta_q_gyro.w - lambda*delta_q_acc.w*dt;
+ 	q0->w = q0->w + delta_q_gyro.w - lambda*delta_q_acc.w*dt;
 	q0->x = q0->x + delta_q_gyro.x - lambda*delta_q_acc.x*dt;
 	q0->y = q0->y + delta_q_gyro.y - lambda*delta_q_acc.y*dt;
 	q0->z = q0->z + delta_q_gyro.z - lambda*delta_q_acc.z*dt;
