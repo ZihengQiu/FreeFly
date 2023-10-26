@@ -40,6 +40,58 @@ extern Vec3d_t acc_offset, acc_scale, gyro_offset, gyro_filter[2], mag_offset, m
 
 extern void My_Systick_Config(uint32_t reload_value);
 
+
+void SendAnotc(Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, Vec3d_t angle)
+{
+	// send attitude data to anotc v2.6
+	uint8_t sum;
+	sum = 0;
+	int8_t data[32] = {0x00};
+	data[0] = 0x88;
+	data[1] = 0xAF;
+	data[2] = 0x1C;
+	data[3] = (int16_t)(acc.x*100)>>8;
+	data[4] = (int16_t)(acc.x*100)&0xFF;
+	data[5] = (int16_t)(acc.y*100)>>8;
+	data[6] = (int16_t)(acc.y*100)&0xFF;
+	data[7] = (int16_t)(acc.z*100)>>8;
+	data[8] = (int16_t)(acc.z*100)&0xFF;
+	data[9] = (int16_t)(gyro.x*100)>>8;
+	data[10] = (int16_t)(gyro.x*100)&0xFF;
+	data[11] = (int16_t)(gyro.y*100)>>8;
+	data[12] = (int16_t)(gyro.y*100)&0xFF;
+	data[13] = (int16_t)(gyro.z*100)>>8;
+	data[14] = (int16_t)(gyro.z*100)&0xFF;
+	data[15] = (int16_t)(mag.x*100)>>8;
+	data[16] = (int16_t)(mag.x*100)&0xFF;
+	data[17] = (int16_t)(mag.y*100)>>8;
+	data[18] = (int16_t)(mag.y*100)&0xFF;
+	data[19] = (int16_t)(mag.z*100)>>8;
+	data[20] = (int16_t)(mag.z*100)&0xFF;
+	data[21] = (int16_t)(angle.x*100)>>8;
+	data[22] = (int16_t)(angle.x*100)&0xFF;
+	data[23] = (int16_t)(angle.y*100)>>8;
+	data[24] = (int16_t)(angle.y*100)&0xFF;
+	data[25] = (int16_t)(angle.z*10)>>8;
+	data[26] = (int16_t)(angle.z*10)&0xFF;
+	data[27] = 0x00;
+	data[28] = 0x00;
+	data[29] = 0x00;
+	data[30] = 0x00;
+
+	for(int i=0; i<31; i++)
+	{
+		sum += data[i];
+	}
+	
+	data[31] = sum;
+	for(int i=0; i<32; i++)
+	{
+		Bluetooth_SendByte(data[i]);
+	}
+}
+
+
 void task_led_on(void *pdata)
 {
 	while(1)
@@ -115,51 +167,49 @@ void task_MPU6050(void *pdata)
 void task_attitude_gyro(void *pdata)
 {
 	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
-	printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
 	Vec4d_t q0 = {1, 0, 0, 0}, q1;
-	Vec3d_t gyro0 = {0, 0, 0}, gyro1, euler = {0, 0, 0};
+	Vec3d_t gyro0 = {0, 0, 0}, gyro1, acc, mag, euler = {0, 0, 0};
 	uint32_t t1, t2;
 	while(1)
 	{
 		t1 = OSTimeGet();
+		GetAccData(&acc);
+		GetMagData(&mag);
 		GetGyroData(&gyro1);
+
 		// printf("gyro: %f, %f, %f\n", gyro1.x, gyro1.y, gyro1.z);
 		GyroUpdateQuat(&q0, &q1, &gyro0, &gyro1, 0.001);
 		// printf("q: %f, %f, %f, %f\n", q1.w, q1.x, q1.y, q1.z);
 		q0 = q1;
 		gyro0 = gyro1;
 		QuaterToEuler(&q0, &euler);
-		// RadToDeg(&euler);
-		printf("euler: %f, %f, %f\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
-		t2 = OSTimeGet();
-		// printf("ticks: %d %d %d\n",t1,t2,t2-t1);
-		// OSTimeDly(10);
+		RadToDeg(&euler);
+		SendAnotc(acc, gyro0, mag, euler);
+		// printf("euler: %f, %f, %f\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
+		
 	}
 }
 
 void task_attitude_acc(void *pdata)
 {
-	// AccCalibration(&acc_offset, &acc_scale);
-	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
-	printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
-	printf("acc_offset: %f, %f, %f\n", acc_offset.x, acc_offset.y, acc_offset.z);
-	Vec3d_t acc_data = {0, 0, 0}, gyro_data, euler = {0, 0, 0};
+	Vec3d_t acc = {0, 0, 0}, gyro, mag, euler = {0, 0, 0};
 	Vec4d_t q0 = {1, 0, 0, 0}, q1;
 	uint32_t t1, t2;
 	while(1)
 	{
-		t1 = OSTimeGet();
-		GetAccData(&acc_data);
+		GetAccData(&acc);
 		// printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
-		GetGyroData(&gyro_data);
-		AccUpdateQuat(&q0, &q1, &acc_data, &gyro_data, 0.001);
+		GetGyroData(&gyro);
+		GetMagData(&mag);
+
+		AccUpdateQuat(&q0, &q1, &acc, &gyro, 0.001);
 		// printf("q: %10f, %10f, %10f, %10f\n", q1.w, q1.x, q1.y, q1.z);
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
-		// RadToDeg(&euler);
-		printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
-		t2 = OSTimeGet();
-		OSTimeDly(10);
+		RadToDeg(&euler);
+		SendAnotc(acc, gyro, mag, euler);
+		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
+		
 	}
 }
 
@@ -192,56 +242,6 @@ void task_attitude_acc_mag(void *pdata)
 	}
 }
 
-void SendAnotc(Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, Vec3d_t angle)
-{
-	// send attitude data to anotc v2.6
-	uint8_t sum;
-	sum = 0;
-	int8_t data[32] = {0x00};
-	data[0] = 0x88;
-	data[1] = 0xAF;
-	data[2] = 0x1C;
-	data[3] = (int16_t)(acc.x*100)>>8;
-	data[4] = (int16_t)(acc.x*100)&0xFF;
-	data[5] = (int16_t)(acc.y*100)>>8;
-	data[6] = (int16_t)(acc.y*100)&0xFF;
-	data[7] = (int16_t)(acc.z*100)>>8;
-	data[8] = (int16_t)(acc.z*100)&0xFF;
-	data[9] = (int16_t)(gyro.x*100)>>8;
-	data[10] = (int16_t)(gyro.x*100)&0xFF;
-	data[11] = (int16_t)(gyro.y*100)>>8;
-	data[12] = (int16_t)(gyro.y*100)&0xFF;
-	data[13] = (int16_t)(gyro.z*100)>>8;
-	data[14] = (int16_t)(gyro.z*100)&0xFF;
-	data[15] = (int16_t)(mag.x*100)>>8;
-	data[16] = (int16_t)(mag.x*100)&0xFF;
-	data[17] = (int16_t)(mag.y*100)>>8;
-	data[18] = (int16_t)(mag.y*100)&0xFF;
-	data[19] = (int16_t)(mag.z*100)>>8;
-	data[20] = (int16_t)(mag.z*100)&0xFF;
-	data[21] = (int16_t)(angle.x*100)>>8;
-	data[22] = (int16_t)(angle.x*100)&0xFF;
-	data[23] = (int16_t)(angle.y*100)>>8;
-	data[24] = (int16_t)(angle.y*100)&0xFF;
-	data[25] = (int16_t)(angle.z*10)>>8;
-	data[26] = (int16_t)(angle.z*10)&0xFF;
-	data[27] = 0x00;
-	data[28] = 0x00;
-	data[29] = 0x00;
-	data[30] = 0x00;
-
-	for(int i=0; i<31; i++)
-	{
-		sum += data[i];
-	}
-	
-	data[31] = sum;
-	for(int i=0; i<32; i++)
-	{
-		Bluetooth_SendByte(data[i]);
-	}
-}
-
 void task_attitude_fusion(void *pdata)
 {
 	Vec4d_t q0 = {1, 0, 0, 0}, q1;
@@ -260,24 +260,29 @@ void task_attitude_fusion(void *pdata)
 		SendAnotc(acc, gyro, mag, euler);
 	}
 	// printf("q0: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
-	uint32_t t[10];
+	volatile int16_t t[10];
 	int8_t cnt = 0;
 	while(1)
 	{
+		t[0] = OSTimeGet();
 		GetGyroData(&gyro);
 		t[1] = OSTimeGet();
 		GetAccData(&acc);
 		t[2] = OSTimeGet();
 		GetMagData(&mag);
-		t[3] = OSTimeGet();	// 0~1 takes 4 ticks, while the rest part < 1 tick
+		t[3] = OSTimeGet();
 
 		MadgwickAHRS(&q0, acc, gyro, mag, 0.001);
+		t[4] = OSTimeGet();
 		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
+		t[5] = OSTimeGet();
 		cnt++;
 		// if(cnt % 10 == 0)
 		SendAnotc(acc, gyro, mag, euler);
+		t[6] = OSTimeGet();
+		int a;
 		// RadToDeg(&euler);
 		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
 	}
@@ -308,14 +313,14 @@ void first_task(void *pdata) {
 	// OSTimeDly(3000);
 
 	// create attitude control task
-	// OSTaskCreateExt(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10, 10, Task6Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	OSTaskCreateExt(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10, 10, Task6Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	
     OSTaskDel(OS_PRIO_SELF);
 }

@@ -19,17 +19,17 @@ void AccUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, float 
 
 	// compute gradient of loss function
 	Vec4d_t q_grad;
-	// 8*q2*q2*q0+8*q1*q1*q0+4*ax*q2-4*ay*q1
-	q_grad.w = 8*q0->y*q0->y + 8*q0->x*q0->x + 4*acc->x*q0->y - 4*acc->y*q0->x;
-	// 8*q3*q3*q1+8*q0*q0*q1+16*q2*q2*q1+16*q3*q3-4*ax*q3-4*ay*q0+8*az*q1-8*q1
-	q_grad.x = 8*q0->z*q0->z + 8*q0->w*q0->w*q0->x + 16*q0->y*q0->y*q0->x + 16*q0->z*q0->z - 4*acc->x*q0->z - 4*acc->y*q0->w + 8*acc->z*q0->x - 8*q0->x;
-	// 8*q0*q0*q2+4*ax*q0+8*q3*q3*q2-4*ay*q3-8*q2+16*q1*q1*q2+16*q2*q2*q2+8*az*q2
-	q_grad.y = 8*q0->w*q0->w*q0->y + 4*acc->x*q0->w + 8*q0->z*q0->z*q0->y - 4*acc->y*q0->z - 8*q0->y + 16*q0->x*q0->x*q0->y + 16*q0->y*q0->y*q0->y + 8*acc->z*q0->y;
-	// 8*q1*q1*q3+8*q2*q2*q3-4*ax*q1-4*ay*q2
-	q_grad.z = 8*q0->x*q0->x*q0->z + 8*q0->y*q0->y*q0->z - 4*acc->x*q0->x - 4*acc->y*q0->y;
+	// 4*q2*q2*q0+4*q1*q1*q0+2*ax*q2-2*ay*q1
+	q_grad.w = 4*q0->y*q0->y + 4*q0->x*q0->x + 2*acc->x*q0->y - 2*acc->y*q0->x;
+	// 4*q3*q3*q1+4*q0*q0*q1+8*q2*q2*q1+8*q1*q1*q1-2*ax*q3-2*ay*q0+4*az*q1-4*q1
+	q_grad.x = 4*q0->z*q0->z + 4*q0->w*q0->w*q0->x + 8*q0->y*q0->y*q0->x + 8*q0->x*q0->x*q0->x - 2*acc->x*q0->z - 2*acc->y*q0->w + 4*acc->z*q0->x - 4*q0->x;
+	// 4*q0*q0*q2+2*ax*q0+4*q3*q3*q2-2*ay*q3-4*q2+8*q1*q1*q2+8*q2*q2*q2+4*az*q2
+	q_grad.y = 4*q0->w*q0->w*q0->y + 2*acc->x*q0->w + 4*q0->z*q0->z*q0->y - 2*acc->y*q0->z - 4*q0->y + 8*q0->x*q0->x*q0->y + 8*q0->y*q0->y*q0->y + 4*acc->z*q0->y;
+	// 4*q1*q1*q3+4*q2*q2*q3-2*ax*q1-2*ay*q2
+	q_grad.z = 4*q0->x*q0->x*q0->z + 4*q0->y*q0->y*q0->z - 2*acc->x*q0->x - 2*acc->y*q0->y;
 
 	float q_grad_mod = Vec4Modulus(q_grad);
-	float mu0=0.05, alpha=0;
+	float mu0=0.05, alpha=0.1;
 	mu = mu0+alpha*dt*Vec3Modulus(*gyro);
 	q1->w = q0->w - mu*q_grad.w/q_grad_mod;
 	q1->x = q0->x - mu*q_grad.x/q_grad_mod;
@@ -239,7 +239,8 @@ void MadgwickAHRS(Vec4d_t *q0, Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, float dt)
 	
 	float beta = 0.033,
 		  modulus_acc = Vec4Modulus(delta_q_acc), modulus_gyro = Vec4Modulus(delta_q_gyro),
-		  lambda = beta/modulus_acc*(1+100*modulus_gyro)*200;
+		//   lambda = beta/modulus_acc*(1+100*modulus_gyro)*200;
+		lambda = 0.033/modulus_acc*200;
 
  	q0->w = q0->w + delta_q_gyro.w - lambda*delta_q_acc.w*dt;
 	q0->x = q0->x + delta_q_gyro.x - lambda*delta_q_acc.x*dt;

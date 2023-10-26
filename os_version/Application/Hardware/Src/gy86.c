@@ -134,7 +134,7 @@ void GetGyroData(Vec3d_t *gyro)
 	// gyro->z = (float)(int16_t)((Buffer[4]<<8) + Buffer[5])*gyro_full/32768.0;
 	float gyro_x = (float)(int16_t)((Buffer[0]<<8) + Buffer[1])*gyro_full/32768.0;
 	float gyro_y = (float)(int16_t)((Buffer[2]<<8) + Buffer[3])*gyro_full/32768.0;
-	float gyro_z = (float)(int16_t)((Buffer[4]<<8) + Buffer[5])*gyro_full/32768.0;
+	float gyro_z = -(float)(int16_t)((Buffer[4]<<8) + Buffer[5])*gyro_full/32768.0;
 
 	do
 	{
