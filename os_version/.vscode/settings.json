@@ -25,4 +25,5 @@
 	  "--function-arg-placeholders=true",
 	  "--compile-commands-dir=${workspaceFolder}/build"
 	],
+	"cortex-debug.variableUseNaturalFormat": false,
   }

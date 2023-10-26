@@ -2175,6 +2175,23 @@ Discarded input sections
  .text.fputc    0x00000000       0x1e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
  .text.BT_Printf
                 0x00000000       0x30 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+ .text          0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .data          0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .bss           0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .text.update_pid
+                0x00000000       0xa8 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .debug_info    0x00000000       0xf1 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .debug_abbrev  0x00000000       0x96 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .debug_aranges
+                0x00000000       0x20 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .debug_rnglists
+                0x00000000       0x14 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .debug_line    0x00000000      0x124 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .debug_str     0x00000000      0x173 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .comment       0x00000000       0x1f CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .debug_frame   0x00000000       0x38 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
+ .ARM.attributes
+                0x00000000       0x34 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
  .text          0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
  .data          0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
  .bss           0x00000000        0x0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
@@ -2251,6 +2268,7 @@ Discarded input sections
  .bss.Task6Stk  0x00000000     0x2000 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .bss.Task7Stk  0x00000000     0x2000 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .bss.Task9Stk  0x00000000     0x2000 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .bss.delta     0x00000000       0x28 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .text.task_led_on
                 0x00000000       0x18 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .text.task_led_off
@@ -3766,6 +3784,7 @@ LOAD CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
 LOAD CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_wwdg.c.obj
 LOAD CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
 LOAD CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+LOAD CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
 LOAD CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
 LOAD CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
 LOAD CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
@@ -3812,7 +3831,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
                 0x08000000                g_pfnVectors
                 0x08000194                        . = ALIGN (0x4)
 
-.text           0x080001c0     0x7ba4
+.text           0x080001c0     0x7bf4
                 0x080001c0                        . = ALIGN (0x4)
  *(.text)
  .text          0x080001c0      0x158 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
@@ -4024,637 +4043,641 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
                 0x08003378      0x110 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
                 0x08003378                AccMagUpdateQuat
  .text.MadgwickAHRS
-                0x08003488      0x388 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+                0x08003488      0x374 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
                 0x08003488                MadgwickAHRS
  .text.Bluetooth_GPIOInit
-                0x08003810       0xf0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
-                0x08003810                Bluetooth_GPIOInit
+                0x080037fc       0xf0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+                0x080037fc                Bluetooth_GPIOInit
  .text.Bluetooth_ConfigInit
-                0x08003900       0x7c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
-                0x08003900                Bluetooth_ConfigInit
+                0x080038ec       0x7c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+                0x080038ec                Bluetooth_ConfigInit
  .text.Bluetooth_SendByte
-                0x0800397c       0x30 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
-                0x0800397c                Bluetooth_SendByte
+                0x08003968       0x30 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+                0x08003968                Bluetooth_SendByte
  .text.BluetoothInit
-                0x080039ac       0x10 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
-                0x080039ac                BluetoothInit
+                0x08003998       0x10 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+                0x08003998                BluetoothInit
  .text.GY86Init
-                0x080039bc       0x10 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x080039bc                GY86Init
+                0x080039a8       0x10 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x080039a8                GY86Init
  .text.MPU6050Init
-                0x080039cc       0x4e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x080039cc                MPU6050Init
- *fill*         0x08003a1a        0x2 
+                0x080039b8       0x4e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x080039b8                MPU6050Init
+ *fill*         0x08003a06        0x2 
  .text.GetAccData
-                0x08003a1c      0x124 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x08003a1c                GetAccData
+                0x08003a08      0x124 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x08003a08                GetAccData
  .text.GetGyroData
-                0x08003b40      0x194 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x08003b40                GetGyroData
+                0x08003b2c      0x194 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x08003b2c                GetGyroData
  .text.HMC5883Init
-                0x08003cd4       0x26 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x08003cd4                HMC5883Init
- *fill*         0x08003cfa        0x2 
+                0x08003cc0       0x26 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x08003cc0                HMC5883Init
+ *fill*         0x08003ce6        0x2 
  .text.GetMagData
-                0x08003cfc      0x114 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
-                0x08003cfc                GetMagData
+                0x08003ce8      0x114 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+                0x08003ce8                GetMagData
  .text.led_init
-                0x08003e10       0x6c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
-                0x08003e10                led_init
+                0x08003dfc       0x6c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+                0x08003dfc                led_init
  .text.Vec3Modulus
-                0x08003e7c       0x7a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x08003e7c                Vec3Modulus
+                0x08003e68       0x7a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x08003e68                Vec3Modulus
  .text.Vec4Modulus
-                0x08003ef6       0x92 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x08003ef6                Vec4Modulus
+                0x08003ee2       0x92 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x08003ee2                Vec4Modulus
  .text.Vec3Norm
-                0x08003f88       0x7e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x08003f88                Vec3Norm
+                0x08003f74       0x7e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x08003f74                Vec3Norm
  .text.Vec4Norm
-                0x08004006       0x9a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x08004006                Vec4Norm
+                0x08003ff2       0x9a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x08003ff2                Vec4Norm
+ *fill*         0x0800408c        0x4 
  .text.RadToDeg
-                0x080040a0       0x90 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x080040a0                RadToDeg
+                0x08004090       0x90 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x08004090                RadToDeg
  .text.QuaterToEuler
-                0x08004130      0x1d8 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
-                0x08004130                QuaterToEuler
+                0x08004120      0x1d8 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+                0x08004120                QuaterToEuler
  .text.Motor_Init
-                0x08004308       0xa4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
-                0x08004308                Motor_Init
+                0x080042f8       0xa4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+                0x080042f8                Motor_Init
  .text.MyI2C_GPIOInit
-                0x080043ac       0xb4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080043ac                MyI2C_GPIOInit
+                0x0800439c       0xb4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x0800439c                MyI2C_GPIOInit
  .text.MyI2C_SetMasterMode
-                0x08004460       0xd0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004460                MyI2C_SetMasterMode
+                0x08004450       0xcc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004450                MyI2C_SetMasterMode
  .text.MyI2C_SetStart
-                0x08004530       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004530                MyI2C_SetStart
+                0x0800451c       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x0800451c                MyI2C_SetStart
  .text.MyI2C_SetStop
-                0x08004574       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004574                MyI2C_SetStop
+                0x08004560       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004560                MyI2C_SetStop
  .text.MyI2C_SetAck
-                0x080045b8       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080045b8                MyI2C_SetAck
+                0x080045a4       0x44 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x080045a4                MyI2C_SetAck
  .text.MyI2C_SendData
-                0x080045fc       0x24 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080045fc                MyI2C_SendData
+                0x080045e8       0x24 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x080045e8                MyI2C_SendData
  .text.MyI2C_ReceiveData
-                0x08004620       0x1c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004620                MyI2C_ReceiveData
+                0x0800460c       0x1c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x0800460c                MyI2C_ReceiveData
  .text.MyI2C_Send7bitAddress
-                0x0800463c       0x40 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x0800463c                MyI2C_Send7bitAddress
+                0x08004628       0x40 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004628                MyI2C_Send7bitAddress
  .text.MyI2C_CheckBusy
-                0x0800467c       0x30 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x0800467c                MyI2C_CheckBusy
+                0x08004668       0x30 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004668                MyI2C_CheckBusy
  .text.MyI2C_CheckMasterModeSelected
-                0x080046ac       0x48 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080046ac                MyI2C_CheckMasterModeSelected
+                0x08004698       0x48 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004698                MyI2C_CheckMasterModeSelected
  .text.MyI2C_CheckMasterTransmitterModeSelected
-                0x080046f4       0x88 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080046f4                MyI2C_CheckMasterTransmitterModeSelected
+                0x080046e0       0x88 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x080046e0                MyI2C_CheckMasterTransmitterModeSelected
  .text.MyI2C_CheckMasterByteTransmitted
-                0x0800477c       0x70 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x0800477c                MyI2C_CheckMasterByteTransmitted
+                0x08004768       0x70 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004768                MyI2C_CheckMasterByteTransmitted
  .text.MyI2C_CheckMasterReceiverModeSelected
-                0x080047ec       0x4c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080047ec                MyI2C_CheckMasterReceiverModeSelected
+                0x080047d8       0x4c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x080047d8                MyI2C_CheckMasterReceiverModeSelected
  .text.MyI2C_CheckRXNE
-                0x08004838       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004838                MyI2C_CheckRXNE
+                0x08004824       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004824                MyI2C_CheckRXNE
  .text.MyI2C_CheckTXE
-                0x08004864       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004864                MyI2C_CheckTXE
+                0x08004850       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004850                MyI2C_CheckTXE
+ .text.count    0x0800487c       0x24 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x0800487c                count
  .text.MyI2C_BurstReadRegister
-                0x08004890       0xd4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004890                MyI2C_BurstReadRegister
+                0x080048a0       0xfe CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x080048a0                MyI2C_BurstReadRegister
  .text.MyI2C_WriteRegister
-                0x08004964       0x7c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004964                MyI2C_WriteRegister
+                0x0800499e       0x7c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x0800499e                MyI2C_WriteRegister
  .text.MyI2C_WriteRegisterHMC5883
-                0x080049e0       0x88 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x080049e0                MyI2C_WriteRegisterHMC5883
+                0x08004a1a       0x88 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004a1a                MyI2C_WriteRegisterHMC5883
+ *fill*         0x08004aa2        0x2 
  .text.MyI2C_Init
-                0x08004a68       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
-                0x08004a68                MyI2C_Init
+                0x08004aa4       0x2c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x08004aa4                MyI2C_Init
  .text.TIM1_init
-                0x08004a94      0x22c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
-                0x08004a94                TIM1_init
+                0x08004ad0      0x22c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+                0x08004ad0                TIM1_init
  .text.Receiver_CalcDutyCycle
-                0x08004cc0       0x38 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
-                0x08004cc0                Receiver_CalcDutyCycle
+                0x08004cfc       0x38 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+                0x08004cfc                Receiver_CalcDutyCycle
  .text.TIM1_CC_IRQHandler
-                0x08004cf8       0x94 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
-                0x08004cf8                TIM1_CC_IRQHandler
+                0x08004d34       0x94 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+                0x08004d34                TIM1_CC_IRQHandler
  .text.task_peripheral_init
-                0x08004d8c       0x7c CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                0x08004d8c                task_peripheral_init
+                0x08004dc8       0x7c CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x08004dc8                task_peripheral_init
  .text.SendAnotc
-                0x08004e08      0x3bc CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                0x08004e08                SendAnotc
+                0x08004e44      0x3bc CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x08004e44                SendAnotc
  .text.task_attitude_fusion
-                0x080051c4      0x1dc CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                0x080051c4                task_attitude_fusion
+                0x08005200      0x1f0 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x08005200                task_attitude_fusion
  .text.first_task
-                0x080053a0       0xac CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                0x080053a0                first_task
- .text.main     0x0800544c       0x38 CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                0x0800544c                main
+                0x080053f0       0xac CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x080053f0                first_task
+ .text.main     0x0800549c       0x38 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x0800549c                main
  .text.My_Systick_Config
-                0x08005484       0x58 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
-                0x08005484                My_Systick_Config
+                0x080054d4       0x58 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+                0x080054d4                My_Systick_Config
  .text.OSInitHookBegin
-                0x080054dc       0x60 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x080054dc                OSInitHookBegin
+                0x0800552c       0x60 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x0800552c                OSInitHookBegin
  .text.OSInitHookEnd
-                0x0800553c        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x0800553c                OSInitHookEnd
+                0x0800558c        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x0800558c                OSInitHookEnd
  .text.OSTaskCreateHook
-                0x0800554a       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x0800554a                OSTaskCreateHook
+                0x0800559a       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x0800559a                OSTaskCreateHook
  .text.OSTaskDelHook
-                0x0800555e       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x0800555e                OSTaskDelHook
+                0x080055ae       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x080055ae                OSTaskDelHook
  .text.OSTaskIdleHook
-                0x08005572        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005572                OSTaskIdleHook
+                0x080055c2        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x080055c2                OSTaskIdleHook
  .text.OSTaskReturnHook
-                0x08005580       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005580                OSTaskReturnHook
+                0x080055d0       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x080055d0                OSTaskReturnHook
  .text.OSTaskStatHook
-                0x08005594        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x08005594                OSTaskStatHook
- *fill*         0x080055a2        0x2 
+                0x080055e4        0xe CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x080055e4                OSTaskStatHook
+ *fill*         0x080055f2        0x2 
  .text.OSTaskStkInit
-                0x080055a4      0x118 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x080055a4                OSTaskStkInit
+                0x080055f4      0x118 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x080055f4                OSTaskStkInit
  .text.OSTCBInitHook
-                0x080056bc       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x080056bc                OSTCBInitHook
+                0x0800570c       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x0800570c                OSTCBInitHook
  .text.SysTick_Handler
-                0x080056d0       0x28 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x080056d0                SysTick_Handler
- .text.OSInit   0x080056f8       0x38 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x080056f8                OSInit
+                0x08005720       0x28 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x08005720                SysTick_Handler
+ .text.OSInit   0x08005748       0x38 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005748                OSInit
  .text.OSIntEnter
-                0x08005730       0x34 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005730                OSIntEnter
+                0x08005780       0x34 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005780                OSIntEnter
  .text.OSIntExit
-                0x08005764       0xa4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005764                OSIntExit
- .text.OSStart  0x08005808       0x50 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005808                OSStart
+                0x080057b4       0xa4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x080057b4                OSIntExit
+ .text.OSStart  0x08005858       0x50 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005858                OSStart
  .text.OSTimeTick
-                0x08005858      0x140 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005858                OSTimeTick
+                0x080058a8      0x140 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x080058a8                OSTimeTick
  .text.OS_Dummy
-                0x08005998        0xe CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005998                OS_Dummy
+                0x080059e8        0xe CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x080059e8                OS_Dummy
  .text.OS_EventTaskRemove
-                0x080059a6       0x66 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x080059a6                OS_EventTaskRemove
+                0x080059f6       0x66 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x080059f6                OS_EventTaskRemove
  .text.OS_InitEventList
-                0x08005a0c       0x94 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005a5c       0x94 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitMisc
-                0x08005aa0       0x7c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005af0       0x7c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitRdyList
-                0x08005b1c       0x64 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005b6c       0x64 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitTaskIdle
-                0x08005b80       0x4c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005bd0       0x4c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitTaskStat
-                0x08005bcc       0x4c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005c1c       0x4c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_InitTCBList
-                0x08005c18       0x9c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005c68       0x9c CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_MemClr
-                0x08005cb4       0x32 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005cb4                OS_MemClr
- *fill*         0x08005ce6        0x2 
+                0x08005d04       0x32 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005d04                OS_MemClr
+ *fill*         0x08005d36        0x2 
  .text.OS_Sched
-                0x08005ce8       0x84 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005ce8                OS_Sched
+                0x08005d38       0x84 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005d38                OS_Sched
  .text.OS_SchedNew
-                0x08005d6c       0x48 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005dbc       0x48 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .text.OS_TaskIdle
-                0x08005db4       0x30 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005db4                OS_TaskIdle
+                0x08005e04       0x30 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005e04                OS_TaskIdle
  .text.OS_TaskStat
-                0x08005de4       0xf0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005de4                OS_TaskStat
+                0x08005e34       0xf0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005e34                OS_TaskStat
  .text.OS_TaskStatStkChk
-                0x08005ed4       0x68 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005ed4                OS_TaskStatStkChk
+                0x08005f24       0x68 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005f24                OS_TaskStatStkChk
  .text.OS_TCBInit
-                0x08005f3c      0x1e0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08005f3c                OS_TCBInit
+                0x08005f8c      0x1e0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08005f8c                OS_TCBInit
  .text.OSDebugInit
-                0x0800611c      0x184 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800611c                OSDebugInit
+                0x0800616c      0x184 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800616c                OSDebugInit
  .text.OS_FlagInit
-                0x080062a0       0x84 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
-                0x080062a0                OS_FlagInit
+                0x080062f0       0x84 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+                0x080062f0                OS_FlagInit
  .text.OS_FlagUnlink
-                0x08006324       0x5e CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
-                0x08006324                OS_FlagUnlink
- *fill*         0x08006382        0x2 
+                0x08006374       0x5e CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+                0x08006374                OS_FlagUnlink
+ *fill*         0x080063d2        0x2 
  .text.OS_MemInit
-                0x08006384       0x80 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
-                0x08006384                OS_MemInit
+                0x080063d4       0x80 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+                0x080063d4                OS_MemInit
  .text.OS_QInit
-                0x08006404       0x78 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
-                0x08006404                OS_QInit
+                0x08006454       0x78 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+                0x08006454                OS_QInit
  .text.OSTaskCreate
-                0x0800647c       0xc0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x0800647c                OSTaskCreate
+                0x080064cc       0xc0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x080064cc                OSTaskCreate
  .text.OSTaskCreateExt
-                0x0800653c       0xcc CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x0800653c                OSTaskCreateExt
+                0x0800658c       0xcc CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x0800658c                OSTaskCreateExt
  .text.OSTaskDel
-                0x08006608      0x1cc CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006608                OSTaskDel
+                0x08006658      0x1cc CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006658                OSTaskDel
  .text.OSTaskNameSet
-                0x080067d4       0x90 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x080067d4                OSTaskNameSet
+                0x08006824       0x90 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006824                OSTaskNameSet
  .text.OSTaskStkChk
-                0x08006864       0xc0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006864                OSTaskStkChk
+                0x080068b4       0xc0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x080068b4                OSTaskStkChk
  .text.OSTaskSuspend
-                0x08006924       0xec CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006924                OSTaskSuspend
+                0x08006974       0xec CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006974                OSTaskSuspend
  .text.OS_TaskReturn
-                0x08006a10       0x1c CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006a10                OS_TaskReturn
+                0x08006a60       0x1c CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006a60                OS_TaskReturn
  .text.OS_TaskStkClr
-                0x08006a2c       0x46 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
-                0x08006a2c                OS_TaskStkClr
- *fill*         0x08006a72        0x2 
+                0x08006a7c       0x46 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x08006a7c                OS_TaskStkClr
+ *fill*         0x08006ac2        0x2 
  .text.OSTimeDly
-                0x08006a74       0xb8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
-                0x08006a74                OSTimeDly
+                0x08006ac4       0xb8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+                0x08006ac4                OSTimeDly
  .text.OSTimeGet
-                0x08006b2c       0x2c CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
-                0x08006b2c                OSTimeGet
+                0x08006b7c       0x2c CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+                0x08006b7c                OSTimeGet
  .text.Reset_Handler
-                0x08006b58       0x50 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
-                0x08006b58                Reset_Handler
+                0x08006ba8       0x50 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+                0x08006ba8                Reset_Handler
  .text.Default_Handler
-                0x08006ba8        0x2 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
-                0x08006ba8                RTC_Alarm_IRQHandler
-                0x08006ba8                EXTI2_IRQHandler
-                0x08006ba8                DebugMon_Handler
-                0x08006ba8                SPI4_IRQHandler
-                0x08006ba8                DMA2_Stream5_IRQHandler
-                0x08006ba8                HardFault_Handler
-                0x08006ba8                DMA1_Stream5_IRQHandler
-                0x08006ba8                PVD_IRQHandler
-                0x08006ba8                SDIO_IRQHandler
-                0x08006ba8                TAMP_STAMP_IRQHandler
-                0x08006ba8                NMI_Handler
-                0x08006ba8                EXTI3_IRQHandler
-                0x08006ba8                TIM1_UP_TIM10_IRQHandler
-                0x08006ba8                I2C3_ER_IRQHandler
-                0x08006ba8                EXTI0_IRQHandler
-                0x08006ba8                I2C2_EV_IRQHandler
-                0x08006ba8                DMA1_Stream2_IRQHandler
-                0x08006ba8                FPU_IRQHandler
-                0x08006ba8                UsageFault_Handler
-                0x08006ba8                DMA2_Stream2_IRQHandler
-                0x08006ba8                SPI1_IRQHandler
-                0x08006ba8                TIM1_BRK_TIM9_IRQHandler
-                0x08006ba8                DMA2_Stream3_IRQHandler
-                0x08006ba8                USART6_IRQHandler
-                0x08006ba8                DMA2_Stream0_IRQHandler
-                0x08006ba8                TIM4_IRQHandler
-                0x08006ba8                I2C1_EV_IRQHandler
-                0x08006ba8                DMA1_Stream6_IRQHandler
-                0x08006ba8                DMA1_Stream1_IRQHandler
-                0x08006ba8                TIM3_IRQHandler
-                0x08006ba8                RCC_IRQHandler
-                0x08006ba8                Default_Handler
-                0x08006ba8                EXTI15_10_IRQHandler
-                0x08006ba8                ADC_IRQHandler
-                0x08006ba8                DMA1_Stream7_IRQHandler
-                0x08006ba8                TIM5_IRQHandler
-                0x08006ba8                DMA2_Stream7_IRQHandler
-                0x08006ba8                I2C3_EV_IRQHandler
-                0x08006ba8                EXTI9_5_IRQHandler
-                0x08006ba8                RTC_WKUP_IRQHandler
-                0x08006ba8                SPI2_IRQHandler
-                0x08006ba8                MemManage_Handler
-                0x08006ba8                DMA1_Stream0_IRQHandler
-                0x08006ba8                SVC_Handler
-                0x08006ba8                EXTI4_IRQHandler
-                0x08006ba8                WWDG_IRQHandler
-                0x08006ba8                TIM2_IRQHandler
-                0x08006ba8                OTG_FS_WKUP_IRQHandler
-                0x08006ba8                TIM1_TRG_COM_TIM11_IRQHandler
-                0x08006ba8                EXTI1_IRQHandler
-                0x08006ba8                USART2_IRQHandler
-                0x08006ba8                I2C2_ER_IRQHandler
-                0x08006ba8                DMA2_Stream1_IRQHandler
-                0x08006ba8                FLASH_IRQHandler
-                0x08006ba8                DMA2_Stream4_IRQHandler
-                0x08006ba8                BusFault_Handler
-                0x08006ba8                USART1_IRQHandler
-                0x08006ba8                OTG_FS_IRQHandler
-                0x08006ba8                SPI3_IRQHandler
-                0x08006ba8                DMA1_Stream4_IRQHandler
-                0x08006ba8                I2C1_ER_IRQHandler
-                0x08006ba8                DMA2_Stream6_IRQHandler
-                0x08006ba8                DMA1_Stream3_IRQHandler
- *fill*         0x08006baa        0x2 
+                0x08006bf8        0x2 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+                0x08006bf8                RTC_Alarm_IRQHandler
+                0x08006bf8                EXTI2_IRQHandler
+                0x08006bf8                DebugMon_Handler
+                0x08006bf8                SPI4_IRQHandler
+                0x08006bf8                DMA2_Stream5_IRQHandler
+                0x08006bf8                HardFault_Handler
+                0x08006bf8                DMA1_Stream5_IRQHandler
+                0x08006bf8                PVD_IRQHandler
+                0x08006bf8                SDIO_IRQHandler
+                0x08006bf8                TAMP_STAMP_IRQHandler
+                0x08006bf8                NMI_Handler
+                0x08006bf8                EXTI3_IRQHandler
+                0x08006bf8                TIM1_UP_TIM10_IRQHandler
+                0x08006bf8                I2C3_ER_IRQHandler
+                0x08006bf8                EXTI0_IRQHandler
+                0x08006bf8                I2C2_EV_IRQHandler
+                0x08006bf8                DMA1_Stream2_IRQHandler
+                0x08006bf8                FPU_IRQHandler
+                0x08006bf8                UsageFault_Handler
+                0x08006bf8                DMA2_Stream2_IRQHandler
+                0x08006bf8                SPI1_IRQHandler
+                0x08006bf8                TIM1_BRK_TIM9_IRQHandler
+                0x08006bf8                DMA2_Stream3_IRQHandler
+                0x08006bf8                USART6_IRQHandler
+                0x08006bf8                DMA2_Stream0_IRQHandler
+                0x08006bf8                TIM4_IRQHandler
+                0x08006bf8                I2C1_EV_IRQHandler
+                0x08006bf8                DMA1_Stream6_IRQHandler
+                0x08006bf8                DMA1_Stream1_IRQHandler
+                0x08006bf8                TIM3_IRQHandler
+                0x08006bf8                RCC_IRQHandler
+                0x08006bf8                Default_Handler
+                0x08006bf8                EXTI15_10_IRQHandler
+                0x08006bf8                ADC_IRQHandler
+                0x08006bf8                DMA1_Stream7_IRQHandler
+                0x08006bf8                TIM5_IRQHandler
+                0x08006bf8                DMA2_Stream7_IRQHandler
+                0x08006bf8                I2C3_EV_IRQHandler
+                0x08006bf8                EXTI9_5_IRQHandler
+                0x08006bf8                RTC_WKUP_IRQHandler
+                0x08006bf8                SPI2_IRQHandler
+                0x08006bf8                MemManage_Handler
+                0x08006bf8                DMA1_Stream0_IRQHandler
+                0x08006bf8                SVC_Handler
+                0x08006bf8                EXTI4_IRQHandler
+                0x08006bf8                WWDG_IRQHandler
+                0x08006bf8                TIM2_IRQHandler
+                0x08006bf8                OTG_FS_WKUP_IRQHandler
+                0x08006bf8                TIM1_TRG_COM_TIM11_IRQHandler
+                0x08006bf8                EXTI1_IRQHandler
+                0x08006bf8                USART2_IRQHandler
+                0x08006bf8                I2C2_ER_IRQHandler
+                0x08006bf8                DMA2_Stream1_IRQHandler
+                0x08006bf8                FLASH_IRQHandler
+                0x08006bf8                DMA2_Stream4_IRQHandler
+                0x08006bf8                BusFault_Handler
+                0x08006bf8                USART1_IRQHandler
+                0x08006bf8                OTG_FS_IRQHandler
+                0x08006bf8                SPI3_IRQHandler
+                0x08006bf8                DMA1_Stream4_IRQHandler
+                0x08006bf8                I2C1_ER_IRQHandler
+                0x08006bf8                DMA2_Stream6_IRQHandler
+                0x08006bf8                DMA1_Stream3_IRQHandler
+ *fill*         0x08006bfa        0x2 
  .text.SystemInit
-                0x08006bac       0x6c CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
-                0x08006bac                SystemInit
+                0x08006bfc       0x6c CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+                0x08006bfc                SystemInit
  .text.SetSysClock
-                0x08006c18       0xf4 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .text._fstat   0x08006d0c       0x20 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08006d0c                _fstat
- .text._isatty  0x08006d2c       0x16 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08006d2c                _isatty
- .text._close   0x08006d42       0x18 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08006d42                _close
- .text._lseek   0x08006d5a       0x1a CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08006d5a                _lseek
- .text._write   0x08006d74       0x38 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08006d74                _write
- .text._read    0x08006dac       0x1a CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08006dac                _read
- *fill*         0x08006dc6        0x2 
- .text._sbrk    0x08006dc8       0x40 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
-                0x08006dc8                _sbrk
- .text._puts_r  0x08006e08       0x98 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
-                0x08006e08                _puts_r
- .text.puts     0x08006ea0       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
-                0x08006ea0                puts
+                0x08006c68       0xf4 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .text._fstat   0x08006d5c       0x20 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08006d5c                _fstat
+ .text._isatty  0x08006d7c       0x16 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08006d7c                _isatty
+ .text._close   0x08006d92       0x18 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08006d92                _close
+ .text._lseek   0x08006daa       0x1a CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08006daa                _lseek
+ .text._write   0x08006dc4       0x38 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08006dc4                _write
+ .text._read    0x08006dfc       0x1a CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08006dfc                _read
+ *fill*         0x08006e16        0x2 
+ .text._sbrk    0x08006e18       0x40 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x08006e18                _sbrk
+ .text._puts_r  0x08006e58       0x98 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+                0x08006e58                _puts_r
+ .text.puts     0x08006ef0       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+                0x08006ef0                puts
  .text.__sfvwrite_r
-                0x08006eb0      0x300 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
-                0x08006eb0                __sfvwrite_r
+                0x08006f00      0x300 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+                0x08006f00                __sfvwrite_r
  .text.__swsetup_r
-                0x080071b0       0xc0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
-                0x080071b0                __swsetup_r
- .text.memmove  0x08007270      0x100 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
-                0x08007270                memmove
+                0x08007200       0xc0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+                0x08007200                __swsetup_r
+ .text.memmove  0x080072c0      0x100 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+                0x080072c0                memmove
  .text._realloc_r
-                0x08007370      0x344 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
-                0x08007370                _realloc_r
+                0x080073c0      0x344 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+                0x080073c0                _realloc_r
  .text.__smakebuf_r
-                0x080076b4       0xdc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
-                0x080076b4                __smakebuf_r
+                0x08007704       0xdc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+                0x08007704                __smakebuf_r
  .text._fstat_r
-                0x08007790       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
-                0x08007790                _fstat_r
+                0x080077e0       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+                0x080077e0                _fstat_r
  .text._isatty_r
-                0x080077bc       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
-                0x080077bc                _isatty_r
- .text.sqrt     0x080077e0       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-w_sqrt.o)
-                0x080077e0                sqrt
- .text.atan2f   0x08007848        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-wf_atan2.o)
-                0x08007848                atan2f
- .text.fabsf    0x0800784c       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_fabs.o)
-                0x0800784c                fabsf
+                0x0800780c       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+                0x0800780c                _isatty_r
+ .text.sqrt     0x08007830       0x68 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-w_sqrt.o)
+                0x08007830                sqrt
+ .text.atan2f   0x08007898        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-wf_atan2.o)
+                0x08007898                atan2f
+ .text.fabsf    0x0800789c       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_fabs.o)
+                0x0800789c                fabsf
  .text.__ieee754_sqrt
-                0x0800785c      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-e_sqrt.o)
-                0x0800785c                __ieee754_sqrt
+                0x080078ac      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-e_sqrt.o)
+                0x080078ac                __ieee754_sqrt
  .text.__ieee754_atan2f
-                0x08007a50      0x150 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
-                0x08007a50                __ieee754_atan2f
- .text.atanf    0x08007ba0      0x1ac /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
-                0x08007ba0                atanf
+                0x08007aa0      0x150 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
+                0x08007aa0                __ieee754_atan2f
+ .text.atanf    0x08007bf0      0x1ac /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
+                0x08007bf0                atanf
  *(.glue_7)
- .glue_7        0x08007d4c        0x0 linker stubs
+ .glue_7        0x08007d9c        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08007d4c        0x0 linker stubs
+ .glue_7t       0x08007d9c        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08007d4c        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x08007d9c        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
  *(.init)
- .init          0x08007d4c        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o
-                0x08007d4c                _init
- .init          0x08007d50        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x08007d9c        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o
+                0x08007d9c                _init
+ .init          0x08007da0        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x08007d58        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o
-                0x08007d58                _fini
- .fini          0x08007d5c        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
-                0x08007d64                        . = ALIGN (0x4)
-                0x08007d64                        _etext = .
+ .fini          0x08007da8        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crti.o
+                0x08007da8                _fini
+ .fini          0x08007dac        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
+                0x08007db4                        . = ALIGN (0x4)
+                0x08007db4                        _etext = .
 
-.vfp11_veneer   0x08007d64        0x0
- .vfp11_veneer  0x08007d64        0x0 linker stubs
+.vfp11_veneer   0x08007db4        0x0
+ .vfp11_veneer  0x08007db4        0x0 linker stubs
 
-.v4_bx          0x08007d64        0x0
- .v4_bx         0x08007d64        0x0 linker stubs
+.v4_bx          0x08007db4        0x0
+ .v4_bx         0x08007db4        0x0 linker stubs
 
-.iplt           0x08007d64        0x0
- .iplt          0x08007d64        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x08007db4        0x0
+ .iplt          0x08007db4        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x08007d64      0x300
-                0x08007d64                        . = ALIGN (0x4)
+.rodata         0x08007db4      0x300
+                0x08007db4                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x08007d64      0x133 CMakeFiles/freefly.elf.dir/Application/main.c.obj
- *fill*         0x08007e97        0x1 
- .rodata        0x08007e98       0x22 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- *fill*         0x08007eba        0x2 
- .rodata        0x08007ebc        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- *fill*         0x08007ebe        0x2 
- .rodata        0x08007ec0        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- *fill*         0x08007ec2        0x2 
- .rodata        0x08007ec4        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .rodata        0x08007db4      0x133 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ *fill*         0x08007ee7        0x1 
+ .rodata        0x08007ee8       0x22 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ *fill*         0x08007f0a        0x2 
+ .rodata        0x08007f0c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ *fill*         0x08007f0e        0x2 
+ .rodata        0x08007f10        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ *fill*         0x08007f12        0x2 
+ .rodata        0x08007f14        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
  *(.rodata*)
- *fill*         0x08007ec6        0x2 
+ *fill*         0x08007f16        0x2 
  .rodata.OSUnMapTbl
-                0x08007ec8      0x100 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x08007ec8                OSUnMapTbl
+                0x08007f18      0x100 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x08007f18                OSUnMapTbl
  .rodata.OSDebugEn
-                0x08007fc8        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fc8                OSDebugEn
- *fill*         0x08007fca        0x2 
- .rodata.OSEndiannessTest
-                0x08007fcc        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fcc                OSEndiannessTest
- .rodata.OSEventEn
-                0x08007fd0        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fd0                OSEventEn
- .rodata.OSEventMax
-                0x08007fd2        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fd2                OSEventMax
- .rodata.OSEventNameEn
-                0x08007fd4        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fd4                OSEventNameEn
- .rodata.OSEventSize
-                0x08007fd6        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fd6                OSEventSize
- .rodata.OSEventTblSize
-                0x08007fd8        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fd8                OSEventTblSize
- .rodata.OSEventMultiEn
-                0x08007fda        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fda                OSEventMultiEn
- .rodata.OSFlagEn
-                0x08007fdc        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fdc                OSFlagEn
- .rodata.OSFlagGrpSize
-                0x08007fde        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fde                OSFlagGrpSize
- .rodata.OSFlagNodeSize
-                0x08007fe0        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fe0                OSFlagNodeSize
- .rodata.OSFlagWidth
-                0x08007fe2        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fe2                OSFlagWidth
- .rodata.OSFlagMax
-                0x08007fe4        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fe4                OSFlagMax
- .rodata.OSFlagNameEn
-                0x08007fe6        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fe6                OSFlagNameEn
- .rodata.OSLowestPrio
-                0x08007fe8        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fe8                OSLowestPrio
- .rodata.OSMboxEn
-                0x08007fea        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fea                OSMboxEn
- .rodata.OSMemEn
-                0x08007fec        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fec                OSMemEn
- .rodata.OSMemMax
-                0x08007fee        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007fee                OSMemMax
- .rodata.OSMemNameEn
-                0x08007ff0        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007ff0                OSMemNameEn
- .rodata.OSMemSize
-                0x08007ff2        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007ff2                OSMemSize
- .rodata.OSMemTblSize
-                0x08007ff4        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007ff4                OSMemTblSize
- .rodata.OSMutexEn
-                0x08007ff6        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007ff6                OSMutexEn
- .rodata.OSPtrSize
-                0x08007ff8        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007ff8                OSPtrSize
- .rodata.OSQEn  0x08007ffa        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007ffa                OSQEn
- .rodata.OSQMax
-                0x08007ffc        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007ffc                OSQMax
- .rodata.OSQSize
-                0x08007ffe        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08007ffe                OSQSize
- .rodata.OSRdyTblSize
-                0x08008000        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008000                OSRdyTblSize
- .rodata.OSSemEn
-                0x08008002        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008002                OSSemEn
- .rodata.OSStkWidth
-                0x08008004        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008004                OSStkWidth
- .rodata.OSTaskCreateEn
-                0x08008006        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008006                OSTaskCreateEn
- .rodata.OSTaskCreateExtEn
-                0x08008008        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008008                OSTaskCreateExtEn
- .rodata.OSTaskDelEn
-                0x0800800a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800800a                OSTaskDelEn
- .rodata.OSTaskIdleStkSize
-                0x0800800c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800800c                OSTaskIdleStkSize
- .rodata.OSTaskProfileEn
-                0x0800800e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800800e                OSTaskProfileEn
- .rodata.OSTaskMax
-                0x08008010        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008010                OSTaskMax
- .rodata.OSTaskNameEn
-                0x08008012        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008012                OSTaskNameEn
- .rodata.OSTaskStatEn
-                0x08008014        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008014                OSTaskStatEn
- .rodata.OSTaskStatStkSize
-                0x08008016        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008016                OSTaskStatStkSize
- .rodata.OSTaskStatStkChkEn
                 0x08008018        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008018                OSTaskStatStkChkEn
- .rodata.OSTaskSwHookEn
-                0x0800801a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800801a                OSTaskSwHookEn
- .rodata.OSTCBPrioTblMax
-                0x0800801c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800801c                OSTCBPrioTblMax
- .rodata.OSTCBSize
-                0x0800801e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x0800801e                OSTCBSize
- .rodata.OSTicksPerSec
+                0x08008018                OSDebugEn
+ *fill*         0x0800801a        0x2 
+ .rodata.OSEndiannessTest
+                0x0800801c        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800801c                OSEndiannessTest
+ .rodata.OSEventEn
                 0x08008020        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008020                OSTicksPerSec
- .rodata.OSTimeTickHookEn
+                0x08008020                OSEventEn
+ .rodata.OSEventMax
                 0x08008022        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008022                OSTimeTickHookEn
- .rodata.OSVersionNbr
+                0x08008022                OSEventMax
+ .rodata.OSEventNameEn
                 0x08008024        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008024                OSVersionNbr
- .rodata.OSDataSize
+                0x08008024                OSEventNameEn
+ .rodata.OSEventSize
                 0x08008026        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
-                0x08008026                OSDataSize
+                0x08008026                OSEventSize
+ .rodata.OSEventTblSize
+                0x08008028        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008028                OSEventTblSize
+ .rodata.OSEventMultiEn
+                0x0800802a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800802a                OSEventMultiEn
+ .rodata.OSFlagEn
+                0x0800802c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800802c                OSFlagEn
+ .rodata.OSFlagGrpSize
+                0x0800802e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800802e                OSFlagGrpSize
+ .rodata.OSFlagNodeSize
+                0x08008030        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008030                OSFlagNodeSize
+ .rodata.OSFlagWidth
+                0x08008032        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008032                OSFlagWidth
+ .rodata.OSFlagMax
+                0x08008034        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008034                OSFlagMax
+ .rodata.OSFlagNameEn
+                0x08008036        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008036                OSFlagNameEn
+ .rodata.OSLowestPrio
+                0x08008038        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008038                OSLowestPrio
+ .rodata.OSMboxEn
+                0x0800803a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800803a                OSMboxEn
+ .rodata.OSMemEn
+                0x0800803c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800803c                OSMemEn
+ .rodata.OSMemMax
+                0x0800803e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800803e                OSMemMax
+ .rodata.OSMemNameEn
+                0x08008040        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008040                OSMemNameEn
+ .rodata.OSMemSize
+                0x08008042        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008042                OSMemSize
+ .rodata.OSMemTblSize
+                0x08008044        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008044                OSMemTblSize
+ .rodata.OSMutexEn
+                0x08008046        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008046                OSMutexEn
+ .rodata.OSPtrSize
+                0x08008048        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008048                OSPtrSize
+ .rodata.OSQEn  0x0800804a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800804a                OSQEn
+ .rodata.OSQMax
+                0x0800804c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800804c                OSQMax
+ .rodata.OSQSize
+                0x0800804e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800804e                OSQSize
+ .rodata.OSRdyTblSize
+                0x08008050        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008050                OSRdyTblSize
+ .rodata.OSSemEn
+                0x08008052        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008052                OSSemEn
+ .rodata.OSStkWidth
+                0x08008054        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008054                OSStkWidth
+ .rodata.OSTaskCreateEn
+                0x08008056        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008056                OSTaskCreateEn
+ .rodata.OSTaskCreateExtEn
+                0x08008058        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008058                OSTaskCreateExtEn
+ .rodata.OSTaskDelEn
+                0x0800805a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800805a                OSTaskDelEn
+ .rodata.OSTaskIdleStkSize
+                0x0800805c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800805c                OSTaskIdleStkSize
+ .rodata.OSTaskProfileEn
+                0x0800805e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800805e                OSTaskProfileEn
+ .rodata.OSTaskMax
+                0x08008060        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008060                OSTaskMax
+ .rodata.OSTaskNameEn
+                0x08008062        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008062                OSTaskNameEn
+ .rodata.OSTaskStatEn
+                0x08008064        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008064                OSTaskStatEn
+ .rodata.OSTaskStatStkSize
+                0x08008066        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008066                OSTaskStatStkSize
+ .rodata.OSTaskStatStkChkEn
+                0x08008068        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008068                OSTaskStatStkChkEn
+ .rodata.OSTaskSwHookEn
+                0x0800806a        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800806a                OSTaskSwHookEn
+ .rodata.OSTCBPrioTblMax
+                0x0800806c        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800806c                OSTCBPrioTblMax
+ .rodata.OSTCBSize
+                0x0800806e        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x0800806e                OSTCBSize
+ .rodata.OSTicksPerSec
+                0x08008070        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008070                OSTicksPerSec
+ .rodata.OSTimeTickHookEn
+                0x08008072        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008072                OSTimeTickHookEn
+ .rodata.OSVersionNbr
+                0x08008074        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008074                OSVersionNbr
+ .rodata.OSDataSize
+                0x08008076        0x2 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x08008076                OSDataSize
  .rodata._puts_r.str1.4
-                0x08008028        0x2 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- *fill*         0x0800802a        0x2 
+                0x08008078        0x2 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ *fill*         0x0800807a        0x2 
  .rodata.CSWTCH.9
-                0x0800802c        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
+                0x0800807c        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
  .rodata.CSWTCH.8
-                0x08008038        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
+                0x08008088        0xc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-ef_atan2.o)
  .rodata.atanlo
-                0x08008044       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
+                0x08008094       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
  .rodata.atanhi
-                0x08008054       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
-                0x08008064                        . = ALIGN (0x4)
+                0x080080a4       0x10 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a(libm_a-sf_atan.o)
+                0x080080b4                        . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x08008064        0x8
-                0x08008064                        __exidx_start = .
+.ARM            0x080080b4        0x8
+                0x080080b4                        __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x08008064        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
- .ARM.exidx     0x0800806c        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+ .ARM.exidx     0x080080b4        0x8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+ .ARM.exidx     0x080080bc        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x0800806c        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+ .ARM.exidx     0x080080bc        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
                                   0x8 (size before relaxing)
-                0x0800806c                        __exidx_end = .
+                0x080080bc                        __exidx_end = .
 
-.rel.dyn        0x0800806c        0x0
- .rel.iplt      0x0800806c        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x080080bc        0x0
+ .rel.iplt      0x080080bc        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
 
-.preinit_array  0x0800806c        0x0
-                0x0800806c                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x080080bc        0x0
+                0x080080bc                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x0800806c                        PROVIDE (__preinit_array_end = .)
+                0x080080bc                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x0800806c        0x8
-                0x0800806c                        PROVIDE (__init_array_start = .)
+.init_array     0x080080bc        0x8
+                0x080080bc                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.00000
-                0x0800806c        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__call_atexit.o)
+                0x080080bc        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__call_atexit.o)
  *(.init_array*)
- .init_array    0x08008070        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
-                0x08008074                        PROVIDE (__init_array_end = .)
+ .init_array    0x080080c0        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+                0x080080c4                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x08008074        0x4
-                0x08008074                        PROVIDE (__fini_array_start = .)
+.fini_array     0x080080c4        0x4
+                0x080080c4                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08008074        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
-                0x08008078                        PROVIDE (__fini_array_end = .)
-                0x08008078                        _sidata = LOADADDR (.data)
+ .fini_array    0x080080c4        0x4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
+                0x080080c8                        PROVIDE (__fini_array_end = .)
+                0x080080c8                        _sidata = LOADADDR (.data)
 
-.data           0x20000000      0x5b0 load address 0x08008078
+.data           0x20000000      0x5b0 load address 0x080080c8
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -4710,11 +4733,11 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
                 0x200005b0                        . = ALIGN (0x4)
                 0x200005b0                        _edata = .
 
-.igot.plt       0x200005b0        0x0 load address 0x08008628
+.igot.plt       0x200005b0        0x0 load address 0x08008678
  .igot.plt      0x200005b0        0x0 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtbegin.o
                 0x200005b0                        . = ALIGN (0x4)
 
-.bss            0x200005b0     0x7620 load address 0x08008628
+.bss            0x200005b0     0x7648 load address 0x08008678
                 0x200005b0                        _sbss = .
                 0x200005b0                        __bss_start__ = _sbss
  *(.bss)
@@ -4780,130 +4803,132 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/crtn.o
  .bss.times     0x20006918        0x2 CMakeFiles/freefly.elf.dir/Application/main.c.obj
                 0x20006918                times
  *fill*         0x2000691a        0x2 
+ .bss.cnt       0x2000691c       0x28 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x2000691c                cnt
  .bss.OS_CPU_ExceptStk
-                0x2000691c      0x400 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x2000691c                OS_CPU_ExceptStk
+                0x20006944      0x400 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x20006944                OS_CPU_ExceptStk
  .bss.OS_CPU_ExceptStkBase
-                0x20006d1c        0x4 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x20006d1c                OS_CPU_ExceptStkBase
+                0x20006d44        0x4 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x20006d44                OS_CPU_ExceptStkBase
  .bss.OS_KA_BASEPRI_Boundary
-                0x20006d20        0x4 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
-                0x20006d20                OS_KA_BASEPRI_Boundary
+                0x20006d48        0x4 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x20006d48                OS_KA_BASEPRI_Boundary
  .bss.OSCtxSwCtr
-                0x20006d24        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006d24                OSCtxSwCtr
+                0x20006d4c        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006d4c                OSCtxSwCtr
  .bss.OSEventFreeList
-                0x20006d28        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006d28                OSEventFreeList
+                0x20006d50        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006d50                OSEventFreeList
  .bss.OSEventTbl
-                0x20006d2c       0xf0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006d2c                OSEventTbl
+                0x20006d54       0xf0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006d54                OSEventTbl
  .bss.OSFlagTbl
-                0x20006e1c       0x50 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006e1c                OSFlagTbl
+                0x20006e44       0x50 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006e44                OSFlagTbl
  .bss.OSFlagFreeList
-                0x20006e6c        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006e6c                OSFlagFreeList
+                0x20006e94        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006e94                OSFlagFreeList
  .bss.OSCPUUsage
-                0x20006e70        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006e70                OSCPUUsage
- *fill*         0x20006e71        0x3 
+                0x20006e98        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006e98                OSCPUUsage
+ *fill*         0x20006e99        0x3 
  .bss.OSIdleCtrMax
-                0x20006e74        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006e74                OSIdleCtrMax
+                0x20006e9c        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006e9c                OSIdleCtrMax
  .bss.OSIdleCtrRun
-                0x20006e78        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006e78                OSIdleCtrRun
+                0x20006ea0        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006ea0                OSIdleCtrRun
  .bss.OSStatRdy
-                0x20006e7c        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006e7c                OSStatRdy
- *fill*         0x20006e7d        0x3 
+                0x20006ea4        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006ea4                OSStatRdy
+ *fill*         0x20006ea5        0x3 
  .bss.OSTaskStatStk
-                0x20006e80      0x200 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20006e80                OSTaskStatStk
+                0x20006ea8      0x200 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20006ea8                OSTaskStatStk
  .bss.OSIntNesting
-                0x20007080        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007080                OSIntNesting
+                0x200070a8        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070a8                OSIntNesting
  .bss.OSLockNesting
-                0x20007081        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007081                OSLockNesting
+                0x200070a9        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070a9                OSLockNesting
  .bss.OSPrioCur
-                0x20007082        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007082                OSPrioCur
+                0x200070aa        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070aa                OSPrioCur
  .bss.OSPrioHighRdy
-                0x20007083        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007083                OSPrioHighRdy
- .bss.OSRdyGrp  0x20007084        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007084                OSRdyGrp
- *fill*         0x20007085        0x3 
- .bss.OSRdyTbl  0x20007088        0x8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007088                OSRdyTbl
+                0x200070ab        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070ab                OSPrioHighRdy
+ .bss.OSRdyGrp  0x200070ac        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070ac                OSRdyGrp
+ *fill*         0x200070ad        0x3 
+ .bss.OSRdyTbl  0x200070b0        0x8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070b0                OSRdyTbl
  .bss.OSRunning
-                0x20007090        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007090                OSRunning
+                0x200070b8        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070b8                OSRunning
  .bss.OSTaskCtr
-                0x20007091        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007091                OSTaskCtr
- *fill*         0x20007092        0x2 
+                0x200070b9        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070b9                OSTaskCtr
+ *fill*         0x200070ba        0x2 
  .bss.OSIdleCtr
-                0x20007094        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007094                OSIdleCtr
+                0x200070bc        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070bc                OSIdleCtr
  .bss.OSTaskIdleStk
-                0x20007098      0x200 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007098                OSTaskIdleStk
- .bss.OSTCBCur  0x20007298        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007298                OSTCBCur
+                0x200070c0      0x200 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200070c0                OSTaskIdleStk
+ .bss.OSTCBCur  0x200072c0        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200072c0                OSTCBCur
  .bss.OSTCBFreeList
-                0x2000729c        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x2000729c                OSTCBFreeList
+                0x200072c4        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200072c4                OSTCBFreeList
  .bss.OSTCBHighRdy
-                0x200072a0        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x200072a0                OSTCBHighRdy
+                0x200072c8        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200072c8                OSTCBHighRdy
  .bss.OSTCBList
-                0x200072a4        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x200072a4                OSTCBList
+                0x200072cc        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200072cc                OSTCBList
  .bss.OSTCBPrioTbl
-                0x200072a8      0x100 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x200072a8                OSTCBPrioTbl
- .bss.OSTCBTbl  0x200073a8      0x738 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x200073a8                OSTCBTbl
+                0x200072d0      0x100 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200072d0                OSTCBPrioTbl
+ .bss.OSTCBTbl  0x200073d0      0x738 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x200073d0                OSTCBTbl
  .bss.OSTickStepState
-                0x20007ae0        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007ae0                OSTickStepState
- *fill*         0x20007ae1        0x3 
+                0x20007b08        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20007b08                OSTickStepState
+ *fill*         0x20007b09        0x3 
  .bss.OSMemFreeList
-                0x20007ae4        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007ae4                OSMemFreeList
- .bss.OSMemTbl  0x20007ae8       0x78 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007ae8                OSMemTbl
+                0x20007b0c        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20007b0c                OSMemFreeList
+ .bss.OSMemTbl  0x20007b10       0x78 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20007b10                OSMemTbl
  .bss.OSQFreeList
-                0x20007b60        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007b60                OSQFreeList
- .bss.OSQTbl    0x20007b64       0x60 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007b64                OSQTbl
+                0x20007b88        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20007b88                OSQFreeList
+ .bss.OSQTbl    0x20007b8c       0x60 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20007b8c                OSQTbl
  .bss.OSTaskRegNextAvailID
-                0x20007bc4        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007bc4                OSTaskRegNextAvailID
- *fill*         0x20007bc5        0x3 
- .bss.OSTime    0x20007bc8        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
-                0x20007bc8                OSTime
+                0x20007bec        0x1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20007bec                OSTaskRegNextAvailID
+ *fill*         0x20007bed        0x3 
+ .bss.OSTime    0x20007bf0        0x4 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x20007bf0                OSTime
  .bss.heap_end.0
-                0x20007bcc        0x4 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x20007bf4        0x4 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
  *(COMMON)
-                0x20007bd0                        . = ALIGN (0x4)
-                0x20007bd0                        _ebss = .
-                0x20007bd0                        __bss_end__ = _ebss
+                0x20007bf8                        . = ALIGN (0x4)
+                0x20007bf8                        _ebss = .
+                0x20007bf8                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20007bd0      0x600 load address 0x08008628
-                0x20007bd0                        . = ALIGN (0x8)
+                0x20007bf8      0x600 load address 0x08008678
+                0x20007bf8                        . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
-                0x20007bd0                        PROVIDE (_end = .)
-                0x20007dd0                        . = (. + _Min_Heap_Size)
- *fill*         0x20007bd0      0x200 
-                0x200081d0                        . = (. + _Min_Stack_Size)
- *fill*         0x20007dd0      0x400 
-                0x200081d0                        . = ALIGN (0x8)
+                0x20007bf8                        PROVIDE (_end = .)
+                0x20007df8                        . = (. + _Min_Heap_Size)
+ *fill*         0x20007bf8      0x200 
+                0x200081f8                        . = (. + _Min_Stack_Size)
+ *fill*         0x20007df8      0x400 
+                0x200081f8                        . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
@@ -5059,7 +5084,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m
 LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libm.a
 LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
 
-.debug_info     0x00000000    0x1cd41
+.debug_info     0x00000000    0x1cd80
  .debug_info    0x00000000      0x118 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
  .debug_info    0x00000118     0x10da /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
  .debug_info    0x000011f2      0x7ee /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
@@ -5089,46 +5114,46 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_info    0x0000aa89      0xde8 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
  .debug_info    0x0000b871     0x1c0b CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
  .debug_info    0x0000d47c      0x9c6 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
- .debug_info    0x0000de42      0x6ee CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
- .debug_info    0x0000e530      0xd22 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
- .debug_info    0x0000f252      0x868 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
- .debug_info    0x0000faba      0x343 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
- .debug_info    0x0000fdfd      0xb33 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
- .debug_info    0x00010930      0x671 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
- .debug_info    0x00010fa1      0x83e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
- .debug_info    0x000117df      0xd04 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
- .debug_info    0x000124e3      0x913 CMakeFiles/freefly.elf.dir/Application/main.c.obj
- .debug_info    0x00012df6      0x10d CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
- .debug_info    0x00012f03       0x25 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
- .debug_info    0x00012f28      0x5eb CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
- .debug_info    0x00013513      0xfad CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- .debug_info    0x000144c0      0x45e CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
- .debug_info    0x0001491e      0xa28 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- .debug_info    0x00015346      0x465 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- .debug_info    0x000157ab      0x971 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
- .debug_info    0x0001611c      0xbda CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
- .debug_info    0x00016cf6      0x540 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
- .debug_info    0x00017236       0x30 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
- .debug_info    0x00017266      0x615 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .debug_info    0x0001787b      0xb5f CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
- .debug_info    0x000183da       0xd3 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_info    0x000184ad       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_info    0x00018504       0x3f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_info    0x00018543      0x942 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- .debug_info    0x00018e85       0x31 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
- .debug_info    0x00018eb6       0x31 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
- .debug_info    0x00018ee7      0xb19 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
- .debug_info    0x00019a00      0x7d9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
- .debug_info    0x0001a1d9      0x148 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
- .debug_info    0x0001a321       0x25 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
- .debug_info    0x0001a346      0xbcd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
- .debug_info    0x0001af13      0xc0c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
- .debug_info    0x0001bb1f      0x993 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
- .debug_info    0x0001c4b2      0x774 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
- .debug_info    0x0001cc26       0xdf /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_info    0x0001cd05       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+ .debug_info    0x0000de42      0x6a0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+ .debug_info    0x0000e4e2      0xd22 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+ .debug_info    0x0000f204      0x868 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+ .debug_info    0x0000fa6c      0x343 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+ .debug_info    0x0000fdaf      0xb33 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+ .debug_info    0x000108e2      0x671 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+ .debug_info    0x00010f53      0x89a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+ .debug_info    0x000117ed      0xd04 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+ .debug_info    0x000124f1      0x944 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .debug_info    0x00012e35      0x10d CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+ .debug_info    0x00012f42       0x25 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
+ .debug_info    0x00012f67      0x5eb CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+ .debug_info    0x00013552      0xfad CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ .debug_info    0x000144ff      0x45e CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+ .debug_info    0x0001495d      0xa28 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ .debug_info    0x00015385      0x465 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ .debug_info    0x000157ea      0x971 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+ .debug_info    0x0001615b      0xbda CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .debug_info    0x00016d35      0x540 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+ .debug_info    0x00017275       0x30 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+ .debug_info    0x000172a5      0x615 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .debug_info    0x000178ba      0xb5f CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+ .debug_info    0x00018419       0xd3 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_info    0x000184ec       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_info    0x00018543       0x3f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_info    0x00018582      0x942 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ .debug_info    0x00018ec4       0x31 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+ .debug_info    0x00018ef5       0x31 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+ .debug_info    0x00018f26      0xb19 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+ .debug_info    0x00019a3f      0x7d9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+ .debug_info    0x0001a218      0x148 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+ .debug_info    0x0001a360       0x25 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+ .debug_info    0x0001a385      0xbcd /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+ .debug_info    0x0001af52      0xc0c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+ .debug_info    0x0001bb5e      0x993 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+ .debug_info    0x0001c4f1      0x774 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+ .debug_info    0x0001cc65       0xdf /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_info    0x0001cd44       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
 
-.debug_abbrev   0x00000000     0x6d95
+.debug_abbrev   0x00000000     0x6dcc
  .debug_abbrev  0x00000000       0xc1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
  .debug_abbrev  0x000000c1      0x484 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
  .debug_abbrev  0x00000545      0x1d9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
@@ -5158,44 +5183,44 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_abbrev  0x0000309d      0x1dd CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
  .debug_abbrev  0x0000327a      0x1cb CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
  .debug_abbrev  0x00003445      0x1ae CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
- .debug_abbrev  0x000035f3      0x175 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
- .debug_abbrev  0x00003768      0x2e8 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
- .debug_abbrev  0x00003a50      0x1e6 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
- .debug_abbrev  0x00003c36       0xb4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
- .debug_abbrev  0x00003cea      0x1a8 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
- .debug_abbrev  0x00003e92      0x168 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
- .debug_abbrev  0x00003ffa      0x23b CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
- .debug_abbrev  0x00004235      0x237 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
- .debug_abbrev  0x0000446c      0x251 CMakeFiles/freefly.elf.dir/Application/main.c.obj
- .debug_abbrev  0x000046bd       0xc6 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
- .debug_abbrev  0x00004783       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
- .debug_abbrev  0x00004797      0x212 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
- .debug_abbrev  0x000049a9      0x338 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- .debug_abbrev  0x00004ce1       0x91 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
- .debug_abbrev  0x00004d72      0x249 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- .debug_abbrev  0x00004fbb      0x1ed CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- .debug_abbrev  0x000051a8      0x221 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
- .debug_abbrev  0x000053c9      0x24f CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
- .debug_abbrev  0x00005618      0x1af CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
- .debug_abbrev  0x000057c7       0x24 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
- .debug_abbrev  0x000057eb      0x165 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .debug_abbrev  0x00005950      0x223 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
- .debug_abbrev  0x00005b73       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_abbrev  0x00005b9b       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_abbrev  0x00005bc3       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_abbrev  0x00005beb      0x27d /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- .debug_abbrev  0x00005e68       0x21 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
- .debug_abbrev  0x00005e89       0x21 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
- .debug_abbrev  0x00005eaa      0x257 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
- .debug_abbrev  0x00006101      0x21e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
- .debug_abbrev  0x0000631f       0xc3 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
- .debug_abbrev  0x000063e2       0x14 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
- .debug_abbrev  0x000063f6      0x2a3 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
- .debug_abbrev  0x00006699      0x2c1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
- .debug_abbrev  0x0000695a      0x1ff /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
- .debug_abbrev  0x00006b59      0x1ec /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
- .debug_abbrev  0x00006d45       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_abbrev  0x00006d6d       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+ .debug_abbrev  0x000035f3      0x160 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+ .debug_abbrev  0x00003753      0x2e8 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+ .debug_abbrev  0x00003a3b      0x1e6 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+ .debug_abbrev  0x00003c21       0xb4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+ .debug_abbrev  0x00003cd5      0x1a8 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+ .debug_abbrev  0x00003e7d      0x168 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+ .debug_abbrev  0x00003fe5      0x273 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+ .debug_abbrev  0x00004258      0x237 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+ .debug_abbrev  0x0000448f      0x265 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .debug_abbrev  0x000046f4       0xc6 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+ .debug_abbrev  0x000047ba       0x14 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
+ .debug_abbrev  0x000047ce      0x212 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+ .debug_abbrev  0x000049e0      0x338 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ .debug_abbrev  0x00004d18       0x91 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+ .debug_abbrev  0x00004da9      0x249 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ .debug_abbrev  0x00004ff2      0x1ed CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ .debug_abbrev  0x000051df      0x221 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+ .debug_abbrev  0x00005400      0x24f CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .debug_abbrev  0x0000564f      0x1af CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+ .debug_abbrev  0x000057fe       0x24 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+ .debug_abbrev  0x00005822      0x165 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .debug_abbrev  0x00005987      0x223 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+ .debug_abbrev  0x00005baa       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_abbrev  0x00005bd2       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_abbrev  0x00005bfa       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_abbrev  0x00005c22      0x27d /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ .debug_abbrev  0x00005e9f       0x21 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+ .debug_abbrev  0x00005ec0       0x21 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+ .debug_abbrev  0x00005ee1      0x257 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+ .debug_abbrev  0x00006138      0x21e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+ .debug_abbrev  0x00006356       0xc3 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+ .debug_abbrev  0x00006419       0x14 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+ .debug_abbrev  0x0000642d      0x2a3 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+ .debug_abbrev  0x000066d0      0x2c1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+ .debug_abbrev  0x00006991      0x1ff /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+ .debug_abbrev  0x00006b90      0x1ec /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+ .debug_abbrev  0x00006d7c       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_abbrev  0x00006da4       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
 
 .debug_loclists
                 0x00000000     0x34c7
@@ -5260,7 +5285,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_loclists
                 0x0000347b       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
 
-.debug_aranges  0x00000000     0x14b0
+.debug_aranges  0x00000000     0x14b8
  .debug_aranges
                 0x00000000       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
  .debug_aranges
@@ -5332,72 +5357,72 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_aranges
                 0x00000c30       0x28 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
  .debug_aranges
-                0x00000c58       0xd8 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x00000c58       0xe0 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
  .debug_aranges
-                0x00000d30       0x40 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+                0x00000d38       0x40 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
  .debug_aranges
-                0x00000d70       0x70 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x00000d78       0x70 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .debug_aranges
-                0x00000de0       0x20 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+                0x00000de8       0x20 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
  .debug_aranges
-                0x00000e00       0x20 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
+                0x00000e08       0x20 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
  .debug_aranges
-                0x00000e20       0x78 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x00000e28       0x78 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
  .debug_aranges
-                0x00000e98      0x110 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x00000ea0      0x110 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .debug_aranges
-                0x00000fa8       0x20 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x00000fb0       0x20 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
  .debug_aranges
-                0x00000fc8       0x80 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+                0x00000fd0       0x80 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
  .debug_aranges
-                0x00001048       0x50 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+                0x00001050       0x50 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
  .debug_aranges
-                0x00001098       0x70 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+                0x000010a0       0x70 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
  .debug_aranges
-                0x00001108       0x98 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x00001110       0x98 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
  .debug_aranges
-                0x000011a0       0x40 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+                0x000011a8       0x40 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
  .debug_aranges
-                0x000011e0       0x28 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+                0x000011e8       0x28 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
  .debug_aranges
-                0x00001208       0x30 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+                0x00001210       0x30 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
  .debug_aranges
-                0x00001238       0x68 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x00001240       0x68 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
  .debug_aranges
-                0x000012a0       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+                0x000012a8       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
  .debug_aranges
-                0x000012c0       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+                0x000012c8       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
  .debug_aranges
-                0x000012e0       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+                0x000012e8       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
  .debug_aranges
-                0x00001300       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+                0x00001308       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
  .debug_aranges
-                0x00001328       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+                0x00001330       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
  .debug_aranges
-                0x00001348       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+                0x00001350       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
  .debug_aranges
-                0x00001368       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+                0x00001370       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
  .debug_aranges
-                0x00001388       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+                0x00001390       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
  .debug_aranges
-                0x000013a8       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+                0x000013b0       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
  .debug_aranges
-                0x000013c8       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+                0x000013d0       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
  .debug_aranges
-                0x000013e8       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+                0x000013f0       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
  .debug_aranges
-                0x00001408       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+                0x00001410       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
  .debug_aranges
-                0x00001430       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+                0x00001438       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
  .debug_aranges
-                0x00001450       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+                0x00001458       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
  .debug_aranges
-                0x00001470       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+                0x00001478       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
  .debug_aranges
-                0x00001490       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+                0x00001498       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
 
 .debug_rnglists
-                0x00000000     0x1041
+                0x00000000     0x1047
  .debug_rnglists
                 0x00000000       0x13 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
  .debug_rnglists
@@ -5467,53 +5492,53 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_rnglists
                 0x000009e4       0x1a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
  .debug_rnglists
-                0x000009fe       0xa4 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+                0x000009fe       0xaa CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
  .debug_rnglists
-                0x00000aa2       0x2e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+                0x00000aa8       0x2e CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
  .debug_rnglists
-                0x00000ad0       0x56 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                0x00000ad6       0x56 CMakeFiles/freefly.elf.dir/Application/main.c.obj
  .debug_rnglists
-                0x00000b26       0x13 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+                0x00000b2c       0x13 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
  .debug_rnglists
-                0x00000b39       0x56 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+                0x00000b3f       0x56 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
  .debug_rnglists
-                0x00000b8f       0xd0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+                0x00000b95       0xd0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
  .debug_rnglists
-                0x00000c5f       0x14 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+                0x00000c65       0x14 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
  .debug_rnglists
-                0x00000c73       0x63 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+                0x00000c79       0x63 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
  .debug_rnglists
-                0x00000cd6       0x39 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+                0x00000cdc       0x39 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
  .debug_rnglists
-                0x00000d0f       0x58 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+                0x00000d15       0x58 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
  .debug_rnglists
-                0x00000d67       0x77 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+                0x00000d6d       0x77 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
  .debug_rnglists
-                0x00000dde       0x2e CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+                0x00000de4       0x2e CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
  .debug_rnglists
-                0x00000e0c       0x19 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+                0x00000e12       0x19 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
  .debug_rnglists
-                0x00000e25       0x21 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+                0x00000e2b       0x21 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
  .debug_rnglists
-                0x00000e46       0x49 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+                0x00000e4c       0x49 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
  .debug_rnglists
-                0x00000e8f       0x2a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+                0x00000e95       0x2a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
  .debug_rnglists
-                0x00000eb9       0x34 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+                0x00000ebf       0x34 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
  .debug_rnglists
-                0x00000eed       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+                0x00000ef3       0x28 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
  .debug_rnglists
-                0x00000f15       0x14 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+                0x00000f1b       0x14 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
  .debug_rnglists
-                0x00000f29       0xaf /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+                0x00000f2f       0xaf /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
  .debug_rnglists
-                0x00000fd8       0x43 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+                0x00000fde       0x43 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
  .debug_rnglists
-                0x0000101b       0x13 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+                0x00001021       0x13 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
  .debug_rnglists
-                0x0000102e       0x13 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+                0x00001034       0x13 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
 
-.debug_line     0x00000000     0xf05f
+.debug_line     0x00000000     0xf07b
  .debug_line    0x00000000       0xe4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
  .debug_line    0x000000e4      0x6a6 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
  .debug_line    0x0000078a      0x1f6 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
@@ -5543,114 +5568,114 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_line    0x00004293      0xaaa CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
  .debug_line    0x00004d3d     0x1167 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
  .debug_line    0x00005ea4      0x73e CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
- .debug_line    0x000065e2      0xdb6 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
- .debug_line    0x00007398      0x3ea CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
- .debug_line    0x00007782      0x8f9 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
- .debug_line    0x0000807b      0x18f CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
- .debug_line    0x0000820a      0xb64 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
- .debug_line    0x00008d6e      0x204 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
- .debug_line    0x00008f72      0x860 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
- .debug_line    0x000097d2      0x3cb CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
- .debug_line    0x00009b9d      0x601 CMakeFiles/freefly.elf.dir/Application/main.c.obj
- .debug_line    0x0000a19e      0x159 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
- .debug_line    0x0000a2f7       0xcc CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
- .debug_line    0x0000a3c3      0x23a CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
- .debug_line    0x0000a5fd      0x881 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- .debug_line    0x0000ae7e       0xf1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
- .debug_line    0x0000af6f      0x6bc CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- .debug_line    0x0000b62b      0x29f CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- .debug_line    0x0000b8ca      0x5a5 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
- .debug_line    0x0000be6f      0x6eb CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
- .debug_line    0x0000c55a      0x22b CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
- .debug_line    0x0000c785       0x7a CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
- .debug_line    0x0000c7ff      0x2ee CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .debug_line    0x0000caed      0x2b9 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
- .debug_line    0x0000cda6      0x16f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_line    0x0000cf15      0x184 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_line    0x0000d099       0x76 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_line    0x0000d10f      0x2ab /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- .debug_line    0x0000d3ba       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
- .debug_line    0x0000d473       0x86 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
- .debug_line    0x0000d4f9      0x62a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
- .debug_line    0x0000db23      0x2fc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
- .debug_line    0x0000de1f      0x214 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
- .debug_line    0x0000e033       0x84 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
- .debug_line    0x0000e0b7      0x6b7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
- .debug_line    0x0000e76e      0x3e9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
- .debug_line    0x0000eb57      0x24f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
- .debug_line    0x0000eda6      0x1bc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
- .debug_line    0x0000ef62       0xa6 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_line    0x0000f008       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+ .debug_line    0x000065e2      0xd16 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+ .debug_line    0x000072f8      0x3ea CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+ .debug_line    0x000076e2      0x8f9 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+ .debug_line    0x00007fdb      0x18f CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+ .debug_line    0x0000816a      0xb64 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+ .debug_line    0x00008cce      0x204 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+ .debug_line    0x00008ed2      0x914 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+ .debug_line    0x000097e6      0x3cb CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+ .debug_line    0x00009bb1      0x609 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .debug_line    0x0000a1ba      0x159 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+ .debug_line    0x0000a313       0xcc CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
+ .debug_line    0x0000a3df      0x23a CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+ .debug_line    0x0000a619      0x881 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ .debug_line    0x0000ae9a       0xf1 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+ .debug_line    0x0000af8b      0x6bc CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ .debug_line    0x0000b647      0x29f CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ .debug_line    0x0000b8e6      0x5a5 CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+ .debug_line    0x0000be8b      0x6eb CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .debug_line    0x0000c576      0x22b CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+ .debug_line    0x0000c7a1       0x7a CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+ .debug_line    0x0000c81b      0x2ee CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .debug_line    0x0000cb09      0x2b9 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+ .debug_line    0x0000cdc2      0x16f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_line    0x0000cf31      0x184 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_line    0x0000d0b5       0x76 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_line    0x0000d12b      0x2ab /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ .debug_line    0x0000d3d6       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+ .debug_line    0x0000d48f       0x86 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+ .debug_line    0x0000d515      0x62a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+ .debug_line    0x0000db3f      0x2fc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+ .debug_line    0x0000de3b      0x214 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+ .debug_line    0x0000e04f       0x84 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+ .debug_line    0x0000e0d3      0x6b7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+ .debug_line    0x0000e78a      0x3e9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+ .debug_line    0x0000eb73      0x24f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+ .debug_line    0x0000edc2      0x1bc /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+ .debug_line    0x0000ef7e       0xa6 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_line    0x0000f024       0x57 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
 
-.debug_str      0x00000000     0x5e24
- .debug_str     0x00000000     0x5e24 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
+.debug_str      0x00000000     0x5e2a
+ .debug_str     0x00000000     0x5e2a /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
                                 0x1fe (size before relaxing)
- .debug_str     0x00005e24      0x759 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
- .debug_str     0x00005e24      0x4e1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
- .debug_str     0x00005e24      0x53e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-stdio.o)
- .debug_str     0x00005e24      0x1d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-memset.o)
- .debug_str     0x00005e24      0x4c7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-closer.o)
- .debug_str     0x00005e24      0x4f0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-reent.o)
- .debug_str     0x00005e24      0x4d6 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-impure.o)
- .debug_str     0x00005e24      0x4d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-lseekr.o)
- .debug_str     0x00005e24      0x4d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-readr.o)
- .debug_str     0x00005e24      0x4d7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-writer.o)
- .debug_str     0x00005e24      0x222 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-init.o)
- .debug_str     0x00005e24      0x1f8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fini.o)
- .debug_str     0x00005e24      0x334 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-lock.o)
- .debug_str     0x00005e24      0x2d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__atexit.o)
- .debug_str     0x00005e24      0x2fe /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__call_atexit.o)
- .debug_str     0x00005e24      0x641 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-freer.o)
- .debug_str     0x00005e24      0x6f9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-mallocr.o)
- .debug_str     0x00005e24      0x553 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-mlock.o)
- .debug_str     0x00005e24      0x594 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fclose.o)
- .debug_str     0x00005e24      0x59c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fflush.o)
- .debug_str     0x00005e24      0x4da /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-sbrkr.o)
- .debug_str     0x00005e24      0x1ca /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-sysconf.o)
- .debug_str     0x00005e24      0x4cb /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-errno.o)
- .debug_str     0x00005e24      0x411 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/misc.c.obj
- .debug_str     0x00005e24      0x50a CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_gpio.c.obj
- .debug_str     0x00005e24      0x9ef CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
- .debug_str     0x00005e24      0xe41 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
- .debug_str     0x00005e24      0x712 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
- .debug_str     0x00005e24      0x37d CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
- .debug_str     0x00005e24      0x78c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
- .debug_str     0x00005e24      0x4cb CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
- .debug_str     0x00005e24      0x33a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
- .debug_str     0x00005e24      0x35b CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
- .debug_str     0x00005e24      0x63a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
- .debug_str     0x00005e24      0x61a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
- .debug_str     0x00005e24      0xb4d CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
- .debug_str     0x00005e24      0x506 CMakeFiles/freefly.elf.dir/Application/main.c.obj
- .debug_str     0x00005e24      0x212 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
- .debug_str     0x00005e24       0x83 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
- .debug_str     0x00005e24      0x5ad CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
- .debug_str     0x00005e24      0x9d9 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- .debug_str     0x00005e24      0x4ba CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
- .debug_str     0x00005e24      0x65a CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- .debug_str     0x00005e24      0x357 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- .debug_str     0x00005e24      0x61c CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
- .debug_str     0x00005e24      0x70e CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
- .debug_str     0x00005e24      0x4f5 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
- .debug_str     0x00005e24       0xa4 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
- .debug_str     0x00005e24      0x410 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .debug_str     0x00005e24      0x68c CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
- .debug_str     0x00005e24      0x14f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_str     0x00005e24       0xcf /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_str     0x00005e24       0xbc /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_str     0x00005e24      0x58e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- .debug_str     0x00005e24       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
- .debug_str     0x00005e24       0xb8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
- .debug_str     0x00005e24      0x575 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
- .debug_str     0x00005e24      0x502 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
- .debug_str     0x00005e24      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
- .debug_str     0x00005e24       0xab /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
- .debug_str     0x00005e24      0x5c4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
- .debug_str     0x00005e24      0x664 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
- .debug_str     0x00005e24      0x619 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
- .debug_str     0x00005e24      0x4d1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
- .debug_str     0x00005e24      0x158 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_str     0x00005e24       0xbd /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+ .debug_str     0x00005e2a      0x759 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
+ .debug_str     0x00005e2a      0x4e1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
+ .debug_str     0x00005e2a      0x53e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-stdio.o)
+ .debug_str     0x00005e2a      0x1d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-memset.o)
+ .debug_str     0x00005e2a      0x4c7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-closer.o)
+ .debug_str     0x00005e2a      0x4f0 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-reent.o)
+ .debug_str     0x00005e2a      0x4d6 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-impure.o)
+ .debug_str     0x00005e2a      0x4d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-lseekr.o)
+ .debug_str     0x00005e2a      0x4d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-readr.o)
+ .debug_str     0x00005e2a      0x4d7 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-writer.o)
+ .debug_str     0x00005e2a      0x222 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-init.o)
+ .debug_str     0x00005e2a      0x1f8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fini.o)
+ .debug_str     0x00005e2a      0x334 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-lock.o)
+ .debug_str     0x00005e2a      0x2d5 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__atexit.o)
+ .debug_str     0x00005e2a      0x2fe /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__call_atexit.o)
+ .debug_str     0x00005e2a      0x641 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-freer.o)
+ .debug_str     0x00005e2a      0x6f9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-mallocr.o)
+ .debug_str     0x00005e2a      0x553 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-mlock.o)
+ .debug_str     0x00005e2a      0x594 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fclose.o)
+ .debug_str     0x00005e2a      0x59c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fflush.o)
+ .debug_str     0x00005e2a      0x4da /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-sbrkr.o)
+ .debug_str     0x00005e2a      0x1ca /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-sysconf.o)
+ .debug_str     0x00005e2a      0x4cb /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-errno.o)
+ .debug_str     0x00005e2a      0x411 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/misc.c.obj
+ .debug_str     0x00005e2a      0x50a CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_gpio.c.obj
+ .debug_str     0x00005e2a      0x9ef CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_rcc.c.obj
+ .debug_str     0x00005e2a      0xe41 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_tim.c.obj
+ .debug_str     0x00005e2a      0x712 CMakeFiles/freefly.elf.dir/System/FWLIB/Src/stm32f4xx_usart.c.obj
+ .debug_str     0x00005e2a      0x358 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+ .debug_str     0x00005e2a      0x78c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/bluetooth.c.obj
+ .debug_str     0x00005e2a      0x4cb CMakeFiles/freefly.elf.dir/Application/Hardware/Src/gy86.c.obj
+ .debug_str     0x00005e2a      0x33a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
+ .debug_str     0x00005e2a      0x35b CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
+ .debug_str     0x00005e2a      0x63a CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
+ .debug_str     0x00005e2a      0x631 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+ .debug_str     0x00005e2a      0xb4d CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+ .debug_str     0x00005e2a      0x50c CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .debug_str     0x00005e2a      0x212 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+ .debug_str     0x00005e2a       0x83 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_a.s.obj
+ .debug_str     0x00005e2a      0x5ad CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+ .debug_str     0x00005e2a      0x9d9 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ .debug_str     0x00005e2a      0x4ba CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+ .debug_str     0x00005e2a      0x65a CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ .debug_str     0x00005e2a      0x357 CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ .debug_str     0x00005e2a      0x61c CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+ .debug_str     0x00005e2a      0x70e CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .debug_str     0x00005e2a      0x4f5 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+ .debug_str     0x00005e2a       0xa4 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/startup_stm32f401xe.s.obj
+ .debug_str     0x00005e2a      0x410 CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .debug_str     0x00005e2a      0x68c CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+ .debug_str     0x00005e2a      0x14f /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_str     0x00005e2a       0xcf /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_str     0x00005e2a       0xbc /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_str     0x00005e2a      0x58e /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ .debug_str     0x00005e2a       0xb9 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memcpy.o)
+ .debug_str     0x00005e2a       0xb8 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-strlen.o)
+ .debug_str     0x00005e2a      0x575 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+ .debug_str     0x00005e2a      0x502 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+ .debug_str     0x00005e2a      0x1f4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+ .debug_str     0x00005e2a       0xab /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memchr.o)
+ .debug_str     0x00005e2a      0x5c4 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+ .debug_str     0x00005e2a      0x664 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+ .debug_str     0x00005e2a      0x619 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+ .debug_str     0x00005e2a      0x4d1 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+ .debug_str     0x00005e2a      0x158 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_str     0x00005e2a       0xbd /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
 
 .comment        0x00000000       0x3c
  .comment       0x00000000       0x3c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
@@ -5712,7 +5737,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .comment       0x0000003c       0x1f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
  .comment       0x0000003c       0x1f /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
 
-.debug_frame    0x00000000     0x46a8
+.debug_frame    0x00000000     0x46cc
  .debug_frame   0x00000000       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
  .debug_frame   0x00000020      0x13c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-findfp.o)
  .debug_frame   0x0000015c       0x34 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-fwalk.o)
@@ -5747,33 +5772,33 @@ LOAD /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a
  .debug_frame   0x0000296c       0x70 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/led.c.obj
  .debug_frame   0x000029dc      0x20c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/mathkit.c.obj
  .debug_frame   0x00002be8       0x5c CMakeFiles/freefly.elf.dir/Application/Hardware/Src/motor.c.obj
- .debug_frame   0x00002c44      0x360 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
- .debug_frame   0x00002fa4       0xcc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
- .debug_frame   0x00003070      0x1a4 CMakeFiles/freefly.elf.dir/Application/main.c.obj
- .debug_frame   0x00003214       0x38 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
- .debug_frame   0x0000324c      0x1d0 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
- .debug_frame   0x0000341c      0x464 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
- .debug_frame   0x00003880       0x38 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
- .debug_frame   0x000038b8      0x1f0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
- .debug_frame   0x00003aa8      0x10c CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
- .debug_frame   0x00003bb4      0x19c CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
- .debug_frame   0x00003d50      0x254 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
- .debug_frame   0x00003fa4       0xc8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
- .debug_frame   0x0000406c       0x7c CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
- .debug_frame   0x000040e8      0x190 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
- .debug_frame   0x00004278       0xac /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
- .debug_frame   0x00004324       0x50 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
- .debug_frame   0x00004374       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
- .debug_frame   0x00004398       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
- .debug_frame   0x000043e4       0x64 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
- .debug_frame   0x00004448       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
- .debug_frame   0x00004474       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
- .debug_frame   0x000044b4       0x48 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
- .debug_frame   0x000044fc       0x70 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
- .debug_frame   0x0000456c       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
- .debug_frame   0x00004598       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
- .debug_frame   0x000045c4       0xc4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
- .debug_frame   0x00004688       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
+ .debug_frame   0x00002c44      0x384 CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+ .debug_frame   0x00002fc8       0xcc CMakeFiles/freefly.elf.dir/Application/Hardware/Src/receiver.c.obj
+ .debug_frame   0x00003094      0x1a4 CMakeFiles/freefly.elf.dir/Application/main.c.obj
+ .debug_frame   0x00003238       0x38 CMakeFiles/freefly.elf.dir/Application/SystemConfig/systick.c.obj
+ .debug_frame   0x00003270      0x1d0 CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
+ .debug_frame   0x00003440      0x464 CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
+ .debug_frame   0x000038a4       0x38 CMakeFiles/freefly.elf.dir/ucos2/Source/os_dbg_r.c.obj
+ .debug_frame   0x000038dc      0x1f0 CMakeFiles/freefly.elf.dir/ucos2/Source/os_flag.c.obj
+ .debug_frame   0x00003acc      0x10c CMakeFiles/freefly.elf.dir/ucos2/Source/os_mem.c.obj
+ .debug_frame   0x00003bd8      0x19c CMakeFiles/freefly.elf.dir/ucos2/Source/os_q.c.obj
+ .debug_frame   0x00003d74      0x254 CMakeFiles/freefly.elf.dir/ucos2/Source/os_task.c.obj
+ .debug_frame   0x00003fc8       0xc8 CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
+ .debug_frame   0x00004090       0x7c CMakeFiles/freefly.elf.dir/System/CMSIS/Device/system_stm32f4xx.c.obj
+ .debug_frame   0x0000410c      0x190 CMakeFiles/freefly.elf.dir/System/BSP/syscalls.c.obj
+ .debug_frame   0x0000429c       0xac /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x00004348       0x50 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_muldivdf3.o)
+ .debug_frame   0x00004398       0x24 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x000043bc       0x4c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-puts.o)
+ .debug_frame   0x00004408       0x64 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fvwrite.o)
+ .debug_frame   0x0000446c       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-wsetup.o)
+ .debug_frame   0x00004498       0x40 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-memmove.o)
+ .debug_frame   0x000044d8       0x48 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-reallocr.o)
+ .debug_frame   0x00004520       0x70 /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-makebuf.o)
+ .debug_frame   0x00004590       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-fstatr.o)
+ .debug_frame   0x000045bc       0x2c /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
+ .debug_frame   0x000045e8       0xc4 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_cmpdf2.o)
+ .debug_frame   0x000046ac       0x20 /usr/lib/gcc/arm-none-eabi/13.2.0/thumb/v7e-m+fp/hard/libgcc.a(_arm_unorddf2.o)
 
 .debug_line_str
                 0x00000000      0x223
@@ -6586,7 +6611,7 @@ OSTimeDlyResume                                   CMakeFiles/freefly.elf.dir/uco
 OSTimeGet                                         CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
                                                   CMakeFiles/freefly.elf.dir/Application/SystemView/OSSpecific/SEGGER_SYSVIEW_uCOSII.c.obj
                                                   CMakeFiles/freefly.elf.dir/Application/main.c.obj
-                                                  CMakeFiles/freefly.elf.dir/Application/Hardware/Src/attitude.c.obj
+                                                  CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
 OSTimeSet                                         CMakeFiles/freefly.elf.dir/ucos2/Source/os_time.c.obj
 OSTimeTick                                        CMakeFiles/freefly.elf.dir/ucos2/Source/os_core.c.obj
                                                   CMakeFiles/freefly.elf.dir/ucos2/Ports/os_cpu_c.c.obj
@@ -7749,6 +7774,10 @@ atanf                                             /usr/lib/gcc/arm-none-eabi/13.
 atexit                                            /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-atexit.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-__call_atexit.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
+cnt                                               CMakeFiles/freefly.elf.dir/Application/main.c.obj
+                                                  CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+count                                             CMakeFiles/freefly.elf.dir/Application/Hardware/Src/myI2C.c.obj
+delta                                             CMakeFiles/freefly.elf.dir/Application/main.c.obj
 errno                                             /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libc.a(libc_a-reent.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-signalr.o)
                                                   /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-isattyr.o)
@@ -7865,6 +7894,7 @@ task_led_off                                      CMakeFiles/freefly.elf.dir/App
 task_led_on                                       CMakeFiles/freefly.elf.dir/Application/main.c.obj
 task_peripheral_init                              CMakeFiles/freefly.elf.dir/Application/main.c.obj
 times                                             CMakeFiles/freefly.elf.dir/Application/main.c.obj
+update_pid                                        CMakeFiles/freefly.elf.dir/Application/Hardware/Src/control.c.obj
 vfiprintf                                         /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfiprintf.o)
 vfprintf                                          /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vfprintf.o)
 vsprintf                                          /usr/lib/gcc/arm-none-eabi/13.2.0/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libg.a(libc_a-vsprintf.o)

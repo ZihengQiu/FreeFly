@@ -229,8 +229,6 @@ void GyroUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *gyro0, Vec3d_t *gyro1, fl
 void MadgwickAHRS(Vec4d_t *q0, Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, float dt)
 {
 	Vec4d_t delta_q_acc, delta_q_gyro;
-	uint32_t t[10];
-	t[0] = OSTimeGet();
 
 	AccMagUpdateQuatDelta(q0, &delta_q_acc, &acc, &gyro, &mag, dt);
 
@@ -249,7 +247,4 @@ void MadgwickAHRS(Vec4d_t *q0, Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, float dt)
 	q0->z = q0->z + delta_q_gyro.z - lambda*delta_q_acc.z*dt;
 
 	Vec4Norm(q0);
-
-	t[4] = OSTimeGet();
-
 }

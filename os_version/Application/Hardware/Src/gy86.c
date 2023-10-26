@@ -27,7 +27,7 @@ void GY86Init(void)
 void MPU6050Init(void)
 {
 	MyI2C_WriteRegister(AddressMPU6050, PWR_MGMT_1, 0x01);		// clock source: PLL with X axis gyroscope reference (10KHz with DLPF on and 1 KHz with DLPF off)
-	MyI2C_WriteRegister(AddressMPU6050, SMPRT_DIV, 0x09);		// SMPLRT_DIV:10 Sample Rate = 1KHz/(1+9) = 100Hz (acc output rate=1kHz)
+	MyI2C_WriteRegister(AddressMPU6050, SMPRT_DIV, 0x00);		// SMPLRT_DIV:10 Sample Rate = 1KHz/(1+9) = 100Hz (acc output rate=1kHz)
 	MyI2C_WriteRegister(AddressMPU6050, CONFIG, 0x06);          // DLPF_CFG = 6
 	MyI2C_WriteRegister(AddressMPU6050, GYRO_CONFIG, 0x18);     // FS_SEL = 3, Full Scale Range of gyroscope = +- 2000 degree/s
 	MyI2C_WriteRegister(AddressMPU6050, ACCEL_CONFIG, 0x18);    // AFS_SEL = 3, Full scale range of accelerometer = +- 16g

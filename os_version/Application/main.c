@@ -261,6 +261,7 @@ void task_attitude_fusion(void *pdata)
 	}
 	// printf("q0: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 	uint32_t t[10];
+	int8_t cnt = 0;
 	while(1)
 	{
 		GetGyroData(&gyro);
@@ -274,6 +275,8 @@ void task_attitude_fusion(void *pdata)
 		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
+		cnt++;
+		// if(cnt % 10 == 0)
 		SendAnotc(acc, gyro, mag, euler);
 		// RadToDeg(&euler);
 		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);

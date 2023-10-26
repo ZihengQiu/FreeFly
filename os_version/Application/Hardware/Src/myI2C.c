@@ -1,10 +1,11 @@
 #include "stm32f4xx.h"                  // Device header
 #include "myI2C.h"
 #include "ucos_ii.h"
+#include <stdint.h>
 
 void MyI2C_GPIOInit(void)
 {
-	//GPIO_Init
+	//GPIO_B_8&9_Init
 	//Alternate function mode : 10
 	GPIOB->MODER &= ~((uint16_t)0x0003<<16);
 	GPIOB->MODER &= ~((uint16_t)0x0003<<18);
@@ -24,15 +25,16 @@ void MyI2C_GPIOInit(void)
 	GPIOB->PUPDR |= (uint16_t)0x0001<<16;
 	GPIOB->PUPDR |= (uint16_t)0x0001<<18; 
 	
+	// AF4 : IIC
 	GPIOB->AFR[1] |= (uint16_t)0x1<<2;
 	GPIOB->AFR[1] |= (uint16_t)0x1<<6;
 }
 
 void MyI2C_SetMasterMode(void)
 {
-	//Set prec = 8
-	I2C1->CR2 &= ~((uint16_t)(uint16_t)0x003F);
-	I2C1->CR2 |= (uint16_t)0x0001<<2;
+	//Set freq = 42MHz (max APB1 clock speed)
+	I2C1->CR2 &= ~((uint16_t)0x003F); // clear FREQ
+	I2C1->CR2 |= (uint16_t)0x2A;
 	
 	//TRISE = 9    (P672
 	I2C1->TRISE &= ~((uint16_t)0x003F);
@@ -48,10 +50,10 @@ void MyI2C_SetMasterMode(void)
 	I2C1->OAR1 &= ~((uint16_t)0x007F);
 	I2C1->OAR1 |= (uint16_t)0x0001;
 	
-	//ccr=28 -> 100kHz SCL
+	//ccr=420 -> 100kHz SCL
 	I2C1->CCR &= ~((uint16_t)0x0001<<15);
 	I2C1->CCR &= ~((uint16_t)0x0FFF);
-	I2C1->CCR |= 11000;
+	I2C1->CCR |= 0x1A4;
 }
 
 void MyI2C_SetStart(FunctionalState NewState)
@@ -327,14 +329,12 @@ void MyI2C_WriteRegisterHMC5883(uint8_t SlaveAddress, uint8_t RegisterAddress, u
 	
 	MyI2C_Send7bitAddress(SlaveAddress, Direction_Transmitter);
 	while(!MyI2C_CheckMasterTransmitterModeSelected());
-	// OSTimeDly(10);
 	
 	MyI2C_SendData(RegisterAddress);
 	while(!MyI2C_CheckTXE());
 	
 	MyI2C_SendData(Value);
 	while(!MyI2C_CheckMasterByteTransmitted());
-	// OSTimeDly(10);
 	
 	MyI2C_SetStop(ENABLE);
 	MyI2C_SetAck(DISABLE);
