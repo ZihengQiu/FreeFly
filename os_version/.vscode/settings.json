@@ -1,8 +1,8 @@
 {
 	"C_Cpp.errorSquiggles": "disabled",
 	"C_Cpp.intelliSenseEngineFallback": "disabled",
-	"C_Cpp.intelliSenseEngine": "disabled",
-	"C_Cpp.autocomplete": "disabled",
+	"C_Cpp.intelliSenseEngine": "default",
+	"C_Cpp.autocomplete": "default",
 	"clangd.path": "/usr/bin/clangd",
 	// clangd --help-list-hidden for more
 	"clangd.arguments": [
