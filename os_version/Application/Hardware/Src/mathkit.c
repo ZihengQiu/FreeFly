@@ -57,7 +57,7 @@ void QuaterToEuler(Vec4d_t *q, Vec3d_t *euler)
 	euler->x = atan2f(2*(q->w*q->x+q->y*q->z), 1-2*(q->x*q->x+q->y*q->y));
 	// euler->y = asinf(2*(q->w*q->y-q->z*q->x));
 	euler->y = -PI/2+2*atan2f(sqrt(1+2*(q->w*q->y-q->z*q->x)), sqrt(1-2*(q->w*q->y-q->z*q->x)));
-	euler->z = atan2f(2*(q->w*q->z+q->x*q->y), 1-2*(q->y*q->y+q->z*q->z));
+	euler->z = -atan2f(2*(q->w*q->z+q->x*q->y), 1-2*(q->y*q->y+q->z*q->z)); // add minus sign to according to the magnetometer coordinate
 	
     // roll  = -arcsin(2q1q3-2q0q2)
     // pitch = arctan((2q0q1+2q2q3)/(1-2q1q1-2q2q2))

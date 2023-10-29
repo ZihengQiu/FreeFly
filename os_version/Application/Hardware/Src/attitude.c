@@ -39,7 +39,7 @@ void AccUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, float 
 	Vec4Norm(q1);
 }
 
-void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, Vec3d_t *mag, float dt)
+void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, Vec3d_t *mag)
 {	
 	// Gradient Decent Method
 
@@ -130,7 +130,7 @@ void AccMagUpdateQuatDelta(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro
 
 void AccMagUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *acc, Vec3d_t *gyro, Vec3d_t *mag, float dt)
 {
-	AccMagUpdateQuatDelta(q0, q1, acc, gyro, mag, dt);
+	AccMagUpdateQuatDelta(q0, q1, acc, gyro, mag);
 
 	float mu0=0.3, alpha=0.01;
 	mu = mu0+alpha*dt*Vec3Modulus(*gyro);
@@ -226,26 +226,34 @@ void GyroUpdateQuat(Vec4d_t *q0, Vec4d_t *q1, Vec3d_t *gyro0, Vec3d_t *gyro1, fl
 	Vec4Norm(q1);
 }
 
-void MadgwickAHRS(Vec4d_t *q0, Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, float dt)
+#define DT 0.0007
+
+void MadgwickAHRS(Vec4d_t *q0, Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag)
 {
 	Vec4d_t delta_q_acc, delta_q_gyro;
 
-	AccMagUpdateQuatDelta(q0, &delta_q_acc, &acc, &gyro, &mag, dt);
+	AccMagUpdateQuatDelta(q0, &delta_q_acc, &acc, &gyro, &mag);
 
-	delta_q_gyro.w = 0.5*(-q0->x*gyro.x-q0->y*gyro.y-q0->z*gyro.z)*dt;
-	delta_q_gyro.x = 0.5*(q0->w*gyro.x+q0->y*gyro.z-q0->z*gyro.y)*dt;
-	delta_q_gyro.y = 0.5*(q0->w*gyro.y-q0->x*gyro.z+q0->z*gyro.x)*dt;
-	delta_q_gyro.z = 0.5*(q0->w*gyro.z+q0->x*gyro.y-q0->y*gyro.x)*dt;
+	delta_q_gyro.w = 0.5*(-q0->x*gyro.x-q0->y*gyro.y-q0->z*gyro.z)*DT;
+	delta_q_gyro.x = 0.5*(q0->w*gyro.x+q0->y*gyro.z-q0->z*gyro.y)*DT;
+	delta_q_gyro.y = 0.5*(q0->w*gyro.y-q0->x*gyro.z+q0->z*gyro.x)*DT;
+	delta_q_gyro.z = 0.5*(q0->w*gyro.z+q0->x*gyro.y-q0->y*gyro.x)*DT;
 	
 	float beta = 0.033,
-		  modulus_acc = Vec4Modulus(delta_q_acc), modulus_gyro = Vec4Modulus(delta_q_gyro),
-		//   lambda = beta/modulus_acc*(1+100*modulus_gyro)*200;
-		lambda = 0.033/modulus_acc*200;
+		  modulus_acc = Vec4Modulus(delta_q_acc),
+		  lambda = 0.033/modulus_acc*200;
 
- 	q0->w = q0->w + delta_q_gyro.w - lambda*delta_q_acc.w*dt;
-	q0->x = q0->x + delta_q_gyro.x - lambda*delta_q_acc.x*dt;
-	q0->y = q0->y + delta_q_gyro.y - lambda*delta_q_acc.y*dt;
-	q0->z = q0->z + delta_q_gyro.z - lambda*delta_q_acc.z*dt;
+	if(modulus_acc > 0.1) // high variation of the drone
+	{
+		beta += 40;
+	}
+
+	lambda = (beta/modulus_acc+0.01)*0.5;
+
+ 	q0->w = q0->w + delta_q_gyro.w - lambda*delta_q_acc.w*DT;
+	q0->x = q0->x + delta_q_gyro.x - lambda*delta_q_acc.x*DT;
+	q0->y = q0->y + delta_q_gyro.y - lambda*delta_q_acc.y*DT;
+	q0->z = q0->z + delta_q_gyro.z - lambda*delta_q_acc.z*DT;
 
 	Vec4Norm(q0);
 }

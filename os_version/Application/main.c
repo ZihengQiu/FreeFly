@@ -272,7 +272,7 @@ void task_attitude_fusion(void *pdata)
 		GetMagData(&mag);
 		t[3] = OSTimeGet();
 
-		MadgwickAHRS(&q0, acc, gyro, mag, 0.001);
+		MadgwickAHRS(&q0, acc, gyro, mag);
 		t[4] = OSTimeGet();
 		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 		QuaterToEuler(&q0, &euler);
@@ -313,14 +313,14 @@ void first_task(void *pdata) {
 	// OSTimeDly(3000);
 
 	// create attitude control task
-	OSTaskCreateExt(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10, 10, Task6Stk, TASK_STK_LEN, (void *)0, 0);
-	OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	// OSTaskCreateExt(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10, 10, Task6Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	
     OSTaskDel(OS_PRIO_SELF);
 }

@@ -23,7 +23,13 @@
 	  // memory / disk
 	  "--pch-storage=disk",
 	  "--function-arg-placeholders=true",
-	  "--compile-commands-dir=${workspaceFolder}/build"
+	  "--compile-commands-dir=${workspaceFolder}/build",
+	  // find system lib
+	  "--query-driver=/usr/bin/arm-none-eabi-gcc",
+	  "--query-driver=/usr/bin/arm-none-eabi-g++",
+	  "--query-driver=/usr/bin/gcc",
+	  "--query-driver=/usr/bin/g++",
+	  
 	],
 	"cortex-debug.variableUseNaturalFormat": false,
   }
