@@ -6,16 +6,16 @@
 #define MAX_DOUBLE 10000
 #define ACC_CALIBRATED
 
-// Vec3d_t acc_offset = {0, 0, 0}, acc_scale = {1, 1, 1};
-// Vec3d_t gyro_offset = {0, 0, 0},
+// vec3d_t acc_offset = {0, 0, 0}, acc_scale = {1, 1, 1};
+// vec3d_t gyro_offset = {0, 0, 0},
 // 		gyro_filter[2] = {{MAX_DOUBLE, MAX_DOUBLE, MAX_DOUBLE}, {-1*MAX_DOUBLE, -1*MAX_DOUBLE, -1*MAX_DOUBLE}};
-Vec3d_t acc_offset = {0.037417782323451894, -0.013271198993009256, 0.0010460136242150379},
+vec3d_t acc_offset = {0.037417782323451894, -0.013271198993009256, 0.0010460136242150379},
 		acc_scale = {0.99615152668035645, 0.99960933237994376, 1.0040191999055366};
 uint8_t acc_calibrated = 1, gyro_calibrated = 1, mag_calibrated = 1;
-Vec3d_t gyro_offset = {-2.86273193359375, -0.65972900390625, -1.403076171875}, 
+vec3d_t gyro_offset = {-2.86273193359375, -0.65972900390625, -1.403076171875}, 
 		gyro_filter[2] = {{-0.00592041015625, -0.07269287109375, -0.061767578125},
 						{0.05511474609375, 0.04937744140625, 0.060302734375}};
-Vec3d_t mag_offset = {0.4479153454629381, -0.04967758735144858, 0.13242835683955598}, 
+vec3d_t mag_offset = {0.4479153454629381, -0.04967758735144858, 0.13242835683955598}, 
 		mag_scale = {0.4675627581500121, 0.4639468446544417, 0.4310428650240345};
 		
 void GY86Init(void)
@@ -59,7 +59,7 @@ void GetMpuData(MpuDataStruct *data)
 }
 
 // Accelerometer
-void GetAccData(Vec3d_t *acc)
+void GetAccData(vec3d_t *acc)
 {
 	uint8_t Buffer[6];
 	float acc_full = 16.0;
@@ -83,13 +83,13 @@ void GetAccData(Vec3d_t *acc)
 	acc->z = acc_z;
 }
 
-void AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
+void AccCalibration(vec3d_t *offset, vec3d_t *scale)
 {
 	Bluetooth_SendString("Acc Calibration start.\n");
 	Bluetooth_SendString("Please put the sensor on a flat surface.\n");
 	OSTimeDly(3000);
 
-	Vec3d_t acc_data[6];
+	vec3d_t acc_data[6];
 	for(uint8_t i=0; i<6; i++)
 	{
 		acc_data[i].x = 0;
@@ -103,7 +103,7 @@ void AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
 		Bluetooth_SendString(direction[i]);
 		OSTimeDly(3000);
 		Bluetooth_SendString(" measuring...");
-		Vec3d_t temp= {0, 0, 0};
+		vec3d_t temp= {0, 0, 0};
 		for(uint8_t j=0; j<100; j++)
 		{
 			GetAccData(&temp);
@@ -124,7 +124,7 @@ void AccCalibration(Vec3d_t *offset, Vec3d_t *scale)
 }
 
 // Gyroscope
-void GetGyroData(Vec3d_t *gyro)
+void GetGyroData(vec3d_t *gyro)
 {
 	uint8_t Buffer[6];
 	float gyro_full = 2000.0;
@@ -164,7 +164,7 @@ void GetGyroData(Vec3d_t *gyro)
 }
 
 // TODO : optimize the way to pass parameter filter
-void GyroCalibration(Vec3d_t *offset, Vec3d_t *filter[2])
+void GyroCalibration(vec3d_t *offset, vec3d_t *filter[2])
 {
 	Bluetooth_SendString("Gyro Calibration start.\n");
 	Bluetooth_SendString("Please keep the sensor still.\n");
@@ -172,7 +172,7 @@ void GyroCalibration(Vec3d_t *offset, Vec3d_t *filter[2])
 
 	// TODO : optimize the type of sample_cnt
 	int sample_cnt = 1000;
-	Vec3d_t data = {0, 0, 0}, data_min = {100, 100, 100}, data_max = {-100, -100, -100},
+	vec3d_t data = {0, 0, 0}, data_min = {100, 100, 100}, data_max = {-100, -100, -100},
 			temp;
 
 	for(int i=0; i<sample_cnt; i++)
@@ -220,7 +220,7 @@ void HMC5883Init(void)
 	// StatusRegister = 0x01 when data prepared
 }
 
-void GetMagData(Vec3d_t *mag)
+void GetMagData(vec3d_t *mag)
 {
 	uint8_t Buffer[6];
 	float mag_full = 1.0, mag_gain = 1090;
@@ -248,7 +248,7 @@ void GetMagData(Vec3d_t *mag)
 	Vec3Norm(mag);
 }
 
-void MagCalibration(Vec3d_t *offset, Vec3d_t *scale)
+void MagCalibration(vec3d_t *offset, vec3d_t *scale)
 {
 	Bluetooth_SendString("Mag Calibration start.\n");
 	Bluetooth_SendString("Please rotate the sensor around all axes.\n");
@@ -256,7 +256,7 @@ void MagCalibration(Vec3d_t *offset, Vec3d_t *scale)
 
 	uint8_t sample_cnt = 100;
 
-	Vec3d_t mag_data[sample_cnt];
+	vec3d_t mag_data[sample_cnt];
 	float matrix_k[sample_cnt][6], matrix_y[sample_cnt][1];
 	for(uint8_t i=0; i<sample_cnt; i++)
 	{

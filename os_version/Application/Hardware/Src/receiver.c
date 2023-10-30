@@ -121,10 +121,12 @@ void TIM1_CC_IRQHandler()
 	if(TIM_GetITStatus(TIM1,TIM_IT_CC1)==SET)
 	{
 		uint32_t val = TIM_GetCapture1(TIM1)+1;
+
 		if(val > 0x1000)
 		{
 			First = 1;
 		}
+
 		if(First == 1)
 		{
 			ppm_val[ppm_cnt++] = TIM_GetCapture1(TIM1)+1;
@@ -133,26 +135,10 @@ void TIM1_CC_IRQHandler()
 				ppm_cnt = 0;
 				First = 0;
 			}
-			
 		}
-//		if((TIM_GetCapture1(TIM1)+1)>2100)
-//		{
-//			Start_Flag=1;
-//		}
-//		if(Start_Flag==1)
-//		{
-//			ppm[PPM_Index]=(TIM_GetCapture1(TIM1)+1);
-//			PPM_Index++;
-//			if(PPM_Index==9)
-//			{
-//				PPM_Index=0;
-//				Start_Flag=0;
-//			}
-//		}
-		
+
 		TIM_ClearITPendingBit(TIM1,TIM_IT_CC1);
 	}
 	DutyCycle = Receiver_CalcDutyCycle();
-
 }
 

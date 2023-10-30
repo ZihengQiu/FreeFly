@@ -34,8 +34,8 @@ void Motor_Init()
 	TIM_OCInitStructure.TIM_OCPolarity=TIM_OCPolarity_High;
 
 	TIM_OC1Init(TIM3,&TIM_OCInitStructure);
-	TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);//使能或者失能TIMx在CCR1上的预装载寄存器
-	TIM_Cmd(TIM3,ENABLE);//使能或者失能TIMx外设
+	TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);//使能TIMx在CCR1上的预装载寄存器
+	TIM_Cmd(TIM3,ENABLE);//使能TIMx外设
 	TIM3->CR1|=(1<<7);
 }
 

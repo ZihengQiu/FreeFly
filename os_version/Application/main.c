@@ -36,12 +36,12 @@ OS_STK Task9Stk[TASK_STK_LEN];
 
 uint16_t times;
 
-extern Vec3d_t acc_offset, acc_scale, gyro_offset, gyro_filter[2], mag_offset, mag_scale;
+extern vec3d_t acc_offset, acc_scale, gyro_offset, gyro_filter[2], mag_offset, mag_scale;
 
 extern void My_Systick_Config(uint32_t reload_value);
 
 
-void SendAnotc(Vec3d_t acc, Vec3d_t gyro, Vec3d_t mag, Vec3d_t angle)
+void SendAnotc(vec3d_t acc, vec3d_t gyro, vec3d_t mag, vec3d_t angle)
 {
 	// send attitude data to anotc v2.6
 	uint8_t sum;
@@ -146,15 +146,15 @@ void task_MPU6050(void *pdata)
 	// MagCalibration(&mag_offset, &mag_scale);
 	while(1)
 	{
-		Vec3d_t acc;
+		vec3d_t acc;
 		// GetAccData(&acc);
 		// printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
 
-		Vec3d_t gyro;
+		vec3d_t gyro;
 		// GetGyroData(&gyro);
 		// printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
 
-		Vec3d_t mag;
+		vec3d_t mag;
 		GetMagData(&mag);
 		float modulus = Vec3Modulus(mag);
 		// printf("%f,%f,%f\n", mag.x, mag.y, mag.z);
@@ -167,8 +167,8 @@ void task_MPU6050(void *pdata)
 void task_attitude_gyro(void *pdata)
 {
 	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
-	Vec4d_t q0 = {1, 0, 0, 0}, q1;
-	Vec3d_t gyro0 = {0, 0, 0}, gyro1, acc, mag, euler = {0, 0, 0};
+	vec4d_t q0 = {1, 0, 0, 0}, q1;
+	vec3d_t gyro0 = {0, 0, 0}, gyro1, acc, mag, euler = {0, 0, 0};
 	uint32_t t1, t2;
 	while(1)
 	{
@@ -192,8 +192,8 @@ void task_attitude_gyro(void *pdata)
 
 void task_attitude_acc(void *pdata)
 {
-	Vec3d_t acc = {0, 0, 0}, gyro, mag, euler = {0, 0, 0};
-	Vec4d_t q0 = {1, 0, 0, 0}, q1;
+	vec3d_t acc = {0, 0, 0}, gyro, mag, euler = {0, 0, 0};
+	vec4d_t q0 = {1, 0, 0, 0}, q1;
 	uint32_t t1, t2;
 	while(1)
 	{
@@ -219,8 +219,8 @@ void task_attitude_acc_mag(void *pdata)
 	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
 	// printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
 	// printf("acc_offset: %f, %f, %f\n", acc_offset.x, acc_offset.y, acc_offset.z);
-	Vec3d_t acc_data = {0, 0, 0}, mag_data, gyro_data, euler = {0, 0, 0};
-	Vec4d_t q0 = {1, 0, 0, 0}, q1;
+	vec3d_t acc_data = {0, 0, 0}, mag_data, gyro_data, euler = {0, 0, 0};
+	vec4d_t q0 = {1, 0, 0, 0}, q1;
 	uint32_t t1, t2;
 	while(1)
 	{
@@ -244,8 +244,8 @@ void task_attitude_acc_mag(void *pdata)
 
 void task_attitude_fusion(void *pdata)
 {
-	Vec4d_t q0 = {1, 0, 0, 0}, q1;
-	Vec3d_t acc, mag, gyro, euler;
+	vec4d_t q0 = {1, 0, 0, 0}, q1;
+	vec3d_t acc, mag, gyro, euler;
 
 	// estimate the attitude of the first frame by acc and mag
 	for(uint8_t i=0; i<50; i++)	// takes 3s 

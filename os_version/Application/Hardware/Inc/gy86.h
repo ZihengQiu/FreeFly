@@ -64,24 +64,24 @@ typedef struct
   float hmc5883_x, hmc5883_y, hmc5883_z;
 }MpuDataStruct;
 
-extern Vec3d_t acc_offset, acc_scale;
-extern Vec3d_t gyro_offset, gyro_filter[2];
-extern Vec3d_t mag_offset, mag_scale;
+extern vec3d_t acc_offset, acc_scale;
+extern vec3d_t gyro_offset, gyro_filter[2];
+extern vec3d_t mag_offset, mag_scale;
 
 void GY86Init(void);
 
 void MPU6050Init(void);
 void GetMpuData(MpuDataStruct *mpuData);
 
-void GetAccData(Vec3d_t *acc);
-void AccCalibration(Vec3d_t *offset, Vec3d_t *scale);
+void GetAccData(vec3d_t *acc);
+void AccCalibration(vec3d_t *offset, vec3d_t *scale);
 
-void GetGyroData(Vec3d_t *gyro);
-void GyroCalibration(Vec3d_t *offset, Vec3d_t *gyro_filter[2]);
+void GetGyroData(vec3d_t *gyro);
+void GyroCalibration(vec3d_t *offset, vec3d_t *gyro_filter[2]);
 
 void HMC5883Init(void);
-void GetMagData(Vec3d_t *mag);
-void MagCalibration(Vec3d_t *offset, Vec3d_t *scale);
+void GetMagData(vec3d_t *mag);
+void MagCalibration(vec3d_t *offset, vec3d_t *scale);
 
 void MS5611Init(void);
 
