@@ -124,17 +124,18 @@ void task_peripheral_init(void *pdata)
 	printf("GY86 init finished!\n");
 	times++;
 	
-	
 	TIM1_init();
-	Motor_Init();
-	
-	// OSTimeDly(1000);
+	printf("Receiver init finished!\n");
+	times++;
 
-//	TIM_SetCompare1(TIM3, 2000);
-//	OSTimeDly(4000);
-//	TIM_SetCompare1(TIM3, 1000);
-//	OSTimeDly(4000);                                                
-	
+	Motor_Init();
+	printf("Motor init finished!\n");
+	times++;
+                                              
+	ESC_Unlock();
+	printf("ESC unlock finished!\n");
+	times++;
+
 	printf("Initilization finished!\n");
 	OSTaskDel(OS_PRIO_SELF);
 }
@@ -319,8 +320,8 @@ void first_task(void *pdata) {
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	
     OSTaskDel(OS_PRIO_SELF);
 }

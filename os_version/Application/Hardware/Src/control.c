@@ -3,7 +3,7 @@
 
 pid_t pid_roll, pid_pitch, pid_yaw;
 
-void update_angle_pid(pid_t *pid, float gyro)
+void UpdateAnglePID(pid_t *pid, float gyro)
 {
 	pid->err = pid->target - pid->current;
 
@@ -14,7 +14,7 @@ void update_angle_pid(pid_t *pid, float gyro)
 	pid->out = pid->p_out + pid->i_out + pid->d_out;
 }
 
-void update_velocity_pid(pid_t *pid)
+void UpdateVelocityPID(pid_t *pid)
 {
 	pid->err = pid->target - pid->current;
 
@@ -28,13 +28,13 @@ void update_velocity_pid(pid_t *pid)
 	pid->out = pid->p_out + pid->i_out + pid->d_out;
 }
 
-void update_pid(pid_t *pid, float gyro)
+void UpdatePID(pid_t *pid, float gyro)
 {
-	update_angle_pid(pid, gyro);
-	update_velocity_pid(pid);
+	UpdateAnglePID(pid, gyro);
+	UpdateVelocityPID(pid);
 }
 
-void motor_control(float motor[4], vec3d_t angle_cur, vec3d_t angle_target, vec3d_t gyro, float throttle)
+void MotorControl(float motor[4], vec3d_t angle_cur, vec3d_t angle_target, vec3d_t gyro, float throttle)
 {
 	// TODO : map ppm_val to angle
 
@@ -46,9 +46,9 @@ void motor_control(float motor[4], vec3d_t angle_cur, vec3d_t angle_target, vec3
 	pid_yaw.target = angle_target.z;
 	pid_yaw.current = angle_cur.z;
 
-	update_pid(&pid_pitch, gyro.x);
-	update_pid(&pid_roll, gyro.y);
-	update_pid(&pid_yaw, gyro.z);
+	UpdatePID(&pid_pitch, gyro.x);
+	UpdatePID(&pid_roll, gyro.y);
+	UpdatePID(&pid_yaw, gyro.z);
 
 	// update motor speed
 	motor[0] = throttle + pid_pitch.out + pid_roll.out + pid_yaw.out;

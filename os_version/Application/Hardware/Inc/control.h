@@ -1,6 +1,12 @@
 #ifndef __CONTROL_H
 #define __CONTROL_H
 
+#include "stm32f4xx.h"                  // Device header
+
+#include "receiver.h"
+
+extern uint32_t ppm_val[10];
+
 typedef struct
 {
 	float kp, ki, kd;
