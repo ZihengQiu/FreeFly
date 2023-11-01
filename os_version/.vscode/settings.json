@@ -3,6 +3,7 @@
 	"C_Cpp.intelliSenseEngineFallback": "disabled",
 	"C_Cpp.intelliSenseEngine": "disabled",
 	"C_Cpp.autocomplete": "disabled",
+
 	"clangd.path": "/usr/bin/clangd",
 	// clangd --help-list-hidden for more
 	"clangd.arguments": [

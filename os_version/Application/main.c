@@ -131,7 +131,7 @@ void task_peripheral_init(void *pdata)
 	Motor_Init();
 	printf("Motor init finished!\n");
 	times++;
-                                              
+
 	ESC_Unlock();
 	printf("ESC unlock finished!\n");
 	times++;
@@ -262,7 +262,7 @@ void task_attitude_fusion(void *pdata)
 	}
 	// printf("q0: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
 	volatile int16_t t[10];
-	int8_t cnt = 0;
+	uint16_t cnt = 0;
 	while(1)
 	{
 		t[0] = OSTimeGet();
@@ -279,12 +279,8 @@ void task_attitude_fusion(void *pdata)
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
 		t[5] = OSTimeGet();
-		cnt++;
-		// if(cnt % 10 == 0)
 		SendAnotc(acc, gyro, mag, euler);
 		t[6] = OSTimeGet();
-		int a;
-		// RadToDeg(&euler);
 		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
 	}
 }
@@ -296,12 +292,12 @@ void first_task(void *pdata) {
     led_init();
 
     // create LED_ON task
-    // OSTaskCreateExt(task_led_on, (void *)0, &Task2Stk[TASK_STK_LEN - 1], 6, 6, Task2Stk, TASK_STK_LEN, (void *)0, 0);
-    // OSTaskNameSet(6, (INT8U *)"LED_ON", (INT8U *)"LED_ON_ERR");
+    OSTaskCreateExt(task_led_on, (void *)0, &Task2Stk[TASK_STK_LEN - 1], 6, 6, Task2Stk, TASK_STK_LEN, (void *)0, 0);
+    OSTaskNameSet(6, (INT8U *)"LED_ON", (INT8U *)"LED_ON_ERR");
 
     // create LED_OFF task
-    // OSTaskCreateExt(task_led_off, (void *)0, &Task3Stk[TASK_STK_LEN - 1], 7, 7, Task3Stk, TASK_STK_LEN, (void *)0, 0);
-    // OSTaskNameSet(7, (INT8U *)"LED_OFF", (INT8U *)"LED_OFF_ERR");
+    OSTaskCreateExt(task_led_off, (void *)0, &Task3Stk[TASK_STK_LEN - 1], 7, 7, Task3Stk, TASK_STK_LEN, (void *)0, 0);
+    OSTaskNameSet(7, (INT8U *)"LED_OFF", (INT8U *)"LED_OFF_ERR");
 
 	// create peripheral init task
 	OSTaskCreateExt(task_peripheral_init, (void *)0, &Task4Stk[TASK_STK_LEN - 1], 8, 8, Task4Stk, TASK_STK_LEN, (void *)0, 0);

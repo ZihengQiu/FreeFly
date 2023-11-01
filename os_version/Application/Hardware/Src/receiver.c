@@ -1,8 +1,5 @@
 #include "receiver.h"
 
-#define PPM_MAX_VAL 2001
-#define PPM_MIN_VAL 1001
-
 uint32_t PulseWidth, Period, DutyCycle;
 uint32_t ppm_val[10], ppm_cnt = 0 , First = 0;
 
@@ -142,7 +139,7 @@ void TIM1_CC_IRQHandler()
 
 	for(uint8_t i=0; i<4; i++)
 	{
-		ppm_val[i] = Receiver_CalcDutyCycle(i);
+		// ppm_val[i] = Receiver_CalcDutyCycle(i);
 	}
 }
 
