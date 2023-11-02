@@ -3,6 +3,8 @@
 
 #include "stm32f4xx.h"                  // Device header
 
+#include "ucos_ii.h"
+
 // #define PPM_MAX_VAL 2001
 // #define PPM_MIN_VAL 1001
 #define PPM_MAX_VAL 1990
@@ -15,7 +17,9 @@
 
 extern uint32_t ppm_val[10];
 
-void TIM1_init(void);
+void TIM1_Init(void);
+
+void Receiver_Init(void);
 
 void TIM1_CC_IRQHandler(void);
 

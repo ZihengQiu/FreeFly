@@ -135,11 +135,11 @@
 #define OS_TIME_DLY_HMSM_EN       1u   /*     Include code for OSTimeDlyHMSM()                         */
 #define OS_TIME_DLY_RESUME_EN     1u   /*     Include code for OSTimeDlyResume()                       */
 #define OS_TIME_GET_SET_EN        1u   /*     Include code for OSTimeGet() and OSTimeSet()             */
-#define OS_TIME_TICK_HOOK_EN      0u   /*     Include code for OSTimeTickHook()                        */
+#define OS_TIME_TICK_HOOK_EN      1u   /*     Include code for OSTimeTickHook()                        */
 
 
                                        /* --------------------- TIMER MANAGEMENT --------------------- */
-#define OS_TMR_EN                 0u   /* Enable (1) or Disable (0) code generation for TIMERS         */
+#define OS_TMR_EN                 1u   /* Enable (1) or Disable (0) code generation for TIMERS         */
 #define OS_TMR_CFG_MAX           16u   /*     Maximum number of timers                                 */
 #define OS_TMR_CFG_NAME_EN        1u   /*     Determine timer names                                    */
 #define OS_TMR_CFG_WHEEL_SIZE     7u   /*     Size of timer wheel (#Spokes)                            */

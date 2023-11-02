@@ -1,4 +1,6 @@
 #include "receiver.h"
+#include "motor.h"
+#include "ucos_ii.h"
 
 uint32_t PulseWidth, Period, DutyCycle;
 uint32_t ppm_val[10], ppm_cnt = 0 , First = 0;
@@ -30,7 +32,7 @@ void MY_NVIC_Init(uint8_t NVIC_PreemptionPriority,uint8_t NVIC_SubPriority,uint8
 	NVIC->IP[NVIC_Channel] |= temp << 4;//设置响应优先级和抢占优先级
 }
 
-void TIM1_init(void)
+void TIM1_Init(void)
 {
 	// PA8 : TIM1CH1
 	RCC->AHB1ENR |= 1 << 0;
@@ -90,6 +92,11 @@ void TIM1_init(void)
 	//使能中断
 	TIM1->DIER |= 1 << 1;//使能CC1中断
 	TIM1->CR1 |= 1 << 0;
+}
+
+void Receiver_Init(void)
+{
+	TIM1_Init();
 }
 
 //void TIM1_CC_IRQHandler(void)//TIM1_GetDutyCycle

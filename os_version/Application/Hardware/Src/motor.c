@@ -10,7 +10,11 @@
 #include "motor.h"
 #include "receiver.h"
 
-void Motor_Init()
+BOOLEAN motor_armed = 1;
+
+OS_TMR  *tmr_arm, *tmr_disarm;
+
+void Motor_GPIO_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;   //声明一个结构体变量，用来初始化GPIO
 
@@ -48,78 +52,48 @@ void Motor_Init()
 	TIM3->CR1|=(1<<7);
 }
 
-BOOLEAN ESC_Unlock(void)
+OS_TMR_CALLBACK ArmTmrCallback(OS_TMR *ptmr, void *p_arg)
 {
-	memset(ppm_val, 0, sizeof(ppm_val));
-	
-	uint32_t fails_cnt = 0;
-	while(1)
+	motor_armed = 1;
+	return NULL;
+}
+
+OS_TMR_CALLBACK DisarmTmrCallback(OS_TMR *ptmr, void *p_arg)
+{
+	motor_armed = 0;
+	return NULL;
+}
+
+void Motor_Tmr_Init(void)
+{
+	uint8_t err1, err2;
+	tmr_arm = OSTmrCreate(10, 0, OS_TMR_OPT_ONE_SHOT,
+				(OS_TMR_CALLBACK)ArmTmrCallback,0 , (INT8U *)"ARM TIMER", &err1);
+	tmr_disarm = OSTmrCreate(10, 0, OS_TMR_OPT_ONE_SHOT,
+				(OS_TMR_CALLBACK)DisarmTmrCallback,0 , (INT8U *)"DISARM TIMER", &err2);
+}
+
+void Motor_Init(void)
+{
+	Motor_GPIO_Init();
+	Motor_Tmr_Init();
+}
+
+void MotorArmDetect(void)
+{
+	// arm detect : throttle minimum, yaw maximum for 1 seconds
+	if(ppm_val[THR] < PPM_MIN_VAL && ppm_val[RUD] > PPM_MAX_VAL && OSTmrStateGet(tmr_arm, 0) == 0)
 	{
-		if(fails_cnt > 1000)
-		{
-			// return 0;
-		}
- 
-		BOOLEAN hold_flag = 1;
-		Bluetooth_SendString("waiting for 2000\n");
-		while(ppm_val[THR] <= PPM_MAX_VAL)
-		{
-			printf("%d\n", ppm_val[THR]);
-		}
-
-		Bluetooth_SendString("Reach 2000\n");
-
-		for(uint16_t i=0; i<300; i++)
-		{
-			if(ppm_val[THR] <= PPM_MAX_VAL)
-			{
-				hold_flag = 0;
-				break;
-			}		
-			OSTimeDly(10);	// delay 3S in total
-			if(i % 100 == 0)
-				printf("Still for %d\n", i);
-		}
-		if(hold_flag == 0)
-		{
-			fails_cnt++;
-			continue;
-		}
-
-		Bluetooth_SendString("2000 verified!\n");
-
-		while(ppm_val[THR] >= PPM_MIN_VAL)
-		{
-			printf("%d\n", ppm_val[THR]);
-		}
-
-		Bluetooth_SendString("Reach 1000\n");
-
-		for(uint16_t i=0; i<300; i++)
-		{
-			if(ppm_val[THR] >= PPM_MIN_VAL)
-			{
-				hold_flag = 0;
-				break;
-			}		
-			OSTimeDly(10);	// delay 3S in total
-		}
-		if(hold_flag == 0)
-		{
-			fails_cnt++;
-			continue;
-		}
-		
-		Bluetooth_SendString("1000 verified!\n");
-
-		break;
+		OSTmrStart(tmr_arm, 0);
+		return;
 	}
-	TIM_SetCompare1(TIM3, 2000);
-	OSTimeDly(4000);
-	TIM_SetCompare1(TIM3, 1000);
-	OSTimeDly(4000);  
-	
-	return 1;
+
+	// disarm detect : throttle minimum, yaw minimum for 1 seconds
+	if(ppm_val[THR] < PPM_MIN_VAL && ppm_val[RUD] < PPM_MIN_VAL && OSTmrStateGet(tmr_disarm, 0) == 0)
+	{
+		OSTmrStart(tmr_disarm, 0);
+		return;
+	}
 }
 
 void Motor_SetDutyCycle(uint32_t Compare1)
