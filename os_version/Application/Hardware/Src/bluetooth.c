@@ -1,5 +1,6 @@
 #include "stm32f4xx.h"                  // Device header
 #include "bluetooth.h"
+#include "stm32f4xx_usart.h"
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -26,8 +27,6 @@ void Bluetooth_GPIOInit(void)
 	GPIOB->OSPEEDR |= (uint16_t)0x0002<<12;
 	GPIOB->OSPEEDR |= (uint16_t)0x0002<<14;
 	
-	// medium speed
-	
 	//No pull-up, pull-down : 00
 	GPIOB->PUPDR &= ~((uint16_t)0x0003<<12);
 	GPIOB->PUPDR &= ~((uint16_t)0x0003<<14); 
@@ -40,22 +39,23 @@ void Bluetooth_GPIOInit(void)
 }
 
 void Bluetooth_ConfigInit(void)
-{
-	// USART enable : 1
-	USART1->CR1 |= 0x01<<13;
-	
-	// Baund rate : 38400 	USARTDIV 锟斤拷 45.5625 2d9 		FCK 锟斤拷27993600 REAL:26880000
-	// Baund rate : 9600 	USARTDIV 锟斤拷 182.25 b6.4 		FCK 锟斤拷27993600 
-	// Baund rate : 9600 	USARTDIV 锟斤拷 273.4375 0x111.7		FCK 锟斤拷42000000
+{	
+	// Baund rate : 38400 	USARTDIV 锟斤�? 45.5625 2d9 		FCK 锟斤�?27993600 REAL:26880000
+	// Baund rate : 9600 	USARTDIV 锟斤�? 182.25 b6.4 		FCK 锟斤�?27993600 
+	// Baund rate : 9600 	USARTDIV 锟斤�? 273.4375 0x111.7		FCK 锟斤�?42000000
 	//			Fraction : .4375 * 16 = 7			Mantissa = 111
-	// Baund rate : 9600 	USARTDIV 锟斤拷 546.875		FCK: 84000000
+	// Baund rate : 9600 	USARTDIV 锟斤�? 546.875		FCK: 84000000
 	//			Fraction : E			Mantissa = 222
 	
 	
 	//Baund rate : 9600 
 	//USARTDIV = Mantissa+(Fraction/(8*2)) = 104.166666 = 0b110 1000 0011 = 0x683 -> 104.1875
 	//Baund rate = fck / (8*2*USARTDIV)
-	USART1->BRR = 0x222E; // 683 AF0 2D9 AE0
+	// USART1->BRR = 0x222E; // 683 AF0 2D9 AE0
+
+	//Baudrate : 115200, Fpclk = 84MHz
+	//USARTDIV = Fpclk/(16*baudrate) = 45.5625 = 0b101101.1001 = 0x2D9 (refer to reference manual)
+	USART1->BRR = 0x2D9;
 	
 	//Word length -> 1 Start bit, 8 Data bits, n Stop bit : 0
 	USART1->CR1 &= ~(0x01<<12);
@@ -71,6 +71,9 @@ void Bluetooth_ConfigInit(void)
 	
 	//Reciver enable : 1
 	USART1->CR1 |= 0x01<<2;
+	
+	// USART enable : 1
+	USART1->CR1 |= 0x01<<13;
 }
 
 void Bluetooth_SendByte(uint8_t data)

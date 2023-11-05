@@ -113,32 +113,33 @@ void task_led_off(void *pdata)
 
 void task_peripheral_init(void *pdata)
 {
-	RCC_GetClocksFreq(&clockwatch);
+	// RCC_GetClocksFreq(&clockwatch);
+
 	BluetoothInit();
-	printf("Bluetooth init finished!\n");
+	printf("Bluetooth init finished!\r\n");
 	times++;
 
 	MyI2C_Init();
-	printf("I2C init finished!\n");
+	printf("I2C init finished!\r\n");
 	times++;
 	
 	GY86Init();
-	printf("GY86 init finished!\n");
+	printf("GY86 init finished!\r\n");
 	times++;
 	
 	Receiver_Init();
-	printf("Receiver init finished!\n");
+	printf("Receiver init finished!\r\n");
 	times++;
 
 	Motor_Init();
-	printf("Motor init finished!\n");
+	printf("Motor init finished!\r\n");
 	times++;
 
 	// ESC_Arm();
-	printf("ESC unlock finished!\n");
+	printf("ESC unlock finished!\r\n");
 	times++;
 
-	printf("Initilization finished!\n");
+	printf("Initilization finished!\r\n");
 
 	OSTaskDel(OS_PRIO_SELF);
 }
@@ -188,8 +189,8 @@ void task_attitude_gyro(void *pdata)
 		gyro0 = gyro1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		SendAnotc(acc, gyro0, mag, euler);
-		// printf("euler: %f, %f, %f\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
+		// SendAnotc(acc, gyro0, mag, euler);
+		printf("euler: %f, %f, %f\r\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
 		
 	}
 }
@@ -284,8 +285,8 @@ void task_attitude_fusion(void *pdata)
 		t[5] = OSTimeGet();
 		// SendAnotc(acc, gyro, mag, euler);
 		t[6] = OSTimeGet();
-		printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
-		
+		printf("euler: %10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
+
 	}
 }
 
@@ -299,10 +300,10 @@ void task_motor_control(void *pdata)
 	// OSTimeDly(4000);
 
 	printf("unlock finished\n");
-	ESC_locked = 0;
+	// motor_a = 0;
 	while(1)
 	{
-		if(ESC_locked == 1)
+		// if(ESC_locked == 1)
 		{
 			continue;
 		}
