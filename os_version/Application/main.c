@@ -1,3 +1,4 @@
+#include "os_cpu.h"
 #include "stm32f4xx.h"                  // Device header
 #include "includes.h"
 #include "ucos_ii.h"
@@ -33,10 +34,14 @@ OS_STK Task6Stk[TASK_STK_LEN];
 OS_STK Task7Stk[TASK_STK_LEN];
 OS_STK Task8Stk[TASK_STK_LEN];
 OS_STK Task9Stk[TASK_STK_LEN];
+OS_STK Task10Stk[TASK_STK_LEN];
 
 uint16_t times;
-
+RCC_ClocksTypeDef clockwatch;
 extern vec3d_t acc_offset, acc_scale, gyro_offset, gyro_filter[2], mag_offset, mag_scale;
+extern vec3d_t acc, mag, gyro, euler;
+extern BOOLEAN motor_armed;
+extern uint32_t ppm_val[10];
 
 extern void My_Systick_Config(uint32_t reload_value);
 
@@ -91,13 +96,12 @@ void SendAnotc(vec3d_t acc, vec3d_t gyro, vec3d_t mag, vec3d_t angle)
 	}
 }
 
-
 void task_led_on(void *pdata)
 {
 	while(1)
 	{
 		led_on();
-		OSTimeDly(1000);
+		OSTimeDly(2000);
 	}
 }
 
@@ -112,31 +116,30 @@ void task_led_off(void *pdata)
 
 void task_peripheral_init(void *pdata)
 {
+	// RCC_GetClocksFreq(&clockwatch);
+
 	BluetoothInit();
-	printf("Bluetooth init finished!\n");
+	printf("Bluetooth init finished!\r\n");
 	times++;
 
 	MyI2C_Init();
-	printf("I2C init finished!\n");
+	printf("I2C init finished!\r\n");
 	times++;
 	
 	GY86Init();
-	printf("GY86 init finished!\n");
+	printf("GY86 init finished!\r\n");
 	times++;
 	
-	TIM1_init();
-	printf("Receiver init finished!\n");
+	Receiver_Init();
+	printf("Receiver init finished!\r\n");
 	times++;
 
 	Motor_Init();
-	printf("Motor init finished!\n");
+	printf("Motor init finished!\r\n");
 	times++;
 
-	ESC_Unlock();
-	printf("ESC unlock finished!\n");
-	times++;
+	printf("Initilization finished!\r\n");
 
-	printf("Initilization finished!\n");
 	OSTaskDel(OS_PRIO_SELF);
 }
 
@@ -185,9 +188,12 @@ void task_attitude_gyro(void *pdata)
 		gyro0 = gyro1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		SendAnotc(acc, gyro0, mag, euler);
-		// printf("euler: %f, %f, %f\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
-		
+		// SendAnotc(acc, gyro0, mag, euler);
+		// printf("euler: %f, %f, %f\r\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
+		// convert euler to string and send them by bluetooth_sendstring
+		char str[100];
+		sprintf(str, "%f, %f, %f\r\n", euler.x, euler.y, euler.z);
+		Bluetooth_SendString(str);
 	}
 }
 
@@ -246,7 +252,6 @@ void task_attitude_acc_mag(void *pdata)
 void task_attitude_fusion(void *pdata)
 {
 	vec4d_t q0 = {1, 0, 0, 0}, q1;
-	vec3d_t acc, mag, gyro, euler;
 
 	// estimate the attitude of the first frame by acc and mag
 	for(uint8_t i=0; i<50; i++)	// takes 3s 
@@ -260,44 +265,69 @@ void task_attitude_fusion(void *pdata)
 		RadToDeg(&euler);
 		SendAnotc(acc, gyro, mag, euler);
 	}
-	// printf("q0: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
-	volatile int16_t t[10];
-	uint16_t cnt = 0;
+	volatile uint32_t t[10];
 	while(1)
 	{
-		t[0] = OSTimeGet();
-		GetGyroData(&gyro);
-		t[1] = OSTimeGet();
+		GetGyroData(&gyro); // reading data takes about 0.6ms
 		GetAccData(&acc);
-		t[2] = OSTimeGet();
 		GetMagData(&mag);
-		t[3] = OSTimeGet();
 
-		MadgwickAHRS(&q0, acc, gyro, mag);
-		t[4] = OSTimeGet();
-		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
+		MadgwickAHRS(&q0, acc, gyro, mag);	// takes about 0.1ms
+		
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		t[5] = OSTimeGet();
-		SendAnotc(acc, gyro, mag, euler);
-		t[6] = OSTimeGet();
-		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
+		
+		// SendAnotc(acc, gyro, mag, euler);
+		char str[100];
+		sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
+		Bluetooth_SendString(str); // takes about 3ms
+		// printf("euler: %10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
+	}
+}
+
+void task_motor_control(void *pdata)
+{
+	while(1)
+	{
+		char str[100];
+		// sprintf(str, "motor_armed%d\r\n", motor_armed);
+		// Bluetooth_SendString(str);
+		OSTimeDly(100);
+		sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
+		Bluetooth_SendString(str);
+
+		// MotorControl();
+
+		// OSTimeDly(100);
+		// if(motor_armed == 1)
+		// {
+
+		// 	continue;
+		// }
+		// Motor_SetDutyCycle(1000+(ppm_val[THR]-2001)*1000/(2001-1001));
+		// for(int i=1000; i<1500; i+=100)
+		// {
+		// 	Motor_SetDutyCycle(i);
+		// 	OSTimeDly(500);
+		// 	printf("%d\n", i);
+		// }
 	}
 }
 
 void first_task(void *pdata) {
     // Initialization
-    My_Systick_Config(840000); // AHB = 84MHz
+    // My_Systick_Config(840000); // AHB = 84MHz
+	OS_CPU_SysTickInitFreq(84000000);
 	
     led_init();
 
-    // create LED_ON task
-    OSTaskCreateExt(task_led_on, (void *)0, &Task2Stk[TASK_STK_LEN - 1], 6, 6, Task2Stk, TASK_STK_LEN, (void *)0, 0);
-    OSTaskNameSet(6, (INT8U *)"LED_ON", (INT8U *)"LED_ON_ERR");
+    // // create LED_ON task
+    // OSTaskCreateExt(task_led_on, (void *)0, &Task2Stk[TASK_STK_LEN - 1], 6, 6, Task2Stk, TASK_STK_LEN, (void *)0, 0);
+    // OSTaskNameSet(6, (INT8U *)"LED_ON", (INT8U *)"LED_ON_ERR");
 
-    // create LED_OFF task
-    OSTaskCreateExt(task_led_off, (void *)0, &Task3Stk[TASK_STK_LEN - 1], 7, 7, Task3Stk, TASK_STK_LEN, (void *)0, 0);
-    OSTaskNameSet(7, (INT8U *)"LED_OFF", (INT8U *)"LED_OFF_ERR");
+    // // create LED_OFF task
+    // OSTaskCreateExt(task_led_off, (void *)0, &Task3Stk[TASK_STK_LEN - 1], 7, 7, Task3Stk, TASK_STK_LEN, (void *)0, 0);
+    // OSTaskNameSet(7, (INT8U *)"LED_OFF", (INT8U *)"LED_OFF_ERR");
 
 	// create peripheral init task
 	OSTaskCreateExt(task_peripheral_init, (void *)0, &Task4Stk[TASK_STK_LEN - 1], 8, 8, Task4Stk, TASK_STK_LEN, (void *)0, 0);
@@ -316,8 +346,11 @@ void first_task(void *pdata) {
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+
+	// OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], 13, 13, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
 	
     OSTaskDel(OS_PRIO_SELF);
 }

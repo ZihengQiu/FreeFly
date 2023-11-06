@@ -1,4 +1,7 @@
 #include "receiver.h"
+#include "motor.h"
+#include "bluetooth.h"
+#include "ucos_ii.h"
 
 uint32_t PulseWidth, Period, DutyCycle;
 uint32_t ppm_val[10], ppm_cnt = 0 , First = 0;
@@ -30,7 +33,7 @@ void MY_NVIC_Init(uint8_t NVIC_PreemptionPriority,uint8_t NVIC_SubPriority,uint8
 	NVIC->IP[NVIC_Channel] |= temp << 4;//设置响应优先级和抢占优先级
 }
 
-void TIM1_init(void)
+void TIM1_Init(void)
 {
 	// PA8 : TIM1CH1
 	RCC->AHB1ENR |= 1 << 0;
@@ -92,6 +95,11 @@ void TIM1_init(void)
 	TIM1->CR1 |= 1 << 0;
 }
 
+void Receiver_Init(void)
+{
+	TIM1_Init();
+}
+
 //void TIM1_CC_IRQHandler(void)//TIM1_GetDutyCycle
 //{
 //	if(((TIM1->SR & 0x2) == 2)&&((TIM1->SR & 0x4) == 4))//检测是否捕捉到上升沿和下降沿 
@@ -117,7 +125,7 @@ void TIM1_CC_IRQHandler()
 {
 	if(TIM_GetITStatus(TIM1,TIM_IT_CC1)==SET)
 	{
-		uint32_t val = TIM_GetCapture1(TIM1)+1;
+		uint32_t val = TIM_GetCapture1(TIM1);
 
 		if(val > 0x1000)
 		{
@@ -126,20 +134,17 @@ void TIM1_CC_IRQHandler()
 
 		if(First == 1)
 		{
-			ppm_val[ppm_cnt++] = TIM_GetCapture1(TIM1)+1;
+			ppm_val[ppm_cnt++] = TIM_GetCapture1(TIM1);
 			if(ppm_cnt > 8)
 			{
 				ppm_cnt = 0;
 				First = 0;
 			}
 		}
-
+		SignalBlockDetect();
+		MotorArmDetect();
+		ESCUnlockDetect();
 		TIM_ClearITPendingBit(TIM1,TIM_IT_CC1);
-	}
-
-	for(uint8_t i=0; i<4; i++)
-	{
-		// ppm_val[i] = Receiver_CalcDutyCycle(i);
 	}
 }
 

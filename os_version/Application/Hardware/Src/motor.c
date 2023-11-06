@@ -10,120 +10,175 @@
 #include "motor.h"
 #include "receiver.h"
 
-void Motor_Init()
+#define MOTOR_COMPARE_MAX_VAL 2000
+#define MOTOR_COMPARE_MIN_VAL 1000
+
+BOOLEAN motor_armed = 0, signal_blocked = 1, ESC_Unlocked = 1;
+
+OS_TMR  *tmr_arm, *tmr_disarm;
+
+uint32_t motor_compare[4];
+
+void Motor_GPIO_Init(void)
 {
-	GPIO_InitTypeDef GPIO_InitStructure;   //ÉùÃ÷Ò»¸ö½á¹¹Ìå±äÁ¿£¬ÓÃÀ´³õÊ¼»¯GPIO
+	GPIO_InitTypeDef GPIO_InitStructure;   //å£°æ˜Žä¸€ä¸ªç»“æž„ä½“å˜é‡ï¼Œç”¨æ¥åˆå§‹åŒ–GPIO
 
-	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;//ÉùÃ÷Ò»¸ö½á¹¹Ìå±äÁ¿£¬ÓÃÀ´³õÊ¼»¯¶¨Ê±Æ÷
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;//å£°æ˜Žä¸€ä¸ªç»“æž„ä½“å˜é‡ï¼Œç”¨æ¥åˆå§‹åŒ–å®šæ—¶å™¨
 
-	TIM_OCInitTypeDef TIM_OCInitStructure;//¸ù¾ÝTIM_OCInitStructÖÐÖ¸¶¨µÄ²ÎÊý³õÊ¼»¯ÍâÉèTIMx
+	TIM_OCInitTypeDef TIM_OCInitStructure;//æ ¹æ®TIM_OCInitStructä¸­æŒ‡å®šçš„å‚æ•°åˆå§‹åŒ–å¤–è®¾TIMx
 
-	/* ¿ªÆôÊ±ÖÓ */
+	/* å¼€å¯æ—¶é’Ÿ */
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC,ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);
 
-	/*  ÅäÖÃGPIOµÄÄ£Ê½ºÍIO¿Ú */
+	/*  é…ç½®GPIOçš„æ¨¡å¼å’ŒIOå£ */
 	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 |GPIO_Pin_9;// PC6 7 8 9
 	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
-	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;//¸´ÓÃÍÆÍìÊä³ö
+	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;//å¤ç”¨æŽ¨æŒ½è¾“å‡º
 	GPIO_Init(GPIOC,&GPIO_InitStructure);
 	GPIOC->AFR[0] |= 2 << 24; 
 	
-	//TIM3¶¨Ê±Æ÷³õÊ¼»¯
-	//PWM ÆµÂÊ 50Hz = 84 000 000/(83+1)/(19999+1)
-	TIM_TimeBaseInitStructure.TIM_Period = 19999; //×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷ÖÜÆÚARR 
-	TIM_TimeBaseInitStructure.TIM_Prescaler = 83;//TIM3¼ÆÊýÆ÷Ê±ÖÓÆµÂÊÔ¤·ÖÆµÖµPSC
-	TIM_TimeBaseInitStructure.TIM_ClockDivision = 0;//ÉèÖÃÊ±ÖÓ·Ö¸î:TDTS = Tck_tim
-	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;	//TIMÏòÉÏ¼ÆÊýÄ£Ê½
+	//TIM3å®šæ—¶å™¨åˆå§‹åŒ–
+	//PWM é¢‘çŽ‡ 50Hz = 84 000 000/(83+1)/(19999+1)
+	TIM_TimeBaseInitStructure.TIM_Period = 19999; //è‡ªåŠ¨é‡è£…è½½å¯„å­˜å™¨å‘¨æœŸARR 
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 83;//TIM3è®¡æ•°å™¨æ—¶é’Ÿé¢‘çŽ‡é¢„åˆ†é¢‘å€¼PSC
+	TIM_TimeBaseInitStructure.TIM_ClockDivision = 0;//è®¾ç½®æ—¶é’Ÿåˆ†å‰²:TDTS = Tck_tim
+	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;	//TIMå‘ä¸Šè®¡æ•°æ¨¡å¼
 	TIM_TimeBaseInit(TIM3, & TIM_TimeBaseInitStructure);
 
-	//PWM³õÊ¼»¯	  //¸ù¾ÝTIM_OCInitStructÖÐÖ¸¶¨µÄ²ÎÊý³õÊ¼»¯ÍâÉèTIMx
+	//PWMåˆå§‹åŒ–	  //æ ¹æ®TIM_OCInitStructä¸­æŒ‡å®šçš„å‚æ•°åˆå§‹åŒ–å¤–è®¾TIMx
 	TIM_OCInitStructure.TIM_OCMode=TIM_OCMode_PWM1;
-	TIM_OCInitStructure.TIM_OutputState=TIM_OutputState_Enable;//PWMÊä³öÊ¹ÄÜ
+	TIM_OCInitStructure.TIM_OutputState=TIM_OutputState_Enable;//PWMè¾“å‡ºä½¿èƒ½
 	TIM_OCInitStructure.TIM_OCPolarity=TIM_OCPolarity_High;
 
 	TIM_OC1Init(TIM3,&TIM_OCInitStructure);
-	TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);//Ê¹ÄÜTIMxÔÚCCR1ÉÏµÄÔ¤×°ÔØ¼Ä´æÆ÷
-	TIM_Cmd(TIM3,ENABLE);//Ê¹ÄÜTIMxÍâÉè
+	TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);//ä½¿èƒ½TIMxåœ¨CCR1ä¸Šçš„é¢„è£…è½½å¯„å­˜å™¨
+	TIM_Cmd(TIM3,ENABLE);//ä½¿èƒ½TIMxå¤–è®¾
 	TIM3->CR1|=(1<<7);
 }
 
-BOOLEAN ESC_Unlock(void)
+OS_TMR_CALLBACK ArmTmrCallback(OS_TMR *ptmr, void *p_arg)
 {
-	memset(ppm_val, 0, sizeof(ppm_val));
-	
-	uint32_t fails_cnt = 0;
-	while(1)
+	motor_armed = 1;
+	return NULL;
+}
+
+OS_TMR_CALLBACK DisarmTmrCallback(OS_TMR *ptmr, void *p_arg)
+{
+	motor_armed = 0;
+	return NULL;
+}
+
+void Motor_Tmr_Init(void)
+{
+	uint8_t err1, err2;
+	tmr_arm = OSTmrCreate(10, 0, OS_TMR_OPT_ONE_SHOT,
+				(OS_TMR_CALLBACK)ArmTmrCallback,0 , (INT8U *)"ARM TIMER", &err1);
+	tmr_disarm = OSTmrCreate(10, 0, OS_TMR_OPT_ONE_SHOT,
+				(OS_TMR_CALLBACK)DisarmTmrCallback,0 , (INT8U *)"DISARM TIMER", &err2);
+}
+
+void Motor_Init(void)
+{
+	Motor_GPIO_Init();
+	Motor_Tmr_Init();
+}
+
+void SignalBlockDetect(void)
+{
+	if(ppm_val[5] > PPM_MAX_VAL)
 	{
-		if(fails_cnt > 1000)
-		{
-			// return 0;
-		}
- 
-		BOOLEAN hold_flag = 1;
-		Bluetooth_SendString("waiting for 2000\n");
-		while(ppm_val[THR] <= PPM_MAX_VAL)
-		{
-			printf("%d\n", ppm_val[THR]);
-		}
-
-		Bluetooth_SendString("Reach 2000\n");
-
-		for(uint16_t i=0; i<300; i++)
-		{
-			if(ppm_val[THR] <= PPM_MAX_VAL)
-			{
-				hold_flag = 0;
-				break;
-			}		
-			OSTimeDly(10);	// delay 3S in total
-			if(i % 100 == 0)
-				printf("Still for %d\n", i);
-		}
-		if(hold_flag == 0)
-		{
-			fails_cnt++;
-			continue;
-		}
-
-		Bluetooth_SendString("2000 verified!\n");
-
-		while(ppm_val[THR] >= PPM_MIN_VAL)
-		{
-			printf("%d\n", ppm_val[THR]);
-		}
-
-		Bluetooth_SendString("Reach 1000\n");
-
-		for(uint16_t i=0; i<300; i++)
-		{
-			if(ppm_val[THR] >= PPM_MIN_VAL)
-			{
-				hold_flag = 0;
-				break;
-			}		
-			OSTimeDly(10);	// delay 3S in total
-		}
-		if(hold_flag == 0)
-		{
-			fails_cnt++;
-			continue;
-		}
-		
-		Bluetooth_SendString("1000 verified!\n");
-
-		break;
+		signal_blocked = 1;
 	}
-	TIM_SetCompare1(TIM3, 2000);
-	OSTimeDly(4000);
-	TIM_SetCompare1(TIM3, 1000);
-	OSTimeDly(4000);  
-	
-	return 1;
+	else
+	{
+		signal_blocked = 0;
+	}
 }
 
-void Motor_SetDutyCycle(uint32_t Compare1)
+void MotorArmDetect(void)
 {
-	TIM3->CCR1 = Compare1;
+	// arm detect : throttle minimum, yaw maximum for 1 seconds
+	if(ppm_val[THR] < PPM_MIN_VAL && ppm_val[RUD] > PPM_MAX_VAL)
+	{
+		if(OSTmrStateGet(tmr_arm, 0)!=3)
+		{
+			OSTmrStart(tmr_arm, 0);
+		}
+	}
+	else
+	{
+		OSTmrStop(tmr_arm, OS_TMR_OPT_NONE, NULL, OS_ERR_NONE);
+	}
+
+	// disarm detect : throttle minimum, yaw minimum for 1 seconds
+	if(ppm_val[THR] < PPM_MIN_VAL && ppm_val[RUD] < PPM_MIN_VAL)
+	{
+		if(OSTmrStateGet(tmr_disarm, 0) != 3)
+		{
+			OSTmrStart(tmr_disarm, 0);
+		}
+	}
+	else 
+	{
+		OSTmrStop(tmr_disarm, OS_TMR_OPT_NONE, NULL, OS_ERR_NONE);
+	}
 }
 
+void ESCUnlockDetect(void)
+{
+	if(ppm_val[7] < PPM_MIN_VAL)
+	{
+		ESC_Unlocked = 0;
+	}
+	else
+	{
+		ESC_Unlocked = 1;
+	}
+}
+
+void ESCUnlock(void)
+{
+	Bluetooth_SendString("ESC will be unlocked in 3s...\r\n");
+	Bluetooth_SendString("Turn CH7 to High to stop unlock.\r\n");
+
+	OSTimeDly(3000);
+	if(ESC_Unlocked == 1)
+	{
+		Bluetooth_SendString("ESC is already unlocked!\r\n");
+		return;
+	}
+
+	Bluetooth_SendString("ESC unlock procedure starts!\r\n");
+
+	TIM_SetCompare1(TIM3, MOTOR_COMPARE_MAX_VAL);
+	OSTimeDly(4000);
+	TIM_SetCompare1(TIM3, MOTOR_COMPARE_MIN_VAL);
+	OSTimeDly(4000);
+
+	ESC_Unlocked = 1;
+}
+
+uint32_t MotorSpeedLimit(uint32_t compare)
+{
+	if(compare > MOTOR_COMPARE_MAX_VAL)
+	{
+		return MOTOR_COMPARE_MAX_VAL;
+	}
+	else if(compare < MOTOR_COMPARE_MIN_VAL)
+	{
+		return MOTOR_COMPARE_MIN_VAL;
+	}
+	else
+	{
+		return compare;
+	}
+}
+
+void MotorSetSpeed(void)
+{
+	TIM3->CCR1 = MotorSpeedLimit(motor_compare[0]);
+	TIM3->CCR2 = MotorSpeedLimit(motor_compare[1]);
+	TIM3->CCR3 = MotorSpeedLimit(motor_compare[2]);
+	TIM3->CCR4 = MotorSpeedLimit(motor_compare[3]);
+}

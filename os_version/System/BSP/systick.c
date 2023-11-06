@@ -5,6 +5,7 @@ uint32_t systick_cnt;
 
 // ahb : 84MHz
 // needed tick: 1 tick = 10ms = 100Hz -> reload val = 840000
+// NOTE: this function is equal to OS_CPU_SysTickInitFreq in uCOS-II
 void My_Systick_Config(uint32_t reload_value)
 {
 	

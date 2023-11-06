@@ -59,7 +59,6 @@ target_include_directories(${EXECUTABLE} PRIVATE
 		${OS_DIR}/Cfg/Template
 		${PROJECT_APP_PATH}
 		${PROJECT_APP_PATH}/Hardware/Inc
-		${PROJECT_APP_PATH}/SystemConfig
 		$<$<BOOL:${ENABLE_SYSTEMVIEW}>:
 			${PROJECT_APP_PATH}/SystemView/GenericConfig
 			${PROJECT_APP_PATH}/SystemView/GenericFiles
@@ -82,7 +81,7 @@ target_compile_options(${EXECUTABLE} PRIVATE
         -ffunction-sections
 		-fno-math-errno
         -Wall
-		-O1
+		-Og
 		$<$<BOOL:${DEBUG}>:-g>
         )
 
