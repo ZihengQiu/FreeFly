@@ -1,5 +1,6 @@
 #include "stm32f4xx.h"                  // Device header
 #include "myI2C.h"
+#include "stm32f4xx_i2c.h"
 #include "ucos_ii.h"
 #include <stdint.h>
 
@@ -32,6 +33,11 @@ void MyI2C_GPIOInit(void)
 
 void MyI2C_SetMasterMode(void)
 {
+	// I2C_InitTypeDef I2C_Struct;
+	// I2C_Struct.I2C_ClockSpeed = 100000;
+	// I2C_Struct.I2C_Mode = I2C_Mode_I2C;
+	// I2C_Init(I2C1, &I2C_Struct);
+
 	//Set freq = 42MHz (max APB1 clock speed)
 	I2C1->CR2 &= ~((uint16_t)0x003F); // clear FREQ
 	I2C1->CR2 |= (uint16_t)0x2A;
@@ -50,10 +56,10 @@ void MyI2C_SetMasterMode(void)
 	I2C1->OAR1 &= ~((uint16_t)0x007F);
 	I2C1->OAR1 |= (uint16_t)0x0001;
 	
-	//ccr=420 -> 100kHz SCL
+	//100kHz SCL+PCLK1=42MHz -> ccr=42
 	I2C1->CCR &= ~((uint16_t)0x0001<<15);
 	I2C1->CCR &= ~((uint16_t)0x0FFF);
-	I2C1->CCR |= 0x1A4;
+	I2C1->CCR |= 0x2A;
 }
 
 void MyI2C_SetStart(FunctionalState NewState)
@@ -300,8 +306,7 @@ void MyI2C_BurstReadRegister(uint8_t SlaveAddress, uint8_t RegisterAddress, uint
 }
 
 void MyI2C_WriteRegister(uint8_t SlaveAddress, uint8_t RegisterAddress, uint8_t Value)
-{ 
-	
+{	
 	while(!MyI2C_CheckBusy());
 	
 	MyI2C_SetStart(ENABLE);

@@ -9,6 +9,8 @@
 #include "mathkit.h"
 #include "gy86.h"
 
+extern vec3d_t acc, mag, gyro, euler;
+
 void AccToEuler(vec3d_t *acc, vec3d_t *euler);
 
 void AccUpdateQuat(vec4d_t *q0, vec4d_t *q1, vec3d_t *acc, vec3d_t *gyro, float dt);

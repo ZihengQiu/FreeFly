@@ -6,6 +6,8 @@
 
 float mu = 0;
 
+vec3d_t acc, mag, gyro, euler;
+
 void AccToEuler(vec3d_t *acc, vec3d_t *euler)
 {
 	Vec3Norm(acc);
@@ -245,7 +247,7 @@ void MadgwickAHRS(vec4d_t *q0, vec3d_t acc, vec3d_t gyro, vec3d_t mag)
 
 	if(modulus_acc > 0.1) // high variation of the drone
 	{
-		beta += 45;
+		beta += 40;
 	}
 
 	lambda = (beta/modulus_acc+0.01)*0.5;

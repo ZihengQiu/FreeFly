@@ -2,6 +2,7 @@
 #include "mathkit.h"
 #include "ucos_ii.h"
 #include <stdint.h>
+#include <sys/_stdint.h>
 
 #define MAX_DOUBLE 10000
 #define ACC_CALIBRATED
@@ -201,12 +202,6 @@ void GyroCalibration(vec3d_t *offset, vec3d_t *filter[2])
 	gyro_filter[1].x = data_max.x - offset->x;
 	gyro_filter[1].y = data_max.y - offset->y;
 	gyro_filter[1].z = data_max.z - offset->z;
-	// filter[0]->x = data_min.x - offset->x;
-	// filter[0]->y = data_min.y - offset->y;
-	// filter[0]->z = data_min.z - offset->z;
-	// filter[1]->x = data_max.x - offset->x;
-	// filter[1]->y = data_max.y - offset->y;
-	// filter[1]->z = data_max.z - offset->z;
 	Bluetooth_SendString("done.\n");
 
 	gyro_calibrated = 1;
@@ -217,23 +212,14 @@ void HMC5883Init(void)
 	MyI2C_WriteRegisterHMC5883(AddressHMC5883, ConfigA, 0x70); //Outout rate : 15Hz
 	MyI2C_WriteRegisterHMC5883(AddressHMC5883, ConfigB, 0x20);		
 	MyI2C_WriteRegisterHMC5883(AddressHMC5883, ModeRegister, 0x00);	//Continuous-Measurement Mode
-	// StatusRegister = 0x01 when data prepared
 }
 
 void GetMagData(vec3d_t *mag)
 {
 	uint8_t Buffer[6];
 	float mag_full = 1.0, mag_gain = 1090;
-	MyI2C_BurstReadRegister(AddressHMC5883, MAG_X_OUT_H, Buffer, 6);
-	// // sequence : x-z-y
-	// mag->x = (float)(int16_t)((Buffer[0]<<8) + Buffer[1])*mag_full/mag_gain;
-	// mag->z = (float)(int16_t)((Buffer[2]<<8) + Buffer[3])*mag_full/mag_gain;
-	// mag->y = (float)(int16_t)((Buffer[4]<<8) + Buffer[5])*mag_full/mag_gain;
 
-	// // mag calibration (ellipsoid fitting)
-	// mag->x = (mag->x - mag_offset.x) / mag_scale.x;
-	// mag->y = (mag->y - mag_offset.y) / mag_scale.y;
-	// mag->z = (mag->z - mag_offset.z) / mag_scale.z;
+	MyI2C_BurstReadRegister(AddressHMC5883, MAG_X_OUT_H, Buffer, 6);
 
 	// sequence : x-z-y
 	float mag_x = (float)(int16_t)((Buffer[0]<<8) + Buffer[1])*mag_full/mag_gain;

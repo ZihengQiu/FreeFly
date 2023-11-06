@@ -39,6 +39,9 @@ OS_STK Task10Stk[TASK_STK_LEN];
 uint16_t times;
 RCC_ClocksTypeDef clockwatch;
 extern vec3d_t acc_offset, acc_scale, gyro_offset, gyro_filter[2], mag_offset, mag_scale;
+extern vec3d_t acc, mag, gyro, euler;
+extern BOOLEAN motor_armed;
+extern uint32_t ppm_val[10];
 
 extern void My_Systick_Config(uint32_t reload_value);
 
@@ -135,10 +138,6 @@ void task_peripheral_init(void *pdata)
 	printf("Motor init finished!\r\n");
 	times++;
 
-	// ESC_Arm();
-	printf("ESC unlock finished!\r\n");
-	times++;
-
 	printf("Initilization finished!\r\n");
 
 	OSTaskDel(OS_PRIO_SELF);
@@ -190,8 +189,11 @@ void task_attitude_gyro(void *pdata)
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
 		// SendAnotc(acc, gyro0, mag, euler);
-		printf("euler: %f, %f, %f\r\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
-		
+		// printf("euler: %f, %f, %f\r\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
+		// convert euler to string and send them by bluetooth_sendstring
+		char str[100];
+		sprintf(str, "%f, %f, %f\r\n", euler.x, euler.y, euler.z);
+		Bluetooth_SendString(str);
 	}
 }
 
@@ -250,7 +252,6 @@ void task_attitude_acc_mag(void *pdata)
 void task_attitude_fusion(void *pdata)
 {
 	vec4d_t q0 = {1, 0, 0, 0}, q1;
-	vec3d_t acc, mag, gyro, euler;
 
 	// estimate the attitude of the first frame by acc and mag
 	for(uint8_t i=0; i<50; i++)	// takes 3s 
@@ -264,56 +265,52 @@ void task_attitude_fusion(void *pdata)
 		RadToDeg(&euler);
 		SendAnotc(acc, gyro, mag, euler);
 	}
-	// printf("q0: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
-	volatile int16_t t[10];
-	uint16_t cnt = 0;
+	volatile uint32_t t[10];
 	while(1)
 	{
-		t[0] = OSTimeGet();
-		GetGyroData(&gyro);
-		t[1] = OSTimeGet();
+		GetGyroData(&gyro); // reading data takes about 0.6ms
 		GetAccData(&acc);
-		t[2] = OSTimeGet();
 		GetMagData(&mag);
-		t[3] = OSTimeGet();
 
-		MadgwickAHRS(&q0, acc, gyro, mag);
-		t[4] = OSTimeGet();
-		// printf("q: %10f, %10f, %10f, %10f\n", q0.w, q0.x, q0.y, q0.z);
+		MadgwickAHRS(&q0, acc, gyro, mag);	// takes about 0.1ms
+		
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		t[5] = OSTimeGet();
+		
 		// SendAnotc(acc, gyro, mag, euler);
-		t[6] = OSTimeGet();
-		printf("euler: %10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
-
+		char str[100];
+		sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
+		Bluetooth_SendString(str); // takes about 3ms
+		// printf("euler: %10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 	}
 }
 
 void task_motor_control(void *pdata)
 {
-	printf("start unlock\n");
-
-	// TIM_SetCompare1(TIM3, 2000);
-	// OSTimeDly(4000);
-	// TIM_SetCompare1(TIM3, 1000);
-	// OSTimeDly(4000);
-
-	printf("unlock finished\n");
-	// motor_a = 0;
 	while(1)
 	{
-		// if(ESC_locked == 1)
-		{
-			continue;
-		}
+		char str[100];
+		// sprintf(str, "motor_armed%d\r\n", motor_armed);
+		// Bluetooth_SendString(str);
+		OSTimeDly(100);
+		sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
+		Bluetooth_SendString(str);
+
+		// MotorControl();
+
+		// OSTimeDly(100);
+		// if(motor_armed == 1)
+		// {
+
+		// 	continue;
+		// }
 		// Motor_SetDutyCycle(1000+(ppm_val[THR]-2001)*1000/(2001-1001));
-		for(int i=1000; i<2000; i+=100)
-		{
-			Motor_SetDutyCycle(i);
-			OSTimeDly(1000);
-			printf("%d\n", i);
-		}
+		// for(int i=1000; i<1500; i+=100)
+		// {
+		// 	Motor_SetDutyCycle(i);
+		// 	OSTimeDly(500);
+		// 	printf("%d\n", i);
+		// }
 	}
 }
 

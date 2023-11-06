@@ -1,5 +1,6 @@
 #include "receiver.h"
 #include "motor.h"
+#include "bluetooth.h"
 #include "ucos_ii.h"
 
 uint32_t PulseWidth, Period, DutyCycle;
@@ -124,7 +125,7 @@ void TIM1_CC_IRQHandler()
 {
 	if(TIM_GetITStatus(TIM1,TIM_IT_CC1)==SET)
 	{
-		uint32_t val = TIM_GetCapture1(TIM1)+1;
+		uint32_t val = TIM_GetCapture1(TIM1);
 
 		if(val > 0x1000)
 		{
@@ -133,20 +134,17 @@ void TIM1_CC_IRQHandler()
 
 		if(First == 1)
 		{
-			ppm_val[ppm_cnt++] = TIM_GetCapture1(TIM1)+1;
+			ppm_val[ppm_cnt++] = TIM_GetCapture1(TIM1);
 			if(ppm_cnt > 8)
 			{
 				ppm_cnt = 0;
 				First = 0;
 			}
 		}
-
+		SignalBlockDetect();
+		MotorArmDetect();
+		ESCUnlockDetect();
 		TIM_ClearITPendingBit(TIM1,TIM_IT_CC1);
-	}
-
-	for(uint8_t i=0; i<4; i++)
-	{
-		// ppm_val[i] = Receiver_CalcDutyCycle(i);
 	}
 }
 

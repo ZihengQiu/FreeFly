@@ -8,11 +8,12 @@
 
 #include "receiver.h"
 
-extern BOOLEAN ESC_locked;
-
 extern uint32_t ppm_val[10];
 
 void Motor_Init(void);
-void Motor_SetDutyCycle(uint32_t);
+void MotorArmDetect(void);
+void ESCUnlockDetect(void);
+void SignalBlockDetect(void);
+void MotorSetSpeed(void);
 
 #endif

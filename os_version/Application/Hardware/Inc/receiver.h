@@ -5,15 +5,16 @@
 
 #include "ucos_ii.h"
 
-// #define PPM_MAX_VAL 2001
-// #define PPM_MIN_VAL 1001
+// #define PPM_MAX_VAL 2000
+// #define PPM_MIN_VAL 1000
 #define PPM_MAX_VAL 1990
+#define PPM_MID_VAL 1500
 #define PPM_MIN_VAL 1010
 
-#define	AIL 4	// Aileron(roll)
+#define	AIL 1	// Aileron(roll)
 #define ELE 2	// Elevator(pitch)
 #define THR 3	// Throttle
-#define RUD 1	// Rudder(yaw)
+#define RUD 4	// Rudder(yaw)
 
 extern uint32_t ppm_val[10];
 
