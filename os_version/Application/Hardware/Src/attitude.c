@@ -6,6 +6,8 @@
 
 float mu = 0;
 
+vec3d_t acc, mag, gyro, euler;
+
 void AccToEuler(vec3d_t *acc, vec3d_t *euler)
 {
 	Vec3Norm(acc);
