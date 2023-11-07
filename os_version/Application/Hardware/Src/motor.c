@@ -13,18 +13,18 @@
 #define MOTOR_COMPARE_MAX_VAL 2000
 #define MOTOR_COMPARE_MIN_VAL 1000
 
-BOOLEAN motor_armed = 0, signal_blocked = 1, ESC_Unlocked = 1;
+BOOLEAN motor_armed = 0,	// armed : motor can be controlled by the remote controller
+		signal_blocked = 1, // signal blocked : cut off board's pwm signal to motor, used in emergency
+		ESC_unlock_executed = 0;
 
-OS_TMR  *tmr_arm, *tmr_disarm;
+OS_TMR  *tmr_arm, *tmr_disarm; // timer for arm and disarm detection
 
-uint32_t motor_compare[4];
+uint32_t motor_compare[4]; // compare value of each motor to be set
 
 void Motor_GPIO_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;   //声明一个结构体变量，用来初始化GPIO
-
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;//声明一个结构体变量，用来初始化定时器
-
 	TIM_OCInitTypeDef TIM_OCInitStructure;//根据TIM_OCInitStruct中指定的参数初始化外设TIMx
 
 	/* 开启时钟 */
@@ -57,13 +57,13 @@ void Motor_GPIO_Init(void)
 	TIM3->CR1|=(1<<7);
 }
 
-OS_TMR_CALLBACK ArmTmrCallback(OS_TMR *ptmr, void *p_arg)
+OS_TMR_CALLBACK ArmTmrCallback(OS_TMR *ptmr, void *parg)
 {
 	motor_armed = 1;
 	return NULL;
 }
 
-OS_TMR_CALLBACK DisarmTmrCallback(OS_TMR *ptmr, void *p_arg)
+OS_TMR_CALLBACK DisarmTmrCallback(OS_TMR *ptmr, void *parg)
 {
 	motor_armed = 0;
 	return NULL;
@@ -86,7 +86,7 @@ void Motor_Init(void)
 
 void SignalBlockDetect(void)
 {
-	if(ppm_val[5] > PPM_MAX_VAL)
+	if(ppm_val[7] > PPM_MAX_VAL)
 	{
 		signal_blocked = 1;
 	}
@@ -125,27 +125,16 @@ void MotorArmDetect(void)
 	}
 }
 
-void ESCUnlockDetect(void)
-{
-	if(ppm_val[7] < PPM_MIN_VAL)
-	{
-		ESC_Unlocked = 0;
-	}
-	else
-	{
-		ESC_Unlocked = 1;
-	}
-}
 
 void ESCUnlock(void)
 {
 	Bluetooth_SendString("ESC will be unlocked in 3s...\r\n");
-	Bluetooth_SendString("Turn CH7 to High to stop unlock.\r\n");
+	Bluetooth_SendString("Turn CH5or7 to High to stop unlock.\r\n");
 
 	OSTimeDly(3000);
-	if(ESC_Unlocked == 1)
+	if(ppm_val[5] > PPM_MIN_VAL || ppm_val[6] > PPM_MIN_VAL)
 	{
-		Bluetooth_SendString("ESC is already unlocked!\r\n");
+		Bluetooth_SendString("ESC unlocked procedure stopped.\r\n");
 		return;
 	}
 
@@ -155,8 +144,15 @@ void ESCUnlock(void)
 	OSTimeDly(4000);
 	TIM_SetCompare1(TIM3, MOTOR_COMPARE_MIN_VAL);
 	OSTimeDly(4000);
+}
 
-	ESC_Unlocked = 1;
+void ESCUnlockDetect(void)
+{
+	if(ppm_val[5] < PPM_MIN_VAL && ppm_val[6] < PPM_MIN_VAL && ESC_unlock_executed == 0)
+	{
+		ESC_unlock_executed = 1;
+		ESCUnlock();
+	}
 }
 
 uint32_t MotorSpeedLimit(uint32_t compare)
