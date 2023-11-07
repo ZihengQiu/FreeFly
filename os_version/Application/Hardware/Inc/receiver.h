@@ -19,9 +19,7 @@
 extern uint32_t ppm_val[10];
 
 void TIM1_Init(void);
-
 void Receiver_Init(void);
-
 void TIM1_CC_IRQHandler(void);
 
 #endif

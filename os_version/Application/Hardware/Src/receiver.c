@@ -1,10 +1,12 @@
 #include "receiver.h"
 #include "motor.h"
 #include "bluetooth.h"
+#include "os_cpu.h"
 #include "ucos_ii.h"
 
 uint32_t PulseWidth, Period, DutyCycle;
-uint32_t ppm_val[10], ppm_cnt = 0 , First = 0;
+uint32_t ppm_val[10], ppm_cnt = 0;
+BOOLEAN ppm_started;
 
 void MY_NVIC_PriorityGroupConfig(uint8_t NVIC_Group)
 {
@@ -47,8 +49,6 @@ void TIM1_Init(void)
 	// 时机单元
 	TIM1->ARR = 0;
 	TIM1->CR1 &=~ (1 << 4);//递增计数
-//	TIM1->PSC |= 4399;
-//	TIM1->ARR |= 199;
 	TIM1->PSC |= 83;
 	TIM1->ARR |= 19999;
 	TIM1->EGR |= 1 << 1;//配置EGR寄存器的CC1G位，使得捕获到边沿信号后就产生一个捕获事件
@@ -100,7 +100,7 @@ void Receiver_Init(void)
 	TIM1_Init();
 }
 
-//void TIM1_CC_IRQHandler(void)//TIM1_GetDutyCycle
+//void TIM1_CC_IRQHandler(void)//TIM1_GetDutyCycle PWM version
 //{
 //	if(((TIM1->SR & 0x2) == 2)&&((TIM1->SR & 0x4) == 4))//检测是否捕捉到上升沿和下降沿 
 //		{
@@ -121,7 +121,7 @@ uint32_t Receiver_CalcDutyCycle(uint8_t i)
 	return 1000+(ppm_val[i]-PPM_MIN_VAL)*1000/(PPM_MAX_VAL-PPM_MIN_VAL);
 }
 
-void TIM1_CC_IRQHandler()
+void TIM1_CC_IRQHandler(void)
 {
 	if(TIM_GetITStatus(TIM1,TIM_IT_CC1)==SET)
 	{
@@ -129,21 +129,22 @@ void TIM1_CC_IRQHandler()
 
 		if(val > 0x1000)
 		{
-			First = 1;
+			ppm_started = 1;
 		}
-
-		if(First == 1)
+		if(ppm_started == 1)
 		{
 			ppm_val[ppm_cnt++] = TIM_GetCapture1(TIM1);
 			if(ppm_cnt > 8)
 			{
 				ppm_cnt = 0;
-				First = 0;
+				ppm_started = 0;
 			}
 		}
+
 		SignalBlockDetect();
 		MotorArmDetect();
 		ESCUnlockDetect();
+
 		TIM_ClearITPendingBit(TIM1,TIM_IT_CC1);
 	}
 }
