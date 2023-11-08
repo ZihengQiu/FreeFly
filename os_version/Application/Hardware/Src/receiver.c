@@ -61,12 +61,12 @@ void TIM1_Init(void)
 	TIM1->CCER &=~ (1 << 1);//电路对上升沿敏感（即捕获）
 	TIM1->CCER &=~ (1 << 3);
 	//输入通道2
-	TIM1->CCMR1 |= 2 << (2*4);//通道2的捕获信号IC2被映射到了引脚TI1上 
-	TIM1->CCMR1 &=~ (3 << (2*5));//不对边沿信号进行分频处理
-	TIM1->CCMR1 &=~ (15 << (4*3));//滤波器为零
-	TIM1->CCER |= 1 << 4;//CC2使能
-	TIM1->CCER |= 1 << 5;//电路对下降沿敏感（即捕获）
-	TIM1->CCER |= 1 << 7;	
+	// TIM1->CCMR1 |= 2 << (2*4);//通道2的捕获信号IC2被映射到了引脚TI1上 
+	// TIM1->CCMR1 &=~ (3 << (2*5));//不对边沿信号进行分频处理
+	// TIM1->CCMR1 &=~ (15 << (4*3));//滤波器为零
+	// TIM1->CCER |= 1 << 4;//CC2使能
+	// TIM1->CCER |= 1 << 5;//电路对下降沿敏感（即捕获）
+	// TIM1->CCER |= 1 << 7;	
 	//SMCR寄存器设置
 	TIM1->SMCR &= ~(5 << 1);
 	TIM1->SMCR |= 4 << 0;//设置为复位模式
@@ -123,14 +123,13 @@ uint32_t Receiver_CalcDutyCycle(uint8_t i)
 
 void TIM1_CC_IRQHandler(void)
 {
-	if(TIM_GetITStatus(TIM1,TIM_IT_CC1)==SET)
+	if(TIM_GetITStatus(TIM1,TIM_IT_CC1) == SET)
 	{
 		uint32_t val = TIM_GetCapture1(TIM1);
-
-		if(val > 0x1000)
+		if(val > 4000)
 		{
 			ppm_started = 1;
-		}
+		} 
 		if(ppm_started == 1)
 		{
 			ppm_val[ppm_cnt++] = TIM_GetCapture1(TIM1);
@@ -138,12 +137,11 @@ void TIM1_CC_IRQHandler(void)
 			{
 				ppm_cnt = 0;
 				ppm_started = 0;
+				SignalBlockDetect();
+				MotorArmDetect();
+				ESCUnlockDetect();
 			}
 		}
-
-		SignalBlockDetect();
-		MotorArmDetect();
-		ESCUnlockDetect();
 
 		TIM_ClearITPendingBit(TIM1,TIM_IT_CC1);
 	}

@@ -1,3 +1,4 @@
+#include "os_cpu.h"
 #include "stm32f4xx_gpio.h"
 
 #include <stdio.h>
@@ -10,11 +11,10 @@
 #include "motor.h"
 #include "receiver.h"
 
-#define MOTOR_COMPARE_MAX_VAL 2000
-#define MOTOR_COMPARE_MIN_VAL 1000
 
 BOOLEAN motor_armed = 0,	// armed : motor can be controlled by the remote controller
 		signal_blocked = 1, // signal blocked : cut off board's pwm signal to motor, used in emergency
+		ESC_unlock_need_execute = 0,
 		ESC_unlock_executed = 0;
 
 OS_TMR  *tmr_arm, *tmr_disarm; // timer for arm and disarm detection
@@ -126,7 +126,7 @@ void MotorArmDetect(void)
 }
 
 
-void ESCUnlock(void)
+BOOLEAN ESCUnlock(void)	// ret 0 : unlock failed, ret 1 : unlock success
 {
 	Bluetooth_SendString("ESC will be unlocked in 3s...\r\n");
 	Bluetooth_SendString("Turn CH5or7 to High to stop unlock.\r\n");
@@ -135,7 +135,7 @@ void ESCUnlock(void)
 	if(ppm_val[5] > PPM_MIN_VAL || ppm_val[6] > PPM_MIN_VAL)
 	{
 		Bluetooth_SendString("ESC unlocked procedure stopped.\r\n");
-		return;
+		return 0;
 	}
 
 	Bluetooth_SendString("ESC unlock procedure starts!\r\n");
@@ -144,14 +144,15 @@ void ESCUnlock(void)
 	OSTimeDly(4000);
 	TIM_SetCompare1(TIM3, MOTOR_COMPARE_MIN_VAL);
 	OSTimeDly(4000);
+
+	return 1;
 }
 
 void ESCUnlockDetect(void)
 {
 	if(ppm_val[5] < PPM_MIN_VAL && ppm_val[6] < PPM_MIN_VAL && ESC_unlock_executed == 0)
 	{
-		ESC_unlock_executed = 1;
-		ESCUnlock();
+		ESC_unlock_need_execute = 1;
 	}
 }
 

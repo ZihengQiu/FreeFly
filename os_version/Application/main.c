@@ -131,11 +131,11 @@ void task_peripheral_init(void *pdata)
 	printf("GY86 init finished!\r\n");
 	times++;
 	
-	// Receiver_Init();
+	Receiver_Init();
 	printf("Receiver init finished!\r\n");
 	times++;
 
-	// Motor_Init();
+	Motor_Init();
 	printf("Motor init finished!\r\n");
 	times++;
 
@@ -290,20 +290,32 @@ void task_motor_control(void *pdata)
 {
 	while(1)
 	{
-		char str[100];
-		// sprintf(str, "motor_armed%d\r\n", motor_armed);
-		// Bluetooth_SendString(str);
-		// OSTimeDly(100);
-		// sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
-		// Bluetooth_SendString(str);
-		// uint16_t rec = Bluetooth_ReceiveByte();
-		// uint8_t data = rec;
-		// Bluetooth_SendByte(data);
-		if(bt_received_flag == 1)
+		char str[50];
+		sprintf(str, "motor_armed : %d ", motor_armed);
+		sprintf(str+strlen(str), "signal_blocked : %d ", signal_blocked);
+		sprintf(str+strlen(str), "ESC_unlock_executed : %d \r\n", ESC_unlock_executed);
+		Bluetooth_SendString(str);
+		OSTimeDly(100);
+		sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
+		Bluetooth_SendString(str);
+		if(ESC_unlock_need_execute == 1)
 		{
-			bt_received_flag = 0;
-			sprintf(str, "%s\r\n", bt_receive_data);
-			Bluetooth_SendString(str);
+			ESC_unlock_need_execute = 0;
+			ESC_unlock_executed = 1;
+			if(ESCUnlock() == 0)
+			{
+				ESC_unlock_executed = 0; // unlock failed
+			}
+		}
+		if(signal_blocked == 1)
+		{
+			motor_compare[0] = MOTOR_COMPARE_MIN_VAL;
+			MotorSetSpeed();
+		}
+		if(signal_blocked == 0 && motor_armed == 1)
+		{
+			motor_compare[0] = ppm_val[3];
+			MotorSetSpeed();
 		}
 	}
 }
