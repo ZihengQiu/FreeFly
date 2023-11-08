@@ -253,6 +253,7 @@ void task_attitude_acc_mag(void *pdata)
 void task_attitude_fusion(void *pdata)
 {
 	vec4d_t q0 = {1, 0, 0, 0}, q1;
+	char str[100];
 
 	// estimate the attitude of the first frame by acc and mag
 	for(uint8_t i=0; i<50; i++)	// takes 3s 
@@ -264,7 +265,9 @@ void task_attitude_fusion(void *pdata)
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		SendAnotc(acc, gyro, mag, euler);
+		// SendAnotc(acc, gyro, mag, euler);
+		sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
+		Bluetooth_SendString(str);
 	}
 	volatile uint32_t t[10];
 	while(1)
@@ -279,25 +282,25 @@ void task_attitude_fusion(void *pdata)
 		RadToDeg(&euler);
 		
 		// SendAnotc(acc, gyro, mag, euler);
-		char str[100];
+		
 		sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 		Bluetooth_SendString(str); // takes about 3ms
-		// printf("euler: %10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 	}
 }
 
 void task_motor_control(void *pdata)
 {
+		signal_blocked = 1;
 	while(1)
 	{
 		char str[50];
-		sprintf(str, "motor_armed : %d ", motor_armed);
-		sprintf(str+strlen(str), "signal_blocked : %d ", signal_blocked);
-		sprintf(str+strlen(str), "ESC_unlock_executed : %d \r\n", ESC_unlock_executed);
-		Bluetooth_SendString(str);
-		OSTimeDly(100);
-		sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
-		Bluetooth_SendString(str);
+		// sprintf(str, "motor_armed : %d ", motor_armed);
+		// sprintf(str+strlen(str), "signal_blocked : %d ", signal_blocked);
+		// sprintf(str+strlen(str), "ESC_unlock_executed : %d \r\n", ESC_unlock_executed);
+		// Bluetooth_SendString(str);
+		// OSTimeDly(100);
+		// sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
+		// Bluetooth_SendString(str);
 		if(ESC_unlock_need_execute == 1)
 		{
 			ESC_unlock_need_execute = 0;
@@ -317,6 +320,7 @@ void task_motor_control(void *pdata)
 			motor_compare[0] = ppm_val[3];
 			MotorSetSpeed();
 		}
+		BTCommandParse();
 	}
 }
 
@@ -352,6 +356,7 @@ void first_task(void *pdata) {
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+
 	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 

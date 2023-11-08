@@ -6,8 +6,6 @@
 #include "receiver.h"
 #include "mathkit.h"
 
-extern uint32_t ppm_val[10], motor_compare[4];
-
 typedef struct
 {
 	float kp, ki, kd;
@@ -16,6 +14,8 @@ typedef struct
 	float p_out, i_out, d_out, out;
 }pid_t;
 
+extern uint32_t ppm_val[10], motor_compare[4];
+extern pid_t pid_roll[2], pid_pitch[2], pid_yaw[2];
 void MotorControl(vec3d_t angle_cur, vec3d_t gyro);
 
 #endif

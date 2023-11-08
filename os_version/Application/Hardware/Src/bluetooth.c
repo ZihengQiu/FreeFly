@@ -1,10 +1,16 @@
-#include "os_cpu.h"
 #include "stm32f4xx.h"                  // Device header
-#include "bluetooth.h"
 #include "stm32f4xx_usart.h"
+
 #include <stdarg.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <sys/_stdint.h>
+
+#include "os_cpu.h"
+
+#include "bluetooth.h"
+#include "control.h"
 
 char bt_transmit_data[1005], bt_receive_data[1005];
 uint8_t it_rec_data, rec_cnt;
@@ -199,3 +205,69 @@ void USART1_IRQHandler(void)
 	}
 }
 
+char command_res[5][100] = {
+	"Invalid command!\r\n",
+	"PID set successfully!\r\n"
+};
+void BTShowCommandResult(uint8_t res)
+{
+	Bluetooth_SendString(command_res[res]);
+}
+char *command[10][20];
+void BTCommandParse(void)
+{
+	if(bt_received_flag == 1)
+	{
+		bt_received_flag = 0;
+
+		uint8_t len = 0;
+		command[0][0] = strtok(bt_receive_data, " ");
+		while(command[len][0] != NULL)
+		{
+			command[++len][0] = strtok(NULL, " ");
+		}
+
+		if(0 == strcmp(command[0][0], "pid"))
+		{
+			if(len != 6)
+			{
+				BTShowCommandResult(0);
+				return;
+			}
+			uint8_t pid_i = 0;
+			if(0 == strcmp(command[1][0], "i"))
+			{
+				pid_i = 1;
+			}
+			if(0 == strcmp(command[2][0], "roll"))
+			{
+				pid_roll[pid_i].kp = atof(command[3][0]);
+				pid_roll[pid_i].ki = atof(command[4][0]);
+				pid_roll[pid_i].kd = atof(command[5][0]);
+				BTShowCommandResult(1);
+			}
+			else if(0 == strcmp(command[2][0], "pitch"))
+			{
+				pid_pitch[pid_i].kp = atof(command[3][0]);
+				pid_pitch[pid_i].ki = atof(command[4][0]);
+				pid_pitch[pid_i].kd = atof(command[5][0]);
+				BTShowCommandResult(1);
+			}
+			else if(0 == strcmp(command[2][0], "yaw"))
+			{
+				pid_yaw[pid_i].kp = atof(command[3][0]);
+				pid_yaw[pid_i].ki = atof(command[4][0]);
+				pid_yaw[pid_i].kd = atof(command[5][0]);
+				BTShowCommandResult(1);
+			}
+			else
+			{
+				BTShowCommandResult(0);
+			}
+		}
+		else
+		{
+			BTShowCommandResult(0);
+		}
+	}
+}

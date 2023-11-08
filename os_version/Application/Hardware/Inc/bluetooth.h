@@ -12,6 +12,7 @@ uint16_t Bluetooth_ReceiveByte(void);
 void BluetoothInit(void);
 void Bluetooth_SendSignedNum(int16_t num);
 void BT_Printf(char *format, ...);
+void BTCommandParse(void);
 // int fputc(int ch, FILE *f);
 
 extern char bt_receive_data[1005];
