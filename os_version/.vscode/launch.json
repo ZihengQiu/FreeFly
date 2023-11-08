@@ -15,7 +15,8 @@
                 "interface/stlink.cfg",
                 "target/stm32f4x.cfg"
             ],
-            // "armToolchainPath": "/usr/bin",
+
+            "armToolchainPath": "D:/study/gcc-arm-none-eabi-10.3-2021.10/bin",
             "svdFile": "${workspaceRoot}/STM32F401.svd",
 			// "runToEntryPoint": "main",
             "preLaunchTask": "Build",

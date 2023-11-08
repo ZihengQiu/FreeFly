@@ -172,7 +172,7 @@ uint8_t MyI2C_CheckMasterTransmitterModeSelected()
 		if((temp1>>9&1) == 1) I2C1->SR1 |= 0x400;
 		return 0x1;
 	}
-	return 0x0;	//BUG:�ٲö�ʧ
+	return 0x0;	//BUG:�ٲö�ʧ
 }
 
 uint8_t MyI2C_CheckMasterByteTransmitted()

@@ -295,22 +295,6 @@ void task_motor_control(void *pdata)
 		OSTimeDly(100);
 		sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
 		Bluetooth_SendString(str);
-
-		// MotorControl();
-
-		// OSTimeDly(100);
-		// if(motor_armed == 1)
-		// {
-
-		// 	continue;
-		// }
-		// Motor_SetDutyCycle(1000+(ppm_val[THR]-2001)*1000/(2001-1001));
-		// for(int i=1000; i<1500; i+=100)
-		// {
-		// 	Motor_SetDutyCycle(i);
-		// 	OSTimeDly(500);
-		// 	printf("%d\n", i);
-		// }
 	}
 }
 
@@ -334,16 +318,9 @@ void first_task(void *pdata) {
 	OSTaskNameSet(8, (INT8U *)"PERIPHERAL_INIT", (INT8U *)"PERIPHERAL_INIT_ERR");
 	OSTimeDly(3000);
 
-	// create MPU6050 task
-	// OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
-	// OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
-	// OSTimeDly(3000);
-
 	// create attitude control task
 	// OSTaskCreateExt(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10, 10, Task6Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	// OSTaskCreateExt(task_attitude_acc, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
