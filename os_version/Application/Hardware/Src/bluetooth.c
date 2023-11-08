@@ -162,8 +162,8 @@ void BT_Printf(char *format, ...)
 
 void BTReceivePackage(void)
 {
+	 // 0:waiting for start symbol, 1:receiving message body while waiting for end symbol
 	static uint8_t rec_status = BT_REC_STAT_START;
-	 // 0:waiting for start symbol, 1:receiving message body, 2:waiting for end symbol
 
 	if(rec_status == BT_REC_STAT_START)
 	{
@@ -175,22 +175,15 @@ void BTReceivePackage(void)
 	}
 	else if(rec_status == BT_REC_STAT_BODY)
 	{
-		if(it_rec_data == BT_REC_END_SYMBOL_1)
+		if(it_rec_data == BT_REC_END_SYMBOL_1 || it_rec_data == BT_REC_END_SYMBOL_2)
 		{
-			rec_status = BT_REC_STAT_END;
+			bt_received_flag = 1;
+			bt_receive_data[rec_cnt] = '\0';
+			rec_status = BT_REC_STAT_START;
 		}
 		else 
 		{
 			bt_receive_data[rec_cnt++] = it_rec_data;
-		}
-	}
-	else if(rec_status == BT_REC_STAT_END)
-	{
-		if(it_rec_data == BT_REC_END_SYMBOL_2)
-		{
-			bt_receive_data[rec_cnt] = '\0';
-			rec_status = BT_REC_STAT_START;
-			bt_received_flag = 1;
 		}
 	}
 }
