@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/_stdint.h>
 
 #if (defined(OS_TRACE_EN) && (OS_TRACE_EN > 0u))
 #include "SEGGER_SYSVIEW.h"                                   
@@ -122,19 +123,19 @@ void task_peripheral_init(void *pdata)
 	printf("Bluetooth init finished!\r\n");
 	times++;
 
-	MyI2C_Init();
+	// MyI2C_Init();
 	printf("I2C init finished!\r\n");
 	times++;
 	
-	GY86Init();
+	// GY86Init();
 	printf("GY86 init finished!\r\n");
 	times++;
 	
-	Receiver_Init();
+	// Receiver_Init();
 	printf("Receiver init finished!\r\n");
 	times++;
 
-	Motor_Init();
+	// Motor_Init();
 	printf("Motor init finished!\r\n");
 	times++;
 
@@ -292,9 +293,18 @@ void task_motor_control(void *pdata)
 		char str[100];
 		// sprintf(str, "motor_armed%d\r\n", motor_armed);
 		// Bluetooth_SendString(str);
-		OSTimeDly(100);
-		sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
-		Bluetooth_SendString(str);
+		// OSTimeDly(100);
+		// sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
+		// Bluetooth_SendString(str);
+		// uint16_t rec = Bluetooth_ReceiveByte();
+		// uint8_t data = rec;
+		// Bluetooth_SendByte(data);
+		if(bt_received_flag == 1)
+		{
+			bt_received_flag = 0;
+			sprintf(str, "%s\r\n", bt_receive_data);
+			Bluetooth_SendString(str);
+		}
 	}
 }
 
@@ -330,11 +340,11 @@ void first_task(void *pdata) {
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 
-	// OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], 13, 13, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
+	OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], 13, 13, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
 	
     OSTaskDel(OS_PRIO_SELF);
 }

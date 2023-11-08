@@ -1,10 +1,21 @@
+#include "os_cpu.h"
 #include "stm32f4xx.h"                  // Device header
 #include "bluetooth.h"
 #include "stm32f4xx_usart.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <sys/_stdint.h>
 
-char TransmitData[1005];
+char bt_transmit_data[1005], bt_receive_data[1005];
+uint8_t it_rec_data, rec_cnt;
+BOOLEAN bt_received_flag = 0;
+
+#define BT_REC_STAT_START 	0
+#define BT_REC_STAT_BODY  	1
+#define BT_REC_STAT_END   	2
+#define BT_REC_START_SYMBOL '$'
+#define BT_REC_END_SYMBOL_1 '\r'
+#define BT_REC_END_SYMBOL_2 '\n'
 
 void Bluetooth_GPIOInit(void)
 {
@@ -74,6 +85,20 @@ void Bluetooth_ConfigInit(void)
 	
 	// USART enable : 1
 	USART1->CR1 |= 0x01<<13;
+
+
+	// enable interrupt
+	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+	
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	NVIC_InitTypeDef NVIC_InitStructure;	
+	NVIC_InitStructure.NVIC_IRQChannel=USART1_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority=2;
+	NVIC_Init(&NVIC_InitStructure);
+
+	USART1->CR1 |= 0x01<<5;	
 }
 
 void Bluetooth_SendByte(uint8_t data)
@@ -109,8 +134,8 @@ void Bluetooth_SendSignedNum(int16_t num)
 		Bluetooth_SendByte('-');
 		num = -num;
 	}
-	sprintf(TransmitData, "%d", num);
-	Bluetooth_SendString(TransmitData);
+	sprintf(bt_transmit_data, "%d", num);
+	Bluetooth_SendString(bt_transmit_data);
 }
 
 void BluetoothInit()
@@ -134,3 +159,43 @@ void BT_Printf(char *format, ...)
 	va_end(args); // clean memory
 	Bluetooth_SendString(string);
 }
+
+void BTReceivePackage(void)
+{
+	 // 0:waiting for start symbol, 1:receiving message body while waiting for end symbol
+	static uint8_t rec_status = BT_REC_STAT_START;
+
+	if(rec_status == BT_REC_STAT_START)
+	{
+		if(it_rec_data == BT_REC_START_SYMBOL)
+		{
+			rec_status = BT_REC_STAT_BODY;
+			rec_cnt = 0;
+		}
+	}
+	else if(rec_status == BT_REC_STAT_BODY)
+	{
+		if(it_rec_data == BT_REC_END_SYMBOL_1 || it_rec_data == BT_REC_END_SYMBOL_2)
+		{
+			bt_received_flag = 1;
+			bt_receive_data[rec_cnt] = '\0';
+			rec_status = BT_REC_STAT_START;
+		}
+		else 
+		{
+			bt_receive_data[rec_cnt++] = it_rec_data;
+		}
+	}
+}
+
+void USART1_IRQHandler(void)
+{
+	if(USART_GetITStatus(USART1, USART_IT_RXNE))
+	{
+		while((USART1->SR&(1<<5))==0);
+		it_rec_data= USART1->DR & (uint16_t)0x01FF;
+		BTReceivePackage();
+		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+	}
+}
+
