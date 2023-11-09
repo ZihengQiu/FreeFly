@@ -52,3 +52,11 @@ void ESP_Init(void)
     ESP_GpioInit();
     ESP_ConfigInit();
 }
+
+void Usart2_SendByte(uint8_t data)
+{
+    USART2->DR = data;
+    while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
+}
+
+

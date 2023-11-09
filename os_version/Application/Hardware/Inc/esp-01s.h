@@ -3,6 +3,9 @@
 
 #include "stm32f4xx.h"
 
+void Usart2_SendByte(uint8_t);
+uint16_t Usart2_ReceiveByte(void);
+
 void ESP_Init(void);
 void ESP_GpioInit(void);
 void ESP_ConfigInit(void);
