@@ -1,19 +1,24 @@
 #include "stm32f4xx.h"
 #include "esp-01s.h"
 #include "stm32f4xx_usart.h"
+#include "ucos_ii.h"
+#include "bluetooth.h"
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
 
+#define WIFI_NAME JNTM
+#define WIFI_PASSWORD zz20030412
+
 void ESP_GpioInit(void)
 {
     RCC->AHB1ENR = (uint16_t)0x01<<0;   //GPIOAEN
-    RCC->APB2ENR = (uint32_t)0x01<<17;  //USART2EN
+    RCC->APB1ENR = (uint32_t)0x01<<17;  //USART2EN
 
     GPIOA->MODER &= ~((uint16_t)0x0003<<4);
-    GPIOA->MODER &=  ((uint16_t)0x0002<<4); //PA2 AF mode
+    GPIOA->MODER |=  ((uint16_t)0x0002<<4); //PA2 AF mode
     GPIOA->MODER &= ~((uint16_t)0x0003<<6);
-    GPIOA->MODER &=  ((uint16_t)0x0002<<6); //PA3 AF mode
+    GPIOA->MODER |=  ((uint16_t)0x0002<<6); //PA3 AF mode
 
     GPIOA->OTYPER |= ((uint16_t)0x0001<<2);
     GPIOA->OTYPER |= ((uint16_t)0x0001<<3);
@@ -55,8 +60,8 @@ void ESP_NVICInit(void)
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 
     NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = ;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = ;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 
     NVIC_Init(&NVIC_InitStructure);
@@ -64,6 +69,7 @@ void ESP_NVICInit(void)
 
 void ESP_Init(void)
 {
+    ESP_NVICInit();
     ESP_GpioInit();
     ESP_ConfigInit();
 }
@@ -74,7 +80,7 @@ void Usart2_SendByte(uint8_t data)
     while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
 }
 
-uint8_t Usart2_ReceiveByte(void)
+uint16_t Usart2_ReceiveByte(void)
 {
     uint16_t data = 0;
     while (USART2->SR & (1<<5) == 0);
@@ -86,8 +92,28 @@ uint8_t Usart2_ReceiveByte(void)
 
 void Usart2_SendString(char data[])
 {
-    for(uint8_t i = 0;;i < strlen(data); i++)
+    for(uint8_t i = 0;i < strlen(data); i++)
     {
         Usart2_SendByte(data[i]);
     }
+}
+
+void USART2_IRQHandler(void)
+{
+    if (USART_GetITStatus(USART2, USART_IT_RXNE) == SET)
+    {
+        Bluetooth_SendString("receive data!\r\n");
+        USART_ClearITPendingBit(USART2, USART_IT_RXNE);
+    }
+}
+
+void wifi_connect(void)
+{
+    Usart2_SendString("AT+CWMODE=1\r\n");
+    Bluetooth_SendString("set station mode!\r\n");
+    OSTimeDly(100);
+
+    Usart2_SendString("AT+CWJAP_DEF=\"JNTM\",\"zz20030412\"\r\n");
+    Bluetooth_SendString("trying to connect!\r\n");
+    while(1);
 }

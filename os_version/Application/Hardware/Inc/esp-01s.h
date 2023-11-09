@@ -12,4 +12,8 @@ void ESP_GpioInit(void);
 void ESP_ConfigInit(void);
 void ESP_NVICInit(void);
 
+void USART2_IRQHandler(void);
+
+void wifi_connect(void);
+
 #endif __ESP_01S_H                    

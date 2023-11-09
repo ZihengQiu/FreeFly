@@ -18,19 +18,19 @@ void MY_NVIC_PriorityGroupConfig(uint8_t NVIC_Group)
 	SCB->AIRCR = temp;
 }
 
-//NVIC_PreemptionPriority:ÇÀÕ¼ÓÅÏÈ¼¶
-//NVIC_SubPriority£ºÏìÓ¦ÓÅÏÈ¼¶
-//NVIC_Channel£ºÖÐ¶Ï±àºÅ
-//NVIC_Group£ºÖÐ¶Ï·Ö×é
+//NVIC_PreemptionPriority:ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½È¼ï¿½
+//NVIC_SubPriorityï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½È¼ï¿½
+//NVIC_Channelï¿½ï¿½ï¿½Ð¶Ï±ï¿½ï¿½
+//NVIC_Groupï¿½ï¿½ï¿½Ð¶Ï·ï¿½ï¿½ï¿½
 void MY_NVIC_Init(uint8_t NVIC_PreemptionPriority,uint8_t NVIC_SubPriority,uint8_t NVIC_Channel,uint8_t NVIC_Group)
 {
 	uint32_t temp;
-	MY_NVIC_PriorityGroupConfig(NVIC_Group);//ÉèÖÃ·Ö×é
+	MY_NVIC_PriorityGroupConfig(NVIC_Group);//ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½
 	temp = NVIC_PreemptionPriority<<(4 - NVIC_Group);
 	temp |= NVIC_SubPriority&(0X0f>>NVIC_Group);
-	temp &= 0Xf;                                    //È¡µÍËÄÎ»
-	NVIC->ISER[NVIC_Channel/32] |= 1 << NVIC_Channel % 32;//Ê¹ÄÜÖÐ¶ÏÎ»
-	NVIC->IP[NVIC_Channel] |= temp << 4;//ÉèÖÃÏìÓ¦ÓÅÏÈ¼¶ºÍÇÀÕ¼ÓÅÏÈ¼¶
+	temp &= 0Xf;                                    //È¡ï¿½ï¿½ï¿½ï¿½Î»
+	NVIC->ISER[NVIC_Channel/32] |= 1 << NVIC_Channel % 32;//Ê¹ï¿½ï¿½ï¿½Ð¶ï¿½Î»
+	NVIC->IP[NVIC_Channel] |= temp << 4;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½È¼ï¿½
 }
 
 void TIM1_Init(void)
@@ -40,44 +40,44 @@ void TIM1_Init(void)
 	RCC->APB2ENR |= 1 << 0;
 	GPIOA->AFR[1] |= 1 << 0;
 	GPIOA->MODER &= ~(3 << (2*8));
-	GPIOA->MODER |= 2 << (2*8);//¸´ÓÃ¹¦ÄÜ
-	GPIOA->OTYPER &=~ (1 << 8);//¸´ÓÃÍÆÍìÊä³ö
+	GPIOA->MODER |= 2 << (2*8);//ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½
+	GPIOA->OTYPER &=~ (1 << 8);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GPIOA->OSPEEDR |= 2 << (2*8);//50Mhz
 	GPIOA->PUPDR &= ~(3 << (2*8));//no pull and down
-	// Ê±»úµ¥Ôª
+	// Ê±ï¿½ï¿½ï¿½ï¿½Ôª
 	TIM1->ARR = 0;
-	TIM1->CR1 &=~ (1 << 4);//µÝÔö¼ÆÊý
+	TIM1->CR1 &=~ (1 << 4);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //	TIM1->PSC |= 4399;
 //	TIM1->ARR |= 199;
 	TIM1->PSC |= 83;
 	TIM1->ARR |= 19999;
-	TIM1->EGR |= 1 << 1;//ÅäÖÃEGR¼Ä´æÆ÷µÄCC1GÎ»£¬Ê¹µÃ²¶»ñµ½±ßÑØÐÅºÅºó¾Í²úÉúÒ»¸ö²¶»ñÊÂ¼þ
-	TIM1->CR1 |= 1 << 7;//ARRÊ¹ÄÜ
-	// ÊäÈëÍ¨µÀ1
-	TIM1->CCMR1 |= 1 << (2*0);//Í¨µÀ1µÄ²¶»ñÐÅºÅIC1±»Ó³Éäµ½ÁËÒý½ÅTI1ÉÏ
-	TIM1->CCMR1 &=~ (3 << (2*1));//²»¶Ô±ßÑØÐÅºÅ½øÐÐ·ÖÆµ´¦Àí
-	TIM1->CCMR1 &=~ (15 << (4*1));//ÂË²¨Æ÷ÎªÁã
-	TIM1->CCER |= 1 << 0;//CC1Ê¹ÄÜ
-	TIM1->CCER &=~ (1 << 1);//µçÂ·¶ÔÉÏÉýÑØÃô¸Ð£¨¼´²¶»ñ£©
+	TIM1->EGR |= 1 << 1;//ï¿½ï¿½ï¿½ï¿½EGRï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½CC1GÎ»ï¿½ï¿½Ê¹ï¿½Ã²ï¿½ï¿½ñµ½±ï¿½ï¿½ï¿½ï¿½ÅºÅºï¿½Í²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
+	TIM1->CR1 |= 1 << 7;//ARRÊ¹ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½1
+	TIM1->CCMR1 |= 1 << (2*0);//Í¨ï¿½ï¿½1ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Åºï¿½IC1ï¿½ï¿½Ó³ï¿½äµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TI1ï¿½ï¿½
+	TIM1->CCMR1 &=~ (3 << (2*1));//ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ÅºÅ½ï¿½ï¿½Ð·ï¿½Æµï¿½ï¿½ï¿½ï¿½
+	TIM1->CCMR1 &=~ (15 << (4*1));//ï¿½Ë²ï¿½ï¿½ï¿½Îªï¿½ï¿½
+	TIM1->CCER |= 1 << 0;//CC1Ê¹ï¿½ï¿½
+	TIM1->CCER &=~ (1 << 1);//ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	TIM1->CCER &=~ (1 << 3);
-	//ÊäÈëÍ¨µÀ2
-	TIM1->CCMR1 |= 2 << (2*4);//Í¨µÀ2µÄ²¶»ñÐÅºÅIC2±»Ó³Éäµ½ÁËÒý½ÅTI1ÉÏ 
-	TIM1->CCMR1 &=~ (3 << (2*5));//²»¶Ô±ßÑØÐÅºÅ½øÐÐ·ÖÆµ´¦Àí
-	TIM1->CCMR1 &=~ (15 << (4*3));//ÂË²¨Æ÷ÎªÁã
-	TIM1->CCER |= 1 << 4;//CC2Ê¹ÄÜ
-	TIM1->CCER |= 1 << 5;//µçÂ·¶ÔÏÂ½µÑØÃô¸Ð£¨¼´²¶»ñ£©
+	//ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½2
+	TIM1->CCMR1 |= 2 << (2*4);//Í¨ï¿½ï¿½2ï¿½Ä²ï¿½ï¿½ï¿½ï¿½Åºï¿½IC2ï¿½ï¿½Ó³ï¿½äµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TI1ï¿½ï¿½ 
+	TIM1->CCMR1 &=~ (3 << (2*5));//ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ÅºÅ½ï¿½ï¿½Ð·ï¿½Æµï¿½ï¿½ï¿½ï¿½
+	TIM1->CCMR1 &=~ (15 << (4*3));//ï¿½Ë²ï¿½ï¿½ï¿½Îªï¿½ï¿½
+	TIM1->CCER |= 1 << 4;//CC2Ê¹ï¿½ï¿½
+	TIM1->CCER |= 1 << 5;//ï¿½ï¿½Â·ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	TIM1->CCER |= 1 << 7;	
-	//SMCR¼Ä´æÆ÷ÉèÖÃ
+	//SMCRï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	TIM1->SMCR &= ~(5 << 1);
-	TIM1->SMCR |= 4 << 0;//ÉèÖÃÎª¸´Î»Ä£Ê½
+	TIM1->SMCR |= 4 << 0;//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Î»Ä£Ê½
 	TIM1->SMCR &= ~(7 << 4);
-	TIM1->SMCR |= 5 << 4;//ÂË²¨ºóµÄ¶¨Ê±Æ÷ÊäÈëTI1FP1
-	TIM1->SMCR |= 1 << 7;//ÉèÖÃÎª´ÓÄ£Ê½
+	TIM1->SMCR |= 5 << 4;//ï¿½Ë²ï¿½ï¿½ï¿½Ä¶ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½TI1FP1
+	TIM1->SMCR |= 1 << 7;//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ä£Ê½
 	
 	
 	TIM_ITConfig(TIM1,TIM_IT_CC1,ENABLE);
 	
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	// NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	NVIC_InitTypeDef NVIC_InitStructure;	
 	NVIC_InitStructure.NVIC_IRQChannel=TIM1_CC_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
@@ -90,8 +90,8 @@ void TIM1_Init(void)
 //	NVIC->ISER[TIM1_CC_IRQn/32] |= 1 << TIM1_CC_IRQn % 32;
 //	NVIC->ISER[TIM1_UP_TIM10_IRQn/32] |= 1 << (uint32_t)(TIM1_UP_TIM10_IRQn % 32);
 	
-	//Ê¹ÄÜÖÐ¶Ï
-	TIM1->DIER |= 1 << 1;//Ê¹ÄÜCC1ÖÐ¶Ï
+	//Ê¹ï¿½ï¿½ï¿½Ð¶ï¿½
+	TIM1->DIER |= 1 << 1;//Ê¹ï¿½ï¿½CC1ï¿½Ð¶ï¿½
 	TIM1->CR1 |= 1 << 0;
 }
 
@@ -102,7 +102,7 @@ void Receiver_Init(void)
 
 //void TIM1_CC_IRQHandler(void)//TIM1_GetDutyCycle
 //{
-//	if(((TIM1->SR & 0x2) == 2)&&((TIM1->SR & 0x4) == 4))//¼ì²âÊÇ·ñ²¶×½µ½ÉÏÉýÑØºÍÏÂ½µÑØ 
+//	if(((TIM1->SR & 0x2) == 2)&&((TIM1->SR & 0x4) == 4))//ï¿½ï¿½ï¿½ï¿½Ç·ï¿½×½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½Â½ï¿½ï¿½ï¿½ 
 //		{
 //			PulseWidth = TIM1->CCR2;
 //			Period = TIM1->CCR1;
