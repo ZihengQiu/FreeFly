@@ -1,5 +1,5 @@
-#ifndef __ESP_01S_H
-#define __ESP_01S_H
+#ifndef _ESP_01S_H_
+#define _ESP_01S_H_
 
 #include "stm32f4xx.h"
 
@@ -16,4 +16,4 @@ void USART2_IRQHandler(void);
 
 void wifi_connect(void);
 
-#endif __ESP_01S_H                    
+#endif

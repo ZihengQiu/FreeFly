@@ -57,6 +57,8 @@ void ESP_NVICInit(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure;
 
+    USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
+
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 
     NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
@@ -76,14 +78,14 @@ void ESP_Init(void)
 
 void Usart2_SendByte(uint8_t data)
 {
-    USART2->DR = data;
+    USART1->DR = (data & (uint16_t)0x01FF);
     while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
 }
 
 uint16_t Usart2_ReceiveByte(void)
 {
     uint16_t data = 0;
-    while (USART2->SR & (1<<5) == 0);
+    while ((USART2->SR & (1<<5)) == 0);
     data = USART2->DR & (uint16_t)0x01FF;
     if(data != 0)
         return data;
@@ -100,18 +102,19 @@ void Usart2_SendString(char data[])
 
 void USART2_IRQHandler(void)
 {
-    if (USART_GetITStatus(USART2, USART_IT_RXNE) == SET)
+    if (USART_GetITStatus(USART2, USART_IT_RXNE) != SET)
     {
         Bluetooth_SendString("receive data!\r\n");
-        USART_ClearITPendingBit(USART2, USART_IT_RXNE);
+    
     }
+    USART_ClearITPendingBit(USART2, USART_IT_RXNE);
 }
 
 void wifi_connect(void)
 {
     Usart2_SendString("AT+CWMODE=1\r\n");
     Bluetooth_SendString("set station mode!\r\n");
-    OSTimeDly(100);
+    OSTimeDly(1000);
 
     Usart2_SendString("AT+CWJAP_DEF=\"JNTM\",\"zz20030412\"\r\n");
     Bluetooth_SendString("trying to connect!\r\n");

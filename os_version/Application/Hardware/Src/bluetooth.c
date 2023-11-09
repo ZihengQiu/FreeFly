@@ -40,11 +40,11 @@ void Bluetooth_GPIOInit(void)
 
 void Bluetooth_ConfigInit(void)
 {	
-	// Baund rate : 38400 	USARTDIV 锟斤�? 45.5625 2d9 		FCK 锟斤�?27993600 REAL:26880000
-	// Baund rate : 9600 	USARTDIV 锟斤�? 182.25 b6.4 		FCK 锟斤�?27993600 
-	// Baund rate : 9600 	USARTDIV 锟斤�? 273.4375 0x111.7		FCK 锟斤�?42000000
+	// Baund rate : 38400 	USARTDIV 锟斤�? 45.5625 2d9 		FCK 锟斤�?27993600 REAL:26880000
+	// Baund rate : 9600 	USARTDIV 锟斤�? 182.25 b6.4 		FCK 锟斤�?27993600 
+	// Baund rate : 9600 	USARTDIV 锟斤�? 273.4375 0x111.7		FCK 锟斤�?42000000
 	//			Fraction : .4375 * 16 = 7			Mantissa = 111
-	// Baund rate : 9600 	USARTDIV 锟斤�? 546.875		FCK: 84000000
+	// Baund rate : 9600 	USARTDIV 锟斤�? 546.875		FCK: 84000000
 	//			Fraction : E			Mantissa = 222
 	
 	

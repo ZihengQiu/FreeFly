@@ -125,22 +125,27 @@ void task_peripheral_init(void *pdata)
 
 	ESP_Init();
 	Bluetooth_SendString("ESP init finished!\r\n");
+	Usart2_SendString("ESP init finished!\r\n");
 	times++;
 
 	MyI2C_Init();
 	printf("I2C init finished!\r\n");
+	Usart2_SendString("I2C init finished!\r\n");
 	times++;
 	
 	GY86Init();
 	printf("GY86 init finished!\r\n");
+	Usart2_SendString("GY86 init finished!\r\n");
 	times++;
 	
 	Receiver_Init();
 	printf("Receiver init finished!\r\n");
+	Usart2_SendString("Receiver init finished!\r\n");
 	times++;
 
 	Motor_Init();
 	printf("Motor init finished!\r\n");
+	Usart2_SendString("motor init finished!\r\n");
 	times++;
 
 	printf("Initilization finished!\r\n");
@@ -303,7 +308,7 @@ void task_motor_control(void *pdata)
 	}
 }
 
-void task_esp_test(void)
+void task_esp_test(void *pdata)
 {
 	Bluetooth_SendString("now test begins!\r\n");
 	OSTimeDly(1000);
