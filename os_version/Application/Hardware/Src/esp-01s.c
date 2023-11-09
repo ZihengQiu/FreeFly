@@ -37,7 +37,7 @@ void ESP_GpioInit(void)
 void ESP_ConfigInit(void)
 {
     //baudrate:115200
-    USART2->BRR = 0x683;
+    USART2->BRR = 0x2D9;
 
     USART2->CR1 &= ~(0x01<<12); //word length: 1 start bit, 8 data bits, n stop bit
     USART2->CR1 &= ~(0x01<<10); //parity control disabled
@@ -59,4 +59,9 @@ void Usart2_SendByte(uint8_t data)
     while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
 }
 
-
+uint8_t Usart2_ReceiveByte(void)
+{
+    uint8_t data = 0;
+    while (USART2->SR & (1<<5) == 0);
+    
+}
