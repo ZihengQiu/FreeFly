@@ -123,29 +123,29 @@ void task_peripheral_init(void *pdata)
 	printf("Bluetooth init finished!\r\n");
 	times++;
 
-	ESP_Init();
-	Bluetooth_SendString("ESP init finished!\r\n");
-	Usart2_SendString("ESP init finished!\r\n");
+	// ESP_Init();
+	// Bluetooth_SendString("ESP init finished!\r\n");
+	// Usart2_SendString("ESP init finished!\r\n");
 	times++;
 
 	MyI2C_Init();
 	printf("I2C init finished!\r\n");
-	Usart2_SendString("I2C init finished!\r\n");
+	// Usart2_SendString("I2C init finished!\r\n");
 	times++;
 	
 	GY86Init();
 	printf("GY86 init finished!\r\n");
-	Usart2_SendString("GY86 init finished!\r\n");
+	// Usart2_SendString("GY86 init finished!\r\n");
 	times++;
 	
 	Receiver_Init();
 	printf("Receiver init finished!\r\n");
-	Usart2_SendString("Receiver init finished!\r\n");
+	// Usart2_SendString("Receiver init finished!\r\n");
 	times++;
 
 	Motor_Init();
 	printf("Motor init finished!\r\n");
-	Usart2_SendString("motor init finished!\r\n");
+	// Usart2_SendString("motor init finished!\r\n");
 	times++;
 
 	printf("Initilization finished!\r\n");
@@ -341,14 +341,14 @@ void first_task(void *pdata) {
 	// OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 
 	//extra function 
 	// OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], 13, 13, Task8Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
-	OSTaskCreateExt(task_esp_test, (void *)0, &Task10Stk[TASK_STK_LEN - 1], 13, 13, Task10Stk, TASK_STK_LEN, (void *)0, 0);
-	OSTaskNameSet(13, (INT8U *)"esp_test", (INT8U *)"esp_test_ERR");
+	// OSTaskCreateExt(task_esp_test, (void *)0, &Task10Stk[TASK_STK_LEN - 1], 13, 13, Task10Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(13, (INT8U *)"esp_test", (INT8U *)"esp_test_ERR");
 	
     OSTaskDel(OS_PRIO_SELF);
 }

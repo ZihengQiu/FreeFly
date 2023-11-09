@@ -94,9 +94,11 @@ uint16_t Usart2_ReceiveByte(void)
 
 void Usart2_SendString(char data[])
 {
-    for(uint8_t i = 0;i < strlen(data); i++)
+    uint8_t i = 0;
+    while(data[i] != 0)
     {
         Usart2_SendByte(data[i]);
+        i++;
     }
 }
 
