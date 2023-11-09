@@ -57,11 +57,11 @@ void Bluetooth_GPIOInit(void)
 
 void Bluetooth_ConfigInit(void)
 {	
-	// Baund rate : 38400 	USARTDIV 锟斤�? 45.5625 2d9 		FCK 锟斤�?27993600 REAL:26880000
-	// Baund rate : 9600 	USARTDIV 锟斤�? 182.25 b6.4 		FCK 锟斤�?27993600 
-	// Baund rate : 9600 	USARTDIV 锟斤�? 273.4375 0x111.7		FCK 锟斤�?42000000
+	// Baund rate : 38400 	USARTDIV 锟斤�? 45.5625 2d9 		FCK 锟斤�?27993600 REAL:26880000
+	// Baund rate : 9600 	USARTDIV 锟斤�? 182.25 b6.4 		FCK 锟斤�?27993600 
+	// Baund rate : 9600 	USARTDIV 锟斤�? 273.4375 0x111.7		FCK 锟斤�?42000000
 	//			Fraction : .4375 * 16 = 7			Mantissa = 111
-	// Baund rate : 9600 	USARTDIV 锟斤�? 546.875		FCK: 84000000
+	// Baund rate : 9600 	USARTDIV 锟斤�? 546.875		FCK: 84000000
 	//			Fraction : E			Mantissa = 222
 	
 	
@@ -209,61 +209,89 @@ char command_res[5][100] = {
 	"Invalid command!\r\n",
 	"PID set successfully!\r\n"
 };
+
 void BTShowCommandResult(uint8_t res)
 {
 	Bluetooth_SendString(command_res[res]);
 }
-char *command[10][20];
-void BTCommandParse(void)
+
+char *command[10];
+
+void BTCommandParserPID(char *command[], int len)
+{
+	if(len != 6)
+	{
+		BTShowCommandResult(0);
+		return;
+	}
+
+	uint8_t pid_i = 0;
+	if(0 == strcmp(command[1], "i"))
+	{
+		pid_i = 1;
+	}
+	else if(0 == strcmp(command[1], "o"))
+	{
+		pid_i = 2;
+	}
+	else
+	{
+		BTShowCommandResult(0);
+		return;
+	}
+
+	if(0 == strcmp(command[2], "roll"))
+	{
+		pid_roll[pid_i].kp = atof(command[3]);
+		pid_roll[pid_i].ki = atof(command[4]);
+		pid_roll[pid_i].kd = atof(command[5]);
+		BTShowCommandResult(1);
+	}
+	else if(0 == strcmp(command[2], "pitch"))
+	{
+		pid_pitch[pid_i].kp = atof(command[3]);
+		pid_pitch[pid_i].ki = atof(command[4]);
+		pid_pitch[pid_i].kd = atof(command[5]);
+		BTShowCommandResult(1);
+	}
+	else if(0 == strcmp(command[2], "yaw"))
+	{
+		pid_yaw[pid_i].kp = atof(command[3]);
+		pid_yaw[pid_i].ki = atof(command[4]);
+		pid_yaw[pid_i].kd = atof(command[5]);
+		BTShowCommandResult(1);
+	}
+	else
+	{
+		BTShowCommandResult(0);
+	}
+}
+
+void BTCommandParserPrint(char *command[], int len)
+{
+	for(int i = 0; i < len; i++)
+	{
+		BT_Printf("%s ", command[i]);
+	}
+	BT_Printf("\r\n");
+}
+
+void BTCommandParser(void)
 {
 	if(bt_received_flag == 1)
 	{
 		bt_received_flag = 0;
 
 		uint8_t len = 0;
-		command[0][0] = strtok(bt_receive_data, " ");
-		while(command[len][0] != NULL)
+		command[0] = strtok(bt_receive_data, " ");
+		while(command[len] != NULL)
 		{
-			command[++len][0] = strtok(NULL, " ");
+			command[++len] = strtok(NULL, " ");
 		}
 
-		if(0 == strcmp(command[0][0], "pid"))
+		if(0 == strcmp(command[0], "pid"))
 		{
-			if(len != 6)
-			{
-				BTShowCommandResult(0);
-				return;
-			}
-			uint8_t pid_i = 0;
-			if(0 == strcmp(command[1][0], "i"))
-			{
-				pid_i = 1;
-			}
-			if(0 == strcmp(command[2][0], "roll"))
-			{
-				pid_roll[pid_i].kp = atof(command[3][0]);
-				pid_roll[pid_i].ki = atof(command[4][0]);
-				pid_roll[pid_i].kd = atof(command[5][0]);
-				BTShowCommandResult(1);
-			}
-			else if(0 == strcmp(command[2][0], "pitch"))
-			{
-				pid_pitch[pid_i].kp = atof(command[3][0]);
-				pid_pitch[pid_i].ki = atof(command[4][0]);
-				pid_pitch[pid_i].kd = atof(command[5][0]);
-				BTShowCommandResult(1);
-			}
-			else if(0 == strcmp(command[2][0], "yaw"))
-			{
-				pid_yaw[pid_i].kp = atof(command[3][0]);
-				pid_yaw[pid_i].ki = atof(command[4][0]);
-				pid_yaw[pid_i].kd = atof(command[5][0]);
-				BTShowCommandResult(1);
-			}
-			else
-			{
-				BTShowCommandResult(0);
-			}
+			BTCommandParserPID(command, len);
 		}
 		else
 		{

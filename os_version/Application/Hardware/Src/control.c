@@ -18,7 +18,7 @@ void UpdateAnglePID(pid_t *pid, float gyro)
 {
 	pid->err = pid->target - pid->current;
 
-	pid->p_out = pid->kp * pid->p_out;
+	pid->p_out = pid->kp * pid->err;
 
 	if(pid_i_enabled == 1)
 	{
@@ -37,7 +37,7 @@ void UpdateVelocityPID(pid_t *pid)
 {
 	pid->err = pid->target - pid->current;
 
-	pid->p_out = pid->kp * pid->p_out;
+	pid->p_out = pid->kp * pid->err;
 
 	if(pid_i_enabled == 1)
 	{
@@ -57,6 +57,7 @@ void UpdateVelocityPID(pid_t *pid)
 void UpdatePID(pid_t *pid_inner, pid_t *pid_outer, float gyro)
 {
 	UpdateAnglePID(pid_inner, gyro);
+	pid_outer->target = pid_inner->out;
 	UpdateVelocityPID(pid_outer);
 }
 

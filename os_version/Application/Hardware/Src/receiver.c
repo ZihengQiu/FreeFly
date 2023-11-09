@@ -3,6 +3,7 @@
 #include "bluetooth.h"
 #include "os_cpu.h"
 #include "ucos_ii.h"
+#include <sys/_stdint.h>
 
 uint32_t PulseWidth, Period, DutyCycle;
 uint32_t ppm_val[10], ppm_cnt = 0;
@@ -123,23 +124,34 @@ uint32_t Receiver_CalcDutyCycle(uint8_t i)
 
 void TIM1_CC_IRQHandler(void)
 {
+	static uint8_t valid_cnt = 0; // check if the ppm signal is valid
+
 	if(TIM_GetITStatus(TIM1,TIM_IT_CC1) == SET)
 	{
 		uint32_t val = TIM_GetCapture1(TIM1);
-		if(val > 4000)
+		if(val >= 4000)
 		{
 			ppm_started = 1;
 		} 
 		if(ppm_started == 1)
 		{
-			ppm_val[ppm_cnt++] = TIM_GetCapture1(TIM1);
+			ppm_val[ppm_cnt] = TIM_GetCapture1(TIM1);
+			if(ppm_cnt!=0 && ppm_val[ppm_cnt] <= (PPM_MAX_VAL+10) && ppm_val[ppm_cnt] >= (PPM_MIN_VAL-10))
+			{
+				valid_cnt ++;
+			}
+			ppm_cnt++;
 			if(ppm_cnt > 8)
 			{
 				ppm_cnt = 0;
 				ppm_started = 0;
-				SignalBlockDetect();
-				MotorArmDetect();
-				ESCUnlockDetect();
+				if(valid_cnt == 8)
+				{
+					SignalBlockDetect();
+					MotorArmDetect();
+					ESCUnlockDetect();
+				}
+				valid_cnt = 0;
 			}
 		}
 

@@ -15,12 +15,16 @@
 
 #include "attitude.h"
 #include "bluetooth.h"
+#include "control.h"
 #include "gy86.h"
 #include "led.h"
 #include "myI2C.h"
 #include "mathkit.h"
 #include "motor.h"
 #include "receiver.h"
+
+#define TASK_PRIO_PID		9
+#define TASK_PRIO_ATTITUDE	10
 
 #define TASK_STK_LEN 0x0800
 #define TASK_STK_LEN_2 0x0600
@@ -123,11 +127,11 @@ void task_peripheral_init(void *pdata)
 	printf("Bluetooth init finished!\r\n");
 	times++;
 
-	// MyI2C_Init();
+	MyI2C_Init();
 	printf("I2C init finished!\r\n");
 	times++;
 	
-	// GY86Init();
+	GY86Init();
 	printf("GY86 init finished!\r\n");
 	times++;
 	
@@ -256,20 +260,20 @@ void task_attitude_fusion(void *pdata)
 	char str[100];
 
 	// estimate the attitude of the first frame by acc and mag
-	for(uint8_t i=0; i<50; i++)	// takes 3s 
-	{
-		GetAccData(&acc);
-		GetGyroData(&gyro); 
-		GetMagData(&mag);
-		AccMagUpdateQuat(&q0, &q1, &acc, &gyro, &mag, 0.001);
-		q0 = q1;
-		QuaterToEuler(&q0, &euler);
-		RadToDeg(&euler);
-		// SendAnotc(acc, gyro, mag, euler);
-		sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
-		Bluetooth_SendString(str);
-	}
-	volatile uint32_t t[10];
+	// for(uint8_t i=0; i<50; i++)	// takes 3s 
+	// {
+	// 	GetAccData(&acc);
+	// 	GetGyroData(&gyro); 
+	// 	GetMagData(&mag);
+	// 	AccMagUpdateQuat(&q0, &q1, &acc, &gyro, &mag, 0.001);
+	// 	q0 = q1;
+	// 	QuaterToEuler(&q0, &euler);
+	// 	RadToDeg(&euler);
+	// 	// SendAnotc(acc, gyro, mag, euler);
+	// 	sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
+	// 	Bluetooth_SendString(str);
+	// }
+	uint32_t cnt = 0;
 	while(1)
 	{
 		GetGyroData(&gyro); // reading data takes about 0.6ms
@@ -282,26 +286,25 @@ void task_attitude_fusion(void *pdata)
 		RadToDeg(&euler);
 		
 		// SendAnotc(acc, gyro, mag, euler);
-		
-		sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
-		Bluetooth_SendString(str); // takes about 3ms
+		// sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
+		// Bluetooth_SendString(str); // takes about 3ms
+		OSTimeDly(10);
 	}
 }
 
 void task_motor_control(void *pdata)
 {
-		signal_blocked = 1;
 	while(1)
 	{
 		char str[50];
-		// sprintf(str, "motor_armed : %d ", motor_armed);
-		// sprintf(str+strlen(str), "signal_blocked : %d ", signal_blocked);
-		// sprintf(str+strlen(str), "ESC_unlock_executed : %d \r\n", ESC_unlock_executed);
-		// Bluetooth_SendString(str);
-		// OSTimeDly(100);
+		sprintf(str, "motor_armed : %d ", motor_armed);
+		sprintf(str+strlen(str), "signal_blocked : %d ", signal_blocked);
+		sprintf(str+strlen(str), "ESC_unlock_executed : %d \r\n", ESC_unlock_executed);
+		Bluetooth_SendString(str);
+		OSTimeDly(100);
 		// sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
 		// Bluetooth_SendString(str);
-		if(ESC_unlock_need_execute == 1)
+		if((ESC_unlock_need_execute & (~signal_blocked)) == 1)
 		{
 			ESC_unlock_need_execute = 0;
 			ESC_unlock_executed = 1;
@@ -313,14 +316,21 @@ void task_motor_control(void *pdata)
 		if(signal_blocked == 1)
 		{
 			motor_compare[0] = MOTOR_COMPARE_MIN_VAL;
+			motor_compare[1] = MOTOR_COMPARE_MIN_VAL;
+			motor_compare[2] = MOTOR_COMPARE_MIN_VAL;
+			motor_compare[3] = MOTOR_COMPARE_MIN_VAL;
 			MotorSetSpeed();
 		}
 		if(signal_blocked == 0 && motor_armed == 1)
 		{
-			motor_compare[0] = ppm_val[3];
+			// motor_compare[0] = ppm_val[3];
+			// motor_compare[1] = ppm_val[3];
+			// motor_compare[2] = ppm_val[3];
+			// motor_compare[3] = ppm_val[3];
+		MotorControl(euler, gyro);
 			MotorSetSpeed();
 		}
-		BTCommandParse();
+		BTCommandParser();
 	}
 }
 
@@ -342,7 +352,7 @@ void first_task(void *pdata) {
 	// create peripheral init task
 	OSTaskCreateExt(task_peripheral_init, (void *)0, &Task4Stk[TASK_STK_LEN - 1], 8, 8, Task4Stk, TASK_STK_LEN, (void *)0, 0);
 	OSTaskNameSet(8, (INT8U *)"PERIPHERAL_INIT", (INT8U *)"PERIPHERAL_INIT_ERR");
-	OSTimeDly(3000);
+	// OSTimeDly(3000);
 
 	// create MPU6050 task
 	// OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
@@ -357,10 +367,10 @@ void first_task(void *pdata) {
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 
-	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], TASK_PRIO_ATTITUDE, TASK_PRIO_ATTITUDE, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 
-	OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], 13, 13, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], TASK_PRIO_PID, TASK_PRIO_PID, Task8Stk, TASK_STK_LEN, (void *)0, 0);
 	OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
 	
     OSTaskDel(OS_PRIO_SELF);
