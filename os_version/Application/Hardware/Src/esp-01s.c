@@ -3,6 +3,7 @@
 #include "stm32f4xx_usart.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <string.h>
 
 void ESP_GpioInit(void)
 {
@@ -47,6 +48,20 @@ void ESP_ConfigInit(void)
     USART2->CR1 |=  (0x01<<13); //USART enable
 }
 
+void ESP_NVICInit(void)
+{
+    NVIC_InitTypeDef NVIC_InitStructure;
+
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+
+    NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = ;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = ;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+    NVIC_Init(&NVIC_InitStructure);
+}
+
 void ESP_Init(void)
 {
     ESP_GpioInit();
@@ -61,7 +76,18 @@ void Usart2_SendByte(uint8_t data)
 
 uint8_t Usart2_ReceiveByte(void)
 {
-    uint8_t data = 0;
+    uint16_t data = 0;
     while (USART2->SR & (1<<5) == 0);
-    
+    data = USART2->DR & (uint16_t)0x01FF;
+    if(data != 0)
+        return data;
+    return 0;
+}
+
+void Usart2_SendString(char data[])
+{
+    for(uint8_t i = 0;;i < strlen(data); i++)
+    {
+        Usart2_SendByte(data[i]);
+    }
 }

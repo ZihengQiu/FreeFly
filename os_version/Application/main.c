@@ -20,6 +20,7 @@
 #include "mathkit.h"
 #include "motor.h"
 #include "receiver.h"
+#include "esp-01s.h"
 
 #define TASK_STK_LEN 0x0800
 #define TASK_STK_LEN_2 0x0600
@@ -117,6 +118,10 @@ void task_led_off(void *pdata)
 void task_peripheral_init(void *pdata)
 {
 	// RCC_GetClocksFreq(&clockwatch);
+
+	// ESP_Init();
+	// printf("ESP init finished!\r\n");
+	// times++;
 
 	BluetoothInit();
 	printf("Bluetooth init finished!\r\n");
@@ -296,6 +301,14 @@ void task_motor_control(void *pdata)
 		sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
 		Bluetooth_SendString(str);
 	}
+}
+
+void task_esp_test(void)
+{
+	ESP_Init();
+	printf("ESP init finished!\r\n");
+	Usart2_SendString("AT\r\n");
+	Usart2_ReceiveByte
 }
 
 void first_task(void *pdata) {
