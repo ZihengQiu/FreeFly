@@ -73,8 +73,9 @@ void TIM1_Init(void)
 	TIM1->SMCR &= ~(7 << 4);
 	TIM1->SMCR |= 5 << 4;//�˲���Ķ�ʱ������TI1FP1
 	TIM1->SMCR |= 1 << 7;//����Ϊ��ģʽ
+
 	
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	// NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	NVIC_InitTypeDef NVIC_InitStructure;	
 	NVIC_InitStructure.NVIC_IRQChannel=TIM1_CC_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
@@ -82,6 +83,7 @@ void TIM1_Init(void)
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority=1;
 	NVIC_Init(&NVIC_InitStructure);
 	TIM_ITConfig(TIM1,TIM_IT_CC1,ENABLE);
+
 
 //	NVIC->IP[TIM1_CC_IRQn] = 0 << 4;
 //	NVIC->IP[TIM1_UP_TIM10_IRQn] = 1 << 4;

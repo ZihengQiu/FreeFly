@@ -12,7 +12,7 @@
 
 void ESP_GpioInit(void)
 {
-    RCC->AHB1ENR = (uint16_t)0x01<<0;   //GPIOAEN
+    RCC->AHB1ENR = (uint16_t)0x01<<0;   //GPIOA: PA2-TX PA3-RX
     RCC->APB1ENR = (uint32_t)0x01<<17;  //USART2EN
 
     GPIOA->MODER &= ~((uint16_t)0x0003<<4);
@@ -26,16 +26,16 @@ void ESP_GpioInit(void)
     //set 25Mhz
     GPIOA->OSPEEDR &= ~((uint16_t)0x0003<<4);
     GPIOA->OSPEEDR &= ~((uint16_t)0x0003<<6);
-    GPIOA->OSPEEDR |=  ((uint16_t)0x0001<<4);
-    GPIOA->OSPEEDR |=  ((uint16_t)0x0001<<6);
+    GPIOA->OSPEEDR |=  ((uint16_t)0x0002<<4);
+    GPIOA->OSPEEDR |=  ((uint16_t)0x0002<<6);
 
     //no pull-up or -down
     GPIOA->PUPDR &= ~((uint16_t)0x0003<<4);
     GPIOA->PUPDR &= ~((uint16_t)0x0003<<6);
 
     //set AF (USART1-3: AF7)
-    GPIOA->AFR[0] &= ~((uint16_t)0x000F<<8);
-    GPIOA->AFR[0] &= ~((uint16_t)0x000F<<12);
+    GPIOA->AFR[0] &= ~((uint16_t)0x000E<<8);
+    GPIOA->AFR[0] &= ~((uint16_t)0x000E<<12);
     GPIOA->AFR[0] |=  ((uint16_t)0x0007<<8);
     GPIOA->AFR[0] |=  ((uint16_t)0x0007<<12);
 }

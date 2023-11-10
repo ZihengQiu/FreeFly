@@ -136,7 +136,7 @@ void task_peripheral_init(void *pdata)
 	times++;
 	
 	Receiver_Init();
-	Bluetooth_SendString("Receiver init finished!\r\n");
+	// Bluetooth_SendString("Receiver init finished!\r\n");
 	times++;
 
 	Motor_Init();
@@ -144,6 +144,7 @@ void task_peripheral_init(void *pdata)
 	times++;
 
 	Bluetooth_SendString("Initilization finished!\r\n");
+	Usart2_SendString("init\r\n");
 
 	OSTaskDel(OS_PRIO_SELF);
 }
@@ -205,6 +206,7 @@ void task_attitude_fusion(void *pdata)
 		char str[100];
 		sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 		Bluetooth_SendString(str); // takes about 3ms
+		// Usart2_SendString(str);
 		// printf("euler: %10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 	}
 }
@@ -224,10 +226,14 @@ void task_motor_control(void *pdata)
 
 void task_esp_test(void *pdata)
 {
+	while(1)
+	{
 	Bluetooth_SendString("now test begins!\r\n");
 	OSTimeDly(1000);
 	Usart2_SendString("AT\r\n");
-	wifi_connect();
+	// wifi_connect();
+	}
+
 }
 
 void first_task(void *pdata) {
@@ -255,14 +261,14 @@ void first_task(void *pdata) {
 	// OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], 12, 12, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 
 	//extra function 
 	// OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], 13, 13, Task8Stk, TASK_STK_LEN, (void *)0, 0);
 	// OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
-	// OSTaskCreateExt(task_esp_test, (void *)0, &Task10Stk[TASK_STK_LEN - 1], 13, 13, Task10Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(13, (INT8U *)"esp_test", (INT8U *)"esp_test_ERR");
+	OSTaskCreateExt(task_esp_test, (void *)0, &Task10Stk[TASK_STK_LEN - 1], 10, 10, Task10Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(13, (INT8U *)"esp_test", (INT8U *)"esp_test_ERR");
 	
     OSTaskDel(OS_PRIO_SELF);
 }
