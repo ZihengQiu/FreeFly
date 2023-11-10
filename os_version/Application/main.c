@@ -120,35 +120,30 @@ void task_peripheral_init(void *pdata)
 	// RCC_GetClocksFreq(&clockwatch);
 
 	BluetoothInit();
-	printf("Bluetooth init finished!\r\n");
+	Bluetooth_SendString("Bluetooth init finished!\r\n");
 	times++;
 
-	// ESP_Init();
-	// Bluetooth_SendString("ESP init finished!\r\n");
-	// Usart2_SendString("ESP init finished!\r\n");
+	ESP_Init();
+	Bluetooth_SendString("ESP init finished!\r\n");
 	times++;
 
 	MyI2C_Init();
-	printf("I2C init finished!\r\n");
-	// Usart2_SendString("I2C init finished!\r\n");
+	Bluetooth_SendString("I2C init finished!\r\n");
 	times++;
 	
 	GY86Init();
-	printf("GY86 init finished!\r\n");
-	// Usart2_SendString("GY86 init finished!\r\n");
+	Bluetooth_SendString("GY86 init finished!\r\n");
 	times++;
 	
 	Receiver_Init();
-	printf("Receiver init finished!\r\n");
-	// Usart2_SendString("Receiver init finished!\r\n");
+	Bluetooth_SendString("Receiver init finished!\r\n");
 	times++;
 
 	Motor_Init();
-	printf("Motor init finished!\r\n");
-	// Usart2_SendString("motor init finished!\r\n");
+	Bluetooth_SendString("Motor init finished!\r\n");
 	times++;
 
-	printf("Initilization finished!\r\n");
+	Bluetooth_SendString("Initilization finished!\r\n");
 
 	OSTaskDel(OS_PRIO_SELF);
 }
@@ -178,87 +173,6 @@ void task_MPU6050(void *pdata)
 	}
 }
 
-void task_attitude_gyro(void *pdata)
-{
-	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
-	vec4d_t q0 = {1, 0, 0, 0}, q1;
-	vec3d_t gyro0 = {0, 0, 0}, gyro1, acc, mag, euler = {0, 0, 0};
-	uint32_t t1, t2;
-	while(1)
-	{
-		t1 = OSTimeGet();
-		GetAccData(&acc);
-		GetMagData(&mag);
-		GetGyroData(&gyro1);
-
-		// printf("gyro: %f, %f, %f\n", gyro1.x, gyro1.y, gyro1.z);
-		GyroUpdateQuat(&q0, &q1, &gyro0, &gyro1, 0.001);
-		// printf("q: %f, %f, %f, %f\n", q1.w, q1.x, q1.y, q1.z);
-		q0 = q1;
-		gyro0 = gyro1;
-		QuaterToEuler(&q0, &euler);
-		RadToDeg(&euler);
-		// SendAnotc(acc, gyro0, mag, euler);
-		// printf("euler: %f, %f, %f\r\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
-		// convert euler to string and send them by bluetooth_sendstring
-		char str[100];
-		sprintf(str, "%f, %f, %f\r\n", euler.x, euler.y, euler.z);
-		Bluetooth_SendString(str);
-	}
-}
-
-void task_attitude_acc(void *pdata)
-{
-	vec3d_t acc = {0, 0, 0}, gyro, mag, euler = {0, 0, 0};
-	vec4d_t q0 = {1, 0, 0, 0}, q1;
-	uint32_t t1, t2;
-	while(1)
-	{
-		GetAccData(&acc);
-		// printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
-		GetGyroData(&gyro);
-		GetMagData(&mag);
-
-		AccUpdateQuat(&q0, &q1, &acc, &gyro, 0.001);
-		// printf("q: %10f, %10f, %10f, %10f\n", q1.w, q1.x, q1.y, q1.z);
-		q0 = q1;
-		QuaterToEuler(&q0, &euler);
-		RadToDeg(&euler);
-		SendAnotc(acc, gyro, mag, euler);
-		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
-		
-	}
-}
-
-void task_attitude_acc_mag(void *pdata)
-{
-	// AccCalibration(&acc_offset, &acc_scale);
-	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
-	// printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
-	// printf("acc_offset: %f, %f, %f\n", acc_offset.x, acc_offset.y, acc_offset.z);
-	vec3d_t acc_data = {0, 0, 0}, mag_data, gyro_data, euler = {0, 0, 0};
-	vec4d_t q0 = {1, 0, 0, 0}, q1;
-	uint32_t t1, t2;
-	while(1)
-	{
-		t1 = OSTimeGet();
-		GetAccData(&acc_data);
-		Vec3Norm(&acc_data);
-		GetMagData(&mag_data);
-		Vec3Norm(&mag_data);
-		// printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
-		GetGyroData(&gyro_data);
-		AccMagUpdateQuat(&q0, &q1, &acc_data, &gyro_data, &mag_data, 0.001);
-		// printf("q: %10f, %10f, %10f, %10f\n", q1.w, q1.x, q1.y, q1.z);
-		q0 = q1;
-		QuaterToEuler(&q0, &euler);
-		// RadToDeg(&euler);
-		printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
-		t2 = OSTimeGet();
-		OSTimeDly(10);
-	}
-}
-
 void task_attitude_fusion(void *pdata)
 {
 	vec4d_t q0 = {1, 0, 0, 0}, q1;
@@ -273,7 +187,7 @@ void task_attitude_fusion(void *pdata)
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		SendAnotc(acc, gyro, mag, euler);
+		// SendAnotc(acc, gyro, mag, euler);
 	}
 	volatile uint32_t t[10];
 	while(1)

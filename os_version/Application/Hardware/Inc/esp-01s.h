@@ -1,5 +1,5 @@
-#ifndef _ESP_01S_H_
-#define _ESP_01S_H_
+#ifndef __ESP_01S_H
+#define __ESP_01S_H
 
 #include "stm32f4xx.h"
 

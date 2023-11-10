@@ -57,8 +57,6 @@ void ESP_NVICInit(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure;
 
-    USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
-
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 
     NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
@@ -67,6 +65,8 @@ void ESP_NVICInit(void)
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 
     NVIC_Init(&NVIC_InitStructure);
+
+    USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
 }
 
 void ESP_Init(void)
