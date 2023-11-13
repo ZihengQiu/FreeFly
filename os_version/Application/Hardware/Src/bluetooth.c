@@ -96,7 +96,6 @@ void Bluetooth_ConfigInit(void)
 	// enable interrupt
 	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
 	
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	NVIC_InitTypeDef NVIC_InitStructure;	
 	NVIC_InitStructure.NVIC_IRQChannel=USART1_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
@@ -226,13 +225,13 @@ void BTCommandParserPID(char *command[], int len)
 	}
 
 	uint8_t pid_i = 0;
-	if(0 == strcmp(command[1], "i"))
+	if(0 == strcmp(command[1], "o"))
+	{
+		pid_i = 0;
+	}
+	else if(0 == strcmp(command[1], "i"))
 	{
 		pid_i = 1;
-	}
-	else if(0 == strcmp(command[1], "o"))
-	{
-		pid_i = 2;
 	}
 	else
 	{

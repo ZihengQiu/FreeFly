@@ -81,9 +81,9 @@ OS_TMR_CALLBACK DisarmTmrCallback(OS_TMR *ptmr, void *parg)
 void Motor_Tmr_Init(void)
 {
 	uint8_t err1, err2;
-	tmr_arm = OSTmrCreate(10, 0, OS_TMR_OPT_ONE_SHOT,
+	tmr_arm = OSTmrCreate(5, 0, OS_TMR_OPT_ONE_SHOT,
 				(OS_TMR_CALLBACK)ArmTmrCallback,0 , (INT8U *)"ARM TIMER", &err1);
-	tmr_disarm = OSTmrCreate(10, 0, OS_TMR_OPT_ONE_SHOT,
+	tmr_disarm = OSTmrCreate(5, 0, OS_TMR_OPT_ONE_SHOT,
 				(OS_TMR_CALLBACK)DisarmTmrCallback,0 , (INT8U *)"DISARM TIMER", &err2);
 }
 
@@ -95,7 +95,7 @@ void Motor_Init(void)
 
 void SignalBlockDetect(void)
 {
-	if(ppm_val[7] > PPM_MAX_VAL)
+	if(ppm_val[7] >= PPM_MAX_VAL-15)
 	{
 		signal_blocked = 1;
 	}
@@ -108,7 +108,7 @@ void SignalBlockDetect(void)
 void MotorArmDetect(void)
 {
 	// arm detect : throttle minimum, yaw maximum for 1 seconds
-	if(ppm_val[THR] < PPM_MIN_VAL && ppm_val[RUD] > PPM_MAX_VAL)
+	if(ppm_val[THR] < PPM_MIN_VAL+15 && ppm_val[RUD] > PPM_MAX_VAL-15)
 	{
 		if(OSTmrStateGet(tmr_arm, 0)!=3)
 		{
@@ -121,7 +121,7 @@ void MotorArmDetect(void)
 	}
 
 	// disarm detect : throttle minimum, yaw minimum for 1 seconds
-	if(ppm_val[THR] < PPM_MIN_VAL && ppm_val[RUD] < PPM_MIN_VAL)
+	if(ppm_val[THR] < PPM_MIN_VAL-15 && ppm_val[RUD] < PPM_MIN_VAL+15)
 	{
 		if(OSTmrStateGet(tmr_disarm, 0) != 3)
 		{
@@ -140,7 +140,7 @@ BOOLEAN ESCUnlock(void)	// ret 0 : unlock failed, ret 1 : unlock success
 	Bluetooth_SendString("ESC will be unlocked in 3s...\r\n");
 	Bluetooth_SendString("Turn CH5or7 to High to stop unlock.\r\n");
 
-	OSTimeDly(1000);
+	OSTimeDly(2000);
 	if(ppm_val[5] > PPM_MIN_VAL || ppm_val[6] > PPM_MIN_VAL)
 	{
 		Bluetooth_SendString("ESC unlocked procedure stopped.\r\n");

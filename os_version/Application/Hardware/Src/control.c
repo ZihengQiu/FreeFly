@@ -7,12 +7,37 @@
 
 #define ANGLE_MAX 20
 
-BOOLEAN pid_i_enabled = 0, pid_d_enabled;
+#define pid_i_enabled 1
+#define pid_d_enabled 1
 
  // 0: angle pid, 1: velocity pid
 pid_t pid_roll[2]  = {{1, 1, 1}, {1 ,1 ,1}}, 
 	  pid_pitch[2] = {{1, 1, 1}, {1 ,1 ,1}},
 	  pid_yaw[2]   = {{1, 1, 1}, {1 ,1 ,1}};
+
+void IntegralOutputLimit(pid_t *pid)
+{
+	if(pid->i_out > pid->i_out_limit)
+	{
+		pid->i_out = pid->i_out_limit;
+	}
+	else if(pid->i_out < -pid->i_out_limit)
+	{
+		pid->i_out = -pid->i_out_limit;
+	}
+}
+
+void OutputLimit(pid_t *pid)
+{
+	if(pid->out > pid->out_limit)
+	{
+		pid->out = pid->out_limit;
+	}
+	else if(pid->out < -pid->out_limit)
+	{
+		pid->out = -pid->out_limit;
+	}
+}
 
 void UpdateAnglePID(pid_t *pid, float gyro)
 {
@@ -20,17 +45,24 @@ void UpdateAnglePID(pid_t *pid, float gyro)
 
 	pid->p_out = pid->kp * pid->err;
 
-	if(pid_i_enabled == 1)
+#if pid_i_enabled == 1
+	if(pid->err < pid->err_limit)
 	{
 		pid->i_out += pid->ki * pid->err;
+		// IntegralOutputLimit(pid);
 	}
-	
-	if(pid_d_enabled == 1)
+	else
 	{
-		pid->d_out = pid->kd * gyro;
+		pid->i_out = 0;
 	}
+#endif
+
+#if pid_d_enabled == 1
+		pid->d_out = pid->kd * gyro;
+#endif
 
 	pid->out = pid->p_out + pid->i_out + pid->d_out;
+	// OutputLimit(pid);
 }
 
 void UpdateVelocityPID(pid_t *pid)
@@ -39,19 +71,26 @@ void UpdateVelocityPID(pid_t *pid)
 
 	pid->p_out = pid->kp * pid->err;
 
-	if(pid_i_enabled == 1)
+#if pid_i_enabled == 1
+	if(pid->err < pid->err_limit)
 	{
 		pid->i_out += pid->ki * pid->err;
+		// IntegralOutputLimit(pid);
 	}
-
-	if(pid_d_enabled == 1)
+	else
 	{
-		pid->d_out = pid->kd * (pid->err - pid->err_last);
+		pid->i_out = 0;
 	}
+#endif
+
+#if pid_d_enabled == 1
+		pid->d_out = pid->kd * (pid->err - pid->err_last);
+#endif
 	
 	pid->err_last = pid->err;
 
 	pid->out = pid->p_out + pid->i_out + pid->d_out;
+	// OutputLimit(pid);
 }
 
 void UpdatePID(pid_t *pid_inner, pid_t *pid_outer, float gyro)
@@ -83,7 +122,6 @@ void MotorControl(vec3d_t angle_cur, vec3d_t gyro)
 	UpdatePID(&pid_yaw[0], &pid_yaw[1], gyro.z);
 
 	// update motor speed
-	
 	motor_compare[0] = throttle - pid_pitch[1].out + pid_roll[1].out - pid_yaw[1].out;
 	motor_compare[1] = throttle - pid_pitch[1].out - pid_roll[1].out + pid_yaw[1].out;
 	motor_compare[2] = throttle + pid_pitch[1].out + pid_roll[1].out + pid_yaw[1].out;

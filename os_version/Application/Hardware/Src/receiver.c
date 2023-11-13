@@ -21,21 +21,6 @@ void MY_NVIC_PriorityGroupConfig(uint8_t NVIC_Group)
 	SCB->AIRCR = temp;
 }
 
-//NVIC_PreemptionPriority:«¿’º”≈œ»º∂
-//NVIC_SubPriority£∫œÏ”¶”≈œ»º∂
-//NVIC_Channel£∫÷–∂œ±‡∫≈
-//NVIC_Group£∫÷–∂œ∑÷◊È
-void MY_NVIC_Init(uint8_t NVIC_PreemptionPriority,uint8_t NVIC_SubPriority,uint8_t NVIC_Channel,uint8_t NVIC_Group)
-{
-	uint32_t temp;
-	MY_NVIC_PriorityGroupConfig(NVIC_Group);//…Ë÷√∑÷◊È
-	temp = NVIC_PreemptionPriority<<(4 - NVIC_Group);
-	temp |= NVIC_SubPriority&(0X0f>>NVIC_Group);
-	temp &= 0Xf;                                    //»°µÕÀƒŒª
-	NVIC->ISER[NVIC_Channel/32] |= 1 << NVIC_Channel % 32;// πƒ‹÷–∂œŒª
-	NVIC->IP[NVIC_Channel] |= temp << 4;//…Ë÷√œÏ”¶”≈œ»º∂∫Õ«¿’º”≈œ»º∂
-}
-
 void TIM1_Init(void)
 {
 	// PA8 : TIM1CH1
@@ -43,56 +28,49 @@ void TIM1_Init(void)
 	RCC->APB2ENR |= 1 << 0;
 	GPIOA->AFR[1] |= 1 << 0;
 	GPIOA->MODER &= ~(3 << (2*8));
-	GPIOA->MODER |= 2 << (2*8);//∏¥”√π¶ƒ‹
-	GPIOA->OTYPER &=~ (1 << 8);//∏¥”√Õ∆ÕÏ ‰≥ˆ
+	GPIOA->MODER |= 2 << (2*8);//ÔøΩÔøΩÔøΩ√πÔøΩÔøΩÔøΩ
+	GPIOA->OTYPER &=~ (1 << 8);//ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 	GPIOA->OSPEEDR |= 2 << (2*8);//50Mhz
 	GPIOA->PUPDR &= ~(3 << (2*8));//no pull and down
-	//  ±ª˙µ•‘™
+	//  ±ÔøΩÔøΩÔøΩÔøΩ‘™
 	TIM1->ARR = 0;
-	TIM1->CR1 &=~ (1 << 4);//µ›‘ˆº∆ ˝
+	TIM1->CR1 &=~ (1 << 4);//ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 	TIM1->PSC |= 83;
 	TIM1->ARR |= 19999;
-	TIM1->EGR |= 1 << 1;//≈‰÷√EGRºƒ¥Ê∆˜µƒCC1GŒª£¨ πµ√≤∂ªÒµΩ±ﬂ—ÿ–≈∫≈∫ÛæÕ≤˙…˙“ª∏ˆ≤∂ªÒ ¬º˛
-	TIM1->CR1 |= 1 << 7;//ARR πƒ‹
-	//  ‰»ÎÕ®µ¿1
-	TIM1->CCMR1 |= 1 << (2*0);//Õ®µ¿1µƒ≤∂ªÒ–≈∫≈IC1±ª”≥…‰µΩ¡À“˝Ω≈TI1…œ
-	TIM1->CCMR1 &=~ (3 << (2*1));//≤ª∂‘±ﬂ—ÿ–≈∫≈Ω¯––∑÷∆µ¥¶¿Ì
-	TIM1->CCMR1 &=~ (15 << (4*1));//¬À≤®∆˜Œ™¡„
-	TIM1->CCER |= 1 << 0;//CC1 πƒ‹
-	TIM1->CCER &=~ (1 << 1);//µÁ¬∑∂‘…œ…˝—ÿ√Ù∏–£®º¥≤∂ªÒ£©
+	TIM1->EGR |= 1 << 1;//ÔøΩÔøΩÔøΩÔøΩEGRÔøΩƒ¥ÔøΩÔøΩÔøΩÔøΩÔøΩCC1GŒªÔøΩÔøΩ πÔøΩ√≤ÔøΩÔøΩÒµΩ±ÔøΩÔøΩÔøΩÔøΩ≈∫≈∫ÔøΩÕ≤ÔøΩÔøΩÔøΩ“ªÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ¬ºÔøΩ
+	TIM1->CR1 |= 1 << 7;//ARR πÔøΩÔøΩ
+	// ÔøΩÔøΩÔøΩÔøΩÕ®ÔøΩÔøΩ1
+	TIM1->CCMR1 |= 1 << (2*0);//Õ®ÔøΩÔøΩ1ÔøΩƒ≤ÔøΩÔøΩÔøΩÔøΩ≈∫ÔøΩIC1ÔøΩÔøΩ”≥ÔøΩ‰µΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩTI1ÔøΩÔøΩ
+	TIM1->CCMR1 &=~ (3 << (2*1));//ÔøΩÔøΩÔøΩ‘±ÔøΩÔøΩÔøΩÔøΩ≈∫≈ΩÔøΩÔøΩ–∑ÔøΩ∆µÔøΩÔøΩÔøΩÔøΩ
+	TIM1->CCMR1 &=~ (15 << (4*1));//ÔøΩÀ≤ÔøΩÔøΩÔøΩŒ™ÔøΩÔøΩ
+	TIM1->CCER |= 1 << 0;//CC1 πÔøΩÔøΩ
+	TIM1->CCER &=~ (1 << 1);//ÔøΩÔøΩ¬∑ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ–£ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 	TIM1->CCER &=~ (1 << 3);
-	// ‰»ÎÕ®µ¿2
-	// TIM1->CCMR1 |= 2 << (2*4);//Õ®µ¿2µƒ≤∂ªÒ–≈∫≈IC2±ª”≥…‰µΩ¡À“˝Ω≈TI1…œ 
-	// TIM1->CCMR1 &=~ (3 << (2*5));//≤ª∂‘±ﬂ—ÿ–≈∫≈Ω¯––∑÷∆µ¥¶¿Ì
-	// TIM1->CCMR1 &=~ (15 << (4*3));//¬À≤®∆˜Œ™¡„
-	// TIM1->CCER |= 1 << 4;//CC2 πƒ‹
-	// TIM1->CCER |= 1 << 5;//µÁ¬∑∂‘œ¬Ωµ—ÿ√Ù∏–£®º¥≤∂ªÒ£©
+	//ÔøΩÔøΩÔøΩÔøΩÕ®ÔøΩÔøΩ2
+	// TIM1->CCMR1 |= 2 << (2*4);//Õ®ÔøΩÔøΩ2ÔøΩƒ≤ÔøΩÔøΩÔøΩÔøΩ≈∫ÔøΩIC2ÔøΩÔøΩ”≥ÔøΩ‰µΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩTI1ÔøΩÔøΩ 
+	// TIM1->CCMR1 &=~ (3 << (2*5));//ÔøΩÔøΩÔøΩ‘±ÔøΩÔøΩÔøΩÔøΩ≈∫≈ΩÔøΩÔøΩ–∑ÔøΩ∆µÔøΩÔøΩÔøΩÔøΩ
+	// TIM1->CCMR1 &=~ (15 << (4*3));//ÔøΩÀ≤ÔøΩÔøΩÔøΩŒ™ÔøΩÔøΩ
+	// TIM1->CCER |= 1 << 4;//CC2 πÔøΩÔøΩ
+	// TIM1->CCER |= 1 << 5;//ÔøΩÔøΩ¬∑ÔøΩÔøΩÔøΩ¬ΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ–£ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 	// TIM1->CCER |= 1 << 7;	
-	//SMCRºƒ¥Ê∆˜…Ë÷√
+	//SMCRÔøΩƒ¥ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
 	TIM1->SMCR &= ~(5 << 1);
-	TIM1->SMCR |= 4 << 0;//…Ë÷√Œ™∏¥Œªƒ£ Ω
+	TIM1->SMCR |= 4 << 0;//ÔøΩÔøΩÔøΩÔøΩŒ™ÔøΩÔøΩŒªƒ£ Ω
 	TIM1->SMCR &= ~(7 << 4);
-	TIM1->SMCR |= 5 << 4;//¬À≤®∫Ûµƒ∂® ±∆˜ ‰»ÎTI1FP1
-	TIM1->SMCR |= 1 << 7;//…Ë÷√Œ™¥”ƒ£ Ω
+	TIM1->SMCR |= 5 << 4;//ÔøΩÀ≤ÔøΩÔøΩÔøΩƒ∂ÔøΩ ±ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩTI1FP1
+	TIM1->SMCR |= 1 << 7;//ÔøΩÔøΩÔøΩÔøΩŒ™ÔøΩÔøΩƒ£ Ω
 	
-	
-	TIM_ITConfig(TIM1,TIM_IT_CC1,ENABLE);
-	
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	NVIC_InitTypeDef NVIC_InitStructure;	
 	NVIC_InitStructure.NVIC_IRQChannel=TIM1_CC_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority=1;
 	NVIC_Init(&NVIC_InitStructure);
+
+	TIM_ITConfig(TIM1,TIM_IT_CC1,ENABLE);
 	
-//	NVIC->IP[TIM1_CC_IRQn] = 0 << 4;
-//	NVIC->IP[TIM1_UP_TIM10_IRQn] = 1 << 4;
-//	NVIC->ISER[TIM1_CC_IRQn/32] |= 1 << TIM1_CC_IRQn % 32;
-//	NVIC->ISER[TIM1_UP_TIM10_IRQn/32] |= 1 << (uint32_t)(TIM1_UP_TIM10_IRQn % 32);
-	
-	// πƒ‹÷–∂œ
-	TIM1->DIER |= 1 << 1;// πƒ‹CC1÷–∂œ
+	// πÔøΩÔøΩÔøΩ–∂ÔøΩ
+	TIM1->DIER |= 1 << 1;// πÔøΩÔøΩCC1ÔøΩ–∂ÔøΩ
 	TIM1->CR1 |= 1 << 0;
 }
 
@@ -103,7 +81,7 @@ void Receiver_Init(void)
 
 //void TIM1_CC_IRQHandler(void)//TIM1_GetDutyCycle PWM version
 //{
-//	if(((TIM1->SR & 0x2) == 2)&&((TIM1->SR & 0x4) == 4))//ºÏ≤‚ «∑Ò≤∂◊ΩµΩ…œ…˝—ÿ∫Õœ¬Ωµ—ÿ 
+//	if(((TIM1->SR & 0x2) == 2)&&((TIM1->SR & 0x4) == 4))//ÔøΩÔøΩÔøΩÔøΩ«∑ÔøΩ◊ΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÿ∫ÔøΩÔøΩ¬ΩÔøΩÔøΩÔøΩ 
 //		{
 //			PulseWidth = TIM1->CCR2;
 //			Period = TIM1->CCR1;
@@ -129,14 +107,14 @@ void TIM1_CC_IRQHandler(void)
 	if(TIM_GetITStatus(TIM1,TIM_IT_CC1) == SET)
 	{
 		uint32_t val = TIM_GetCapture1(TIM1);
-		if(val >= 4000)
+		if(val >= 4000) // ppm signal start
 		{
 			ppm_started = 1;
 		} 
 		if(ppm_started == 1)
 		{
-			ppm_val[ppm_cnt] = TIM_GetCapture1(TIM1);
-			if(ppm_cnt!=0 && ppm_val[ppm_cnt] <= (PPM_MAX_VAL+10) && ppm_val[ppm_cnt] >= (PPM_MIN_VAL-10))
+			ppm_val[ppm_cnt] = val;
+			if(ppm_cnt!=0 && ppm_val[ppm_cnt] <= (PPM_MAX_VAL) && ppm_val[ppm_cnt] >= (PPM_MIN_VAL))
 			{
 				valid_cnt ++;
 			}

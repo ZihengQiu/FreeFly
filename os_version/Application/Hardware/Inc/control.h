@@ -12,6 +12,7 @@ typedef struct
 	float err, err_last;
 	float target, current;
 	float p_out, i_out, d_out, out;
+	float err_limit, i_out_limit, out_limit;
 }pid_t;
 
 extern uint32_t ppm_val[10], motor_compare[4];

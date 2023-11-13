@@ -294,17 +294,22 @@ void task_attitude_fusion(void *pdata)
 
 void task_motor_control(void *pdata)
 {
+	char str[200];
 	while(1)
 	{
-		char str[50];
-		sprintf(str, "motor_armed : %d ", motor_armed);
-		sprintf(str+strlen(str), "signal_blocked : %d ", signal_blocked);
-		sprintf(str+strlen(str), "ESC_unlock_executed : %d \r\n", ESC_unlock_executed);
+		// sprintf(str, "%4d %4d %4d %4d %4d %4d %4d %4d %4d ", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
+		// sprintf(str+strlen(str), "motor_armed : %d ", motor_armed);
+		// sprintf(str+strlen(str), "signal_blocked : %d ", signal_blocked);
+		// sprintf(str+strlen(str), "ESC_unlock_executed : %d \r\n", ESC_unlock_executed);
+
+		sprintf(str,"roll:%04.6f %04.6f", pid_roll[0].out, pid_roll[1].out);
+		sprintf(str+strlen(str)," pitch:%04.6f %04.6f", pid_pitch[0].out, pid_pitch[1].out);
+		sprintf(str+strlen(str)," yaw:%04.6f %04.6f", pid_yaw[0].out, pid_yaw[1].out);
+			sprintf(str+strlen(str), "compare:%4d %4d %4d %4d\r\n", motor_compare[0], motor_compare[1], motor_compare[2], motor_compare[3]);
 		Bluetooth_SendString(str);
 		OSTimeDly(100);
-		// sprintf(str, "%d %d %d %d %d %d %d %d %d\r\n", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
-		// Bluetooth_SendString(str);
-		if((ESC_unlock_need_execute & (~signal_blocked)) == 1)
+
+		if((ESC_unlock_need_execute & (~signal_blocked) & motor_armed) == 1)
 		{
 			ESC_unlock_need_execute = 0;
 			ESC_unlock_executed = 1;
@@ -321,14 +326,10 @@ void task_motor_control(void *pdata)
 			motor_compare[3] = MOTOR_COMPARE_MIN_VAL;
 			MotorSetSpeed();
 		}
-		if(signal_blocked == 0 && motor_armed == 1)
+		if(((~signal_blocked) & motor_armed) == 1)
 		{
-			// motor_compare[0] = ppm_val[3];
-			// motor_compare[1] = ppm_val[3];
-			// motor_compare[2] = ppm_val[3];
-			// motor_compare[3] = ppm_val[3];
-		MotorControl(euler, gyro);
-			MotorSetSpeed();
+			MotorControl(euler, gyro);
+			// MotorSetSpeed();
 		}
 		BTCommandParser();
 	}
@@ -336,8 +337,11 @@ void task_motor_control(void *pdata)
 
 void first_task(void *pdata) {
     // Initialization
+
     // My_Systick_Config(840000); // AHB = 84MHz
 	OS_CPU_SysTickInitFreq(84000000);
+
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	
     led_init();
 
