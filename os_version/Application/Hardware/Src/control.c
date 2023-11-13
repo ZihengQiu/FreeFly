@@ -1,20 +1,34 @@
 #include "control.h"
 #include "motor.h"
 #include "mathkit.h"
+#include "os_cpu.h"
 #include "receiver.h"
 #include <sys/_stdint.h>
 
 #define ANGLE_MAX 20
 
-pid_t pid_roll[2], pid_pitch[2], pid_yaw[2]; // 0: angle pid, 1: velocity pid
+BOOLEAN pid_i_enabled = 0, pid_d_enabled;
+
+ // 0: angle pid, 1: velocity pid
+pid_t pid_roll[2]  = {{1, 1, 1}, {1 ,1 ,1}}, 
+	  pid_pitch[2] = {{1, 1, 1}, {1 ,1 ,1}},
+	  pid_yaw[2]   = {{1, 1, 1}, {1 ,1 ,1}};
 
 void UpdateAnglePID(pid_t *pid, float gyro)
 {
 	pid->err = pid->target - pid->current;
 
-	pid->p_out = pid->kp * pid->p_out;
-	pid->i_out += pid->ki * pid->err;
-	pid->d_out = pid->kd * gyro;
+	pid->p_out = pid->kp * pid->err;
+
+	if(pid_i_enabled == 1)
+	{
+		pid->i_out += pid->ki * pid->err;
+	}
+	
+	if(pid_d_enabled == 1)
+	{
+		pid->d_out = pid->kd * gyro;
+	}
 
 	pid->out = pid->p_out + pid->i_out + pid->d_out;
 }
@@ -23,11 +37,18 @@ void UpdateVelocityPID(pid_t *pid)
 {
 	pid->err = pid->target - pid->current;
 
-	pid->p_out = pid->kp * pid->p_out;
+	pid->p_out = pid->kp * pid->err;
 
-	pid->i_out += pid->ki * pid->err;
+	if(pid_i_enabled == 1)
+	{
+		pid->i_out += pid->ki * pid->err;
+	}
 
-	pid->d_out = pid->kd * (pid->err - pid->err_last);
+	if(pid_d_enabled == 1)
+	{
+		pid->d_out = pid->kd * (pid->err - pid->err_last);
+	}
+	
 	pid->err_last = pid->err;
 
 	pid->out = pid->p_out + pid->i_out + pid->d_out;
@@ -36,6 +57,7 @@ void UpdateVelocityPID(pid_t *pid)
 void UpdatePID(pid_t *pid_inner, pid_t *pid_outer, float gyro)
 {
 	UpdateAnglePID(pid_inner, gyro);
+	pid_outer->target = pid_inner->out;
 	UpdateVelocityPID(pid_outer);
 }
 

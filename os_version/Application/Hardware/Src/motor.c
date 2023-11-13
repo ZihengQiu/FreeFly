@@ -1,3 +1,4 @@
+#include "os_cpu.h"
 #include "stm32f4xx_gpio.h"
 
 #include <stdio.h>
@@ -10,11 +11,10 @@
 #include "motor.h"
 #include "receiver.h"
 
-#define MOTOR_COMPARE_MAX_VAL 2000
-#define MOTOR_COMPARE_MIN_VAL 1000
 
 BOOLEAN motor_armed = 0,	// armed : motor can be controlled by the remote controller
 		signal_blocked = 1, // signal blocked : cut off board's pwm signal to motor, used in emergency
+		ESC_unlock_need_execute = 0,
 		ESC_unlock_executed = 0;
 
 OS_TMR  *tmr_arm, *tmr_disarm; // timer for arm and disarm detection
@@ -37,6 +37,9 @@ void Motor_GPIO_Init(void)
 	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;//复用推挽输出
 	GPIO_Init(GPIOC,&GPIO_InitStructure);
 	GPIOC->AFR[0] |= 2 << 24; 
+	GPIOC->AFR[0] |= 2 << 28;
+	GPIOC->AFR[1] |= 2 << 0;
+	GPIOC->AFR[1] |= 2 << 4;
 	
 	//TIM3定时器初始化
 	//PWM 频率 50Hz = 84 000 000/(83+1)/(19999+1)
@@ -52,7 +55,13 @@ void Motor_GPIO_Init(void)
 	TIM_OCInitStructure.TIM_OCPolarity=TIM_OCPolarity_High;
 
 	TIM_OC1Init(TIM3,&TIM_OCInitStructure);
+	TIM_OC2Init(TIM3,&TIM_OCInitStructure);
+	TIM_OC3Init(TIM3,&TIM_OCInitStructure);
+	TIM_OC4Init(TIM3,&TIM_OCInitStructure);
 	TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);//使能TIMx在CCR1上的预装载寄存器
+	TIM_OC2PreloadConfig(TIM3, TIM_OCPreload_Enable);//使能TIMx在CCR2上的预装载寄存器
+	TIM_OC3PreloadConfig(TIM3, TIM_OCPreload_Enable);//使能TIMx在CCR3上的预装载寄存器
+	TIM_OC4PreloadConfig(TIM3, TIM_OCPreload_Enable);//使能TIMx在CCR4上的预装载寄存器
 	TIM_Cmd(TIM3,ENABLE);//使能TIMx外设
 	TIM3->CR1|=(1<<7);
 }
@@ -126,32 +135,45 @@ void MotorArmDetect(void)
 }
 
 
-void ESCUnlock(void)
+BOOLEAN ESCUnlock(void)	// ret 0 : unlock failed, ret 1 : unlock success
 {
 	Bluetooth_SendString("ESC will be unlocked in 3s...\r\n");
 	Bluetooth_SendString("Turn CH5or7 to High to stop unlock.\r\n");
 
-	OSTimeDly(3000);
+	OSTimeDly(1000);
 	if(ppm_val[5] > PPM_MIN_VAL || ppm_val[6] > PPM_MIN_VAL)
 	{
 		Bluetooth_SendString("ESC unlocked procedure stopped.\r\n");
-		return;
+		return 0;
 	}
 
 	Bluetooth_SendString("ESC unlock procedure starts!\r\n");
 
-	TIM_SetCompare1(TIM3, MOTOR_COMPARE_MAX_VAL);
+	motor_compare[0] = MOTOR_COMPARE_MAX_VAL;
+	motor_compare[1] = MOTOR_COMPARE_MAX_VAL;
+	motor_compare[2] = MOTOR_COMPARE_MAX_VAL;
+	motor_compare[3] = MOTOR_COMPARE_MAX_VAL;
+	MotorSetSpeed();
+
 	OSTimeDly(4000);
+
+	motor_compare[0] = MOTOR_COMPARE_MIN_VAL;
+	motor_compare[1] = MOTOR_COMPARE_MIN_VAL;
+	motor_compare[2] = MOTOR_COMPARE_MIN_VAL;
+	motor_compare[3] = MOTOR_COMPARE_MIN_VAL;
+	MotorSetSpeed();
+
 	TIM_SetCompare1(TIM3, MOTOR_COMPARE_MIN_VAL);
 	OSTimeDly(4000);
+
+	return 1;
 }
 
 void ESCUnlockDetect(void)
 {
 	if(ppm_val[5] < PPM_MIN_VAL && ppm_val[6] < PPM_MIN_VAL && ESC_unlock_executed == 0)
 	{
-		ESC_unlock_executed = 1;
-		ESCUnlock();
+		ESC_unlock_need_execute = 1;
 	}
 }
 

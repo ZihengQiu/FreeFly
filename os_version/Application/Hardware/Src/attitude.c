@@ -247,7 +247,7 @@ void MadgwickAHRS(vec4d_t *q0, vec3d_t acc, vec3d_t gyro, vec3d_t mag)
 
 	if(modulus_acc > 0.1) // high variation of the drone
 	{
-		beta += 40;
+		beta += 30;
 	}
 
 	lambda = (beta/modulus_acc+0.01)*0.5;

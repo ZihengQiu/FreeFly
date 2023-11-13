@@ -3,6 +3,7 @@
 #include "bluetooth.h"
 #include "os_cpu.h"
 #include "ucos_ii.h"
+#include <sys/_stdint.h>
 
 uint32_t PulseWidth, Period, DutyCycle;
 uint32_t ppm_val[10], ppm_cnt = 0;
@@ -61,12 +62,12 @@ void TIM1_Init(void)
 	TIM1->CCER &=~ (1 << 1);//电路对上升沿敏感（即捕获）
 	TIM1->CCER &=~ (1 << 3);
 	//输入通道2
-	TIM1->CCMR1 |= 2 << (2*4);//通道2的捕获信号IC2被映射到了引脚TI1上 
-	TIM1->CCMR1 &=~ (3 << (2*5));//不对边沿信号进行分频处理
-	TIM1->CCMR1 &=~ (15 << (4*3));//滤波器为零
-	TIM1->CCER |= 1 << 4;//CC2使能
-	TIM1->CCER |= 1 << 5;//电路对下降沿敏感（即捕获）
-	TIM1->CCER |= 1 << 7;	
+	// TIM1->CCMR1 |= 2 << (2*4);//通道2的捕获信号IC2被映射到了引脚TI1上 
+	// TIM1->CCMR1 &=~ (3 << (2*5));//不对边沿信号进行分频处理
+	// TIM1->CCMR1 &=~ (15 << (4*3));//滤波器为零
+	// TIM1->CCER |= 1 << 4;//CC2使能
+	// TIM1->CCER |= 1 << 5;//电路对下降沿敏感（即捕获）
+	// TIM1->CCER |= 1 << 7;	
 	//SMCR寄存器设置
 	TIM1->SMCR &= ~(5 << 1);
 	TIM1->SMCR |= 4 << 0;//设置为复位模式
@@ -123,27 +124,36 @@ uint32_t Receiver_CalcDutyCycle(uint8_t i)
 
 void TIM1_CC_IRQHandler(void)
 {
-	if(TIM_GetITStatus(TIM1,TIM_IT_CC1)==SET)
+	static uint8_t valid_cnt = 0; // check if the ppm signal is valid
+
+	if(TIM_GetITStatus(TIM1,TIM_IT_CC1) == SET)
 	{
 		uint32_t val = TIM_GetCapture1(TIM1);
-
-		if(val > 0x1000)
+		if(val >= 4000)
 		{
 			ppm_started = 1;
-		}
+		} 
 		if(ppm_started == 1)
 		{
-			ppm_val[ppm_cnt++] = TIM_GetCapture1(TIM1);
+			ppm_val[ppm_cnt] = TIM_GetCapture1(TIM1);
+			if(ppm_cnt!=0 && ppm_val[ppm_cnt] <= (PPM_MAX_VAL+10) && ppm_val[ppm_cnt] >= (PPM_MIN_VAL-10))
+			{
+				valid_cnt ++;
+			}
+			ppm_cnt++;
 			if(ppm_cnt > 8)
 			{
 				ppm_cnt = 0;
 				ppm_started = 0;
+				if(valid_cnt == 8)
+				{
+					SignalBlockDetect();
+					MotorArmDetect();
+					ESCUnlockDetect();
+				}
+				valid_cnt = 0;
 			}
 		}
-
-		SignalBlockDetect();
-		MotorArmDetect();
-		ESCUnlockDetect();
 
 		TIM_ClearITPendingBit(TIM1,TIM_IT_CC1);
 	}
