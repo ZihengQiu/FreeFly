@@ -7,8 +7,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#define WIFI_NAME JNTM
-#define WIFI_PASSWORD zz20030412
+#define WIFI_MODE "1"
+#define WIFI_NAME "JNTM"
+#define WIFI_PASSWORD "zz20030412"
 
 void ESP_GpioInit(void)
 {
@@ -114,11 +115,12 @@ void USART2_IRQHandler(void)
 
 void wifi_connect(void)
 {
-    Usart2_SendString("AT+CWMODE=1\r\n");
-    Bluetooth_SendString("set station mode!\r\n");
-    OSTimeDly(1000);
+    char str[50];
+    sprintf(str, "AT+CWMODE=\"%s\"\r\n", WIFI_MODE);
+    Bluetooth_SendString(str);
+    OSTimeDly(100);
 
-    Usart2_SendString("AT+CWJAP_DEF=\"JNTM\",\"zz20030412\"\r\n");
-    Bluetooth_SendString("trying to connect!\r\n");
-    while(1);
+    sprintf(str, "AT+CWJAP_DEF=\"%s\",\"%s\"\r\n", WIFI_NAME, WIFI_PASSWORD);
+    Bluetooth_SendString(str);
+    OSTimeDly(100);
 }

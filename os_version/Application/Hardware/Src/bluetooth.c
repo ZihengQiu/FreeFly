@@ -4,7 +4,18 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+#define BT_REC_STAT_START 	0
+#define BT_REC_STAT_BODY  	1
+#define BT_REC_STAT_END   	2
+#define BT_REC_START_SYMBOL '$'
+#define BT_REC_END_SYMBOL_1 '\r'
+#define BT_REC_END_SYMBOL_2 '\n'
+
 char TransmitData[1005];
+char bt_transmit_data[1005], bt_receive_data[1005];
+uint8_t it_rec_data, rec_cnt;
+uint8_t bt_received_flag = 0;
+
 
 void Bluetooth_GPIOInit(void)
 {
@@ -40,19 +51,6 @@ void Bluetooth_GPIOInit(void)
 
 void Bluetooth_ConfigInit(void)
 {	
-	// Baund rate : 38400 	USARTDIV 锟斤�? 45.5625 2d9 		FCK 锟斤�?27993600 REAL:26880000
-	// Baund rate : 9600 	USARTDIV 锟斤�? 182.25 b6.4 		FCK 锟斤�?27993600 
-	// Baund rate : 9600 	USARTDIV 锟斤�? 273.4375 0x111.7		FCK 锟斤�?42000000
-	//			Fraction : .4375 * 16 = 7			Mantissa = 111
-	// Baund rate : 9600 	USARTDIV 锟斤�? 546.875		FCK: 84000000
-	//			Fraction : E			Mantissa = 222
-	
-	
-	//Baund rate : 9600 
-	//USARTDIV = Mantissa+(Fraction/(8*2)) = 104.166666 = 0b110 1000 0011 = 0x683 -> 104.1875
-	//Baund rate = fck / (8*2*USARTDIV)
-	// USART1->BRR = 0x222E; // 683 AF0 2D9 AE0
-
 	//Baudrate : 115200, Fpclk = 84MHz
 	//USARTDIV = Fpclk/(16*baudrate) = 45.5625 = 0b101101.1001 = 0x2D9 (refer to reference manual)
 	USART1->BRR = 0x2D9;
@@ -133,4 +131,43 @@ void BT_Printf(char *format, ...)
 	vsprintf(string, format, args);
 	va_end(args); // clean memory
 	Bluetooth_SendString(string);
+}
+
+void USART1_IRQHandler(void)
+{
+	if(USART_GetITStatus(USART1, USART_IT_RXNE))
+	{
+		while((USART1->SR&(1<<5))==0);
+		it_rec_data= USART1->DR & (uint16_t)0x01FF;
+		BTReceivePackage();
+		USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+	}
+}
+
+void BTReceivePackage(void)
+{
+	 // 0:waiting for start symbol, 1:receiving message body while waiting for end symbol
+	static uint8_t rec_status = BT_REC_STAT_START;
+
+	if(rec_status == BT_REC_STAT_START)
+	{
+		if(it_rec_data == BT_REC_START_SYMBOL)
+		{
+			rec_status = BT_REC_STAT_BODY;
+			rec_cnt = 0;
+		}
+	}
+	else if(rec_status == BT_REC_STAT_BODY)
+	{
+		if(it_rec_data == BT_REC_END_SYMBOL_1 || it_rec_data == BT_REC_END_SYMBOL_2)
+		{
+			bt_received_flag = 1;
+			bt_receive_data[rec_cnt] = '\0';
+			rec_status = BT_REC_STAT_START;
+		}
+		else 
+		{
+			bt_receive_data[rec_cnt++] = it_rec_data;
+		}
+	}
 }

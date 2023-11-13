@@ -120,19 +120,19 @@ void task_peripheral_init(void *pdata)
 	// RCC_GetClocksFreq(&clockwatch);
 
 	BluetoothInit();
-	Bluetooth_SendString("Bluetooth init finished!\r\n");
+	// Bluetooth_SendString("Bluetooth init finished!\r\n");
 	times++;
 
 	ESP_Init();
-	Bluetooth_SendString("ESP init finished!\r\n");
+	// Bluetooth_SendString("ESP init finished!\r\n");
 	times++;
 
 	MyI2C_Init();
-	Bluetooth_SendString("I2C init finished!\r\n");
+	// Bluetooth_SendString("I2C init finished!\r\n");
 	times++;
 	
 	GY86Init();
-	Bluetooth_SendString("GY86 init finished!\r\n");
+	// Bluetooth_SendString("GY86 init finished!\r\n");
 	times++;
 	
 	Receiver_Init();
@@ -140,11 +140,11 @@ void task_peripheral_init(void *pdata)
 	times++;
 
 	Motor_Init();
-	Bluetooth_SendString("Motor init finished!\r\n");
+	// Bluetooth_SendString("Motor init finished!\r\n");
 	times++;
 
-	Bluetooth_SendString("Initilization finished!\r\n");
-	Usart2_SendString("init\r\n");
+	// Bluetooth_SendString("Initilization finished!\r\n");
+	// Usart2_SendString("init\r\n");
 
 	OSTaskDel(OS_PRIO_SELF);
 }
@@ -228,10 +228,10 @@ void task_esp_test(void *pdata)
 {
 	while(1)
 	{
-	Bluetooth_SendString("now test begins!\r\n");
-	OSTimeDly(1000);
+	// Bluetooth_SendString("now test begins!\r\n");
+	OSTimeDly(100);
 	Usart2_SendString("AT\r\n");
-	// wifi_connect();
+	wifi_connect();
 	}
 
 }
