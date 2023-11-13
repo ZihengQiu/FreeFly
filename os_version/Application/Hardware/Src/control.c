@@ -3,15 +3,16 @@
 #include "mathkit.h"
 #include "os_cpu.h"
 #include "receiver.h"
-#include <sys/_stdint.h>
+
+#include <stdlib.h>
 
 #define ANGLE_MAX 20
 
-#define pid_i_enabled 1
+#define pid_i_enabled 0
 #define pid_d_enabled 1
 
  // 0: angle pid, 1: velocity pid
-pid_t pid_roll[2]  = {{1, 1, 1}, {1 ,1 ,1}}, 
+pid_t pid_roll[2]  = {{10, 1, 1}, {10, 1 ,1}},
 	  pid_pitch[2] = {{1, 1, 1}, {1 ,1 ,1}},
 	  pid_yaw[2]   = {{1, 1, 1}, {1 ,1 ,1}};
 
@@ -46,7 +47,7 @@ void UpdateAnglePID(pid_t *pid, float gyro)
 	pid->p_out = pid->kp * pid->err;
 
 #if pid_i_enabled == 1
-	if(pid->err < pid->err_limit)
+	if(abs(pid->err) < pid->err_limit)
 	{
 		pid->i_out += pid->ki * pid->err;
 		// IntegralOutputLimit(pid);
@@ -72,7 +73,7 @@ void UpdateVelocityPID(pid_t *pid)
 	pid->p_out = pid->kp * pid->err;
 
 #if pid_i_enabled == 1
-	if(pid->err < pid->err_limit)
+	if(abs(pid->err) < pid->err_limit)
 	{
 		pid->i_out += pid->ki * pid->err;
 		// IntegralOutputLimit(pid);
@@ -93,11 +94,11 @@ void UpdateVelocityPID(pid_t *pid)
 	// OutputLimit(pid);
 }
 
-void UpdatePID(pid_t *pid_inner, pid_t *pid_outer, float gyro)
+void UpdatePID(pid_t *pid_outer, pid_t *pid_inner, float gyro)
 {
-	UpdateAnglePID(pid_inner, gyro);
-	pid_outer->target = pid_inner->out;
-	UpdateVelocityPID(pid_outer);
+	UpdateAnglePID(pid_outer, gyro);
+	pid_inner->target = pid_outer->out;
+	UpdateVelocityPID(pid_inner);
 }
 
 void MotorControl(vec3d_t angle_cur, vec3d_t gyro)
@@ -118,8 +119,8 @@ void MotorControl(vec3d_t angle_cur, vec3d_t gyro)
 	pid_yaw[0].current = angle_cur.z;
 
 	UpdatePID(&pid_roll[0], &pid_roll[1], gyro.x);
-	UpdatePID(&pid_pitch[0], &pid_pitch[1], gyro.y);
-	UpdatePID(&pid_yaw[0], &pid_yaw[1], gyro.z);
+	// UpdatePID(&pid_pitch[0], &pid_pitch[1], gyro.y);
+	// UpdatePID(&pid_yaw[0], &pid_yaw[1], gyro.z);
 
 	// update motor speed
 	motor_compare[0] = throttle - pid_pitch[1].out + pid_roll[1].out - pid_yaw[1].out;

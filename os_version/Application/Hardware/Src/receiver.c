@@ -7,7 +7,7 @@
 
 uint32_t PulseWidth, Period, DutyCycle;
 uint32_t ppm_val[10], ppm_cnt = 0;
-BOOLEAN ppm_started;
+BOOLEAN ppm_started, ppm_error = 0;
 
 void MY_NVIC_PriorityGroupConfig(uint8_t NVIC_Group)
 {
@@ -28,37 +28,37 @@ void TIM1_Init(void)
 	RCC->APB2ENR |= 1 << 0;
 	GPIOA->AFR[1] |= 1 << 0;
 	GPIOA->MODER &= ~(3 << (2*8));
-	GPIOA->MODER |= 2 << (2*8);//���ù���
-	GPIOA->OTYPER &=~ (1 << 8);//�����������
+	GPIOA->MODER |= 2 << (2*8);//閿熸枻鎷烽敓鐭櫢鎷烽敓鏂ゆ嫹
+	GPIOA->OTYPER &=~ (1 << 8);//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 	GPIOA->OSPEEDR |= 2 << (2*8);//50Mhz
 	GPIOA->PUPDR &= ~(3 << (2*8));//no pull and down
-	// ʱ����Ԫ
+	// 鏃堕敓鏂ゆ嫹閿熸枻鎷峰厓
 	TIM1->ARR = 0;
-	TIM1->CR1 &=~ (1 << 4);//��������
+	TIM1->CR1 &=~ (1 << 4);//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	TIM1->PSC |= 83;
 	TIM1->ARR |= 19999;
-	TIM1->EGR |= 1 << 1;//����EGR�Ĵ�����CC1Gλ��ʹ�ò��񵽱����źź�Ͳ���һ�������¼�
-	TIM1->CR1 |= 1 << 7;//ARRʹ��
-	// ����ͨ��1
-	TIM1->CCMR1 |= 1 << (2*0);//ͨ��1�Ĳ����ź�IC1��ӳ�䵽������TI1��
-	TIM1->CCMR1 &=~ (3 << (2*1));//���Ա����źŽ��з�Ƶ����
-	TIM1->CCMR1 &=~ (15 << (4*1));//�˲���Ϊ��
-	TIM1->CCER |= 1 << 0;//CC1ʹ��
-	TIM1->CCER &=~ (1 << 1);//��·�����������У�������
+	TIM1->EGR |= 1 << 1;//閿熸枻鎷烽敓鏂ゆ嫹EGR閿熶茎杈炬嫹閿熸枻鎷烽敓鏂ゆ嫹CC1G浣嶉敓鏂ゆ嫹浣块敓鐭鎷烽敓浠婂埌鎲嬫嫹閿熸枻鎷烽敓鑴氬彿鐚存嫹绛掗敓鏂ゆ嫹閿熸彮浼欐嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷峰綍閿燂拷
+	TIM1->CR1 |= 1 << 7;//ARR浣块敓鏂ゆ嫹
+	// 閿熸枻鎷烽敓鏂ゆ嫹閫氶敓鏂ゆ嫹1
+	TIM1->CCMR1 |= 1 << (2*0);//閫氶敓鏂ゆ嫹1閿熶茎璇ф嫹閿熸枻鎷烽敓鑴氱尨鎷稩C1閿熸枻鎷锋槧閿熸垝鍒伴敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹TI1閿熸枻鎷�
+	TIM1->CCMR1 &=~ (3 << (2*1));//閿熸枻鎷烽敓鐨嗘唻鎷烽敓鏂ゆ嫹閿熻剼鍙锋枻鎷烽敓鍙嚖鎷烽閿熸枻鎷烽敓鏂ゆ嫹
+	TIM1->CCMR1 &=~ (15 << (4*1));//閿熷壙璇ф嫹閿熸枻鎷蜂负閿熸枻鎷�
+	TIM1->CCER |= 1 << 0;//CC1浣块敓鏂ゆ嫹
+	TIM1->CCER &=~ (1 << 1);//閿熸枻鎷疯矾閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鍙綇鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	TIM1->CCER &=~ (1 << 3);
-	//����ͨ��2
-	// TIM1->CCMR1 |= 2 << (2*4);//ͨ��2�Ĳ����ź�IC2��ӳ�䵽������TI1�� 
-	// TIM1->CCMR1 &=~ (3 << (2*5));//���Ա����źŽ��з�Ƶ����
-	// TIM1->CCMR1 &=~ (15 << (4*3));//�˲���Ϊ��
-	// TIM1->CCER |= 1 << 4;//CC2ʹ��
-	// TIM1->CCER |= 1 << 5;//��·���½������У�������
+	//閿熸枻鎷烽敓鏂ゆ嫹閫氶敓鏂ゆ嫹2
+	// TIM1->CCMR1 |= 2 << (2*4);//閫氶敓鏂ゆ嫹2閿熶茎璇ф嫹閿熸枻鎷烽敓鑴氱尨鎷稩C2閿熸枻鎷锋槧閿熸垝鍒伴敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹TI1閿熸枻鎷� 
+	// TIM1->CCMR1 &=~ (3 << (2*5));//閿熸枻鎷烽敓鐨嗘唻鎷烽敓鏂ゆ嫹閿熻剼鍙锋枻鎷烽敓鍙嚖鎷烽閿熸枻鎷烽敓鏂ゆ嫹
+	// TIM1->CCMR1 &=~ (15 << (4*3));//閿熷壙璇ф嫹閿熸枻鎷蜂负閿熸枻鎷�
+	// TIM1->CCER |= 1 << 4;//CC2浣块敓鏂ゆ嫹
+	// TIM1->CCER |= 1 << 5;//閿熸枻鎷疯矾閿熸枻鎷烽敓閾版枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鍙綇鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	// TIM1->CCER |= 1 << 7;	
-	//SMCR�Ĵ�������
+	//SMCR閿熶茎杈炬嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�
 	TIM1->SMCR &= ~(5 << 1);
-	TIM1->SMCR |= 4 << 0;//����Ϊ��λģʽ
+	TIM1->SMCR |= 4 << 0;//閿熸枻鎷烽敓鏂ゆ嫹涓洪敓鏂ゆ嫹浣嶆ā寮�
 	TIM1->SMCR &= ~(7 << 4);
-	TIM1->SMCR |= 5 << 4;//�˲���Ķ�ʱ������TI1FP1
-	TIM1->SMCR |= 1 << 7;//����Ϊ��ģʽ
+	TIM1->SMCR |= 5 << 4;//閿熷壙璇ф嫹閿熸枻鎷蜂憨閿熺粸鎲嬫嫹閿熸枻鎷烽敓鏂ゆ嫹閿熺祴I1FP1
+	TIM1->SMCR |= 1 << 7;//閿熸枻鎷烽敓鏂ゆ嫹涓洪敓鏂ゆ嫹妯″紡
 	
 	NVIC_InitTypeDef NVIC_InitStructure;	
 	NVIC_InitStructure.NVIC_IRQChannel=TIM1_CC_IRQn;
@@ -69,8 +69,8 @@ void TIM1_Init(void)
 
 	TIM_ITConfig(TIM1,TIM_IT_CC1,ENABLE);
 	
-	//ʹ���ж�
-	TIM1->DIER |= 1 << 1;//ʹ��CC1�ж�
+	//浣块敓鏂ゆ嫹閿熷彨璁规嫹
+	TIM1->DIER |= 1 << 1;//浣块敓鏂ゆ嫹CC1閿熷彨璁规嫹
 	TIM1->CR1 |= 1 << 0;
 }
 
@@ -78,22 +78,6 @@ void Receiver_Init(void)
 {
 	TIM1_Init();
 }
-
-//void TIM1_CC_IRQHandler(void)//TIM1_GetDutyCycle PWM version
-//{
-//	if(((TIM1->SR & 0x2) == 2)&&((TIM1->SR & 0x4) == 4))//����Ƿ�׽�������غ��½��� 
-//		{
-//			PulseWidth = TIM1->CCR2;
-//			Period = TIM1->CCR1;
-//			TIM1->CNT = 0;
-//			//DutyCycle = PulseWidth*10/19;
-//    }
-//    TIM1->SR &=~ (1 << 1);
-//	DutyCycle = PulseWidth*10/19;
-//	//if(ret-DutyCycle > 3 || ret-DutyCycle < -3) return DutyCycle;
-//	if(DutyCycle < 10) DutyCycle = 10;
-//		else if(DutyCycle > 20) DutyCycle = 20;
-//}
 
 uint32_t Receiver_CalcDutyCycle(uint8_t i)
 {
@@ -107,9 +91,18 @@ void TIM1_CC_IRQHandler(void)
 	if(TIM_GetITStatus(TIM1,TIM_IT_CC1) == SET)
 	{
 		uint32_t val = TIM_GetCapture1(TIM1);
-		if(val >= 4000) // ppm signal start
+		if(val > PPM_MAX_VAL)
 		{
-			ppm_started = 1;
+			if(val >= 4000 && val <= 12000) // ppm signal start
+			{
+				ppm_started = 1;
+				ppm_error = 0;
+			}
+			else
+			{
+				ppm_error = 1;
+				signal_blocked = 1;
+			}
 		} 
 		if(ppm_started == 1)
 		{
@@ -126,8 +119,11 @@ void TIM1_CC_IRQHandler(void)
 				if(valid_cnt == 8)
 				{
 					SignalBlockDetect();
-					MotorArmDetect();
-					ESCUnlockDetect();
+					if(signal_blocked == 0)
+					{
+						MotorArmDetect();
+						// ESCUnlockfDetect();
+					}
 				}
 				valid_cnt = 0;
 			}

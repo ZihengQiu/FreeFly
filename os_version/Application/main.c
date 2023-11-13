@@ -101,6 +101,35 @@ void SendAnotc(vec3d_t acc, vec3d_t gyro, vec3d_t mag, vec3d_t angle)
 	}
 }
 
+void SendAnotcPID()
+{
+	// send pid data to anotc v7 using flexible frame transmission
+	//0xAA 0xFF 0xF1 LEN DATA SC AC
+	uint8_t sum_check = 0, add_check = 0;
+	uint8_t data[32] = {0x00};
+	data[0] = 0xAA;
+	data[1] = 0xFF;
+	data[2] = 0xF1;
+	data[3] = 0x0C;
+	data[4] = (uint16_t)pid_roll[0].out>>8;
+	data[5] = (uint16_t)pid_roll[0].out&0xFF;
+	data[6] = (uint16_t)pid_pitch[0].out>>8;
+	data[7] = (uint16_t)pid_pitch[0].out&0xFF;
+	data[8] = (uint16_t)pid_yaw[0].out>>8;
+	data[9] = (uint16_t)pid_yaw[0].out&0xFF;
+	for(uint8_t i=0; i<data[3]+4; i++)
+	{
+		sum_check += data[i];
+		add_check += sum_check;
+	}
+	data[10] = sum_check;
+	data[11] = add_check;
+	for(uint8_t i=0; i<6+data[3]; i++)
+	{
+		Bluetooth_SendByte(data[i]);
+	}
+}
+
 void task_led_on(void *pdata)
 {
 	while(1)
@@ -299,25 +328,25 @@ void task_motor_control(void *pdata)
 	{
 		// sprintf(str, "%4d %4d %4d %4d %4d %4d %4d %4d %4d ", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
 		// sprintf(str+strlen(str), "motor_armed : %d ", motor_armed);
-		// sprintf(str+strlen(str), "signal_blocked : %d ", signal_blocked);
-		// sprintf(str+strlen(str), "ESC_unlock_executed : %d \r\n", ESC_unlock_executed);
+		// sprintf(str+strlen(str), "signal_blocked : %d \r\n", signal_blocked);
 
-		sprintf(str,"roll:%04.6f %04.6f", pid_roll[0].out, pid_roll[1].out);
-		sprintf(str+strlen(str)," pitch:%04.6f %04.6f", pid_pitch[0].out, pid_pitch[1].out);
-		sprintf(str+strlen(str)," yaw:%04.6f %04.6f", pid_yaw[0].out, pid_yaw[1].out);
-			sprintf(str+strlen(str), "compare:%4d %4d %4d %4d\r\n", motor_compare[0], motor_compare[1], motor_compare[2], motor_compare[3]);
-		Bluetooth_SendString(str);
-		OSTimeDly(100);
+		// sprintf(str,"roll:%04.6f %04.6f ", pid_roll[0].out, pid_roll[1].out);
+		// sprintf(str+strlen(str)," pitch:%04.6f %04.6f", pid_pitch[0].out, pid_pitch[1].out);
+		// sprintf(str+strlen(str)," yaw:%04.6f %04.6f", pid_yaw[0].out, pid_yaw[1].out);
+		// sprintf(str+strlen(str), "compare:%4d %4d %4d %4d ", motor_compare[0], motor_compare[1], motor_compare[2], motor_compare[3]);
+		// sprintf(str+strlen(str), "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
+		// Bluetooth_SendString(str);
+		OSTimeDly(10);
 
-		if((ESC_unlock_need_execute & (~signal_blocked) & motor_armed) == 1)
-		{
-			ESC_unlock_need_execute = 0;
-			ESC_unlock_executed = 1;
-			if(ESCUnlock() == 0)
-			{
-				ESC_unlock_executed = 0; // unlock failed
-			}
-		}
+		// if(((~signal_blocked) & ESC_unlock_need_execute & motor_armed) == 1)
+		// {
+		// 	ESC_unlock_need_execute = 0;
+		// 	ESC_unlock_executed = 1;
+		// 	if(ESCUnlock() == 0)
+		// 	{
+		// 		ESC_unlock_executed = 0; // unlock failed
+		// 	}
+		// }
 		if(signal_blocked == 1)
 		{
 			motor_compare[0] = MOTOR_COMPARE_MIN_VAL;
@@ -329,7 +358,16 @@ void task_motor_control(void *pdata)
 		if(((~signal_blocked) & motor_armed) == 1)
 		{
 			MotorControl(euler, gyro);
+
+			// motor_compare[0] = ppm_val[THR];
+			// motor_compare[1] = ppm_val[THR];
+			// motor_compare[2] = ppm_val[THR];
+			// motor_compare[3] = ppm_val[THR];
 			// MotorSetSpeed();
+		}
+		if(ppm_error == 1)
+		{
+			Bluetooth_SendString("PPM signal error!\r\n");
 		}
 		BTCommandParser();
 	}

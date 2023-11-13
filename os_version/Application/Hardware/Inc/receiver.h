@@ -1,6 +1,7 @@
 #ifndef  __RECEIVER_H
 #define  __RECEIVER_H
 
+#include "os_cpu.h"
 #include "stm32f4xx.h"                  // Device header
 
 #include "ucos_ii.h"
@@ -17,6 +18,7 @@
 #define RUD 4	// Rudder(yaw)
 
 extern uint32_t ppm_val[10];
+extern BOOLEAN ppm_error;
 
 void TIM1_Init(void);
 void Receiver_Init(void);

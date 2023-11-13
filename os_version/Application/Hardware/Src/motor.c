@@ -62,6 +62,12 @@ void Motor_GPIO_Init(void)
 	TIM_OC2PreloadConfig(TIM3, TIM_OCPreload_Enable);//使能TIMx在CCR2上的预装载寄存器
 	TIM_OC3PreloadConfig(TIM3, TIM_OCPreload_Enable);//使能TIMx在CCR3上的预装载寄存器
 	TIM_OC4PreloadConfig(TIM3, TIM_OCPreload_Enable);//使能TIMx在CCR4上的预装载寄存器
+	
+	TIM3->CCR1 = MOTOR_COMPARE_MIN_VAL; // warning:CCR's default value 0 can make motor spin
+	TIM3->CCR2 = MOTOR_COMPARE_MIN_VAL;
+	TIM3->CCR3 = MOTOR_COMPARE_MIN_VAL;
+	TIM3->CCR4 = MOTOR_COMPARE_MIN_VAL;
+
 	TIM_Cmd(TIM3,ENABLE);//使能TIMx外设
 	TIM3->CR1|=(1<<7);
 }
@@ -69,12 +75,14 @@ void Motor_GPIO_Init(void)
 OS_TMR_CALLBACK ArmTmrCallback(OS_TMR *ptmr, void *parg)
 {
 	motor_armed = 1;
+	Bluetooth_SendString("motor armed!\r\n");
 	return NULL;
 }
 
 OS_TMR_CALLBACK DisarmTmrCallback(OS_TMR *ptmr, void *parg)
 {
 	motor_armed = 0;
+	Bluetooth_SendString("motor disarmed!\r\n");
 	return NULL;
 }
 
@@ -121,7 +129,7 @@ void MotorArmDetect(void)
 	}
 
 	// disarm detect : throttle minimum, yaw minimum for 1 seconds
-	if(ppm_val[THR] < PPM_MIN_VAL-15 && ppm_val[RUD] < PPM_MIN_VAL+15)
+	if(ppm_val[THR] < PPM_MIN_VAL+15 && ppm_val[RUD] < PPM_MIN_VAL+15)
 	{
 		if(OSTmrStateGet(tmr_disarm, 0) != 3)
 		{
@@ -195,8 +203,8 @@ uint32_t MotorSpeedLimit(uint32_t compare)
 
 void MotorSetSpeed(void)
 {
-	TIM3->CCR1 = MotorSpeedLimit(motor_compare[0]);
-	TIM3->CCR2 = MotorSpeedLimit(motor_compare[1]);
-	TIM3->CCR3 = MotorSpeedLimit(motor_compare[2]);
-	TIM3->CCR4 = MotorSpeedLimit(motor_compare[3]);
+	TIM3->CCR3 = MotorSpeedLimit(motor_compare[0]); // PB8
+	TIM3->CCR1 = MotorSpeedLimit(motor_compare[1]); // PB6
+	TIM3->CCR2 = MotorSpeedLimit(motor_compare[2]); // PB7
+	TIM3->CCR4 = MotorSpeedLimit(motor_compare[3]);	// PB9
 }
