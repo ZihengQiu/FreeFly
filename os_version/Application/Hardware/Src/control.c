@@ -9,10 +9,10 @@
 #define ANGLE_MAX 20
 
 #define pid_i_enabled 0
-#define pid_d_enabled 1
+#define pid_d_enabled 0
 
  // 0: angle pid, 1: velocity pid
-pid_t pid_roll[2]  = {{10, 1, 1}, {10, 1 ,1}},
+pid_t pid_roll[2]  = {{1, 1, 1}, {1, 1 ,1}},
 	  pid_pitch[2] = {{1, 1, 1}, {1 ,1 ,1}},
 	  pid_yaw[2]   = {{1, 1, 1}, {1 ,1 ,1}};
 

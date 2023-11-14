@@ -16,6 +16,7 @@
 #include "attitude.h"
 #include "bluetooth.h"
 #include "control.h"
+#include "ground_control.h"
 #include "gy86.h"
 #include "led.h"
 #include "myI2C.h"
@@ -49,86 +50,6 @@ extern BOOLEAN motor_armed;
 extern uint32_t ppm_val[10];
 
 extern void My_Systick_Config(uint32_t reload_value);
-
-
-void SendAnotc(vec3d_t acc, vec3d_t gyro, vec3d_t mag, vec3d_t angle)
-{
-	// send attitude data to anotc v2.6
-	uint8_t sum;
-	sum = 0;
-	int8_t data[32] = {0x00};
-	data[0] = 0x88;
-	data[1] = 0xAF;
-	data[2] = 0x1C;
-	data[3] = (int16_t)(acc.x*100)>>8;
-	data[4] = (int16_t)(acc.x*100)&0xFF;
-	data[5] = (int16_t)(acc.y*100)>>8;
-	data[6] = (int16_t)(acc.y*100)&0xFF;
-	data[7] = (int16_t)(acc.z*100)>>8;
-	data[8] = (int16_t)(acc.z*100)&0xFF;
-	data[9] = (int16_t)(gyro.x*100)>>8;
-	data[10] = (int16_t)(gyro.x*100)&0xFF;
-	data[11] = (int16_t)(gyro.y*100)>>8;
-	data[12] = (int16_t)(gyro.y*100)&0xFF;
-	data[13] = (int16_t)(gyro.z*100)>>8;
-	data[14] = (int16_t)(gyro.z*100)&0xFF;
-	data[15] = (int16_t)(mag.x*100)>>8;
-	data[16] = (int16_t)(mag.x*100)&0xFF;
-	data[17] = (int16_t)(mag.y*100)>>8;
-	data[18] = (int16_t)(mag.y*100)&0xFF;
-	data[19] = (int16_t)(mag.z*100)>>8;
-	data[20] = (int16_t)(mag.z*100)&0xFF;
-	data[21] = (int16_t)(angle.x*100)>>8;
-	data[22] = (int16_t)(angle.x*100)&0xFF;
-	data[23] = (int16_t)(angle.y*100)>>8;
-	data[24] = (int16_t)(angle.y*100)&0xFF;
-	data[25] = (int16_t)(angle.z*10)>>8;
-	data[26] = (int16_t)(angle.z*10)&0xFF;
-	data[27] = 0x00;
-	data[28] = 0x00;
-	data[29] = 0x00;
-	data[30] = 0x00;
-
-	for(int i=0; i<31; i++)
-	{
-		sum += data[i];
-	}
-	
-	data[31] = sum;
-	for(int i=0; i<32; i++)
-	{
-		Bluetooth_SendByte(data[i]);
-	}
-}
-
-void SendAnotcPID()
-{
-	// send pid data to anotc v7 using flexible frame transmission
-	//0xAA 0xFF 0xF1 LEN DATA SC AC
-	uint8_t sum_check = 0, add_check = 0;
-	uint8_t data[32] = {0x00};
-	data[0] = 0xAA;
-	data[1] = 0xFF;
-	data[2] = 0xF1;
-	data[3] = 0x0C;
-	data[4] = (uint16_t)pid_roll[0].out>>8;
-	data[5] = (uint16_t)pid_roll[0].out&0xFF;
-	data[6] = (uint16_t)pid_pitch[0].out>>8;
-	data[7] = (uint16_t)pid_pitch[0].out&0xFF;
-	data[8] = (uint16_t)pid_yaw[0].out>>8;
-	data[9] = (uint16_t)pid_yaw[0].out&0xFF;
-	for(uint8_t i=0; i<data[3]+4; i++)
-	{
-		sum_check += data[i];
-		add_check += sum_check;
-	}
-	data[10] = sum_check;
-	data[11] = add_check;
-	for(uint8_t i=0; i<6+data[3]; i++)
-	{
-		Bluetooth_SendByte(data[i]);
-	}
-}
 
 void task_led_on(void *pdata)
 {
@@ -222,7 +143,7 @@ void task_attitude_gyro(void *pdata)
 		gyro0 = gyro1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		// SendAnotc(acc, gyro0, mag, euler);
+		// SendAnotc();
 		// printf("euler: %f, %f, %f\r\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
 		// convert euler to string and send them by bluetooth_sendstring
 		char str[100];
@@ -248,7 +169,7 @@ void task_attitude_acc(void *pdata)
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		SendAnotc(acc, gyro, mag, euler);
+		SendAnotc();
 		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
 		
 	}
@@ -298,7 +219,7 @@ void task_attitude_fusion(void *pdata)
 	// 	q0 = q1;
 	// 	QuaterToEuler(&q0, &euler);
 	// 	RadToDeg(&euler);
-	// 	// SendAnotc(acc, gyro, mag, euler);
+	// 	// SendAnotc();
 	// 	sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 	// 	Bluetooth_SendString(str);
 	// }
@@ -314,7 +235,7 @@ void task_attitude_fusion(void *pdata)
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
 		
-		// SendAnotc(acc, gyro, mag, euler);
+		// SendAnotc();
 		// sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 		// Bluetooth_SendString(str); // takes about 3ms
 		OSTimeDly(10);
@@ -370,6 +291,10 @@ void task_motor_control(void *pdata)
 			Bluetooth_SendString("PPM signal error!\r\n");
 		}
 		BTCommandParser();
+		if(signal_blocked == 0)
+		{
+			SendAnotc();
+		}
 	}
 }
 
