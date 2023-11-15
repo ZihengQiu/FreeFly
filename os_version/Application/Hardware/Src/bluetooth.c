@@ -206,7 +206,8 @@ void USART1_IRQHandler(void)
 
 char command_res[5][100] = {
 	"Invalid command!\r\n",
-	"PID set successfully!\r\n"
+	"PID set successfully!\r\n",
+	"PID printed!\r\n"
 };
 
 void BTShowCommandResult(uint8_t res)
@@ -216,11 +217,83 @@ void BTShowCommandResult(uint8_t res)
 
 char *command[10];
 
-void BTCommandParserPID(char *command[], int len)
+void BTCommandParserPrint(char *command[], int len)
 {
-	if(len != 6)
+	if(len != 2)
 	{
 		BTShowCommandResult(0);
+		return;
+	}
+
+	if(0 == strcmp(command[1], "pid"))
+	{
+		char str[100];
+		sprintf(str, "roll:\r\n o:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n i:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n", 
+			pid_roll[0].kp, pid_roll[0].ki, pid_roll[0].kd,pid_roll[0].err_limit, pid_roll[0].i_out_limit, pid_roll[0].out_limit,
+			pid_roll[1].kp, pid_roll[1].ki, pid_roll[1].kd, pid_roll[1].err_limit, pid_roll[1].i_out_limit, pid_roll[1].out_limit);
+		sprintf(str+strlen(str), "pitch:\r\n o:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n i:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n", 
+			pid_pitch[0].kp, pid_pitch[0].ki, pid_pitch[0].kd,pid_pitch[0].err_limit, pid_pitch[0].i_out_limit, pid_pitch[0].out_limit,
+			pid_pitch[1].kp, pid_pitch[1].ki, pid_pitch[1].kd, pid_pitch[1].err_limit, pid_pitch[1].i_out_limit, pid_pitch[1].out_limit);
+		sprintf(str+strlen(str), "yaw:\r\n o:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n i:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n",
+			pid_yaw[0].kp, pid_yaw[0].ki, pid_yaw[0].kd,pid_yaw[0].err_limit, pid_yaw[0].i_out_limit, pid_yaw[0].out_limit,
+			pid_yaw[1].kp, pid_yaw[1].ki, pid_yaw[1].kd, pid_yaw[1].err_limit, pid_yaw[1].i_out_limit, pid_yaw[1].out_limit);
+		Bluetooth_SendString(str);
+		BTShowCommandResult(2);
+	}
+	else
+	{
+		BTShowCommandResult(0);
+	}
+}
+
+void BTCommandParserPID(char *command[], int len)
+{
+	if(len != 6 && len!= 7 && len!=3)
+	{
+		BTShowCommandResult(0);
+		return;
+	}
+
+	if(len == 3)
+	{
+		if(0 == strcmp(command[1], "enable"))
+		{
+			if(0 == strcmp(command[2], "i"))
+			{
+				pid_i_enabled = 1;
+				BTShowCommandResult(1);
+			}
+			else if(0 == strcmp(command[2], "d"))
+			{
+				pid_d_enabled = 1;
+				BTShowCommandResult(1);
+			}
+			else
+			{
+				BTShowCommandResult(0);
+			}
+		}
+		else if(0 == strcmp(command[1], "disable"))
+		{
+			if(0 == strcmp(command[2], "i"))
+			{
+				pid_i_enabled = 0;
+				BTShowCommandResult(1);
+			}
+			else if(0 == strcmp(command[2], "d"))
+			{
+				pid_d_enabled = 0;
+				BTShowCommandResult(1);
+			}
+			else
+			{
+				BTShowCommandResult(0);
+			}
+		}
+		else
+		{
+			BTShowCommandResult(0);
+		}
 		return;
 	}
 
@@ -239,40 +312,59 @@ void BTCommandParserPID(char *command[], int len)
 		return;
 	}
 
-	if(0 == strcmp(command[2], "roll"))
+	BOOLEAN if_set_limit = (0 == strcmp(command[3], "limit"))? 1 : 0;
+	if(if_set_limit == 0 && len == 6)
 	{
-		pid_roll[pid_i].kp = atof(command[3]);
-		pid_roll[pid_i].ki = atof(command[4]);
-		pid_roll[pid_i].kd = atof(command[5]);
-		BTShowCommandResult(1);
+		if(0 == strcmp(command[2], "roll"))
+		{
+			pid_roll[pid_i].kp = atof(command[3]);
+			pid_roll[pid_i].ki = atof(command[4]);
+			pid_roll[pid_i].kd = atof(command[5]);
+			BTShowCommandResult(1);
+		}
+		else if(0 == strcmp(command[2], "pitch"))
+		{
+			pid_pitch[pid_i].kp = atof(command[3]);
+			pid_pitch[pid_i].ki = atof(command[4]);
+			pid_pitch[pid_i].kd = atof(command[5]);
+			BTShowCommandResult(1);
+		}
+		else if(0 == strcmp(command[2], "yaw"))
+		{
+			pid_yaw[pid_i].kp = atof(command[3]);
+			pid_yaw[pid_i].ki = atof(command[4]);
+			pid_yaw[pid_i].kd = atof(command[5]);
+			BTShowCommandResult(1);
+		}
 	}
-	else if(0 == strcmp(command[2], "pitch"))
+	else if(if_set_limit == 1 && len == 7)
 	{
-		pid_pitch[pid_i].kp = atof(command[3]);
-		pid_pitch[pid_i].ki = atof(command[4]);
-		pid_pitch[pid_i].kd = atof(command[5]);
-		BTShowCommandResult(1);
-	}
-	else if(0 == strcmp(command[2], "yaw"))
-	{
-		pid_yaw[pid_i].kp = atof(command[3]);
-		pid_yaw[pid_i].ki = atof(command[4]);
-		pid_yaw[pid_i].kd = atof(command[5]);
-		BTShowCommandResult(1);
+		if(0 == strcmp(command[2], "roll"))
+		{
+			pid_roll[pid_i].err_limit = atof(command[4]);
+			pid_roll[pid_i].i_out_limit = atof(command[5]);
+			pid_roll[pid_i].out_limit = atof(command[6]);
+			BTShowCommandResult(1);
+		}
+		else if(0 == strcmp(command[2], "pitch"))
+		{
+			pid_pitch[pid_i].err_limit = atof(command[4]);
+			pid_pitch[pid_i].i_out_limit = atof(command[5]);
+			pid_pitch[pid_i].out_limit = atof(command[6]);
+			BTShowCommandResult(1);
+		}
+		else if(0 == strcmp(command[2], "yaw"))
+		{
+			pid_yaw[pid_i].err_limit = atof(command[4]);
+			pid_yaw[pid_i].i_out_limit = atof(command[5]);
+			pid_yaw[pid_i].out_limit = atof(command[6]);
+			BTShowCommandResult(1);
+		}
 	}
 	else
 	{
 		BTShowCommandResult(0);
 	}
-}
-
-void BTCommandParserPrint(char *command[], int len)
-{
-	for(int i = 0; i < len; i++)
-	{
-		BT_Printf("%s ", command[i]);
-	}
-	BT_Printf("\r\n");
 }
 
 void BTCommandParser(void)
@@ -291,6 +383,10 @@ void BTCommandParser(void)
 		if(0 == strcmp(command[0], "pid"))
 		{
 			BTCommandParserPID(command, len);
+		}
+		else if(0 == strcmp(command[0], "print"))
+		{
+			BTCommandParserPrint(command, len);
 		}
 		else
 		{

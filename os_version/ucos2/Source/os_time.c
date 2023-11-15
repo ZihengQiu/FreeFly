@@ -57,8 +57,6 @@ void  OSTimeDly (INT32U ticks)
     OS_CPU_SR  cpu_sr = 0u;
 #endif
 
-	ticks /= 10;	// changed here !
-
     if (OSIntNesting > 0u) {                     /* See if trying to call from an ISR                  */
         return;
     }

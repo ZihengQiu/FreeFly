@@ -26,6 +26,7 @@
 
 #define TASK_PRIO_PID		9
 #define TASK_PRIO_ATTITUDE	10
+#define TASK_PRIO_GC		11
 
 #define TASK_STK_LEN 0x0800
 #define TASK_STK_LEN_2 0x0600
@@ -238,12 +239,31 @@ void task_attitude_fusion(void *pdata)
 		// SendAnotc();
 		// sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 		// Bluetooth_SendString(str); // takes about 3ms
-		OSTimeDly(10);
+		OSTimeDly(5);
+	}
+}
+
+void task_send_ground_control(void *pdata)
+{
+	while(1)
+	{
+		if(signal_blocked == 0)
+		{
+			SendAnotc();
+			OSTimeDly(100);
+		}
+		BTCommandParser();
 	}
 }
 
 void task_motor_control(void *pdata)
 {
+	pid_roll[0].err_limit = pid_roll[0].i_out_limit = pid_roll[0].out_limit = 500;
+	pid_roll[1].err_limit = pid_roll[1].i_out_limit = pid_roll[1].out_limit = 500;
+	pid_pitch[0].err_limit = pid_pitch[0].i_out_limit = pid_pitch[0].out_limit = 500;
+	pid_pitch[1].err_limit = pid_pitch[1].i_out_limit = pid_pitch[1].out_limit = 500;
+	pid_yaw[0].err_limit = pid_yaw[0].i_out_limit = pid_yaw[0].out_limit = 500;
+	pid_yaw[1].err_limit = pid_yaw[1].i_out_limit = pid_yaw[1].out_limit = 500;
 	char str[200];
 	while(1)
 	{
@@ -257,7 +277,7 @@ void task_motor_control(void *pdata)
 		// sprintf(str+strlen(str), "compare:%4d %4d %4d %4d ", motor_compare[0], motor_compare[1], motor_compare[2], motor_compare[3]);
 		// sprintf(str+strlen(str), "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 		// Bluetooth_SendString(str);
-		OSTimeDly(10);
+		OSTimeDly(5);
 
 		// if(((~signal_blocked) & ESC_unlock_need_execute & motor_armed) == 1)
 		// {
@@ -289,11 +309,6 @@ void task_motor_control(void *pdata)
 		if(ppm_error == 1)
 		{
 			Bluetooth_SendString("PPM signal error!\r\n");
-		}
-		BTCommandParser();
-		if(signal_blocked == 0)
-		{
-			SendAnotc();
 		}
 	}
 }
@@ -337,8 +352,11 @@ void first_task(void *pdata) {
 	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], TASK_PRIO_ATTITUDE, TASK_PRIO_ATTITUDE, Task8Stk, TASK_STK_LEN, (void *)0, 0);
 	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 
-	OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], TASK_PRIO_PID, TASK_PRIO_PID, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], TASK_PRIO_PID, TASK_PRIO_PID, Task9Stk, TASK_STK_LEN, (void *)0, 0);
 	OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
+
+	OSTaskCreateExt(task_send_ground_control, (void *)0, &Task10Stk[TASK_STK_LEN - 1], TASK_PRIO_GC, TASK_PRIO_GC, Task10Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(14, (INT8U *)"GC", (INT8U *)"GC");
 	
     OSTaskDel(OS_PRIO_SELF);
 }

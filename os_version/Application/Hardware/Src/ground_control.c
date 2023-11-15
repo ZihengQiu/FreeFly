@@ -16,14 +16,14 @@ void SendAnotcSensor()
 	uint8_t data[32] = {0x00};
 	data[0] = 0xAA;
 	data[1] = 0xFF;
-	data[2] = 0x03;
+	data[2] = 0x01;
 	data[3] = 0x0D;
-	int16_t acc_x = (int16_t)(acc.x),
-			acc_y = (int16_t)(acc.y),
-			acc_z = (int16_t)(acc.z),
-			gyro_x = (int16_t)(gyro.x),
-			gyro_y = (int16_t)(gyro.y),
-			gyro_z = (int16_t)(gyro.z);
+	int16_t acc_x = (int16_t)(acc.x*100),
+			acc_y = (int16_t)(acc.y*100),
+			acc_z = (int16_t)(acc.z*100),
+			gyro_x = (int16_t)(gyro.x*100),
+			gyro_y = (int16_t)(gyro.y*100),
+			gyro_z = (int16_t)(gyro.z*100);
 	data[4] = (acc_x)&0xFF;
 	data[5] = (acc_x)>>8;
 	data[6] = (acc_y)&0xFF;
@@ -98,12 +98,13 @@ void SendAnotcPID()
 	int16_t roll_target = (int16_t)(pid_roll[0].target*100),
 			roll_out_o = (int16_t)(pid_roll[0].out*100),
 			roll_out_i = (int16_t)(pid_roll[1].out*100),
-			pitch_target = (int16_t)(pid_pitch[0].target*100),
-			pitch_out_o = (int16_t)(pid_pitch[0].out*100),
-			pitch_out_i = (int16_t)(pid_pitch[1].out*100),
-			yaw_target = (int16_t)(pid_yaw[0].target*100),
-			yaw_out_o = (int16_t)(pid_yaw[0].out*100),
-			yaw_out_i = (int16_t)(pid_yaw[1].out*100);
+			roll_p_out_o = (int16_t)(pid_roll[0].p_out*100),
+			roll_i_out_o = (int16_t)(pid_roll[0].i_out*100),
+			roll_d_out_o = (int16_t)(pid_roll[0].d_out*100),
+			roll_p_out_i = (int16_t)(pid_roll[1].p_out*100),
+			roll_i_out_i = (int16_t)(pid_roll[1].i_out*100),
+			roll_d_out_i = (int16_t)(pid_roll[1].d_out*100);
+
 			
 	data[4] = (roll_target)&0xFF;
 	data[5] = (roll_target)>>8;
@@ -111,18 +112,18 @@ void SendAnotcPID()
 	data[7] = (roll_out_o)>>8;
 	data[8] = (roll_out_i)&0xFF;
 	data[9] = (roll_out_i)>>8;
-	data[10] = (pitch_target)&0xFF;
-	data[11] = (pitch_target)>>8;
-	data[12] = (pitch_out_o)&0xFF;
-	data[13] = (pitch_out_o)>>8;
-	data[14] = (pitch_out_i)&0xFF;
-	data[15] = (pitch_out_i)>>8;
-	data[16] = (yaw_target)&0xFF;
-	data[17] = (yaw_target)>>8;
-	data[18] = (yaw_out_o)&0xFF;
-	data[19] = (yaw_out_o)>>8;
-	data[20] = (yaw_out_i)&0xFF;
-	data[21] = (yaw_out_i)>>8;
+	data[10] = (roll_p_out_o)&0xFF;
+	data[11] = (roll_p_out_o)>>8;
+	data[12] = (roll_i_out_o)&0xFF;
+	data[13] = (roll_i_out_o)>>8;
+	data[14] = (roll_d_out_o)&0xFF;
+	data[15] = (roll_d_out_o)>>8;
+	data[16] = (roll_p_out_i)&0xFF;
+	data[17] = (roll_p_out_i)>>8;
+	data[18] = (roll_i_out_i)&0xFF;
+	data[19] = (roll_i_out_i)>>8;
+	data[20] = (roll_d_out_i)&0xFF;
+	data[21] = (roll_d_out_i)>>8;
 
 	for(uint8_t i=0; i<data[3]+4; i++)
 	{
@@ -145,7 +146,7 @@ void SendAnotcController()
 	uint8_t data[32] = {0x00};
 	data[0] = 0xAA;
 	data[1] = 0xFF;
-	data[2] = 0xF1;
+	data[2] = 0xF2;
 	data[3] = 0x08;
 	int16_t thr = (int16_t)(ppm_val[THR]),
 			ail = (int16_t)(ppm_val[AIL]),

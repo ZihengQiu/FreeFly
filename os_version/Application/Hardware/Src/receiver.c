@@ -93,7 +93,7 @@ void TIM1_CC_IRQHandler(void)
 		uint32_t val = TIM_GetCapture1(TIM1);
 		if(val > PPM_MAX_VAL)
 		{
-			if(val >= 4000 && val <= 12000) // ppm signal start
+			if(val > 2000 && val <= 12000) // ppm signal start
 			{
 				ppm_started = 1;
 				ppm_error = 0;

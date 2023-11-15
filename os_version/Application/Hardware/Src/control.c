@@ -8,8 +8,7 @@
 
 #define ANGLE_MAX 20
 
-#define pid_i_enabled 0
-#define pid_d_enabled 0
+BOOLEAN pid_i_enabled = 0, pid_d_enabled = 0;
 
  // 0: angle pid, 1: velocity pid
 pid_t pid_roll[2]  = {{1, 1, 1}, {1, 1 ,1}},
@@ -46,24 +45,26 @@ void UpdateAnglePID(pid_t *pid, float gyro)
 
 	pid->p_out = pid->kp * pid->err;
 
-#if pid_i_enabled == 1
-	if(abs(pid->err) < pid->err_limit)
+	if (pid_i_enabled == 1)
 	{
-		pid->i_out += pid->ki * pid->err;
-		// IntegralOutputLimit(pid);
+		if(abs(pid->err) < pid->err_limit)
+		{
+			pid->i_out += pid->ki * pid->err;
+			IntegralOutputLimit(pid);
+		}
+		else
+		{
+			pid->i_out = 0;
+		}
 	}
-	else
-	{
-		pid->i_out = 0;
-	}
-#endif
 
-#if pid_d_enabled == 1
+	if(pid_d_enabled == 1)
+	{
 		pid->d_out = pid->kd * gyro;
-#endif
+	}
 
 	pid->out = pid->p_out + pid->i_out + pid->d_out;
-	// OutputLimit(pid);
+	OutputLimit(pid);
 }
 
 void UpdateVelocityPID(pid_t *pid)
@@ -72,26 +73,27 @@ void UpdateVelocityPID(pid_t *pid)
 
 	pid->p_out = pid->kp * pid->err;
 
-#if pid_i_enabled == 1
-	if(abs(pid->err) < pid->err_limit)
+	if (pid_i_enabled == 1)
 	{
-		pid->i_out += pid->ki * pid->err;
-		// IntegralOutputLimit(pid);
+		if(abs(pid->err) < pid->err_limit)
+		{
+			pid->i_out += pid->ki * pid->err;
+			IntegralOutputLimit(pid);
+		}
+		else
+		{
+			pid->i_out = 0;
+		}
 	}
-	else
+	if(pid_d_enabled == 1)
 	{
-		pid->i_out = 0;
-	}
-#endif
-
-#if pid_d_enabled == 1
 		pid->d_out = pid->kd * (pid->err - pid->err_last);
-#endif
+	}
 	
 	pid->err_last = pid->err;
 
 	pid->out = pid->p_out + pid->i_out + pid->d_out;
-	// OutputLimit(pid);
+	OutputLimit(pid);
 }
 
 void UpdatePID(pid_t *pid_outer, pid_t *pid_inner, float gyro)
