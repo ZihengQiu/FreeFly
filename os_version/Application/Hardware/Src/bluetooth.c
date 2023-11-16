@@ -227,16 +227,16 @@ void BTCommandParserPrint(char *command[], int len)
 
 	if(0 == strcmp(command[1], "pid"))
 	{
-		char str[100];
+		char str[300];
 		sprintf(str, "roll:\r\n o:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n i:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n", 
 			pid_roll[0].kp, pid_roll[0].ki, pid_roll[0].kd,pid_roll[0].err_limit, pid_roll[0].i_out_limit, pid_roll[0].out_limit,
 			pid_roll[1].kp, pid_roll[1].ki, pid_roll[1].kd, pid_roll[1].err_limit, pid_roll[1].i_out_limit, pid_roll[1].out_limit);
-		sprintf(str+strlen(str), "pitch:\r\n o:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n i:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n", 
-			pid_pitch[0].kp, pid_pitch[0].ki, pid_pitch[0].kd,pid_pitch[0].err_limit, pid_pitch[0].i_out_limit, pid_pitch[0].out_limit,
-			pid_pitch[1].kp, pid_pitch[1].ki, pid_pitch[1].kd, pid_pitch[1].err_limit, pid_pitch[1].i_out_limit, pid_pitch[1].out_limit);
-		sprintf(str+strlen(str), "yaw:\r\n o:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n i:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n",
-			pid_yaw[0].kp, pid_yaw[0].ki, pid_yaw[0].kd,pid_yaw[0].err_limit, pid_yaw[0].i_out_limit, pid_yaw[0].out_limit,
-			pid_yaw[1].kp, pid_yaw[1].ki, pid_yaw[1].kd, pid_yaw[1].err_limit, pid_yaw[1].i_out_limit, pid_yaw[1].out_limit);
+		// sprintf(str+strlen(str), "pitch:\r\n o:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n i:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n", 
+		// 	pid_pitch[0].kp, pid_pitch[0].ki, pid_pitch[0].kd,pid_pitch[0].err_limit, pid_pitch[0].i_out_limit, pid_pitch[0].out_limit,
+		// 	pid_pitch[1].kp, pid_pitch[1].ki, pid_pitch[1].kd, pid_pitch[1].err_limit, pid_pitch[1].i_out_limit, pid_pitch[1].out_limit);
+		// sprintf(str+strlen(str), "yaw:\r\n o:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n i:%2.2f, %2.2f, %2.2f, %2.2f, %2.2f, %2.2f\r\n",
+		// 	pid_yaw[0].kp, pid_yaw[0].ki, pid_yaw[0].kd,pid_yaw[0].err_limit, pid_yaw[0].i_out_limit, pid_yaw[0].out_limit,
+		// 	pid_yaw[1].kp, pid_yaw[1].ki, pid_yaw[1].kd, pid_yaw[1].err_limit, pid_yaw[1].i_out_limit, pid_yaw[1].out_limit);
 		Bluetooth_SendString(str);
 		BTShowCommandResult(2);
 	}
@@ -244,6 +244,7 @@ void BTCommandParserPrint(char *command[], int len)
 	{
 		BTShowCommandResult(0);
 	}
+	return;
 }
 
 void BTCommandParserPID(char *command[], int len)

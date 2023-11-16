@@ -175,10 +175,18 @@ void SendAnotcController()
 	}
 }
 
+void SendWX(void)
+{
+	char str[100];
+	sprintf(str, "%.2f %.2f %.2f %.2f\n", euler.x, pid_roll[0].target, gyro.x ,pid_roll[0].out);
+	Bluetooth_SendString(str);
+}
+
 void SendAnotc(void)
 {
-	SendAnotcEuler();
-	SendAnotcSensor();
-	SendAnotcController();
-	SendAnotcPID();
+	// SendAnotcEuler();
+	// SendAnotcSensor();
+	// SendAnotcController();
+	// SendAnotcPID();
+	SendWX();
 }

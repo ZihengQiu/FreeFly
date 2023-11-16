@@ -258,8 +258,12 @@ void task_send_ground_control(void *pdata)
 
 void task_motor_control(void *pdata)
 {
-	pid_roll[0].err_limit = pid_roll[0].i_out_limit = pid_roll[0].out_limit = 500;
-	pid_roll[1].err_limit = pid_roll[1].i_out_limit = pid_roll[1].out_limit = 500;
+	pid_roll[0].err_limit = 1000;
+	pid_roll[0].i_out_limit = 1000;
+	pid_roll[0].out_limit = 1000;
+	pid_roll[1].err_limit = 1000;
+	pid_roll[1].i_out_limit = 100;
+	pid_roll[1].out_limit = 200;
 	pid_pitch[0].err_limit = pid_pitch[0].i_out_limit = pid_pitch[0].out_limit = 500;
 	pid_pitch[1].err_limit = pid_pitch[1].i_out_limit = pid_pitch[1].out_limit = 500;
 	pid_yaw[0].err_limit = pid_yaw[0].i_out_limit = pid_yaw[0].out_limit = 500;
