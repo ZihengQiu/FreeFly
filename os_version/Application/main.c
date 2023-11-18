@@ -326,27 +326,6 @@ void task_motor_control(void *pdata)
 	char str[200];
 	while(1)
 	{
-		// sprintf(str, "%4d %4d %4d %4d %4d %4d %4d %4d %4d ", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
-		// sprintf(str+strlen(str), "motor_armed : %d ", motor_armed);
-		// sprintf(str+strlen(str), "signal_blocked : %d \r\n", signal_blocked);
-
-		// sprintf(str,"roll:%04.6f %04.6f ", pid_roll[0].out, pid_roll[1].out);
-		// sprintf(str+strlen(str)," pitch:%04.6f %04.6f", pid_pitch[0].out, pid_pitch[1].out);
-		// sprintf(str+strlen(str)," yaw:%04.6f %04.6f", pid_yaw[0].out, pid_yaw[1].out);
-		// sprintf(str+strlen(str), "compare:%4d %4d %4d %4d ", motor_compare[0], motor_compare[1], motor_compare[2], motor_compare[3]);
-		// sprintf(str+strlen(str), "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
-		// Bluetooth_SendString(str);
-		OSTimeDly(10);
-
-		// if(((~signal_blocked) & ESC_unlock_need_execute & motor_armed) == 1)
-		// {
-		// 	ESC_unlock_need_execute = 0;
-		// 	ESC_unlock_executed = 1;
-		// 	if(ESCUnlock() == 0)
-		// 	{
-		// 		ESC_unlock_executed = 0; // unlock failed
-		// 	}
-		// }
 		if(signal_blocked == 1)
 		{
 			motor_compare[0] = MOTOR_COMPARE_MIN_VAL;
@@ -358,12 +337,6 @@ void task_motor_control(void *pdata)
 		if(((~signal_blocked) & motor_armed) == 1)
 		{
 			MotorControl(euler, gyro);
-
-			// motor_compare[0] = ppm_val[THR];
-			// motor_compare[1] = ppm_val[THR];
-			// motor_compare[2] = ppm_val[THR];
-			// motor_compare[3] = ppm_val[THR];
-			// MotorSetSpeed();
 		}
 		if(ppm_error == 1)
 		{
