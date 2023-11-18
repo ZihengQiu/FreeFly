@@ -16,6 +16,7 @@
 #include "attitude.h"
 #include "bluetooth.h"
 #include "control.h"
+#include "ground_control.h"
 #include "gy86.h"
 #include "led.h"
 #include "myI2C.h"
@@ -25,6 +26,7 @@
 
 #define TASK_PRIO_PID		9
 #define TASK_PRIO_ATTITUDE	10
+#define TASK_PRIO_GC		11
 
 #define TASK_STK_LEN 0x0800
 #define TASK_STK_LEN_2 0x0600
@@ -49,86 +51,6 @@ extern BOOLEAN motor_armed;
 extern uint32_t ppm_val[10];
 
 extern void My_Systick_Config(uint32_t reload_value);
-
-
-void SendAnotc(vec3d_t acc, vec3d_t gyro, vec3d_t mag, vec3d_t angle)
-{
-	// send attitude data to anotc v2.6
-	uint8_t sum;
-	sum = 0;
-	int8_t data[32] = {0x00};
-	data[0] = 0x88;
-	data[1] = 0xAF;
-	data[2] = 0x1C;
-	data[3] = (int16_t)(acc.x*100)>>8;
-	data[4] = (int16_t)(acc.x*100)&0xFF;
-	data[5] = (int16_t)(acc.y*100)>>8;
-	data[6] = (int16_t)(acc.y*100)&0xFF;
-	data[7] = (int16_t)(acc.z*100)>>8;
-	data[8] = (int16_t)(acc.z*100)&0xFF;
-	data[9] = (int16_t)(gyro.x*100)>>8;
-	data[10] = (int16_t)(gyro.x*100)&0xFF;
-	data[11] = (int16_t)(gyro.y*100)>>8;
-	data[12] = (int16_t)(gyro.y*100)&0xFF;
-	data[13] = (int16_t)(gyro.z*100)>>8;
-	data[14] = (int16_t)(gyro.z*100)&0xFF;
-	data[15] = (int16_t)(mag.x*100)>>8;
-	data[16] = (int16_t)(mag.x*100)&0xFF;
-	data[17] = (int16_t)(mag.y*100)>>8;
-	data[18] = (int16_t)(mag.y*100)&0xFF;
-	data[19] = (int16_t)(mag.z*100)>>8;
-	data[20] = (int16_t)(mag.z*100)&0xFF;
-	data[21] = (int16_t)(angle.x*100)>>8;
-	data[22] = (int16_t)(angle.x*100)&0xFF;
-	data[23] = (int16_t)(angle.y*100)>>8;
-	data[24] = (int16_t)(angle.y*100)&0xFF;
-	data[25] = (int16_t)(angle.z*10)>>8;
-	data[26] = (int16_t)(angle.z*10)&0xFF;
-	data[27] = 0x00;
-	data[28] = 0x00;
-	data[29] = 0x00;
-	data[30] = 0x00;
-
-	for(int i=0; i<31; i++)
-	{
-		sum += data[i];
-	}
-	
-	data[31] = sum;
-	for(int i=0; i<32; i++)
-	{
-		Bluetooth_SendByte(data[i]);
-	}
-}
-
-void SendAnotcPID()
-{
-	// send pid data to anotc v7 using flexible frame transmission
-	//0xAA 0xFF 0xF1 LEN DATA SC AC
-	uint8_t sum_check = 0, add_check = 0;
-	uint8_t data[32] = {0x00};
-	data[0] = 0xAA;
-	data[1] = 0xFF;
-	data[2] = 0xF1;
-	data[3] = 0x0C;
-	data[4] = (uint16_t)pid_roll[0].out>>8;
-	data[5] = (uint16_t)pid_roll[0].out&0xFF;
-	data[6] = (uint16_t)pid_pitch[0].out>>8;
-	data[7] = (uint16_t)pid_pitch[0].out&0xFF;
-	data[8] = (uint16_t)pid_yaw[0].out>>8;
-	data[9] = (uint16_t)pid_yaw[0].out&0xFF;
-	for(uint8_t i=0; i<data[3]+4; i++)
-	{
-		sum_check += data[i];
-		add_check += sum_check;
-	}
-	data[10] = sum_check;
-	data[11] = add_check;
-	for(uint8_t i=0; i<6+data[3]; i++)
-	{
-		Bluetooth_SendByte(data[i]);
-	}
-}
 
 void task_led_on(void *pdata)
 {
@@ -222,7 +144,7 @@ void task_attitude_gyro(void *pdata)
 		gyro0 = gyro1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		// SendAnotc(acc, gyro0, mag, euler);
+		// SendAnotc();
 		// printf("euler: %f, %f, %f\r\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
 		// convert euler to string and send them by bluetooth_sendstring
 		char str[100];
@@ -248,7 +170,7 @@ void task_attitude_acc(void *pdata)
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		SendAnotc(acc, gyro, mag, euler);
+		SendAnotc();
 		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
 		
 	}
@@ -298,7 +220,7 @@ void task_attitude_fusion(void *pdata)
 	// 	q0 = q1;
 	// 	QuaterToEuler(&q0, &euler);
 	// 	RadToDeg(&euler);
-	// 	// SendAnotc(acc, gyro, mag, euler);
+	// 	// SendAnotc();
 	// 	sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 	// 	Bluetooth_SendString(str);
 	// }
@@ -314,18 +236,62 @@ void task_attitude_fusion(void *pdata)
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
 		
-		// SendAnotc(acc, gyro, mag, euler);
+		// SendAnotc();
 		// sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 		// Bluetooth_SendString(str); // takes about 3ms
-		OSTimeDly(10);
+		OSTimeDly(5);
+	}
+}
+
+void task_send_ground_control(void *pdata)
+{
+	while(1)
+	{
+		if(signal_blocked == 0)
+		{
+			SendAnotc();
+			OSTimeDly(100);
+		}
+		BTCommandParser();
 	}
 }
 
 void task_motor_control(void *pdata)
 {
+	pid_roll[0].err_limit = 1000;
+	pid_roll[0].i_out_limit = 1000;
+	pid_roll[0].out_limit = 1000;
+	pid_roll[1].err_limit = 1000;
+	pid_roll[1].i_out_limit = 100;
+	pid_roll[1].out_limit = 200;
+	pid_pitch[0].err_limit = pid_pitch[0].i_out_limit = pid_pitch[0].out_limit = 500;
+	pid_pitch[1].err_limit = pid_pitch[1].i_out_limit = pid_pitch[1].out_limit = 500;
+	pid_yaw[0].err_limit = pid_yaw[0].i_out_limit = pid_yaw[0].out_limit = 500;
+	pid_yaw[1].err_limit = pid_yaw[1].i_out_limit = pid_yaw[1].out_limit = 500;
 	char str[200];
 	while(1)
 	{
+		// sprintf(str, "%4d %4d %4d %4d %4d %4d %4d %4d %4d ", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
+		// sprintf(str+strlen(str), "motor_armed : %d ", motor_armed);
+		// sprintf(str+strlen(str), "signal_blocked : %d \r\n", signal_blocked);
+
+		// sprintf(str,"roll:%04.6f %04.6f ", pid_roll[0].out, pid_roll[1].out);
+		// sprintf(str+strlen(str)," pitch:%04.6f %04.6f", pid_pitch[0].out, pid_pitch[1].out);
+		// sprintf(str+strlen(str)," yaw:%04.6f %04.6f", pid_yaw[0].out, pid_yaw[1].out);
+		// sprintf(str+strlen(str), "compare:%4d %4d %4d %4d ", motor_compare[0], motor_compare[1], motor_compare[2], motor_compare[3]);
+		// sprintf(str+strlen(str), "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
+		// Bluetooth_SendString(str);
+		OSTimeDly(10);
+
+		// if(((~signal_blocked) & ESC_unlock_need_execute & motor_armed) == 1)
+		// {
+		// 	ESC_unlock_need_execute = 0;
+		// 	ESC_unlock_executed = 1;
+		// 	if(ESCUnlock() == 0)
+		// 	{
+		// 		ESC_unlock_executed = 0; // unlock failed
+		// 	}
+		// }
 		if(signal_blocked == 1)
 		{
 			motor_compare[0] = MOTOR_COMPARE_MIN_VAL;
@@ -342,7 +308,6 @@ void task_motor_control(void *pdata)
 		{
 			Bluetooth_SendString("PPM signal error!\r\n");
 		}
-		BTCommandParser();
 	}
 }
 
@@ -385,8 +350,11 @@ void first_task(void *pdata) {
 	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], TASK_PRIO_ATTITUDE, TASK_PRIO_ATTITUDE, Task8Stk, TASK_STK_LEN, (void *)0, 0);
 	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 
-	OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], TASK_PRIO_PID, TASK_PRIO_PID, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], TASK_PRIO_PID, TASK_PRIO_PID, Task9Stk, TASK_STK_LEN, (void *)0, 0);
 	OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
+
+	OSTaskCreateExt(task_send_ground_control, (void *)0, &Task10Stk[TASK_STK_LEN - 1], TASK_PRIO_GC, TASK_PRIO_GC, Task10Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(14, (INT8U *)"GC", (INT8U *)"GC");
 	
     OSTaskDel(OS_PRIO_SELF);
 }

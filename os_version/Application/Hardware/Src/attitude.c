@@ -228,7 +228,7 @@ void GyroUpdateQuat(vec4d_t *q0, vec4d_t *q1, vec3d_t *gyro0, vec3d_t *gyro1, fl
 	Vec4Norm(q1);
 }
 
-#define DT 0.0007
+#define DT 0.0002
 
 void MadgwickAHRS(vec4d_t *q0, vec3d_t acc, vec3d_t gyro, vec3d_t mag)
 {
@@ -247,7 +247,7 @@ void MadgwickAHRS(vec4d_t *q0, vec3d_t acc, vec3d_t gyro, vec3d_t mag)
 
 	if(modulus_acc > 0.1) // high variation of the drone
 	{
-		beta += 30;
+		beta += 30*(20*modulus_acc);
 	}
 
 	lambda = (beta/modulus_acc+0.01)*0.5;
