@@ -239,7 +239,7 @@ void task_attitude_fusion(void *pdata)
 		// SendAnotc();
 		// sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 		// Bluetooth_SendString(str); // takes about 3ms
-		OSTimeDly(5);
+		OSTimeDly(3);
 	}
 }
 
@@ -250,7 +250,7 @@ void task_send_ground_control(void *pdata)
 		if(signal_blocked == 0)
 		{
 			SendAnotc();
-			OSTimeDly(100);
+			OSTimeDly(5);
 		}
 		BTCommandParser();
 	}
@@ -258,9 +258,9 @@ void task_send_ground_control(void *pdata)
 
 void task_motor_control(void *pdata)
 {
-	pid_roll[0].err_limit = 1000;
-	pid_roll[0].i_out_limit = 1000;
-	pid_roll[0].out_limit = 1000;
+	pid_roll[0].err_limit = 300;
+	pid_roll[0].i_out_limit = 200;
+	pid_roll[0].out_limit = 500;
 	pid_roll[1].err_limit = 1000;
 	pid_roll[1].i_out_limit = 100;
 	pid_roll[1].out_limit = 200;

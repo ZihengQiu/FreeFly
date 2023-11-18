@@ -179,6 +179,7 @@ void SendWX(void)
 {
 	char str[100];
 	sprintf(str, "%.2f %.2f %.2f %.2f\n", euler.x, pid_roll[0].target, gyro.x ,pid_roll[0].out);
+	// sprintf(str, "%.2f %.2f %.2f %.2f\n", gyro.x ,pid_roll[0].out, pid_roll[1].p_out ,pid_roll[1].i_out);
 	Bluetooth_SendString(str);
 }
 
