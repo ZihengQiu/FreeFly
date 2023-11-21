@@ -11,7 +11,7 @@
 BOOLEAN pid_i_enabled = 1, pid_d_enabled = 1;
 
  // 0: angle pid, 1: velocity pid
-pid_t pid_roll[2]  = {{2.2, 0.0125, -1.5}, {1.3, 0.005, -0.2}},
+pid_t pid_roll[2]  = {{1.025, 0.001, -0.05}, {1.8, 0.016, 5}},
 	  pid_pitch[2] = {{1, 1, 1}, {1 ,1 ,1}},
 	  pid_yaw[2]   = {{1, 1, 1}, {1 ,1 ,1}};
 
