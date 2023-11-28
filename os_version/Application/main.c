@@ -249,10 +249,11 @@ void task_send_ground_control(void *pdata)
 	{
 		if(signal_blocked == 0)
 		{
-			SendAnotc();
+			// SendAnotc();
 			OSTimeDly(5);
 		}
 		BTCommandParser();
+			OSTimeDly(5);
 	}
 }
 
@@ -264,8 +265,14 @@ void task_motor_control(void *pdata)
 	pid_roll[1].err_limit = 1000;
 	pid_roll[1].i_out_limit = 100;
 	pid_roll[1].out_limit = 200;
-	pid_pitch[0].err_limit = pid_pitch[0].i_out_limit = pid_pitch[0].out_limit = 500;
-	pid_pitch[1].err_limit = pid_pitch[1].i_out_limit = pid_pitch[1].out_limit = 500;
+
+	pid_pitch[0].err_limit = 300;
+	pid_pitch[0].i_out_limit = 200;
+	pid_pitch[0].out_limit = 500;
+	pid_pitch[1].err_limit = 1000;
+	pid_pitch[1].i_out_limit = 100;
+	pid_pitch[1].out_limit = 200;
+
 	pid_yaw[0].err_limit = pid_yaw[0].i_out_limit = pid_yaw[0].out_limit = 500;
 	pid_yaw[1].err_limit = pid_yaw[1].i_out_limit = pid_yaw[1].out_limit = 500;
 	char str[200];
@@ -281,7 +288,7 @@ void task_motor_control(void *pdata)
 		// sprintf(str+strlen(str), "compare:%4d %4d %4d %4d ", motor_compare[0], motor_compare[1], motor_compare[2], motor_compare[3]);
 		// sprintf(str+strlen(str), "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
 		// Bluetooth_SendString(str);
-		OSTimeDly(5);
+		OSTimeDly(3);
 
 		// if(((~signal_blocked) & ESC_unlock_need_execute & motor_armed) == 1)
 		// {
@@ -292,7 +299,7 @@ void task_motor_control(void *pdata)
 		// 		ESC_unlock_executed = 0; // unlock failed
 		// 	}
 		// }
-		if(signal_blocked == 1)
+		if(signal_blocked == 1 || motor_armed == 0)
 		{
 			motor_compare[0] = MOTOR_COMPARE_MIN_VAL;
 			motor_compare[1] = MOTOR_COMPARE_MIN_VAL;

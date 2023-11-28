@@ -106,6 +106,7 @@ void SignalBlockDetect(void)
 	if(ppm_val[7] >= PPM_MAX_VAL-15)
 	{
 		signal_blocked = 1;
+		motor_armed = 0;
 	}
 	else
 	{

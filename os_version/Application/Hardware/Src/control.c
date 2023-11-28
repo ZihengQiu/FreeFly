@@ -6,14 +6,18 @@
 
 #include <stdlib.h>
 
-#define ANGLE_MAX 20
+#define ANGLE_MAX 	20
+#define ANGULAR_MAX 30
 
 BOOLEAN pid_i_enabled = 1, pid_d_enabled = 1;
 
  // 0: angle pid, 1: velocity pid
-pid_t pid_roll[2]  = {{1.025, 0.001, -0.05}, {1.8, 0.016, 5}},
-	  pid_pitch[2] = {{1, 1, 1}, {1 ,1 ,1}},
-	  pid_yaw[2]   = {{1, 1, 1}, {1 ,1 ,1}};
+// pid_t pid_roll[2]  = {{1.025, 0.001, -0.05}, {1.70, 0.016, 5}},
+// 	  pid_pitch[2] = {{1.5, 0.00, -0.15}, {2, 0, 5}},
+// 	  pid_yaw[2]   = {{1, 0, 0}, {5 ,0.02 ,0}};
+pid_t pid_roll[2] = {{1.3, 0.001, -0.05}, {1.5, 0.016, 40}},
+	  pid_pitch[2] = {{1.1, 0.001, -0.05}, {1.5, 0.016, 40}},
+	  pid_yaw[2] = {{1, 0, 0}, {5 ,0.02 ,0}};
 
 void IntegralOutputLimit(pid_t *pid)
 {
@@ -45,17 +49,17 @@ void UpdateAnglePID(pid_t *pid, float gyro)
 
 	pid->p_out = pid->kp * pid->err;
 
-	if (pid_i_enabled == 1)
+	if (pid_i_enabled == 1 && ppm_val[THR] > 1300)
 	{
 		if(abs(pid->err) < pid->err_limit)
 		{
 			pid->i_out += pid->ki * pid->err;
 			IntegralOutputLimit(pid);
 		}
-		else
-		{
-			// pid->i_out = 0;
-		}
+	}
+	else
+	{
+		pid->i_out = 0;
 	}
 
 	if(pid_d_enabled == 1)
@@ -73,18 +77,19 @@ void UpdateVelocityPID(pid_t *pid)
 
 	pid->p_out = pid->kp * pid->err;
 
-	if (pid_i_enabled == 1)
+	if (pid_i_enabled == 1 && ppm_val[THR] > 1300)
 	{
 		if(abs(pid->err) < pid->err_limit)
 		{
 			pid->i_out += pid->ki * pid->err;
 			IntegralOutputLimit(pid);
 		}
-		else
-		{
-			// pid->i_out = 0;
-		}
 	}
+	else
+	{
+		pid->i_out = 0;
+	}
+	  
 	if(pid_d_enabled == 1)
 	{
 		pid->d_out = pid->kd * (pid->err - pid->err_last);
@@ -109,9 +114,9 @@ void MotorControl(vec3d_t angle_cur, vec3d_t gyro)
 	uint32_t throttle = ppm_val[THR];
 	vec3d_t angle_target;
 	
-	angle_target.x = ((float)ppm_val[AIL]-PPM_MID_VAL)/(PPM_MAX_VAL-PPM_MIN_VAL)*ANGLE_MAX*2;
-	angle_target.y = ((float)ppm_val[ELE]-PPM_MID_VAL)/(PPM_MAX_VAL-PPM_MIN_VAL)*ANGLE_MAX*2;
-	angle_target.z = ((float)ppm_val[RUD]-PPM_MID_VAL)/(PPM_MAX_VAL-PPM_MIN_VAL)*ANGLE_MAX*2;
+	angle_target.x = ((float)ppm_val[AIL]-PPM_MID_VAL)/(PPM_MAX_VAL-PPM_MID_VAL)*ANGLE_MAX;
+	angle_target.y = ((float)ppm_val[ELE]-PPM_MID_VAL)/(PPM_MAX_VAL-PPM_MID_VAL)*ANGLE_MAX;
+	angle_target.z = ((float)ppm_val[RUD]-PPM_MID_VAL)/(PPM_MAX_VAL-PPM_MID_VAL)*ANGLE_MAX;
 
 	// update angle in pid_t
 	pid_roll[0].target = angle_target.x;
@@ -126,8 +131,10 @@ void MotorControl(vec3d_t angle_cur, vec3d_t gyro)
 	pid_yaw[1].current = gyro.z;
 
 	UpdatePID(&pid_roll[0], &pid_roll[1], gyro.x);
-	// UpdatePID(&pid_pitch[0], &pid_pitch[1], gyro.y);
-	// UpdatePID(&pid_yaw[0], &pid_yaw[1], gyro.z);
+	UpdatePID(&pid_pitch[0], &pid_pitch[1], gyro.y);
+	// UpdatePID(&p[0], &pid_yaw[1], gyro.z);
+	pid_yaw[1].target = -1*((float)ppm_val[RUD] - PPM_MID_VAL)/(PPM_MAX_VAL-PPM_MID_VAL)*ANGULAR_MAX;
+	UpdateVelocityPID(&pid_yaw[1]);
 
 	// update motor speed
 	motor_compare[0] = throttle - pid_pitch[1].out + pid_roll[1].out - pid_yaw[1].out;
