@@ -44,13 +44,10 @@ OS_STK Task9Stk[TASK_STK_LEN];
 OS_STK Task10Stk[TASK_STK_LEN];
 
 uint16_t times;
-RCC_ClocksTypeDef clockwatch;
 extern vec3d_t acc_offset, acc_scale, gyro_offset, gyro_filter[2], mag_offset, mag_scale;
 extern vec3d_t acc, mag, gyro, euler;
 extern BOOLEAN motor_armed;
 extern uint32_t ppm_val[10];
-
-extern void My_Systick_Config(uint32_t reload_value);
 
 void task_led_on(void *pdata)
 {
@@ -72,8 +69,6 @@ void task_led_off(void *pdata)
 
 void task_peripheral_init(void *pdata)
 {
-	// RCC_GetClocksFreq(&clockwatch);
-
 	BluetoothInit();
 	printf("Bluetooth init finished!\r\n");
 	times++;
@@ -107,18 +102,16 @@ void task_MPU6050(void *pdata)
 	while(1)
 	{
 		vec3d_t acc;
-		// GetAccData(&acc);
-		// printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
+		GetAccData(&acc);
+		printf("acc: %f, %f, %f\n", acc.x, acc.y, acc.z);
 
 		vec3d_t gyro;
-		// GetGyroData(&gyro);
-		// printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
+		GetGyroData(&gyro);
+		printf("gyro: %f, %f, %f\n", gyro.x, gyro.y, gyro.z);
 
 		vec3d_t mag;
 		GetMagData(&mag);
-		float modulus = Vec3Modulus(mag);
-		// printf("%f,%f,%f\n", mag.x, mag.y, mag.z);
-		printf("mag: %f, %f, %f, M:%f\n", mag.x, mag.y, mag.z, modulus);
+		printf("%f,%f,%f\n", mag.x, mag.y, mag.z);
 		
 		OSTimeDly(100);
 	}
@@ -129,27 +122,17 @@ void task_attitude_gyro(void *pdata)
 	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
 	vec4d_t q0 = {1, 0, 0, 0}, q1;
 	vec3d_t gyro0 = {0, 0, 0}, gyro1, acc, mag, euler = {0, 0, 0};
-	uint32_t t1, t2;
 	while(1)
 	{
-		t1 = OSTimeGet();
 		GetAccData(&acc);
 		GetMagData(&mag);
 		GetGyroData(&gyro1);
 
-		// printf("gyro: %f, %f, %f\n", gyro1.x, gyro1.y, gyro1.z);
 		GyroUpdateQuat(&q0, &q1, &gyro0, &gyro1, 0.001);
-		// printf("q: %f, %f, %f, %f\n", q1.w, q1.x, q1.y, q1.z);
 		q0 = q1;
 		gyro0 = gyro1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		// SendAnotc();
-		// printf("euler: %f, %f, %f\r\n", euler.x, euler.y, euler.z);	// a printf takes 4 ticks
-		// convert euler to string and send them by bluetooth_sendstring
-		char str[100];
-		sprintf(str, "%f, %f, %f\r\n", euler.x, euler.y, euler.z);
-		Bluetooth_SendString(str);
 	}
 }
 
@@ -157,22 +140,16 @@ void task_attitude_acc(void *pdata)
 {
 	vec3d_t acc = {0, 0, 0}, gyro, mag, euler = {0, 0, 0};
 	vec4d_t q0 = {1, 0, 0, 0}, q1;
-	uint32_t t1, t2;
 	while(1)
 	{
 		GetAccData(&acc);
-		// printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
 		GetGyroData(&gyro);
 		GetMagData(&mag);
 
 		AccUpdateQuat(&q0, &q1, &acc, &gyro, 0.001);
-		// printf("q: %10f, %10f, %10f, %10f\n", q1.w, q1.x, q1.y, q1.z);
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		SendAnotc();
-		// printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
-		
 	}
 }
 
@@ -180,51 +157,25 @@ void task_attitude_acc_mag(void *pdata)
 {
 	// AccCalibration(&acc_offset, &acc_scale);
 	// GyroCalibration(&gyro_offset, &gyro_filter[2]);
-	// printf("gyro_offset: %f, %f, %f\n", gyro_offset.x, gyro_offset.y, gyro_offset.z);
-	// printf("acc_offset: %f, %f, %f\n", acc_offset.x, acc_offset.y, acc_offset.z);
 	vec3d_t acc_data = {0, 0, 0}, mag_data, gyro_data, euler = {0, 0, 0};
 	vec4d_t q0 = {1, 0, 0, 0}, q1;
-	uint32_t t1, t2;
 	while(1)
 	{
-		t1 = OSTimeGet();
 		GetAccData(&acc_data);
 		Vec3Norm(&acc_data);
 		GetMagData(&mag_data);
 		Vec3Norm(&mag_data);
-		// printf("acc: %f, %f, %f\n", acc_data.x, acc_data.y, acc_data.z);
 		GetGyroData(&gyro_data);
 		AccMagUpdateQuat(&q0, &q1, &acc_data, &gyro_data, &mag_data, 0.001);
-		// printf("q: %10f, %10f, %10f, %10f\n", q1.w, q1.x, q1.y, q1.z);
 		q0 = q1;
 		QuaterToEuler(&q0, &euler);
-		// RadToDeg(&euler);
-		printf("euler: %10f, %10f, %10f\n", euler.x, euler.y, euler.z);
-		t2 = OSTimeGet();
 		OSTimeDly(10);
 	}
 }
 
 void task_attitude_fusion(void *pdata)
 {
-	vec4d_t q0 = {1, 0, 0, 0}, q1;
-	char str[100];
-
-	// estimate the attitude of the first frame by acc and mag
-	// for(uint8_t i=0; i<50; i++)	// takes 3s 
-	// {
-	// 	GetAccData(&acc);
-	// 	GetGyroData(&gyro); 
-	// 	GetMagData(&mag);
-	// 	AccMagUpdateQuat(&q0, &q1, &acc, &gyro, &mag, 0.001);
-	// 	q0 = q1;
-	// 	QuaterToEuler(&q0, &euler);
-	// 	RadToDeg(&euler);
-	// 	// SendAnotc();
-	// 	sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
-	// 	Bluetooth_SendString(str);
-	// }
-	uint32_t cnt = 0;
+	vec4d_t q0 = {1, 0, 0, 0};
 	while(1)
 	{
 		GetGyroData(&gyro); // reading data takes about 0.6ms
@@ -235,10 +186,7 @@ void task_attitude_fusion(void *pdata)
 		
 		QuaterToEuler(&q0, &euler);
 		RadToDeg(&euler);
-		
-		// SendAnotc();
-		// sprintf(str, "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
-		// Bluetooth_SendString(str); // takes about 3ms
+
 		OSTimeDly(3);
 	}
 }
@@ -259,46 +207,11 @@ void task_send_ground_control(void *pdata)
 
 void task_motor_control(void *pdata)
 {
-	pid_roll[0].err_limit = 300;
-	pid_roll[0].i_out_limit = 200;
-	pid_roll[0].out_limit = 500;
-	pid_roll[1].err_limit = 1000;
-	pid_roll[1].i_out_limit = 100;
-	pid_roll[1].out_limit = 200;
-
-	pid_pitch[0].err_limit = 300;
-	pid_pitch[0].i_out_limit = 200;
-	pid_pitch[0].out_limit = 500;
-	pid_pitch[1].err_limit = 1000;
-	pid_pitch[1].i_out_limit = 100;
-	pid_pitch[1].out_limit = 200;
-
-	pid_yaw[0].err_limit = pid_yaw[0].i_out_limit = pid_yaw[0].out_limit = 500;
-	pid_yaw[1].err_limit = pid_yaw[1].i_out_limit = pid_yaw[1].out_limit = 500;
-	char str[200];
+	
 	while(1)
 	{
-		// sprintf(str, "%4d %4d %4d %4d %4d %4d %4d %4d %4d ", ppm_val[0], ppm_val[1], ppm_val[2], ppm_val[3], ppm_val[4], ppm_val[5], ppm_val[6], ppm_val[7], ppm_val[8]);
-		// sprintf(str+strlen(str), "motor_armed : %d ", motor_armed);
-		// sprintf(str+strlen(str), "signal_blocked : %d \r\n", signal_blocked);
-
-		// sprintf(str,"roll:%04.6f %04.6f ", pid_roll[0].out, pid_roll[1].out);
-		// sprintf(str+strlen(str)," pitch:%04.6f %04.6f", pid_pitch[0].out, pid_pitch[1].out);
-		// sprintf(str+strlen(str)," yaw:%04.6f %04.6f", pid_yaw[0].out, pid_yaw[1].out);
-		// sprintf(str+strlen(str), "compare:%4d %4d %4d %4d ", motor_compare[0], motor_compare[1], motor_compare[2], motor_compare[3]);
-		// sprintf(str+strlen(str), "%10f, %10f, %10f\r\n", euler.x, euler.y, euler.z);
-		// Bluetooth_SendString(str);
 		OSTimeDly(3);
 
-		// if(((~signal_blocked) & ESC_unlock_need_execute & motor_armed) == 1)
-		// {
-		// 	ESC_unlock_need_execute = 0;
-		// 	ESC_unlock_executed = 1;
-		// 	if(ESCUnlock() == 0)
-		// 	{
-		// 		ESC_unlock_executed = 0; // unlock failed
-		// 	}
-		// }
 		if(signal_blocked == 1 || motor_armed == 0)
 		{
 			motor_compare[0] = MOTOR_COMPARE_MIN_VAL;
@@ -310,12 +223,6 @@ void task_motor_control(void *pdata)
 		if(((~signal_blocked) & motor_armed) == 1)
 		{
 			MotorControl(euler, gyro);
-
-			// motor_compare[0] = ppm_val[THR];
-			// motor_compare[1] = ppm_val[THR];
-			// motor_compare[2] = ppm_val[THR];
-			// motor_compare[3] = ppm_val[THR];
-			// MotorSetSpeed();
 		}
 		if(ppm_error == 1)
 		{

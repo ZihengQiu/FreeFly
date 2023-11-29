@@ -6,8 +6,6 @@
 
 #include "ucos_ii.h"
 
-// #define PPM_MAX_VAL 2000
-// #define PPM_MIN_VAL 1000
 #define PPM_MAX_VAL 2000
 #define PPM_MID_VAL 1500
 #define PPM_MIN_VAL 1000

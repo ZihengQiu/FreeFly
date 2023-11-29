@@ -18,6 +18,7 @@ typedef struct
 extern uint32_t ppm_val[10], motor_compare[4];
 extern pid_t pid_roll[2], pid_pitch[2], pid_yaw[2];
 extern BOOLEAN pid_i_enabled, pid_d_enabled;
+
 void MotorControl(vec3d_t angle_cur, vec3d_t gyro);
 
 #endif

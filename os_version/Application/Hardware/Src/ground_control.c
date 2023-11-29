@@ -178,15 +178,7 @@ void SendAnotcController()
 char str[200];
 void SendWX(void)
 {
-
-	// sprintf(str, "%.2f %.2f %.2f %.2f\n", gyro.z, pid_yaw[1].target, euler.y ,pid_pitch[0].target);
-
-	// sprintf(str, "%.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f\n", pid_pitch[0].target, euler.y, pid_pitch[0].p_out, pid_pitch[0].i_out ,pid_pitch[0].d_out, pid_pitch[1].target, gyro.y, pid_pitch[1].p_out, pid_pitch[1].i_out ,pid_pitch[1].d_out);
 	printf("%.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f\n", pid_pitch[0].target, euler.y, pid_pitch[0].p_out, pid_pitch[0].i_out ,pid_pitch[0].d_out, pid_pitch[1].target, gyro.y, pid_pitch[1].p_out, pid_pitch[1].i_out ,pid_pitch[1].d_out);
-	// sprintf(整数部分最多3位和小数部分最多2位)
-	// sprintf(str, "%.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f\n", fmod(pid_pitch[0].target, 1000), fmod(euler.y, 1000), fmod(pid_pitch[0].p_out, 1000), fmod(pid_pitch[0].i_out, 1000) ,fmod(pid_pitch[0].d_out, 1000), fmod(pid_pitch[1].target, 1000), fmod(gyro.y, 1000), fmod(pid_pitch[1].p_out, 1000), fmod(pid_pitch[1].i_out, 1000) ,fmod(pid_pitch[1].d_out, 1000));
-	
-	// Bluetooth_SendString(str);
 }
 
 void SendAnotc(void)
