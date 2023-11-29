@@ -249,7 +249,7 @@ void task_send_ground_control(void *pdata)
 	{
 		if(signal_blocked == 0)
 		{
-			// SendAnotc();
+			SendAnotc();
 			OSTimeDly(5);
 		}
 		BTCommandParser();

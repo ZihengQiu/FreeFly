@@ -12,9 +12,7 @@
 BOOLEAN pid_i_enabled = 1, pid_d_enabled = 1;
 
  // 0: angle pid, 1: velocity pid
-// pid_t pid_roll[2]  = {{1.025, 0.001, -0.05}, {1.70, 0.016, 5}},
-// 	  pid_pitch[2] = {{1.5, 0.00, -0.15}, {2, 0, 5}},
-// 	  pid_yaw[2]   = {{1, 0, 0}, {5 ,0.02 ,0}};
+
 pid_t pid_roll[2] = {{1.3, 0.001, -0.05}, {1.5, 0.016, 40}},
 	  pid_pitch[2] = {{1.1, 0.001, -0.05}, {1.5, 0.016, 40}},
 	  pid_yaw[2] = {{1, 0, 0}, {5 ,0.02 ,0}};
@@ -49,7 +47,7 @@ void UpdateAnglePID(pid_t *pid, float gyro)
 
 	pid->p_out = pid->kp * pid->err;
 
-	if (pid_i_enabled == 1 && ppm_val[THR] > 1300)
+	if (pid_i_enabled == 1 && ppm_val[THR] > 1500)
 	{
 		if(abs(pid->err) < pid->err_limit)
 		{
@@ -77,7 +75,7 @@ void UpdateVelocityPID(pid_t *pid)
 
 	pid->p_out = pid->kp * pid->err;
 
-	if (pid_i_enabled == 1 && ppm_val[THR] > 1300)
+	if (pid_i_enabled == 1 && ppm_val[THR] > 1500)
 	{
 		if(abs(pid->err) < pid->err_limit)
 		{
