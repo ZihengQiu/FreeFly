@@ -7,7 +7,7 @@
 
 uint32_t PulseWidth, Period, DutyCycle;
 uint32_t ppm_val[10], ppm_cnt = 0;
-BOOLEAN ppm_started;
+BOOLEAN ppm_started, ppm_error = 0;
 
 void MY_NVIC_PriorityGroupConfig(uint8_t NVIC_Group)
 {
@@ -21,21 +21,6 @@ void MY_NVIC_PriorityGroupConfig(uint8_t NVIC_Group)
 	SCB->AIRCR = temp;
 }
 
-//NVIC_PreemptionPriority:抢占优先级
-//NVIC_SubPriority：响应优先级
-//NVIC_Channel：中断编号
-//NVIC_Group：中断分组
-void MY_NVIC_Init(uint8_t NVIC_PreemptionPriority,uint8_t NVIC_SubPriority,uint8_t NVIC_Channel,uint8_t NVIC_Group)
-{
-	uint32_t temp;
-	MY_NVIC_PriorityGroupConfig(NVIC_Group);//设置分组
-	temp = NVIC_PreemptionPriority<<(4 - NVIC_Group);
-	temp |= NVIC_SubPriority&(0X0f>>NVIC_Group);
-	temp &= 0Xf;                                    //取低四位
-	NVIC->ISER[NVIC_Channel/32] |= 1 << NVIC_Channel % 32;//使能中断位
-	NVIC->IP[NVIC_Channel] |= temp << 4;//设置响应优先级和抢占优先级
-}
-
 void TIM1_Init(void)
 {
 	// PA8 : TIM1CH1
@@ -43,56 +28,49 @@ void TIM1_Init(void)
 	RCC->APB2ENR |= 1 << 0;
 	GPIOA->AFR[1] |= 1 << 0;
 	GPIOA->MODER &= ~(3 << (2*8));
-	GPIOA->MODER |= 2 << (2*8);//复用功能
-	GPIOA->OTYPER &=~ (1 << 8);//复用推挽输出
+	GPIOA->MODER |= 2 << (2*8);//閿熸枻鎷烽敓鐭?櫢鎷烽敓鏂ゆ嫹
+	GPIOA->OTYPER &=~ (1 << 8);//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟?
 	GPIOA->OSPEEDR |= 2 << (2*8);//50Mhz
 	GPIOA->PUPDR &= ~(3 << (2*8));//no pull and down
-	// 时机单元
+	// 鏃堕敓鏂ゆ嫹閿熸枻鎷峰厓
 	TIM1->ARR = 0;
-	TIM1->CR1 &=~ (1 << 4);//递增计数
+	TIM1->CR1 &=~ (1 << 4);//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	TIM1->PSC |= 83;
 	TIM1->ARR |= 19999;
-	TIM1->EGR |= 1 << 1;//配置EGR寄存器的CC1G位，使得捕获到边沿信号后就产生一个捕获事件
-	TIM1->CR1 |= 1 << 7;//ARR使能
-	// 输入通道1
-	TIM1->CCMR1 |= 1 << (2*0);//通道1的捕获信号IC1被映射到了引脚TI1上
-	TIM1->CCMR1 &=~ (3 << (2*1));//不对边沿信号进行分频处理
-	TIM1->CCMR1 &=~ (15 << (4*1));//滤波器为零
-	TIM1->CCER |= 1 << 0;//CC1使能
-	TIM1->CCER &=~ (1 << 1);//电路对上升沿敏感（即捕获）
+	TIM1->EGR |= 1 << 1;//閿熸枻鎷烽敓鏂ゆ嫹EGR閿熶茎杈炬嫹閿熸枻鎷烽敓鏂ゆ嫹CC1G浣嶉敓鏂ゆ嫹浣块敓鐭??鎷烽敓浠婂埌鎲嬫嫹閿熸枻鎷烽敓鑴氬彿鐚存嫹绛掗敓鏂ゆ嫹閿熸彮浼欐嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷峰綍閿燂拷
+	TIM1->CR1 |= 1 << 7;//ARR浣块敓鏂ゆ嫹
+	// 閿熸枻鎷烽敓鏂ゆ嫹閫氶敓鏂ゆ嫹1
+	TIM1->CCMR1 |= 1 << (2*0);//閫氶敓鏂ゆ嫹1閿熶茎璇ф嫹閿熸枻鎷烽敓鑴氱尨鎷稩C1閿熸枻鎷锋槧閿熸垝鍒伴敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹TI1閿熸枻鎷?
+	TIM1->CCMR1 &=~ (3 << (2*1));//閿熸枻鎷烽敓鐨嗘唻鎷烽敓鏂ゆ嫹閿熻剼鍙锋枻鎷烽敓鍙?嚖鎷烽?閿熸枻鎷烽敓鏂ゆ嫹
+	TIM1->CCMR1 &=~ (15 << (4*1));//閿熷壙璇ф嫹閿熸枻鎷蜂负閿熸枻鎷?
+	TIM1->CCER |= 1 << 0;//CC1浣块敓鏂ゆ嫹
+	TIM1->CCER &=~ (1 << 1);//閿熸枻鎷疯矾閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鍙?綇鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	TIM1->CCER &=~ (1 << 3);
-	//输入通道2
-	// TIM1->CCMR1 |= 2 << (2*4);//通道2的捕获信号IC2被映射到了引脚TI1上 
-	// TIM1->CCMR1 &=~ (3 << (2*5));//不对边沿信号进行分频处理
-	// TIM1->CCMR1 &=~ (15 << (4*3));//滤波器为零
-	// TIM1->CCER |= 1 << 4;//CC2使能
-	// TIM1->CCER |= 1 << 5;//电路对下降沿敏感（即捕获）
+	//閿熸枻鎷烽敓鏂ゆ嫹閫氶敓鏂ゆ嫹2
+	// TIM1->CCMR1 |= 2 << (2*4);//閫氶敓鏂ゆ嫹2閿熶茎璇ф嫹閿熸枻鎷烽敓鑴氱尨鎷稩C2閿熸枻鎷锋槧閿熸垝鍒伴敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹TI1閿熸枻鎷? 
+	// TIM1->CCMR1 &=~ (3 << (2*5));//閿熸枻鎷烽敓鐨嗘唻鎷烽敓鏂ゆ嫹閿熻剼鍙锋枻鎷烽敓鍙?嚖鎷烽?閿熸枻鎷烽敓鏂ゆ嫹
+	// TIM1->CCMR1 &=~ (15 << (4*3));//閿熷壙璇ф嫹閿熸枻鎷蜂负閿熸枻鎷?
+	// TIM1->CCER |= 1 << 4;//CC2浣块敓鏂ゆ嫹
+	// TIM1->CCER |= 1 << 5;//閿熸枻鎷疯矾閿熸枻鎷烽敓閾版枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鍙?綇鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 	// TIM1->CCER |= 1 << 7;	
-	//SMCR寄存器设置
+	//SMCR閿熶茎杈炬嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷?
 	TIM1->SMCR &= ~(5 << 1);
-	TIM1->SMCR |= 4 << 0;//设置为复位模式
+	TIM1->SMCR |= 4 << 0;//閿熸枻鎷烽敓鏂ゆ嫹涓洪敓鏂ゆ嫹浣嶆ā寮?
 	TIM1->SMCR &= ~(7 << 4);
-	TIM1->SMCR |= 5 << 4;//滤波后的定时器输入TI1FP1
-	TIM1->SMCR |= 1 << 7;//设置为从模式
+	TIM1->SMCR |= 5 << 4;//閿熷壙璇ф嫹閿熸枻鎷蜂憨閿熺粸鎲嬫嫹閿熸枻鎷烽敓鏂ゆ嫹閿熺祴I1FP1
+	TIM1->SMCR |= 1 << 7;//閿熸枻鎷烽敓鏂ゆ嫹涓洪敓鏂ゆ嫹妯″紡
 	
-	
-	TIM_ITConfig(TIM1,TIM_IT_CC1,ENABLE);
-	
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	NVIC_InitTypeDef NVIC_InitStructure;	
 	NVIC_InitStructure.NVIC_IRQChannel=TIM1_CC_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority=1;
 	NVIC_Init(&NVIC_InitStructure);
+
+	TIM_ITConfig(TIM1,TIM_IT_CC1,ENABLE);
 	
-//	NVIC->IP[TIM1_CC_IRQn] = 0 << 4;
-//	NVIC->IP[TIM1_UP_TIM10_IRQn] = 1 << 4;
-//	NVIC->ISER[TIM1_CC_IRQn/32] |= 1 << TIM1_CC_IRQn % 32;
-//	NVIC->ISER[TIM1_UP_TIM10_IRQn/32] |= 1 << (uint32_t)(TIM1_UP_TIM10_IRQn % 32);
-	
-	//使能中断
-	TIM1->DIER |= 1 << 1;//使能CC1中断
+	//浣块敓鏂ゆ嫹閿熷彨璁规嫹
+	TIM1->DIER |= 1 << 1;//浣块敓鏂ゆ嫹CC1閿熷彨璁规嫹
 	TIM1->CR1 |= 1 << 0;
 }
 
@@ -101,22 +79,6 @@ void Receiver_Init(void)
 	TIM1_Init();
 }
 
-//void TIM1_CC_IRQHandler(void)//TIM1_GetDutyCycle PWM version
-//{
-//	if(((TIM1->SR & 0x2) == 2)&&((TIM1->SR & 0x4) == 4))//检测是否捕捉到上升沿和下降沿 
-//		{
-//			PulseWidth = TIM1->CCR2;
-//			Period = TIM1->CCR1;
-//			TIM1->CNT = 0;
-//			//DutyCycle = PulseWidth*10/19;
-//    }
-//    TIM1->SR &=~ (1 << 1);
-//	DutyCycle = PulseWidth*10/19;
-//	//if(ret-DutyCycle > 3 || ret-DutyCycle < -3) return DutyCycle;
-//	if(DutyCycle < 10) DutyCycle = 10;
-//		else if(DutyCycle > 20) DutyCycle = 20;
-//}
-
 uint32_t Receiver_CalcDutyCycle(uint8_t i)
 {
 	return 1000+(ppm_val[i]-PPM_MIN_VAL)*1000/(PPM_MAX_VAL-PPM_MIN_VAL);
@@ -124,19 +86,28 @@ uint32_t Receiver_CalcDutyCycle(uint8_t i)
 
 void TIM1_CC_IRQHandler(void)
 {
-	static uint8_t valid_cnt = 0; // check if the ppm signal is valid
+	static uint8_t valid_cnt = 0; // represent if the ppm signal is valid
 
 	if(TIM_GetITStatus(TIM1,TIM_IT_CC1) == SET)
 	{
 		uint32_t val = TIM_GetCapture1(TIM1);
-		if(val >= 4000)
+		if(val > PPM_MAX_VAL)
 		{
-			ppm_started = 1;
+			if(val > 2000 && val <= 12000) // ppm signal start symbol
+			{
+				ppm_started = 1;
+				ppm_error = 0;
+			}
+			else
+			{
+				ppm_error = 1;
+				signal_blocked = 1;
+			}
 		} 
 		if(ppm_started == 1)
 		{
-			ppm_val[ppm_cnt] = TIM_GetCapture1(TIM1);
-			if(ppm_cnt!=0 && ppm_val[ppm_cnt] <= (PPM_MAX_VAL+10) && ppm_val[ppm_cnt] >= (PPM_MIN_VAL-10))
+			ppm_val[ppm_cnt] = val;
+			if(ppm_cnt!=0 && ppm_val[ppm_cnt] <= (PPM_MAX_VAL) && ppm_val[ppm_cnt] >= (PPM_MIN_VAL))
 			{
 				valid_cnt ++;
 			}
@@ -148,8 +119,11 @@ void TIM1_CC_IRQHandler(void)
 				if(valid_cnt == 8)
 				{
 					SignalBlockDetect();
-					MotorArmDetect();
-					ESCUnlockDetect();
+					if(signal_blocked == 0)
+					{
+						MotorArmDetect();
+						// ESCUnlockfDetect(); // no need to execute this :)
+					}
 				}
 				valid_cnt = 0;
 			}
