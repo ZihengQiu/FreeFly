@@ -1,14 +1,33 @@
 # FreeFly
-## Versions
-### no-os-version
-- see project structure in README.md in sub directory.
-### os-version
-- ucOS-II OS ported to STM32F401RE.
-- OSTimeDly() replace customized Delay_ms().
+## Project Structure
+```
+- System
+  - BSP
+  - CMSIS
+  - FWLIB
+- ucos2
+  - Cfg
+  - Ports
+  - Source
+- Application
+  - Hardware
+  - SystemView
+  - main.c
+- build
+- STM32F401RETx_FLASH.ld
+- CMakeLists.txt
+- arm-none-eabi-gcc.cmake
+- README.md
+```
+## Notes
+- port ucOS-II OS to STM32F401RE.
+- adopt Madgwick filter to estimate attitude.
+- use cascade PID controller in flight.
 
 
-### TODOs
+## TODOs
 - [x] change os_cpu_a.s from armcc to gcc version.
-- [ ] sensor calibration
-- [ ] sensor fusion
-- [ ] attitude estimation algorithm
+- [x] sensor calibration 
+- [x] attitude estimation algorithm
+- [x] pid controller 
+- [ ] add camera and more...
