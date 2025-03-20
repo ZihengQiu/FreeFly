@@ -33,4 +33,10 @@
 	  
 	],
 	"cortex-debug.variableUseNaturalFormat": false,
+	"files.associations": {
+		"os_cpu.h": "c",
+		"stm32f4xx.h": "c",
+		"flow_decode.h": "c",
+		"check.h": "c"
+	},
   }

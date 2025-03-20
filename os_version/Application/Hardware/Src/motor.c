@@ -208,3 +208,13 @@ void MotorSetSpeed(void)
 	TIM3->CCR2 = MotorSpeedLimit(motor_compare[2]); // PB7
 	TIM3->CCR4 = MotorSpeedLimit(motor_compare[3]);	// PB9
 }
+
+
+void all_set(int val)
+{
+	motor_compare[0] = val;
+	motor_compare[1] = val;
+	motor_compare[2] = val;
+	motor_compare[3] = val;
+	MotorSetSpeed();
+}

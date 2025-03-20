@@ -7,7 +7,7 @@
         {
             "name": "Cortex Debug",
             "cwd": "${workspaceRoot}",
-            "executable": "./build/freefly.elf",
+            "executable": "./freefly.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "openocd",
@@ -15,9 +15,11 @@
                 "interface/stlink.cfg",
                 "target/stm32f4x.cfg"
             ],
+            "gdbTarget": "localhost:3333",
             "armToolchainPath": "D:\\study\\gcc-arm-none-eabi-10.3-2021.10\\bin",
+            "gdbPath": "D:/study/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gdb.exe",
             "svdFile": "${workspaceRoot}/STM32F411.svd",
-			// "runToEntryPoint": "main",
+			// "runToEntryPoint": "main"
             "preLaunchTask": "Build",
 			"liveWatch": {
 				"enabled": true,

@@ -1,0 +1,1 @@
+D:\study\gcc-arm-none-eabi-10.3-2021.10\bin\arm-none-eabi-gcc.exe  -std=c11 -TC:/Users/13360/Desktop/FreeFly/os_version/STM32F401RETx_FLASH.ld -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -lc -lm -u_printf_float -Wl,-Map=freefly.map,--cref -Wl,--gc-sections @CMakeFiles\freefly.elf.dir\objects1.rsp -o freefly.elf 

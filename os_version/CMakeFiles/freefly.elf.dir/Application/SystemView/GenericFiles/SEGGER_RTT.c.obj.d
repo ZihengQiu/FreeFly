@@ -1,0 +1,26 @@
+CMakeFiles/freefly.elf.dir/Application/SystemView/GenericFiles/SEGGER_RTT.c.obj: \
+ C:\Users\13360\Desktop\FreeFly\os_version\Application\SystemView\GenericFiles\SEGGER_RTT.c \
+ C:\Users\13360\Desktop\FreeFly\os_version\Application\SystemView\GenericFiles\SEGGER_RTT.h \
+ C:\Users\13360\Desktop\FreeFly\os_version\Application\SystemView\GenericConfig/SEGGER_RTT_Conf.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\stdlib.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\ieeefp.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\_ansi.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\newlib.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\_newlib_version.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\config.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\features.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stddef.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\reent.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\_ansi.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_types.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\_types.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\_default_types.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\lock.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\cdefs.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\stdlib.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\alloca.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdarg.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\string.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_locale.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\strings.h \
+ d:\study\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\string.h

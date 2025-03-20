@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/13360/Desktop/FreeFly/os_version/System/CMSIS/Device/startup_stm32f401xe.s
+
+C:/Users/13360/Desktop/FreeFly/os_version/ucos2/Ports/os_cpu_a.s
+

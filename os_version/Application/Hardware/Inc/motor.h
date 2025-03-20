@@ -21,5 +21,6 @@ void ESCUnlockDetect(void);
 void SignalBlockDetect(void);
 void MotorSetSpeed(void);
 BOOLEAN ESCUnlock(void);
+void all_set(int val);
 
 #endif

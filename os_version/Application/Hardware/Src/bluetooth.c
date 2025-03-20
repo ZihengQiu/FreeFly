@@ -29,14 +29,18 @@ void Bluetooth_GPIOInit(void)
 	RCC->APB2ENR |= (uint16_t)0x01<<4; // USART1
 	
 	//Alternate function mode : 10
-	GPIOB->MODER &= ~((uint16_t)0x0003<<12);
+	GPIOB->MODER &= ~((uint16_t)0x0003<<12); //先清除原来的设置
 	GPIOB->MODER &= ~((uint16_t)0x0003<<14);
-	GPIOB->MODER |= (uint16_t)0x0002<<12;
+	GPIOB->MODER |= (uint16_t)0x0002<<12; //设置为AF模式
 	GPIOB->MODER |= (uint16_t)0x0002<<14;
 	
 	//Output push-pull (reset state) : 0
-	GPIOB->OTYPER |= (uint16_t)0x0001<<6;
-	GPIOB->OTYPER |= (uint16_t)0x0001<<7;
+	//推挽输出(波特率不对则乱码)
+	GPIOB->OTYPER &= ~(uint16_t)0x0001<<6;
+	GPIOB->OTYPER &= ~(uint16_t)0x0001<<7;
+	//开漏输出没信号
+	// GPIOB->OTYPER |= (uint16_t)0x0001<<6;
+	// GPIOB->OTYPER |= (uint16_t)0x0001<<7;
 	
 	// High speed : 10
 	GPIOB->OSPEEDR &= ~((uint16_t)0x0003<<12);
@@ -49,8 +53,8 @@ void Bluetooth_GPIOInit(void)
 	GPIOB->PUPDR &= ~((uint16_t)0x0003<<14); 
 	
 	//Alternate function selection AF7(USART1) : 0111
-	GPIOB->AFR[0] &= ~((uint32_t)(uint16_t)0xE<<24);
-	GPIOB->AFR[0] &= ~((uint32_t)0xE<<28);
+	GPIOB->AFR[0] &= ~((uint32_t)0xF<<24);
+	GPIOB->AFR[0] &= ~((uint32_t)0xF<<28);
 	GPIOB->AFR[0] |= (uint32_t)0x7<<24;
 	GPIOB->AFR[0] |= (uint32_t)0x7<<28;
 }
@@ -80,9 +84,6 @@ void Bluetooth_ConfigInit(void)
 	//Parity control disable : 0
 	USART1->CR1 &= ~(0x01<<10);
 	
-	//RXNE interrupt enable
-	USART1->CR1 |= 0x01<<5;
-	
 	//Transmitter enable : 1
 	USART1->CR1 |= 0x01<<3;
 	
@@ -100,16 +101,19 @@ void Bluetooth_ConfigInit(void)
 	NVIC_InitStructure.NVIC_IRQChannel=USART1_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=1;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority=2;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority=3;
 	NVIC_Init(&NVIC_InitStructure);
 
+	//rx interrupt enable
 	USART1->CR1 |= 0x01<<5;	
 }
 
 void Bluetooth_SendByte(uint8_t data)
 {
-	USART1->DR = (data & (uint16_t)0x01FF);
+	// USART1->DR = (data & (uint16_t)0x01FF);
+
 	while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+	USART_SendData(USART1, data);
 }
 
 uint16_t Bluetooth_ReceiveByte(void)

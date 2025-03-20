@@ -23,6 +23,7 @@
 #include "mathkit.h"
 #include "motor.h"
 #include "receiver.h"
+#include "TP01.h"
 
 #define TASK_PRIO_PID		9
 #define TASK_PRIO_ATTITUDE	10
@@ -36,7 +37,7 @@ OS_STK Task1Stk[TASK_STK_LEN];
 OS_STK Task2Stk[TASK_STK_LEN];
 OS_STK Task3Stk[TASK_STK_LEN];
 OS_STK Task4Stk[TASK_STK_LEN];
-OS_STK Task5Stk[TASK_STK_LEN_2];
+OS_STK Task5Stk[TASK_STK_LEN];
 OS_STK Task6Stk[TASK_STK_LEN];
 OS_STK Task7Stk[TASK_STK_LEN];
 OS_STK Task8Stk[TASK_STK_LEN];
@@ -49,6 +50,8 @@ extern vec3d_t acc_offset, acc_scale, gyro_offset, gyro_filter[2], mag_offset, m
 extern vec3d_t acc, mag, gyro, euler;
 extern BOOLEAN motor_armed;
 extern uint32_t ppm_val[10];
+extern uint8_t if_valid, confidence;
+extern uint16_t my_x, my_y, to_ground_distance;
 
 extern void My_Systick_Config(uint32_t reload_value);
 
@@ -78,21 +81,24 @@ void task_peripheral_init(void *pdata)
 	printf("Bluetooth init finished!\r\n");
 	times++;
 
-	MyI2C_Init();
-	printf("I2C init finished!\r\n");
-	times++;
-	
-	GY86Init();
-	printf("GY86 init finished!\r\n");
-	times++;
-	
-	Receiver_Init();
-	printf("Receiver init finished!\r\n");
-	times++;
+	TP01Init();
+	printf("TP01 init finished!\r\n");
 
-	Motor_Init();
-	printf("Motor init finished!\r\n");
-	times++;
+	// MyI2C_Init();
+	// printf("I2C init finished!\r\n");
+	// times++;
+	
+	// GY86Init();
+	// printf("GY86 init finished!\r\n");
+	// times++;
+	
+	// Receiver_Init();
+	// printf("Receiver init finished!\r\n");
+	// times++;
+
+	// Motor_Init();
+	// printf("Motor init finished!\r\n");
+	// times++;
 
 	printf("Initilization finished!\r\n");
 
@@ -311,6 +317,61 @@ void task_motor_control(void *pdata)
 	}
 }
 
+void info_send(void *pdata)
+{
+	while(1)
+	{
+		Bluetooth_SendString("USART1 normal\r\n");
+		OSTimeDly(5000);
+	}
+}
+
+void send_tp01(void *pdata)
+{
+	while(1)
+	{	
+		TP01_Parse();
+		// printf("x: %d, y: %d, distance: %d, if: %d, confi: %d",
+		// 	my_x, my_y, to_ground_distance, if_valid, confidence);
+		printf("x: %d, y: %d\r\n", my_x, my_y);
+		printf("distance: %d, if_valid: %d\r\n", to_ground_distance, if_valid);
+		// TP01_SendString("USART2 normal\r\n");
+		OSTimeDly(500);
+	}
+}
+
+void ESC(void *pdata)
+{
+	Bluetooth_SendString("ESC will be unlocked in 3s...\r\n");
+
+	OSTimeDly(2000);
+
+	Bluetooth_SendString("ESC unlock procedure starts!\r\n");
+
+	OSTimeDly(4000);
+
+	motor_compare[0] = MOTOR_COMPARE_MIN_VAL;
+	motor_compare[1] = MOTOR_COMPARE_MIN_VAL;
+	motor_compare[2] = MOTOR_COMPARE_MIN_VAL;
+	motor_compare[3] = MOTOR_COMPARE_MIN_VAL;
+	MotorSetSpeed();
+
+	OSTimeDly(4000);
+	printf("ESC unlock finished!\r\n");
+	OSTimeDly(5000);
+
+	//测试时最高不能超过1250
+	while(1)
+	{
+		all_set(1150);
+		OSTimeDly(1000);
+		all_set(MOTOR_COMPARE_MIN_VAL);
+		OSTimeDly(5000);
+	}
+
+	OSTaskDel(OS_PRIO_SELF);
+}
+
 void first_task(void *pdata) {
     // Initialization
 
@@ -324,29 +385,25 @@ void first_task(void *pdata) {
 	// create peripheral init task
 	OSTaskCreateExt(task_peripheral_init, (void *)0, &Task4Stk[TASK_STK_LEN - 1], 8, 8, Task4Stk, TASK_STK_LEN, (void *)0, 0);
 	OSTaskNameSet(8, (INT8U *)"PERIPHERAL_INIT", (INT8U *)"PERIPHERAL_INIT_ERR");
-	// OSTimeDly(3000);
 
-	// create MPU6050 task
-	// OSTaskCreateExt(task_MPU6050, (void *)0, &Task5Stk[TASK_STK_LEN_2 - 1], 9, 9, Task5Stk, TASK_STK_LEN_2, (void *)0, 0);
-	// OSTaskNameSet(9, (INT8U *)"MPU6050", (INT8U *)"MPU6050_ERR");
-	// OSTimeDly(3000);
+	// create bluetooth test
+	OSTaskCreateExt(info_send, (void *)0, &Task5Stk[TASK_STK_LEN - 1], 11, 11, Task5Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(9, (INT8U *)"INFO_SEND", (INT8U *)"INFO_SEND_ERR");
 
-	// create attitude control task
-	// OSTaskCreateExt(task_attitude_gyro, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 10, 10, Task6Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(10, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	// OSTaskCreateExt(task_attitude_acc, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
-	// OSTaskCreateExt(task_attitude_acc_mag, (void *)0, &Task7Stk[TASK_STK_LEN - 1], 11, 11, Task7Stk, TASK_STK_LEN, (void *)0, 0);
-	// OSTaskNameSet(11, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	OSTaskCreateExt(send_tp01, (void *)0, &Task6Stk[TASK_STK_LEN - 1], 9, 9, Task6Stk, TASK_STK_LEN, (void *)0, 0);
+	OSTaskNameSet(10, (INT8U *)"SEND_TP01", (INT8U *)"SEND_TP01_ERR");
 
-	OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], TASK_PRIO_ATTITUDE, TASK_PRIO_ATTITUDE, Task8Stk, TASK_STK_LEN, (void *)0, 0);
-	OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
+	// OSTaskCreateExt(task_attitude_fusion, (void *)0, &Task8Stk[TASK_STK_LEN - 1], TASK_PRIO_ATTITUDE, TASK_PRIO_ATTITUDE, Task8Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(12, (INT8U *)"attitude", (INT8U *)"attitude_ERR");
 
-	OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], TASK_PRIO_PID, TASK_PRIO_PID, Task9Stk, TASK_STK_LEN, (void *)0, 0);
-	OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
+	// OSTaskCreateExt(task_motor_control, (void *)0, &Task9Stk[TASK_STK_LEN - 1], TASK_PRIO_PID, TASK_PRIO_PID, Task9Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(13, (INT8U *)"motor_control", (INT8U *)"motor_control_ERR");
 
-	OSTaskCreateExt(task_send_ground_control, (void *)0, &Task10Stk[TASK_STK_LEN - 1], TASK_PRIO_GC, TASK_PRIO_GC, Task10Stk, TASK_STK_LEN, (void *)0, 0);
-	OSTaskNameSet(14, (INT8U *)"GC", (INT8U *)"GC");
+	// OSTaskCreateExt(task_send_ground_control, (void *)0, &Task10Stk[TASK_STK_LEN - 1], TASK_PRIO_GC, TASK_PRIO_GC, Task10Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(14, (INT8U *)"GC", (INT8U *)"GC");
+
+	// OSTaskCreateExt(ESC, (void *)0, &Task10Stk[TASK_STK_LEN - 1], 15, 15, Task10Stk, TASK_STK_LEN, (void *)0, 0);
+	// OSTaskNameSet(15, (INT8U *)"ESC", (INT8U *)"ESC_ERR");
 	
     OSTaskDel(OS_PRIO_SELF);
 }

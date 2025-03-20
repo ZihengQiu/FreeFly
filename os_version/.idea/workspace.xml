@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5763a735-4fa0-42f9-92dc-dc3e59f91aa8" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/Application/tcp_client.py" afterDir="false" />
-    </list>
+    <list default="true" id="5763a735-4fa0-42f9-92dc-dc3e59f91aa8" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +34,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/pid",
     "ignore.virus.scanning.warn.message": "true"
   }
 }]]></component>

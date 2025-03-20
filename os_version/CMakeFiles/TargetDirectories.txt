@@ -1,0 +1,3 @@
+C:/Users/13360/Desktop/FreeFly/os_version/CMakeFiles/freefly.elf.dir
+C:/Users/13360/Desktop/FreeFly/os_version/CMakeFiles/edit_cache.dir
+C:/Users/13360/Desktop/FreeFly/os_version/CMakeFiles/rebuild_cache.dir
